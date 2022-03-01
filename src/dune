@@ -1,0 +1,7 @@
+(library
+ (name super_master_mind)
+ (public_name super-master-mind)
+ (flags -warn-error +a)
+ (libraries base)
+ (preprocess
+  (pps ppx_sexp_value)))

@@ -1,0 +1,23 @@
+opam-version: "2.0"
+synopsis: "A solver for the super master mind game"
+description: "A solver for the super master mind game"
+maintainer: "Mathieu Barbin"
+authors: "Mathieu Barbin"
+license: "MIT"
+homepage: "https://github.com/mbarbin/super-master-mind"
+doc: "https://github.com/mbarbin/super-master-mind"
+bug-reports: "https://github.com/mbarbin/super-master-mind/issues"
+depends: [
+  "ocaml" {>= "4.09.0"}
+  "dune" {>= "2.0.0"}
+  "base" {>= "v0.15~preview.126.09+332"}
+  "core" {>= "v0.15~preview.126.09+332"}
+  "ppx_jane" {>= "v0.15~preview.126.09+332" & with-test}
+  "ppx_sexp_value" {>= "v0.15~preview.126.09+332"}
+]
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
+]
+dev-repo: "git+https://github.com/mbarbin/super-master-mind.git"

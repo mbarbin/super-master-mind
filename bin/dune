@@ -1,0 +1,6 @@
+(executable
+ (name main)
+ (public_name main)
+ (package super-master-mind)
+ (flags -warn-error +a)
+ (libraries core super-master-mind))
