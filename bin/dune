@@ -1,8 +1,6 @@
 (executable
  (name main)
- (public_name main)
+ (public_name super-master-mind)
  (package super-master-mind)
  (flags -warn-error +a)
- (libraries core super-master-mind)
- (preprocess
-  (pps ppx_jane)))
+ (libraries super-master-mind core_unix.command_unix))
