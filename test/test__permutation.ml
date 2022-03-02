@@ -69,3 +69,22 @@ let%expect_test "analyse" =
   print_s [%sexp (not_tested : Cue.t option)];
   [%expect {| () |}]
 ;;
+
+let%expect_test "repetition of colors in the solution" =
+  let test ~solution ~candidate =
+    let cue =
+      Permutation.Private.Computing.(
+        analyse ~solution:(create_exn solution) ~candidate:(create_exn candidate))
+    in
+    print_s [%sexp (cue : Cue.t)]
+  in
+  let solution : Color.Hum.t array = [| Black; Green; Brown; Green; Brown |] in
+  test ~solution ~candidate:[| Red; White; Yellow; Red; Red |];
+  [%expect {| ((white 0) (black 0)) |}];
+  test ~solution ~candidate:[| Green; White; Green; Red; Red |];
+  [%expect {| ((white 2) (black 0)) |}];
+  test ~solution ~candidate:[| Green; Green; Green; Red; Red |];
+  [%expect {| ((white 1) (black 1)) |}];
+  test ~solution ~candidate:[| Green; Green; Green; Brown; Red |];
+  [%expect {| ((white 2) (black 1)) |}]
+;;
