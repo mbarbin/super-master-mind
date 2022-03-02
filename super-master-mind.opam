@@ -10,10 +10,10 @@ bug-reports: "https://github.com/mbarbin/super-master-mind/issues"
 depends: [
   "ocaml" {>= "4.09.0"}
   "dune" {>= "2.0.0"}
-  "base" {>= "v0.15~preview.126.09+332"}
+  "ANSITerminal" {>= "0.8.3"}
   "core" {>= "v0.15~preview.126.09+332"}
-  "ppx_jane" {>= "v0.15~preview.126.09+332" & with-test}
-  "ppx_sexp_value" {>= "v0.15~preview.126.09+332"}
+  "core_unix" {>= "v0.15~preview.126.09+332"}
+  "ppx_jane" {>= "v0.15~preview.126.09+332"}
 ]
 build: [
   ["dune" "subst"] {pinned}
