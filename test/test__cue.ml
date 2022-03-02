@@ -3,7 +3,7 @@ open Super_master_mind
 
 let%expect_test "sexp_of_t" =
   print_s [%sexp (Cue.cardinality : int)];
-  [%expect {| 21 |}];
+  [%expect {| 20 |}];
   assert (Cue.cardinality = List.length Cue.all);
   List.iter Cue.all ~f:(fun t -> print_s [%sexp (t : Cue.t)]);
   [%expect
@@ -18,7 +18,6 @@ let%expect_test "sexp_of_t" =
     ((white 1) (black 1))
     ((white 1) (black 2))
     ((white 1) (black 3))
-    ((white 1) (black 4))
     ((white 2) (black 0))
     ((white 2) (black 1))
     ((white 2) (black 2))

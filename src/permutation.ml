@@ -19,8 +19,14 @@ end
 module Computing = struct
   type t = Color.t array
 
-  let of_hum t = t |> Array.map ~f:Color.of_hum
+  let create_exn hum =
+    if Array.length hum <> size
+    then raise_s [%sexp "Invalid permutation size", [%here], (hum : Hum.t)];
+    Array.map hum ~f:Color.of_hum
+  ;;
+
   let to_hum t = t |> Array.map ~f:Color.to_hum
+  let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
 
   let of_code (i : int) : t =
     let colors = Array.create size (Color.of_index_exn 0) in
@@ -45,7 +51,7 @@ module Computing = struct
     let white = ref 0 in
     Array.iteri candidate ~f:(fun i color ->
         match solution.(i) with
-        | None -> ()
+        | None -> assert false
         | Some color' ->
           if Color.equal color color'
           then (
@@ -64,18 +70,13 @@ module Computing = struct
           | None -> ()
           | Some j ->
             incr white;
-            solution.(i) <- None));
+            solution.(j) <- None));
     Cue.create_exn { white = !white; black = !black }
   ;;
 end
 
-let create_exn hum =
-  if Array.length hum <> size
-  then raise_s [%sexp "Invalid permutation size", [%here], (hum : Hum.t)];
-  Array.map hum ~f:Color.of_hum |> Computing.to_code
-;;
-
-let to_hum t = t |> Computing.of_code |> Array.map ~f:Color.to_hum
+let create_exn hum = hum |> Computing.create_exn |> Computing.to_code
+let to_hum t = t |> Computing.of_code |> Computing.to_hum
 let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
 let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
@@ -202,3 +203,7 @@ let step_candidate ~cache ~solution_set =
       ANSITerminal.erase Eol);
   Kheap.to_list candidates
 ;;
+
+module Private = struct
+  module Computing = Computing
+end

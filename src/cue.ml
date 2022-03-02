@@ -15,15 +15,13 @@ let permutation_size = 5
    verify : [0 <= black <= permutation_size - white].
 
    0 white: permutation_size + 1 choices for black
-   1 white: permutation_size     choices for black
+   1 white: permutation_size - 1 choices for black
    2 white: permutation_size - 1 choices for black
    ...
    ps white: 1 choice for black (0).
-
-   cardinality: (permutation_size + 1) * (permutation_size + 2) / 2
 *)
 
-let cardinality = (permutation_size + 1) * (permutation_size + 2) / 2
+let cardinality = ((permutation_size + 1) * (permutation_size + 2) / 2) - 1
 
 module Raw_code = struct
   type t = int
@@ -39,7 +37,9 @@ let raw_code_to_index, index_to_hum =
   let raw_code_to_index = Array.create Raw_code.cardinality None in
   let index_to_hum = Array.create cardinality None in
   for white = 0 to permutation_size do
-    for black = 0 to permutation_size - white do
+    for
+      black = 0 to if white = 1 then permutation_size - 2 else permutation_size - white
+    do
       let hum = { Hum.white; black } in
       let raw_code = Raw_code.of_hum hum in
       let index =
