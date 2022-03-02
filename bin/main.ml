@@ -86,7 +86,7 @@ let loop ~cache ~solution =
   aux ~solution_set
 ;;
 
-let cache = lazy (Permutation.Cache.compute ())
+let cache = lazy (Permutation.Cache.create ())
 
 let () =
   let solution = Permutation.create_exn [| Green; Blue; Orange; White; Red |] in

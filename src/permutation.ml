@@ -6,6 +6,8 @@ let size = Cue.permutation_size
 let cardinality = Float.of_int Color.cardinality ** Float.of_int size |> Float.to_int
 
 let log2 =
+  (* This function is available as [Float.log2] from OCaml 4.13. To be
+     simplified upon upgrading to a more recent compiler. *)
   let log2 = lazy (Caml.Float.log 2.) in
   fun x -> Caml.Float.log x /. Lazy.force log2
 ;;
@@ -81,7 +83,7 @@ module Cache = struct
   (* solution -> candidate -> Cue.t *)
   type t = { analysed : Cue.t option array array }
 
-  let compute () =
+  let create () =
     let analysed = Array.init cardinality ~f:(fun _ -> Array.create cardinality None) in
     { analysed }
   ;;
@@ -101,8 +103,9 @@ let analyse ~(cache : Cache.t) ~solution ~candidate =
 ;;
 
 module Solution_set = struct
-  type t = int Queue.t [@@deriving sexp_of]
+  type nonrec t = t Queue.t [@@deriving sexp_of]
 
+  let iter = Queue.iter
   let to_list = Queue.to_list
   let size = Queue.length
 
@@ -153,12 +156,19 @@ module Outcome = struct
 
   let compute_candidate ~cache ~solution_set ~candidate : t =
     let by_cue =
-      List.filter_map Cue.all ~f:(fun cue ->
-          let remains = Solution_set.restrict solution_set ~cache ~candidate ~cue in
-          let size = Solution_set.size remains in
-          if size > 0 then Some { Outcome_by_cue.cue; remains; size } else None)
-      |> List.sort ~compare:(fun t1 t2 -> Int.compare t1.size t2.size)
-      |> Array.of_list
+      let by_cue = Array.init Cue.cardinality ~f:(fun _ -> Queue.create ()) in
+      Solution_set.iter solution_set ~f:(fun solution ->
+          let cue = analyse ~cache ~solution ~candidate in
+          Queue.enqueue by_cue.(Cue.to_index cue) solution);
+      let by_cue =
+        Array.filter_mapi by_cue ~f:(fun i remains ->
+            let size = Solution_set.size remains in
+            if size > 0
+            then Some { Outcome_by_cue.cue = Cue.of_index_exn i; remains; size }
+            else None)
+      in
+      Array.sort by_cue ~compare:(fun t1 t2 -> Int.compare t1.size t2.size);
+      by_cue
     in
     let original_size = Float.of_int (Solution_set.size solution_set) in
     let expected_score =

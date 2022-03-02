@@ -28,10 +28,12 @@ val size : int
 val cardinality : int
 
 module Cache : sig
-  (** In order to speed up operations, a cache is used. *)
+  (** In order to avoid repeating operations, a cache is used. The
+     cache will currently retains all calls to [analyse]. *)
   type t
 
-  val compute : unit -> t
+  (** Allocates a new empty cache. *)
+  val create : unit -> t
 end
 
 val analyse : cache:Cache.t -> solution:t -> candidate:t -> Cue.t
