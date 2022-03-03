@@ -13,8 +13,15 @@ let rec input_cue () =
       input_int ~prompt
     | i -> i
   in
-  let black = input_int ~prompt:"#black (correclty placed)  : " in
-  let white = input_int ~prompt:"#white (incorreclty placed): " in
+  let black = input_int ~prompt:"#black (correctly placed)  : " in
+  let white =
+    let prompt = "#white (incorrectly placed): " in
+    if black >= 4
+    then (
+      print_endline (prompt ^ "0");
+      0)
+    else input_int ~prompt
+  in
   match Cue.create_exn { white; black } with
   | exception e ->
     print_s [%sexp (e : Exn.t)];
