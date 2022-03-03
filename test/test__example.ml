@@ -7,7 +7,8 @@ let%expect_test "" =
   verify_steps
     (Example.solve
        ~solution:(Permutation.create_exn [| Green; Blue; Orange; White; Red |]));
-  [%expect {|
+  [%expect
+    {|
     (1
      ((candidate (Black Blue Brown Green Orange))
       (expected_bits_gained 3.2315534058614324)
