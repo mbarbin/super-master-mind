@@ -12,5 +12,5 @@ module Permutations = Permutations
 let main =
   Command.group
     ~summary:"super-master-mind solver"
-    [ "example", Example.cmd; "opening-book", Opening_book.cmd ]
+    [ "example", Example.cmd; "opening-book", Opening_book.cmd; "solver", Solver.cmd ]
 ;;

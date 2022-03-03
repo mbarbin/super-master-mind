@@ -11,8 +11,9 @@ let canonical_first_candidate =
 type t = Guess.t [@@deriving sexp]
 
 let root t = t
+let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
-let rec compute_internal (t : t) ~possible_solutions ~depth ~max_depth ~k =
+let rec compute_internal (t : t) ~possible_solutions ~current_depth ~depth ~k =
   let number_of_cue = Nonempty_list.length t.by_cue in
   let i = ref 0 in
   Nonempty_list.iter t.by_cue ~f:(fun c ->
@@ -21,25 +22,34 @@ let rec compute_internal (t : t) ~possible_solutions ~depth ~max_depth ~k =
         !i
       in
       (* For each cue, we compute the best k candidate. *)
-      print_endline
-        (sprintf "Opening.compute[depth:%d]: cue %d / %d" depth i number_of_cue);
+      do_ansi (fun () ->
+          print_endline
+            (sprintf
+               "Opening.compute[depth:%d]: cue %d / %d"
+               current_depth
+               i
+               number_of_cue));
       let possible_solutions =
         Permutations.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
       in
       let next_best_guesses = Guess.compute_k_best ~possible_solutions ~k in
       c.next_best_guesses <- Computed next_best_guesses;
-      if depth < max_depth
+      if current_depth < depth
       then
         List.iter next_best_guesses ~f:(fun t ->
-            compute_internal t ~possible_solutions ~depth:(succ depth) ~max_depth ~k))
+            compute_internal
+              t
+              ~possible_solutions
+              ~current_depth:(succ current_depth)
+              ~depth
+              ~k))
 ;;
 
-let compute ~max_depth =
-  if max_depth < 1
-  then raise_s [%sexp "max_depth >= 1 expected", [%here], { max_depth : int }];
+let compute ~depth =
+  if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
   let possible_solutions = Permutations.all in
   let t = Guess.compute ~possible_solutions ~candidate:canonical_first_candidate in
-  compute_internal t ~possible_solutions ~depth:1 ~max_depth:1 ~k:1;
+  compute_internal t ~possible_solutions ~current_depth:1 ~depth ~k:1;
   t
 ;;
 
@@ -59,14 +69,11 @@ let dump_cmd =
 let compute_cmd =
   Command.basic
     ~summary:"compute and dump opening book"
-    (let%map_open.Command max_depth =
-       flag
-         "--max-depth"
-         (optional_with_default 1 int)
-         ~doc:"INT max depth of book (default 1)"
+    (let%map_open.Command depth =
+       flag "--depth" (optional_with_default 1 int) ~doc:"INT depth of book (default 1)"
      in
      fun () ->
-       let t = compute ~max_depth in
+       let t = compute ~depth in
        print_s [%sexp (t : t)])
 ;;
 
