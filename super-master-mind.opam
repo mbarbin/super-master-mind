@@ -12,6 +12,7 @@ depends: [
   "dune" {>= "2.0.0"}
   "ANSITerminal" {>= "0.8.3"}
   "core" {>= "v0.15~preview.126.09+332"}
+  "core_kernel.non_empty_list" {>= "v0.15~preview.126.09+332"}
   "core_unix" {>= "v0.15~preview.126.09+332"}
   "ocaml-embed-file"
   "ppx_jane" {>= "v0.15~preview.126.09+332"}

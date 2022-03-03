@@ -1,86 +1,47 @@
 open! Core
 open! Import
 
-let step ~possible_solutions ~solution =
-  let size = Permutations.size possible_solutions in
-  let () = if size <= 0 then raise_s [%sexp "Invalid possible_solutions", [%here]] in
-  print_endline "STEP";
-  print_s
-    [%sexp
-      { size = (Permutations.size possible_solutions : int)
-      ; bits = (Permutations.bits possible_solutions : float)
-      }];
-  let guesss = Guess.compute_k_best ~possible_solutions ~k:5 in
-  List.iter guesss ~f:(fun guess ->
-      let hum = Permutation.to_hum guess.candidate in
-      print_s [%sexp (guess.expected_bits_gained : Float.t), (hum : Permutation.Hum.t)]);
-  match guesss with
-  | [] -> None
-  | { candidate; expected_bits_gained; _ } :: _ ->
-    let cue = Permutation.analyse ~solution ~candidate in
-    let new_set = Permutations.filter possible_solutions ~candidate ~cue in
-    if Permutations.size new_set = 0
-    then None
+let solve ~solution =
+  let steps = Queue.create () in
+  let step_index = ref 0 in
+  let add (t : Guess.t) ~by_cue =
+    let by_cue =
+      Nonempty_list.singleton
+        { by_cue with Guess.By_cue.next_best_guesses = Not_computed }
+    in
+    let t = { t with by_cue } in
+    Queue.enqueue steps t;
+    incr step_index;
+    print_s [%sexp (!step_index : int), (t : Guess.t)]
+  in
+  let rec aux (t : Guess.t) ~possible_solutions =
+    let cue = Permutation.analyse ~solution ~candidate:t.candidate in
+    let by_cue =
+      Nonempty_list.find t.by_cue ~f:(fun by_cue -> Cue.equal cue by_cue.cue)
+      |> Option.value_exn ~here:[%here]
+    in
+    add t ~by_cue;
+    let possible_solutions =
+      Permutations.filter possible_solutions ~candidate:t.candidate ~cue
+    in
+    if Permutations.size possible_solutions = 1
+    then (
+      let solution = List.hd_exn (Permutations.to_list possible_solutions) in
+      let guess = Guess.compute ~possible_solutions ~candidate:solution in
+      add guess ~by_cue:(Nonempty_list.hd guess.by_cue))
     else (
-      let actual_bits_gained =
-        let original_bits = Permutations.bits possible_solutions in
-        let new_bits = Permutations.bits new_set in
-        original_bits -. new_bits
-      in
-      print_s
-        [%sexp
-          { candidate = (Permutation.to_hum candidate : Permutation.Hum.t)
-          ; cue : Cue.t
-          ; expected_bits_gained : float
-          ; actual_bits_gained : float
-          }];
-      Some new_set)
-;;
-
-let step_with_candidate ~solution ~possible_solutions ~candidate =
-  print_endline "STEP";
-  print_s
-    [%sexp
-      { size = (Permutations.size possible_solutions : int)
-      ; bits = (Permutations.bits possible_solutions : float)
-      }];
-  let cue = Permutation.analyse ~solution ~candidate in
-  let new_set = Permutations.filter possible_solutions ~candidate ~cue in
-  let actual_bits =
-    let original_bits = Permutations.bits possible_solutions in
-    let new_bits = Permutations.bits new_set in
-    original_bits -. new_bits
+      match by_cue.next_best_guesses with
+      | Computed [] -> ()
+      | Computed (guess :: _) -> aux guess ~possible_solutions
+      | Not_computed ->
+        (match Guess.compute_k_best ~possible_solutions ~k:1 with
+        | [] -> ()
+        | guess :: _ -> aux guess ~possible_solutions))
   in
-  print_s
-    [%sexp
-      { candidate = (Permutation.to_hum candidate : Permutation.Hum.t)
-      ; cue : Cue.t
-      ; actual_bits : float
-      }];
-  new_set
-;;
-
-let loop ~solution =
-  let rec aux ~possible_solutions =
-    match step ~possible_solutions ~solution with
-    | None -> ()
-    | Some possible_solutions ->
-      if Permutations.size possible_solutions > 1
-      then aux ~possible_solutions
-      else (
-        match Permutations.to_list possible_solutions with
-        | [] -> assert false
-        | found :: _ ->
-          assert (Permutation.equal solution found);
-          print_s [%sexp { solution = (Permutation.to_hum found : Permutation.Hum.t) }])
-  in
-  let possible_solutions =
-    step_with_candidate
-      ~solution
-      ~possible_solutions:Permutations.all
-      ~candidate:(Permutation.create_exn [| Black; Blue; Brown; Green; Orange |])
-  in
-  aux ~possible_solutions
+  let opening_book = Lazy.force Opening_book.opening_book in
+  let root = Opening_book.root opening_book in
+  aux root ~possible_solutions:Permutations.all;
+  Queue.to_list steps
 ;;
 
 let cmd =
@@ -89,5 +50,5 @@ let cmd =
     (let%map_open.Command () = return () in
      fun () ->
        let solution = Permutation.create_exn [| Green; Blue; Orange; White; Red |] in
-       loop ~solution)
+       ignore (solve ~solution : Guess.t list))
 ;;

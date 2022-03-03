@@ -38,7 +38,7 @@ and T : sig
     ; min_bits_gained : float
     ; max_bits_gained : float
     ; max_bits_remaining : float
-    ; mutable by_cue : By_cue.t array
+    ; by_cue : By_cue.t Nonempty_list.t
           (** Sorted by decreasing number of remaining sizes *)
     }
   [@@deriving equal, sexp]

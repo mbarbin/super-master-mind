@@ -1,6 +1,7 @@
 open! Core
 module Color = Color
 module Cue = Cue
+module Example = Example
 module Guess = Guess
 module Kheap = Kheap
 module Opening_book = Opening_book

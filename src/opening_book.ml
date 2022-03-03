@@ -13,11 +13,16 @@ type t = Guess.t [@@deriving sexp]
 let root t = t
 
 let rec compute_internal (t : t) ~possible_solutions ~depth ~max_depth ~k =
-  let number_of_cue = Array.length t.by_cue in
-  Array.iteri t.by_cue ~f:(fun i c ->
+  let number_of_cue = Nonempty_list.length t.by_cue in
+  let i = ref 0 in
+  Nonempty_list.iter t.by_cue ~f:(fun c ->
+      let i =
+        incr i;
+        !i
+      in
       (* For each cue, we compute the best k candidate. *)
       print_endline
-        (sprintf "Opening.compute[depth:%d]: cue %d / %d" depth (succ i) number_of_cue);
+        (sprintf "Opening.compute[depth:%d]: cue %d / %d" depth i number_of_cue);
       let possible_solutions =
         Permutations.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
       in
@@ -29,7 +34,9 @@ let rec compute_internal (t : t) ~possible_solutions ~depth ~max_depth ~k =
             compute_internal t ~possible_solutions ~depth:(succ depth) ~max_depth ~k))
 ;;
 
-let compute () =
+let compute ~max_depth =
+  if max_depth < 1
+  then raise_s [%sexp "max_depth >= 1 expected", [%here], { max_depth : int }];
   let possible_solutions = Permutations.all in
   let t = Guess.compute ~possible_solutions ~candidate:canonical_first_candidate in
   compute_internal t ~possible_solutions ~depth:1 ~max_depth:1 ~k:1;
@@ -52,9 +59,14 @@ let dump_cmd =
 let compute_cmd =
   Command.basic
     ~summary:"compute and dump opening book"
-    (let%map_open.Command () = return () in
+    (let%map_open.Command max_depth =
+       flag
+         "--max-depth"
+         (optional_with_default 1 int)
+         ~doc:"INT max depth of book (default 1)"
+     in
      fun () ->
-       let t = compute () in
+       let t = compute ~max_depth in
        print_s [%sexp (t : t)])
 ;;
 

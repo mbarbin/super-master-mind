@@ -45,7 +45,8 @@ and T : sig
     ; min_bits_gained : float
     ; max_bits_gained : float
     ; max_bits_remaining : float
-    ; mutable by_cue : By_cue.t array (* Sorted by decreasing number of remaining sizes *)
+    ; by_cue :
+        By_cue.t Nonempty_list.t (* Sorted by decreasing number of remaining sizes *)
     }
   [@@deriving equal, sexp]
 end = struct
@@ -56,7 +57,7 @@ end = struct
     ; min_bits_gained : float
     ; max_bits_gained : float
     ; max_bits_remaining : float
-    ; mutable by_cue : By_cue.t array
+    ; by_cue : By_cue.t Nonempty_list.t
     }
   [@@deriving equal, sexp]
 end
@@ -64,6 +65,8 @@ end
 include T
 
 let compute ~possible_solutions ~candidate : t =
+  if Permutations.is_empty possible_solutions
+  then raise_s [%sexp "No possible solutions", [%here]];
   let original_size = Float.of_int (Permutations.size possible_solutions) in
   let original_bits = Float.log2 original_size in
   let by_cue =
@@ -89,16 +92,18 @@ let compute ~possible_solutions ~candidate : t =
     in
     Array.sort by_cue ~compare:(fun t1 t2 ->
         Int.compare t2.size_remaining t1.size_remaining);
-    by_cue
+    Nonempty_list.of_list_exn (Array.to_list by_cue)
   in
   let min_bits_gained =
-    Array.fold by_cue ~init:Float.infinity ~f:(fun acc t -> Float.min acc t.bits_gained)
+    Nonempty_list.fold by_cue ~init:Float.infinity ~f:(fun acc t ->
+        Float.min acc t.bits_gained)
   in
   let max_bits_gained =
-    Array.fold by_cue ~init:0. ~f:(fun acc t -> Float.max acc t.bits_gained)
+    Nonempty_list.fold by_cue ~init:0. ~f:(fun acc t -> Float.max acc t.bits_gained)
   in
   let expected_bits_gained =
-    Array.fold by_cue ~init:0. ~f:(fun acc t -> acc +. (t.probability *. t.bits_gained))
+    Nonempty_list.fold by_cue ~init:0. ~f:(fun acc t ->
+        acc +. (t.probability *. t.bits_gained))
   in
   let expected_bits_remaining = original_bits -. expected_bits_gained in
   { candidate
@@ -114,6 +119,7 @@ let compute ~possible_solutions ~candidate : t =
 let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
 let compute_k_best ~possible_solutions ~k =
+  if k < 1 then raise_s [%sexp "k >= 1 value expected", [%here], { k : int }];
   let ts =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
         Float.compare t2.expected_bits_gained t1.expected_bits_gained)

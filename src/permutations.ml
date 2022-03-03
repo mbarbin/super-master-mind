@@ -15,6 +15,11 @@ let size = function
 
 let bits t = Float.log2 (Float.of_int (size t))
 
+let is_empty = function
+  | All -> false
+  | Only { queue } -> Queue.is_empty queue
+;;
+
 let all_as_queue =
   lazy
     (let t = Queue.create () in

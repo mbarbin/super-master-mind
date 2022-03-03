@@ -13,7 +13,7 @@ val opening_book : t Lazy.t
 val canonical_first_candidate : Permutation.t
 
 (** Function used to recompute the opening book. *)
-val compute : unit -> t
+val compute : max_depth:int -> t
 
 (** Access the root of the book as a [Guess.t]. *)
 val root : t -> Guess.t

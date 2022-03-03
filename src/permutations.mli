@@ -17,6 +17,9 @@ val size : t -> int
 (** Returns the size of [t] expressed in a number of information bits. *)
 val bits : t -> Float.t
 
+(** [is_empty t = true] is equivalent to [size t = 0] but more efficient. *)
+val is_empty : t -> bool
+
 (** Return a new set of permutations in which only those permutation
    which evaluates to the given cue with the given candidate are kept.
    Note this may return an empty set if the original [t] contains no
