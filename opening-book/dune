@@ -2,14 +2,18 @@
  (name default)
  (deps))
 
-(rule
- (alias opening-book)
- (action
-  (with-stdout-to
-   opening-book.output
-   (run %{bin:super-master-mind} opening-book compute --depth 2))))
+;; Currently I cannot figure out how to disable the following target
+;; from cmd [dune build] when run in the toplevel directory. Replaced
+;; by a Makefile for now.
 
-(rule
- (alias opening-book)
- (action
-  (diff opening-book.expected opening-book.output)))
+;(rule
+; (alias opening-book)
+; (action
+;  (with-stdout-to
+;   opening-book.output
+;   (run %{bin:super-master-mind} opening-book compute --depth 2))))
+
+;(rule
+; (alias opening-book)
+; (action
+;  (diff opening-book.expected opening-book.output)))
