@@ -36,7 +36,7 @@ let sexp_of_t sexp_of_a t = [%sexp (to_list t : a list)]
 let rec cut node ~k =
   match node with
   | None -> None
-  | Some ({ Node.value; tail } as t) ->
+  | Some ({ Node.value = _; tail } as t) ->
     if k = 0
     then None
     else (

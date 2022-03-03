@@ -2,5 +2,5 @@
  (name main)
  (public_name super-master-mind)
  (package super-master-mind)
- (flags -warn-error +a)
+ (flags -w +a-40-42-66 -warn-error +a)
  (libraries super-master-mind core_unix.command_unix))

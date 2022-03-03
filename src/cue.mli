@@ -10,7 +10,7 @@ open! Base
    right place gets a black pin. *)
 
 (** [t] is an efficient representation for a cue. *)
-type t [@@deriving compare, equal, enumerate, hash, sexp_of]
+type t [@@deriving compare, equal, enumerate, hash, sexp]
 
 module Hum : sig
   (** Human readable representation for a cue. *)
@@ -18,7 +18,7 @@ module Hum : sig
     { white : int
     ; black : int
     }
-  [@@deriving sexp_of]
+  [@@deriving sexp]
 end
 
 (** The number of different cues that are encountered in the game. *)

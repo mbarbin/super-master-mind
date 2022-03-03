@@ -1,7 +1,7 @@
 (library
  (name super_master_mind)
  (public_name super-master-mind)
- (flags -warn-error +a)
+ (flags -w +a-4-40-42-66 -warn-error +a)
  (libraries ANSITerminal core core_unix)
  (preprocess
   (pps ppx_jane)))

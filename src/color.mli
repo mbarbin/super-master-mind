@@ -3,7 +3,7 @@ open! Core
 (** In the game, pins may be of 8 different colors. Colors may be
    encoded to allow for a more efficient representation. *)
 
-type t [@@deriving compare, equal, enumerate, hash, sexp_of]
+type t [@@deriving compare, equal, enumerate, hash, sexp]
 
 module Hum : sig
   (** Human readable representation of colors. *)
@@ -16,7 +16,7 @@ module Hum : sig
     | Red
     | White
     | Yellow
-  [@@deriving enumerate, sexp_of]
+  [@@deriving enumerate, sexp]
 end
 
 val of_hum : Hum.t -> t

@@ -5,11 +5,11 @@ open! Core
    well. *)
 
 (** [t] is a memory efficient representation for a permutation. *)
-type t [@@deriving compare, equal, hash, sexp_of]
+type t [@@deriving compare, equal, hash, sexp]
 
 module Hum : sig
   (** Humam readable representation for a permutation. *)
-  type t = Color.Hum.t array [@@deriving sexp_of]
+  type t = Color.Hum.t array [@@deriving sexp]
 end
 
 (** Returns the efficient encoding of a given permutation. Raises if

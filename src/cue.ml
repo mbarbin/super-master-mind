@@ -6,7 +6,7 @@ module Hum = struct
     { white : int
     ; black : int
     }
-  [@@deriving sexp_of]
+  [@@deriving sexp]
 end
 
 let permutation_size = 5
@@ -27,16 +27,14 @@ let cardinality = ((permutation_size + 1) * (permutation_size + 2) / 2) - 1
 module Raw_code = struct
   type t = int
 
-  let of_hum { Hum.white; black } = (black * (permutation_size + 1)) + white
+  let of_hum { Hum.white; black } : t = (black * (permutation_size + 1)) + white
   let cardinality = (permutation_size + 1) * (permutation_size + 1)
 end
 
-let zero = { Hum.white = 0; black = 0 }
-
 let raw_code_to_index, index_to_hum =
   let index = ref (-1) in
-  let raw_code_to_index = Array.create Raw_code.cardinality None in
-  let index_to_hum = Array.create cardinality None in
+  let raw_code_to_index = Array.create ~len:Raw_code.cardinality None in
+  let index_to_hum = Array.create ~len:cardinality None in
   for white = 0 to permutation_size do
     for
       black = 0 to if white = 1 then permutation_size - 2 else permutation_size - white
@@ -80,4 +78,5 @@ let create_exn hum =
   | None -> raise_s [%sexp "Invalid hum representation", [%here], (hum : Hum.t)]
 ;;
 
+let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
 let all = List.init cardinality ~f:Fn.id

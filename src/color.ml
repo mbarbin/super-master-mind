@@ -13,7 +13,7 @@ module Hum = struct
     | Red
     | White
     | Yellow
-  [@@deriving enumerate, sexp_of]
+  [@@deriving enumerate, sexp]
 
   let to_index = function
     | Black -> 0
@@ -55,3 +55,4 @@ let of_index_exn index =
 
 let all = List.map Hum.all ~f:of_hum
 let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
+let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> of_hum

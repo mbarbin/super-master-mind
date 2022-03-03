@@ -7,7 +7,7 @@
  (action
   (with-stdout-to
    opening-book.output
-   (run %{bin:super-master-mind} opening dump))))
+   (run %{bin:super-master-mind} opening-book compute))))
 
 (rule
  (alias opening-book)

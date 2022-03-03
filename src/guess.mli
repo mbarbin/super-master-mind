@@ -15,7 +15,7 @@ module rec Next_best_guesses : sig
   type t =
     | Not_computed
     | Computed of T.t list
-  [@@deriving equal, sexp_of]
+  [@@deriving equal, sexp]
 end
 
 and By_cue : sig
@@ -27,7 +27,7 @@ and By_cue : sig
     ; probability : float
     ; mutable next_best_guesses : Next_best_guesses.t
     }
-  [@@deriving equal, sexp_of]
+  [@@deriving equal, sexp]
 end
 
 and T : sig
@@ -40,7 +40,7 @@ and T : sig
     ; max_bits_remaining : float
     ; by_cue : By_cue.t array (** Sorted by decreasing number of remaining sizes *)
     }
-  [@@deriving equal, sexp_of]
+  [@@deriving equal, sexp]
 end
 
 include module type of struct

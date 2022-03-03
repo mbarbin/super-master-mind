@@ -7,7 +7,7 @@ let size = Cue.permutation_size
 let cardinality = Float.of_int Color.cardinality ** Float.of_int size |> Float.to_int
 
 module Hum = struct
-  type t = Color.Hum.t array [@@deriving sexp_of]
+  type t = Color.Hum.t array [@@deriving sexp]
 end
 
 module Computing = struct
@@ -20,10 +20,9 @@ module Computing = struct
   ;;
 
   let to_hum t = t |> Array.map ~f:Color.to_hum
-  let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
 
   let of_code (i : int) : t =
-    let colors = Array.create size (Color.of_index_exn 0) in
+    let colors = Array.create ~len:size (Color.of_index_exn 0) in
     let remainder = ref i in
     for i = 0 to size - 1 do
       let rem = !remainder mod Color.cardinality in
@@ -72,6 +71,7 @@ end
 let create_exn hum = hum |> Computing.create_exn |> Computing.to_code
 let to_hum t = t |> Computing.of_code |> Computing.to_hum
 let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
+let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
 let to_index t = t
 
 let of_index_exn index =

@@ -8,9 +8,7 @@ let canonical_first_candidate =
   |> Permutation.create_exn
 ;;
 
-type t = Guess.t [@@deriving sexp_of]
-
-let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
+type t = Guess.t [@@deriving sexp]
 
 let rec compute_internal (t : t) ~possible_solutions ~depth ~max_depth ~k =
   let number_of_cue = Array.length t.by_cue in
@@ -38,15 +36,30 @@ let compute () =
 
 (* CR mbarbin: Replace by an actual load command once the sexp is in
    place and can be parsed. *)
-let () = ignore Embedded_files.opening_book_dot_expected
+let opening_book =
+  lazy (Sexp.of_string_conv_exn Embedded_files.opening_book_dot_expected [%of_sexp: t])
+;;
 
 let dump_cmd =
   Command.basic
-    ~summary:"run through an example"
+    ~summary:"dump embedded opening-book"
+    (let%map_open.Command () = return () in
+     fun () ->
+       let t = Lazy.force opening_book in
+       print_s [%sexp (t : t)])
+;;
+
+let compute_cmd =
+  Command.basic
+    ~summary:"compute and dump opening book"
     (let%map_open.Command () = return () in
      fun () ->
        let t = compute () in
        print_s [%sexp (t : t)])
 ;;
 
-let cmd = Command.group ~summary:"opening pre computation" [ "dump", dump_cmd ]
+let cmd =
+  Command.group
+    ~summary:"opening pre computation"
+    [ "dump", dump_cmd; "compute", compute_cmd ]
+;;
