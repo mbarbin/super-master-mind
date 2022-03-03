@@ -8,7 +8,7 @@ let%expect_test "sexp_of_t" =
 ;;
 
 let%expect_test "analyse" =
-  let tested = Array.create Cue.cardinality false in
+  let tested = Array.create ~len:Cue.cardinality false in
   let test ~solution ~candidate =
     let cue =
       Permutation.(

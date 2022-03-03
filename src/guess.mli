@@ -38,7 +38,8 @@ and T : sig
     ; min_bits_gained : float
     ; max_bits_gained : float
     ; max_bits_remaining : float
-    ; by_cue : By_cue.t array (** Sorted by decreasing number of remaining sizes *)
+    ; mutable by_cue : By_cue.t array
+          (** Sorted by decreasing number of remaining sizes *)
     }
   [@@deriving equal, sexp]
 end

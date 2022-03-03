@@ -10,6 +10,8 @@ let canonical_first_candidate =
 
 type t = Guess.t [@@deriving sexp]
 
+let root t = t
+
 let rec compute_internal (t : t) ~possible_solutions ~depth ~max_depth ~k =
   let number_of_cue = Array.length t.by_cue in
   Array.iteri t.by_cue ~f:(fun i c ->
@@ -34,8 +36,6 @@ let compute () =
   t
 ;;
 
-(* CR mbarbin: Replace by an actual load command once the sexp is in
-   place and can be parsed. *)
 let opening_book =
   lazy (Sexp.of_string_conv_exn Embedded_files.opening_book_dot_expected [%of_sexp: t])
 ;;

@@ -15,5 +15,8 @@ val canonical_first_candidate : Permutation.t
 (** Function used to recompute the opening book. *)
 val compute : unit -> t
 
+(** Access the root of the book as a [Guess.t]. *)
+val root : t -> Guess.t
+
 (** The command exported as [super-master-mind opening-book]. *)
 val cmd : Command.t
