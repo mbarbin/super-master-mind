@@ -74,12 +74,11 @@ let loop ~cache ~solution =
           assert (Permutation.equal solution found);
           print_s [%sexp { solution = (Permutation.to_hum found : Permutation.Hum.t) }])
   in
-  let possible_solutions = Lazy.force Permutations.all in
   let possible_solutions =
     step_with_candidate
       ~cache
       ~solution
-      ~possible_solutions
+      ~possible_solutions:Permutations.all
       ~candidate:(Permutation.create_exn [| Black; Blue; Brown; Green; Orange |])
   in
   aux ~possible_solutions

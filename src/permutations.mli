@@ -7,9 +7,9 @@ open! Core
 
 type t [@@deriving sexp_of]
 
-(** A [t] containing all possible permutations. It is lazy as it takes
-   some resource to compute (cardinality ~32K elements). *)
-val all : t Lazy.t
+(** A [t] representing the set of all possible permutations. Its size
+   is equal to ~32K elements. *)
+val all : t
 
 (** Returns the number of permutations contained in [t]. *)
 val size : t -> int
@@ -23,7 +23,8 @@ val bits : t -> Float.t
    such permutation. *)
 val filter : t -> cache:Permutation.Cache.t -> candidate:Permutation.t -> cue:Cue.t -> t
 
-(** Access the elements of [t] in the form of a list. The order of permutations is unspecified. *)
+(** Access the elements of [t] in the form of a list. The order of
+   permutations is unspecified. *)
 val to_list : t -> Permutation.t list
 
 (** Iter through the permutation contained in [t]. *)

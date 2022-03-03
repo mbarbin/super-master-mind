@@ -6,7 +6,7 @@ let cache = lazy (Permutation.Cache.create ())
 let%expect_test "no repetition" =
   let candidate = Permutation.create_exn [| Green; Blue; Orange; White; Red |] in
   let cache = Lazy.force cache
-  and possible_solutions = Lazy.force Permutations.all in
+  and possible_solutions = Permutations.all in
   let guess = Guess.compute ~cache ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
@@ -68,7 +68,7 @@ let%expect_test "no repetition" =
 let%expect_test "color present 2 times" =
   let candidate = Permutation.create_exn [| Green; Green; Orange; White; Red |] in
   let cache = Lazy.force cache
-  and possible_solutions = Lazy.force Permutations.all in
+  and possible_solutions = Permutations.all in
   let guess = Guess.compute ~cache ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
@@ -129,7 +129,7 @@ let%expect_test "color present 2 times" =
 let%expect_test "color present 3 times" =
   let candidate = Permutation.create_exn [| Green; Green; Green; White; Red |] in
   let cache = Lazy.force cache
-  and possible_solutions = Lazy.force Permutations.all in
+  and possible_solutions = Permutations.all in
   let guess = Guess.compute ~cache ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
@@ -187,7 +187,7 @@ let%expect_test "color present 3 times" =
 let%expect_test "color present 4 times" =
   let candidate = Permutation.create_exn [| Green; Green; Green; White; Green |] in
   let cache = Lazy.force cache
-  and possible_solutions = Lazy.force Permutations.all in
+  and possible_solutions = Permutations.all in
   let guess = Guess.compute ~cache ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
@@ -236,7 +236,7 @@ let%expect_test "color present 4 times" =
 let%expect_test "color present 5 times" =
   let candidate = Permutation.create_exn [| Green; Green; Green; Green; Green |] in
   let cache = Lazy.force cache
-  and possible_solutions = Lazy.force Permutations.all in
+  and possible_solutions = Permutations.all in
   let guess = Guess.compute ~cache ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
