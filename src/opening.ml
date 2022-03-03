@@ -8,41 +8,35 @@ let canonical_first_candidate =
   |> Permutation.create_exn
 ;;
 
-module By_cue = struct
-  type t =
-    { guess_cue : Guess.By_cue.t
-    ; best_guesses : Guess.t list (* Sorted best guesses first *)
-    }
-  [@@deriving sexp_of]
-end
-
-type t =
-  { candidate : Permutation.t
-  ; expected_bits_gained : float
-  ; by_cue : By_cue.t array (* Sorted by decreasing number of remaining sizes *)
-  }
-[@@deriving sexp_of]
+type t = Guess.t [@@deriving sexp_of]
 
 let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
+(* CR mbarbin: Replace by an implementation making it clear that a
+   computing at depth is possible, and use it to implement compute
+   with depth = 1, with the special case of the first guess being the
+   canonical one.
+
+   I propose to do this after having run through one succesful example
+   of the following code first, in order to compute the dumps. *)
+
 let compute () =
   let k = 3 in
-  let cache = Permutation.Cache.create () in
   let possible_solutions = Permutations.all in
   let candidate = canonical_first_candidate in
-  let guess = Guess.compute ~cache ~possible_solutions ~candidate in
+  let guess = Guess.compute ~possible_solutions ~candidate in
   let by_cue =
     let number_of_cue = Array.length guess.by_cue in
     Array.mapi guess.by_cue ~f:(fun i t ->
         (* For each cue, we compute the best k candidate. *)
         print_endline (sprintf "Opening.compute: cue %d / %d" (succ i) number_of_cue);
         let possible_solutions =
-          Permutations.filter possible_solutions ~cache ~candidate ~cue:t.cue
+          Permutations.filter possible_solutions ~candidate ~cue:t.cue
         in
-        let best_guesses = Guess.compute_k_best ~cache ~possible_solutions ~k in
-        { By_cue.guess_cue = t; best_guesses })
+        let next_best_guesses = Guess.compute_k_best ~possible_solutions ~k in
+        { t with next_best_guesses = Pre_computed { next_best_guesses } })
   in
-  { candidate; expected_bits_gained = guess.expected_bits_gained; by_cue }
+  { guess with by_cue }
 ;;
 
 let dump_cmd =

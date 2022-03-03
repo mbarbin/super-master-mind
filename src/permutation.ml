@@ -80,29 +80,8 @@ let of_index_exn index =
   index
 ;;
 
-module Cache = struct
-  (* solution -> candidate -> Cue.t *)
-  type t = { analysed : Cue.t option array array }
-
-  let create () =
-    let analysed = Array.init cardinality ~f:(fun _ -> Array.create cardinality None) in
-    { analysed }
-  ;;
-end
-
-let analyse ~(cache : Cache.t) ~solution ~candidate =
-  match cache.analysed.(solution).(candidate) with
-  | Some v -> v
-  | None ->
-    let v =
-      Computing.analyse
-        ~solution:(Computing.of_code solution)
-        ~candidate:(Computing.of_code candidate)
-    in
-    cache.analysed.(solution).(candidate) <- Some v;
-    v
+let analyse ~solution ~candidate =
+  Computing.analyse
+    ~solution:(Computing.of_code solution)
+    ~candidate:(Computing.of_code candidate)
 ;;
-
-module Private = struct
-  module Computing = Computing
-end

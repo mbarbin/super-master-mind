@@ -11,7 +11,7 @@ let%expect_test "analyse" =
   let tested = Array.create Cue.cardinality false in
   let test ~solution ~candidate =
     let cue =
-      Permutation.Private.Computing.(
+      Permutation.(
         analyse ~solution:(create_exn solution) ~candidate:(create_exn candidate))
     in
     tested.(Cue.to_index cue) <- true;
@@ -73,7 +73,7 @@ let%expect_test "analyse" =
 let%expect_test "repetition of colors in the solution" =
   let test ~solution ~candidate =
     let cue =
-      Permutation.Private.Computing.(
+      Permutation.(
         analyse ~solution:(create_exn solution) ~candidate:(create_exn candidate))
     in
     print_s [%sexp (cue : Cue.t)]

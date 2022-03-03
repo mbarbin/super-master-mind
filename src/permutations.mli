@@ -21,7 +21,7 @@ val bits : t -> Float.t
    which evaluates to the given cue with the given candidate are kept.
    Note this may return an empty set if the original [t] contains no
    such permutation. *)
-val filter : t -> cache:Permutation.Cache.t -> candidate:Permutation.t -> cue:Cue.t -> t
+val filter : t -> candidate:Permutation.t -> cue:Cue.t -> t
 
 (** Access the elements of [t] in the form of a list. The order of
    permutations is unspecified. *)

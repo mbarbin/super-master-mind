@@ -1,13 +1,28 @@
 open! Core
 open! Import
 
-module rec By_cue : sig
+module rec Next_best_guesses : sig
+  (* When computed, best guesses are sorted by decreasing number of
+     expected_bits_gained. *)
+  type t =
+    | Not_computed
+    | Pre_computed of { next_best_guesses : T.t list }
+  [@@deriving equal, sexp_of]
+end = struct
+  type t =
+    | Not_computed
+    | Pre_computed of { next_best_guesses : T.t list }
+  [@@deriving equal, sexp_of]
+end
+
+and By_cue : sig
   type t =
     { cue : Cue.t
     ; size_remaining : int
     ; bits_remaining : float
     ; bits_gained : float
     ; probability : float
+    ; next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp_of]
 end = struct
@@ -17,6 +32,7 @@ end = struct
     ; bits_remaining : float
     ; bits_gained : float
     ; probability : float
+    ; next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp_of]
 end
@@ -47,13 +63,13 @@ end
 
 include T
 
-let compute ~cache ~possible_solutions ~candidate : t =
+let compute ~possible_solutions ~candidate : t =
   let original_size = Float.of_int (Permutations.size possible_solutions) in
   let original_bits = Float.log2 original_size in
   let by_cue =
     let by_cue = Array.init Cue.cardinality ~f:(fun _ -> Queue.create ()) in
     Permutations.iter possible_solutions ~f:(fun solution ->
-        let cue = Permutation.analyse ~cache ~solution ~candidate in
+        let cue = Permutation.analyse ~solution ~candidate in
         Queue.enqueue by_cue.(Cue.to_index cue) solution);
     let by_cue =
       Array.filter_mapi by_cue ~f:(fun i remains ->
@@ -67,6 +83,7 @@ let compute ~cache ~possible_solutions ~candidate : t =
               ; bits_remaining
               ; bits_gained = original_bits -. bits_remaining
               ; probability = Float.of_int size_remaining /. original_size
+              ; next_best_guesses = Not_computed
               })
           else None)
     in
@@ -96,7 +113,7 @@ let compute ~cache ~possible_solutions ~candidate : t =
 
 let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
-let compute_k_best ~cache ~possible_solutions ~k =
+let compute_k_best ~possible_solutions ~k =
   let ts =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
         Float.compare t2.expected_bits_gained t1.expected_bits_gained)
@@ -110,9 +127,7 @@ let compute_k_best ~cache ~possible_solutions ~k =
              "Guess.compute_k_best : %d / %d"
              (succ candidate)
              (Permutation.cardinality - 1)));
-    let t =
-      compute ~cache ~possible_solutions ~candidate:(Permutation.of_index_exn candidate)
-    in
+    let t = compute ~possible_solutions ~candidate:(Permutation.of_index_exn candidate) in
     if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
   done;
   do_ansi (fun () ->

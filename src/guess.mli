@@ -6,13 +6,26 @@ open! Core
    propose candidates that maximize the expected value of the amount
    of information they'll get in return. *)
 
-module rec By_cue : sig
+module rec Next_best_guesses : sig
+  (** When computed, best guesses are sorted by decreasing number of
+     expected_bits_gained. The functions in this module do not compute
+     best guesses recursively, thus they will all produce guesses
+     where [next_best_guesses = Not_computed]. For pre computed
+     guesses, see the opening book. *)
+  type t =
+    | Not_computed
+    | Pre_computed of { next_best_guesses : T.t list }
+  [@@deriving equal, sexp_of]
+end
+
+and By_cue : sig
   type t =
     { cue : Cue.t
     ; size_remaining : int
     ; bits_remaining : float
     ; bits_gained : float
     ; probability : float
+    ; next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp_of]
 end
@@ -34,14 +47,5 @@ include module type of struct
   include T
 end
 
-val compute
-  :  cache:Permutation.Cache.t
-  -> possible_solutions:Permutations.t
-  -> candidate:Permutation.t
-  -> t
-
-val compute_k_best
-  :  cache:Permutation.Cache.t
-  -> possible_solutions:Permutations.t
-  -> k:int
-  -> t list
+val compute : possible_solutions:Permutations.t -> candidate:Permutation.t -> t
+val compute_k_best : possible_solutions:Permutations.t -> k:int -> t list
