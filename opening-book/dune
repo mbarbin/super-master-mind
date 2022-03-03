@@ -7,7 +7,7 @@
  (action
   (with-stdout-to
    opening-book.output
-   (run %{bin:super-master-mind} opening-book compute --depth 1))))
+   (run %{bin:super-master-mind} opening-book compute --depth 2))))
 
 (rule
  (alias opening-book)
