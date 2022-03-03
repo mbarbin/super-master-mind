@@ -13,16 +13,16 @@ let step ~cache ~possible_solutions ~solution =
   let guesss = Guess.compute_k_best ~cache ~possible_solutions ~k:5 in
   List.iter guesss ~f:(fun guess ->
       let hum = Permutation.to_hum guess.candidate in
-      print_s [%sexp (guess.expected_bits : Float.t), (hum : Permutation.Hum.t)]);
+      print_s [%sexp (guess.expected_bits_gained : Float.t), (hum : Permutation.Hum.t)]);
   match guesss with
   | [] -> None
-  | { candidate; expected_bits; _ } :: _ ->
+  | { candidate; expected_bits_gained; _ } :: _ ->
     let cue = Permutation.analyse ~cache ~solution ~candidate in
     let new_set = Permutations.filter possible_solutions ~cache ~candidate ~cue in
     if Permutations.size new_set = 0
     then None
     else (
-      let actual_bits =
+      let actual_bits_gained =
         let original_bits = Permutations.bits possible_solutions in
         let new_bits = Permutations.bits new_set in
         original_bits -. new_bits
@@ -31,8 +31,8 @@ let step ~cache ~possible_solutions ~solution =
         [%sexp
           { candidate = (Permutation.to_hum candidate : Permutation.Hum.t)
           ; cue : Cue.t
-          ; expected_bits : float
-          ; actual_bits : float
+          ; expected_bits_gained : float
+          ; actual_bits_gained : float
           }];
       Some new_set)
 ;;

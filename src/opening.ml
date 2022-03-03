@@ -18,7 +18,7 @@ end
 
 type t =
   { candidate : Permutation.t
-  ; expected_bits : float
+  ; expected_bits_gained : float
   ; by_cue : By_cue.t array (* Sorted by decreasing number of remaining sizes *)
   }
 [@@deriving sexp_of]
@@ -42,7 +42,7 @@ let compute () =
         let best_guesses = Guess.compute_k_best ~cache ~possible_solutions ~k in
         { By_cue.guess_cue = t; best_guesses })
   in
-  { candidate; expected_bits = guess.expected_bits; by_cue }
+  { candidate; expected_bits_gained = guess.expected_bits_gained; by_cue }
 ;;
 
 let dump_cmd =
