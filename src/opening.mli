@@ -5,5 +5,8 @@ open! Core
 
 type t [@@deriving sexp_of]
 
+(** A canonical first candidate: simply the 5 first different colors. *)
+val canonical_first_candidate : Permutation.t
+
 val compute : unit -> t
 val cmd : Command.t

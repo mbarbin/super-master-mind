@@ -5,3 +5,7 @@
  (libraries ANSITerminal core core_unix)
  (preprocess
   (pps ppx_jane)))
+
+(rule (targets embedded_files.ml embedded_files.mli)
+ (deps %{bin:ocaml-embed-file} ../opening-book/opening-book.expected)
+ (action (bash "%{deps} -output embedded_files")))

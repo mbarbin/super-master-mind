@@ -6,12 +6,12 @@ module rec Next_best_guesses : sig
      expected_bits_gained. *)
   type t =
     | Not_computed
-    | Pre_computed of { next_best_guesses : T.t list }
+    | Computed of T.t list
   [@@deriving equal, sexp_of]
 end = struct
   type t =
     | Not_computed
-    | Pre_computed of { next_best_guesses : T.t list }
+    | Computed of T.t list
   [@@deriving equal, sexp_of]
 end
 
@@ -22,7 +22,7 @@ and By_cue : sig
     ; bits_remaining : float
     ; bits_gained : float
     ; probability : float
-    ; next_best_guesses : Next_best_guesses.t
+    ; mutable next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp_of]
 end = struct
@@ -32,7 +32,7 @@ end = struct
     ; bits_remaining : float
     ; bits_gained : float
     ; probability : float
-    ; next_best_guesses : Next_best_guesses.t
+    ; mutable next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp_of]
 end

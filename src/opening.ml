@@ -12,32 +12,33 @@ type t = Guess.t [@@deriving sexp_of]
 
 let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
-(* CR mbarbin: Replace by an implementation making it clear that a
-   computing at depth is possible, and use it to implement compute
-   with depth = 1, with the special case of the first guess being the
-   canonical one.
-
-   I propose to do this after having run through one succesful example
-   of the following code first, in order to compute the dumps. *)
+let rec compute_internal (t : t) ~possible_solutions ~depth ~max_depth ~k =
+  let number_of_cue = Array.length t.by_cue in
+  Array.iteri t.by_cue ~f:(fun i c ->
+      (* For each cue, we compute the best k candidate. *)
+      print_endline
+        (sprintf "Opening.compute[depth:%d]: cue %d / %d" depth (succ i) number_of_cue);
+      let possible_solutions =
+        Permutations.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
+      in
+      let next_best_guesses = Guess.compute_k_best ~possible_solutions ~k in
+      c.next_best_guesses <- Computed next_best_guesses;
+      if depth < max_depth
+      then
+        List.iter next_best_guesses ~f:(fun t ->
+            compute_internal t ~possible_solutions ~depth:(succ depth) ~max_depth ~k))
+;;
 
 let compute () =
-  let k = 3 in
   let possible_solutions = Permutations.all in
-  let candidate = canonical_first_candidate in
-  let guess = Guess.compute ~possible_solutions ~candidate in
-  let by_cue =
-    let number_of_cue = Array.length guess.by_cue in
-    Array.mapi guess.by_cue ~f:(fun i t ->
-        (* For each cue, we compute the best k candidate. *)
-        print_endline (sprintf "Opening.compute: cue %d / %d" (succ i) number_of_cue);
-        let possible_solutions =
-          Permutations.filter possible_solutions ~candidate ~cue:t.cue
-        in
-        let next_best_guesses = Guess.compute_k_best ~possible_solutions ~k in
-        { t with next_best_guesses = Pre_computed { next_best_guesses } })
-  in
-  { guess with by_cue }
+  let t = Guess.compute ~possible_solutions ~candidate:canonical_first_candidate in
+  compute_internal t ~possible_solutions ~depth:1 ~max_depth:1 ~k:1;
+  t
 ;;
+
+(* CR mbarbin: Replace by an actual load command once the sexp is in
+   place and can be parsed. *)
+let () = ignore Embedded_files.opening_book_dot_expected
 
 let dump_cmd =
   Command.basic

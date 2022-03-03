@@ -10,11 +10,11 @@ module rec Next_best_guesses : sig
   (** When computed, best guesses are sorted by decreasing number of
      expected_bits_gained. The functions in this module do not compute
      best guesses recursively, thus they will all produce guesses
-     where [next_best_guesses = Not_computed]. For pre computed
-     guesses, see the opening book. *)
+     where [next_best_guesses = Not_computed]. For computed guesses,
+     see the opening book. *)
   type t =
     | Not_computed
-    | Pre_computed of { next_best_guesses : T.t list }
+    | Computed of T.t list
   [@@deriving equal, sexp_of]
 end
 
@@ -25,7 +25,7 @@ and By_cue : sig
     ; bits_remaining : float
     ; bits_gained : float
     ; probability : float
-    ; next_best_guesses : Next_best_guesses.t
+    ; mutable next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp_of]
 end
