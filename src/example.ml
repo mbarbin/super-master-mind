@@ -1,4 +1,5 @@
 open! Core
+open! Import
 
 let step ~cache ~possible_solutions ~solution =
   let size = Permutations.size possible_solutions in

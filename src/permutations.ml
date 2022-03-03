@@ -1,4 +1,5 @@
 open! Core
+open! Import
 
 type t = Permutation.t Queue.t [@@deriving sexp_of]
 
@@ -27,4 +28,4 @@ let filter t ~cache ~candidate ~cue =
   t'
 ;;
 
-let bits t = Permutation.Private.log2 (Float.of_int (size t))
+let bits t = Float.log2 (Float.of_int (size t))

@@ -53,8 +53,6 @@ val analyse : cache:Cache.t -> solution:t -> candidate:t -> Cue.t
 
 (** Private module exposing internal logic, used by tests. *)
 module Private : sig
-  val log2 : float -> float
-
   module Computing : sig
     (** A representation of a permutation well suited for matching
        computation. *)

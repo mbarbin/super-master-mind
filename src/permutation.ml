@@ -1,16 +1,10 @@
 open! Core
+open! Import
 
 type t = int [@@deriving compare, equal, hash]
 
 let size = Cue.permutation_size
 let cardinality = Float.of_int Color.cardinality ** Float.of_int size |> Float.to_int
-
-let log2 =
-  (* This function is available as [Float.log2] from OCaml 4.13. To be
-     simplified upon upgrading to a more recent compiler. *)
-  let log2 = lazy (Caml.Float.log 2.) in
-  fun x -> Caml.Float.log x /. Lazy.force log2
-;;
 
 module Hum = struct
   type t = Color.Hum.t array [@@deriving sexp_of]
@@ -110,7 +104,5 @@ let analyse ~(cache : Cache.t) ~solution ~candidate =
 ;;
 
 module Private = struct
-  let log2 = log2
-
   module Computing = Computing
 end

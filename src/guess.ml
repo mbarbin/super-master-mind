@@ -1,4 +1,5 @@
 open! Core
+open! Import
 
 module By_cue = struct
   type t =
@@ -32,7 +33,7 @@ let compute ~cache ~possible_solutions ~candidate : t =
             Some
               { By_cue.cue = Cue.of_index_exn i
               ; size_remaining
-              ; bits_remaining = Permutation.Private.log2 (Float.of_int size_remaining)
+              ; bits_remaining = Float.log2 (Float.of_int size_remaining)
               ; probability = Float.of_int size_remaining /. original_size
               }
           else None)
@@ -44,7 +45,7 @@ let compute ~cache ~possible_solutions ~candidate : t =
   let expected_bits =
     Array.fold by_cue ~init:0. ~f:(fun acc t ->
         let p = t.probability in
-        acc +. (-1. *. p *. Permutation.Private.log2 p))
+        acc +. (-1. *. p *. Float.log2 p))
   in
   { candidate; expected_bits; by_cue }
 ;;
@@ -62,7 +63,7 @@ let compute_k_best ~cache ~possible_solutions ~k =
         ANSITerminal.print_string
           []
           (sprintf
-             "Permutation.step_candidate : %d / %d"
+             "Guess.compute_k_best : %d / %d"
              (succ candidate)
              (Permutation.cardinality - 1)));
     let t =

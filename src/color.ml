@@ -1,4 +1,5 @@
 open! Core
+open! Import
 
 let cardinality = 8
 
