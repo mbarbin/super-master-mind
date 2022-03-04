@@ -60,16 +60,16 @@ algorithmic solving part of the game.
 
 ## Motivations
 
-The main motivation for me was to learn some concepts of information 
+The main motivation for me was to learn some concepts of information
 theory and entropy:
 
-Recently I have been playing Wordle with family. I watched a video 
-on YouTube made by 3Blue1Brown on solving Wordle (see the link in the 
-Acknowledgements section). As he puts it in the video, the game of 
-Wordle is a good excuse to him for an information theory lesson.
-I got inspired by his video, and thought that the game of 
-super-master-mind was well suited to implement some of the concepts 
-contained in the video.
+Recently I have been playing Wordle with family. I watched a video on
+YouTube made by 3Blue1Brown on solving Wordle (see the link in the
+Acknowledgements section). As he puts it in the video, the game of
+Wordle is a good excuse to him for an information theory lesson. I got
+inspired by his video, and thought that the game of super-master-mind
+was well suited to implement some of the concepts contained in the
+video.
 
 ## Code documentation
 
