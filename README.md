@@ -58,12 +58,33 @@ The repo does not implement any user interface to play the game
 interactively. Rather, the motivation is simply to go over the
 algorithmic solving part of the game.
 
-### Acknowledgements
+## Motivations
+
+The main motivation for me was to learn some concepts of information 
+theory and entropy:
+
+Recently I have been playing Wordle with family. I watched a video 
+on YouTube made by 3Blue1Brown on solving Wordle (see the link in the 
+Acknowledgements section). As he puts it in the video, the game of 
+Wordle is a good excuse to him for an information theory lesson.
+I got inspired by his video, and thought that the game of 
+super-master-mind was well suited to implement some of the concepts 
+contained in the video.
+
+## Code documentation
+
+The tip of the master branch is compiled with odoc and published to
+github pages
+[here](https://mbarbin.github.io/super-master-mind/odoc/super-master-mind/index.html).
+
+## Acknowledgements
 
 The resolution algorithm was inspired by a video on solving the game
 Wordle, by YouTuber 3Blue1Brown. See it here:
 
 - https://www.youtube.com/watch?v=v68zYyaEmEA
+
+## Compiling the code
 
 ### OCaml dependencies : janestreet-bleeding
 
