@@ -1,6 +1,7 @@
 # super-master-mind
 
 [![Actions Status](https://github.com/mbarbin/super-master-mind/workflows/CI/badge.svg)](https://github.com/mbarbin/super-master-mind/actions)
+[![Deploy odoc Actions Status](https://github.com/mbarbin/super-master-mind/workflows/Deploy-odoc/badge.svg)](https://github.com/mbarbin/super-master-mind/actions/workflows/deploy-odoc.yml)
 
 This is a toy project implementing a solver for the super-master-mind
 game, written in OCaml.
