@@ -11,45 +11,51 @@ let canonical_first_candidate =
 type t = Guess.t [@@deriving sexp]
 
 let root t = t
-let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
+let _do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
-let rec compute_internal (t : t) ~possible_solutions ~current_depth ~depth ~k =
+let rec compute_internal (t : t) ~display ~possible_solutions ~current_depth ~depth ~k =
   let number_of_cue = Nonempty_list.length t.by_cue in
-  let i = ref 0 in
+  let bar =
+    let open Progress.Line in
+    list
+      [ bar number_of_cue
+      ; count_to number_of_cue
+      ; parens (const "eta: " ++ eta number_of_cue)
+      ]
+  in
+  let reporter = Progress.Display.add_line display bar in
   Nonempty_list.iter t.by_cue ~f:(fun c ->
-      let i =
-        incr i;
-        !i
-      in
       (* For each cue, we compute the best k candidate. *)
-      do_ansi (fun () ->
-          print_endline
-            (sprintf
-               "Opening.compute[depth:%d]: cue %d / %d"
-               current_depth
-               i
-               number_of_cue));
       let possible_solutions =
         Permutations.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
       in
-      let next_best_guesses = Guess.compute_k_best ~possible_solutions ~k in
+      let next_best_guesses = Guess.compute_k_best ~display ~possible_solutions ~k () in
       c.next_best_guesses <- Computed next_best_guesses;
       if current_depth < depth
       then
         List.iter next_best_guesses ~f:(fun t ->
             compute_internal
               t
+              ~display
               ~possible_solutions
               ~current_depth:(succ current_depth)
               ~depth
-              ~k))
+              ~k);
+      Progress.Reporter.report reporter 1);
+  Progress.Reporter.finalise reporter
 ;;
 
 let compute ~depth =
   if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
+  let display =
+    Progress.Display.start
+      ~config:(Progress.Config.v ~persistent:false ~persistent_lines:false ())
+      (Progress.Multi.lines [])
+  in
   let possible_solutions = Permutations.all in
   let t = Guess.compute ~possible_solutions ~candidate:canonical_first_candidate in
-  compute_internal t ~possible_solutions ~current_depth:1 ~depth ~k:1;
+  compute_internal t ~display ~possible_solutions ~current_depth:1 ~depth ~k:1;
+  Progress.Display.finalise display;
   t
 ;;
 

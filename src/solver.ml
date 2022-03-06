@@ -61,7 +61,7 @@ let solve () =
       | Computed [] -> ()
       | Computed (guess :: _) -> aux guess ~possible_solutions
       | Not_computed ->
-        (match Guess.compute_k_best ~possible_solutions ~k:1 with
+        (match Guess.compute_k_best ~possible_solutions ~k:1 () with
         | [] -> ()
         | guess :: _ -> aux guess ~possible_solutions))
   in

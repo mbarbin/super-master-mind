@@ -116,28 +116,35 @@ let compute ~possible_solutions ~candidate : t =
   }
 ;;
 
-let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
-
-let compute_k_best ~possible_solutions ~k =
+let compute_k_best ?display ~possible_solutions ~k () =
   if k < 1 then raise_s [%sexp "k >= 1 value expected", [%here], { k : int }];
   let ts =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
         Float.compare t2.expected_bits_gained t1.expected_bits_gained)
   in
-  for candidate = 0 to Permutation.cardinality - 1 do
-    do_ansi (fun () ->
-        ANSITerminal.move_bol ();
-        ANSITerminal.print_string
-          []
-          (sprintf
-             "Guess.compute_k_best : %d / %d"
-             (succ candidate)
-             (Permutation.cardinality - 1)));
-    let t = compute ~possible_solutions ~candidate:(Permutation.of_index_exn candidate) in
-    if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
-  done;
-  do_ansi (fun () ->
-      ANSITerminal.move_bol ();
-      ANSITerminal.erase Eol);
+  let bar =
+    let total = Permutation.cardinality in
+    let open Progress.Line in
+    list [ bar total; count_to total; parens (const "eta: " ++ eta total) ]
+  in
+  let with_reporter f =
+    for candidate = 0 to Permutation.cardinality - 1 do
+      f 1;
+      let t =
+        compute ~possible_solutions ~candidate:(Permutation.of_index_exn candidate)
+      in
+      if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
+    done
+  in
+  (match display with
+  | None ->
+    Progress.with_reporter
+      ~config:(Progress.Config.v ~persistent:false ())
+      bar
+      with_reporter
+  | Some display ->
+    let reporter = Progress.Display.add_line display bar in
+    with_reporter (fun v -> Progress.Reporter.report reporter v);
+    Progress.Reporter.finalise reporter);
   Kheap.to_list ts
 ;;

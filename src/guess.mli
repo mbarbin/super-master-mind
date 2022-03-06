@@ -49,4 +49,10 @@ include module type of struct
 end
 
 val compute : possible_solutions:Permutations.t -> candidate:Permutation.t -> t
-val compute_k_best : possible_solutions:Permutations.t -> k:int -> t list
+
+val compute_k_best
+  :  ?display:_ Progress.Display.t
+  -> possible_solutions:Permutations.t
+  -> k:int
+  -> unit
+  -> t list
