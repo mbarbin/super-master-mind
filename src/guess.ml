@@ -145,6 +145,7 @@ let compute_k_best ?display ~possible_solutions ~k () =
   | Some display ->
     let reporter = Progress.Display.add_line display bar in
     with_reporter (fun v -> Progress.Reporter.report reporter v);
-    Progress.Reporter.finalise reporter);
+    Progress.Reporter.finalise reporter;
+    Progress.Display.remove_line display reporter);
   Kheap.to_list ts
 ;;

@@ -42,14 +42,15 @@ let rec compute_internal (t : t) ~display ~possible_solutions ~current_depth ~de
               ~depth
               ~k);
       Progress.Reporter.report reporter 1);
-  Progress.Reporter.finalise reporter
+  Progress.Reporter.finalise reporter;
+  Progress.Display.remove_line display reporter
 ;;
 
 let compute ~depth =
   if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
   let display =
     Progress.Display.start
-      ~config:(Progress.Config.v ~persistent:false ~persistent_lines:false ())
+      ~config:(Progress.Config.v ~persistent:false ())
       (Progress.Multi.lines [])
   in
   let possible_solutions = Permutations.all in
