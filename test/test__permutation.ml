@@ -88,3 +88,15 @@ let%expect_test "repetition of colors in the solution" =
   test ~solution ~candidate:[| Green; Green; Green; Brown; Red |];
   [%expect {| ((white 2) (black 1)) |}]
 ;;
+
+let%expect_test "indices" =
+  for i = 0 to Permutation.cardinality - 1 do
+    let permutation = Permutation.of_index_exn i in
+    let index = Permutation.to_index permutation in
+    let hum = Permutation.to_hum permutation in
+    let permutation' = Permutation.create_exn hum in
+    assert (Int.equal i index);
+    assert (Permutation.equal permutation permutation')
+  done;
+  [%expect {||}]
+;;

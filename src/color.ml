@@ -13,7 +13,7 @@ module Hum = struct
     | Red
     | White
     | Yellow
-  [@@deriving enumerate, sexp]
+  [@@deriving compare, equal, enumerate, hash, sexp]
 
   let to_index = function
     | Black -> 0

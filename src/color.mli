@@ -16,7 +16,7 @@ module Hum : sig
     | Red
     | White
     | Yellow
-  [@@deriving enumerate, sexp]
+  [@@deriving compare, equal, enumerate, hash, sexp]
 end
 
 val of_hum : Hum.t -> t
