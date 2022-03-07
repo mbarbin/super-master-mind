@@ -10,12 +10,14 @@ let%expect_test "sexp_of_t" =
 let%expect_test "analyse" =
   let tested = Array.create ~len:Cue.cardinality false in
   let test ~solution ~candidate =
-    let cue =
-      Permutation.(
-        analyse ~solution:(create_exn solution) ~candidate:(create_exn candidate))
-    in
+    let solution = Permutation.create_exn solution
+    and candidate = Permutation.create_exn candidate in
+    let cue = Permutation.analyse ~solution ~candidate in
     tested.(Cue.to_index cue) <- true;
-    print_s [%sexp (cue : Cue.t)]
+    print_s [%sexp (cue : Cue.t)];
+    (* Check that [Permutation.analyse] is commutative. *)
+    let cue' = Permutation.analyse ~solution:candidate ~candidate:solution in
+    assert (Cue.equal cue cue')
   in
   let solution : Color.Hum.t array = [| Black; Blue; Brown; Green; Orange |] in
   test ~solution ~candidate:[| Red; White; Yellow; Red; Red |];
