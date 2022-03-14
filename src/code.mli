@@ -1,7 +1,8 @@
 open! Core
 
-(** A code is a sequence of colors. A given solution to a game is a
-   code, and each candidate submitted is a code as well. *)
+(** A code is a sequence of colors, allowing repetition. A given
+   solution to a game is a code, and each candidate submitted during
+   the game is a code as well. *)
 
 (** [t] is a memory efficient representation for a code. *)
 type t [@@deriving compare, equal, hash, sexp]
@@ -30,7 +31,7 @@ val cardinality : int
    encoding. *)
 
 (** [to_index t] returns the [index] of [t] in the total code set. It
-   is guaranteed that [0 <= index < cardinality]. to be >= 0 *)
+   is guaranteed that [0 <= index < cardinality]. *)
 val to_index : t -> int
 
 (** [of_index index] returns the code at the given index. Indices are

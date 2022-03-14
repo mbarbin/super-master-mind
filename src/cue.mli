@@ -27,7 +27,7 @@ val cardinality : int
 (** Cues are ordered and indexed. The index may serve as efficient encoding. *)
 
 (** [to_index t] returns the [index] of [t] in the total cue set. It
-   is guaranteed that [0 <= index < cardinality]. to be >= 0 *)
+   is guaranteed that [0 <= index < cardinality]. *)
 val to_index : t -> int
 
 (** [of_index index] returns the cue at the given index. Indices are
