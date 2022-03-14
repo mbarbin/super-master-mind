@@ -6,6 +6,9 @@ open! Core
 
 type t [@@deriving compare, equal, hash, sexp]
 
+(** The permutation that maps each color to itself. *)
+val identity : t
+
 (** The main operation for which a color permutation is used. A
    permutation is a bijection of the set of colors onto itself. *)
 val map_color : t -> Color.t -> Color.t

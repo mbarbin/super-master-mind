@@ -10,7 +10,7 @@ let canonical_first_candidate =
 
 type t = Guess.t [@@deriving sexp]
 
-let root t = t
+let root t ~color_permutation = Guess.map_color t ~color_permutation
 let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
 let rec compute_internal (t : t) ~possible_solutions ~current_depth ~depth ~k =

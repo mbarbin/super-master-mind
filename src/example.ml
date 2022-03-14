@@ -1,7 +1,7 @@
 open! Core
 open! Import
 
-let solve ~solution =
+let solve ~color_permutation ~solution =
   let steps = Queue.create () in
   let step_index = ref 0 in
   let add (t : Guess.t) ~by_cue =
@@ -39,7 +39,7 @@ let solve ~solution =
         | guess :: _ -> aux guess ~possible_solutions))
   in
   let opening_book = Lazy.force Opening_book.opening_book in
-  let root = Opening_book.root opening_book in
+  let root = Opening_book.root opening_book ~color_permutation in
   aux root ~possible_solutions:Codes.all;
   Queue.to_list steps
 ;;
@@ -50,5 +50,6 @@ let cmd =
     (let%map_open.Command () = return () in
      fun () ->
        let solution = Code.create_exn [| Green; Blue; Orange; White; Red |] in
-       ignore (solve ~solution : Guess.t list))
+       ignore
+         (solve ~color_permutation:Color_permutation.identity ~solution : Guess.t list))
 ;;

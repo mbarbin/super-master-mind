@@ -141,3 +141,45 @@ let compute_k_best ~possible_solutions ~k =
       ANSITerminal.erase Eol);
   Kheap.to_list ts
 ;;
+
+let map_color t ~color_permutation =
+  let rec aux_t
+      { candidate : Code.t
+      ; expected_bits_gained : float
+      ; expected_bits_remaining : float
+      ; min_bits_gained : float
+      ; max_bits_gained : float
+      ; max_bits_remaining : float
+      ; by_cue : By_cue.t Nonempty_list.t
+      }
+    =
+    { candidate = Code.map_color candidate ~color_permutation
+    ; expected_bits_gained : float
+    ; expected_bits_remaining : float
+    ; min_bits_gained : float
+    ; max_bits_gained : float
+    ; max_bits_remaining : float
+    ; by_cue = Nonempty_list.map by_cue ~f:aux_by_cue
+    }
+  and aux_by_cue
+      { By_cue.cue : Cue.t
+      ; size_remaining : int
+      ; bits_remaining : float
+      ; bits_gained : float
+      ; probability : float
+      ; next_best_guesses : Next_best_guesses.t
+      }
+    =
+    { By_cue.cue : Cue.t
+    ; size_remaining : int
+    ; bits_remaining : float
+    ; bits_gained : float
+    ; probability : float
+    ; next_best_guesses = aux_next_best_guesses next_best_guesses
+    }
+  and aux_next_best_guesses : Next_best_guesses.t -> Next_best_guesses.t = function
+    | Not_computed -> Not_computed
+    | Computed ts -> Computed (List.map ts ~f:aux_t)
+  in
+  aux_t t
+;;

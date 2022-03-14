@@ -50,3 +50,7 @@ end
 
 val compute : possible_solutions:Codes.t -> candidate:Code.t -> t
 val compute_k_best : possible_solutions:Codes.t -> k:int -> t list
+
+(** Map the color of all codes contained by [t] according to a given
+   color permutation. *)
+val map_color : t -> color_permutation:Color_permutation.t -> t

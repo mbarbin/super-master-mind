@@ -42,3 +42,6 @@ val of_index_exn : int -> t
 (** Analyse a pair (solution, candidate) and returns the correponding
    cue for it. *)
 val analyse : solution:t -> candidate:t -> Cue.t
+
+(** Map the colors of a code according to a given color permutation. *)
+val map_color : t -> color_permutation:Color_permutation.t -> t
