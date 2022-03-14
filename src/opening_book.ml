@@ -15,42 +15,42 @@ let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
 let rec compute_internal (t : t) ~possible_solutions ~current_depth ~depth ~k =
   let number_of_cue = Nonempty_list.length t.by_cue in
-  let i = ref 0 in
-  Nonempty_list.iter t.by_cue ~f:(fun c ->
-      let i =
-        incr i;
-        !i
-      in
-      (* For each cue, we compute the best k candidate. *)
-      do_ansi (fun () ->
-          print_endline
-            (sprintf
-               "Opening.compute[depth:%d]: cue %d / %d"
-               current_depth
-               i
-               number_of_cue));
-      let possible_solutions =
-        Codes.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
-      in
-      let next_best_guesses = Guess.compute_k_best ~possible_solutions ~k in
-      c.next_best_guesses <- Computed next_best_guesses;
-      if current_depth < depth
-      then
-        List.iter next_best_guesses ~f:(fun t ->
-            compute_internal
-              t
-              ~possible_solutions
-              ~current_depth:(succ current_depth)
-              ~depth
-              ~k))
+  let by_cue =
+    Nonempty_list.mapi t.by_cue ~f:(fun i c ->
+        (* For each cue, we compute the best k candidate. *)
+        do_ansi (fun () ->
+            print_endline
+              (sprintf
+                 "Opening.compute[depth:%d]: cue %d / %d"
+                 current_depth
+                 (succ i)
+                 number_of_cue));
+        let possible_solutions =
+          Codes.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
+        in
+        let next_best_guesses = Guess.compute_k_best ~possible_solutions ~k in
+        let next_best_guesses =
+          if current_depth < depth
+          then
+            List.map next_best_guesses ~f:(fun t ->
+                compute_internal
+                  t
+                  ~possible_solutions
+                  ~current_depth:(succ current_depth)
+                  ~depth
+                  ~k)
+          else next_best_guesses
+        in
+        { c with next_best_guesses = Computed next_best_guesses })
+  in
+  { t with by_cue }
 ;;
 
 let compute ~depth =
   if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
   let possible_solutions = Codes.all in
   let t = Guess.compute ~possible_solutions ~candidate:canonical_first_candidate in
-  compute_internal t ~possible_solutions ~current_depth:1 ~depth ~k:1;
-  t
+  compute_internal t ~possible_solutions ~current_depth:1 ~depth ~k:1
 ;;
 
 let opening_book =

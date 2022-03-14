@@ -25,7 +25,7 @@ and By_cue : sig
     ; bits_remaining : float
     ; bits_gained : float
     ; probability : float
-    ; mutable next_best_guesses : Next_best_guesses.t
+    ; next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp]
 end
