@@ -53,14 +53,14 @@ let%expect_test "sexp_of" =
 ;;
 
 let%expect_test "indices" =
-  let all = ref [] in
+  let all = Hashtbl.create (module Color_permutation) in
   let add i =
     let e = Color_permutation.of_index_exn i in
-    match List.find !all ~f:(fun (_, e') -> Color_permutation.equal e e') with
+    match Hashtbl.find all e with
     | None ->
-      all := (i, e) :: !all;
+      Hashtbl.set all ~key:e ~data:i;
       e
-    | Some (j, _) ->
+    | Some j ->
       raise_s
         [%sexp
           "Duplicated permutation", [%here], { i : int; j : int; e : Color_permutation.t }]
@@ -70,7 +70,7 @@ let%expect_test "indices" =
     let i' = Color_permutation.to_index color_permutation in
     assert (i = i')
   done;
-  let length = List.length !all in
+  let length = Hashtbl.length all in
   assert (length = Color_permutation.cardinality);
   [%expect {||}]
 ;;

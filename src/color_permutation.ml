@@ -2,6 +2,8 @@ open! Core
 
 type t = Color.t array [@@deriving compare, equal, sexp]
 
+let hash t = Array.fold t ~init:1023 ~f:(fun acc i -> Hashtbl.hash (acc, Color.hash i))
+let hash_fold_t state t = Array.fold t ~init:state ~f:Color.hash_fold_t
 let map_color t color = t.(Color.to_index color)
 
 let inverse t =
