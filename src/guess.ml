@@ -39,7 +39,7 @@ end
 
 and T : sig
   type t =
-    { candidate : Permutation.t
+    { candidate : Code.t
     ; expected_bits_gained : float
     ; expected_bits_remaining : float
     ; min_bits_gained : float
@@ -51,7 +51,7 @@ and T : sig
   [@@deriving equal, sexp]
 end = struct
   type t =
-    { candidate : Permutation.t
+    { candidate : Code.t
     ; expected_bits_gained : float
     ; expected_bits_remaining : float
     ; min_bits_gained : float
@@ -65,14 +65,14 @@ end
 include T
 
 let compute ~possible_solutions ~candidate : t =
-  if Permutations.is_empty possible_solutions
+  if Codes.is_empty possible_solutions
   then raise_s [%sexp "No possible solutions", [%here]];
-  let original_size = Float.of_int (Permutations.size possible_solutions) in
+  let original_size = Float.of_int (Codes.size possible_solutions) in
   let original_bits = Float.log2 original_size in
   let by_cue =
     let by_cue = Array.init Cue.cardinality ~f:(fun _ -> Queue.create ()) in
-    Permutations.iter possible_solutions ~f:(fun solution ->
-        let cue = Permutation.analyse ~solution ~candidate in
+    Codes.iter possible_solutions ~f:(fun solution ->
+        let cue = Code.analyse ~solution ~candidate in
         Queue.enqueue by_cue.(Cue.to_index cue) solution);
     let by_cue =
       Array.filter_mapi by_cue ~f:(fun i remains ->
@@ -124,7 +124,7 @@ let compute_k_best ~possible_solutions ~k =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
         Float.compare t2.expected_bits_gained t1.expected_bits_gained)
   in
-  for candidate = 0 to Permutation.cardinality - 1 do
+  for candidate = 0 to Code.cardinality - 1 do
     do_ansi (fun () ->
         ANSITerminal.move_bol ();
         ANSITerminal.print_string
@@ -132,8 +132,8 @@ let compute_k_best ~possible_solutions ~k =
           (sprintf
              "Guess.compute_k_best : %d / %d"
              (succ candidate)
-             (Permutation.cardinality - 1)));
-    let t = compute ~possible_solutions ~candidate:(Permutation.of_index_exn candidate) in
+             (Code.cardinality - 1)));
+    let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
     if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
   done;
   do_ansi (fun () ->

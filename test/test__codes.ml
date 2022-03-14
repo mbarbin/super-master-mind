@@ -2,23 +2,20 @@ open! Core
 open Super_master_mind
 
 let%expect_test "all" =
-  print_s [%sexp (Permutations.size Permutations.all : int)];
+  print_s [%sexp (Codes.size Codes.all : int)];
   [%expect {| 32768 |}];
-  print_s [%sexp (Permutations.bits Permutations.all : float)];
+  print_s [%sexp (Codes.bits Codes.all : float)];
   [%expect {| 15 |}];
-  print_s [%sexp { is_empty = (Permutations.is_empty Permutations.all : bool) }];
+  print_s [%sexp { is_empty = (Codes.is_empty Codes.all : bool) }];
   [%expect {| ((is_empty false)) |}]
 ;;
 
 let%expect_test "filter" =
   List.iter Cue.all ~f:(fun cue ->
       let t =
-        Permutations.filter
-          Permutations.all
-          ~candidate:Opening_book.canonical_first_candidate
-          ~cue
+        Codes.filter Codes.all ~candidate:Opening_book.canonical_first_candidate ~cue
       in
-      print_s [%sexp { cue : Cue.t; size_remaining = (Permutations.size t : int) }]);
+      print_s [%sexp { cue : Cue.t; size_remaining = (Codes.size t : int) }]);
   [%expect
     {|
     ((cue ((white 0) (black 0))) (size_remaining 243))

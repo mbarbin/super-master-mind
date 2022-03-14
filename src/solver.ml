@@ -38,7 +38,7 @@ let solve () =
   let step_index = ref 0 in
   let print (t : Guess.t) =
     incr step_index;
-    print_s [%sexp (!step_index : int), (t.candidate : Permutation.t)];
+    print_s [%sexp (!step_index : int), (t.candidate : Code.t)];
     Stdio.Out_channel.(flush stdout)
   in
   let rec aux (t : Guess.t) ~possible_solutions =
@@ -49,11 +49,11 @@ let solve () =
       |> Option.value_exn ~here:[%here]
     in
     let possible_solutions =
-      Permutations.filter possible_solutions ~candidate:t.candidate ~cue
+      Codes.filter possible_solutions ~candidate:t.candidate ~cue
     in
-    if Permutations.size possible_solutions = 1
+    if Codes.size possible_solutions = 1
     then (
-      let solution = List.hd_exn (Permutations.to_list possible_solutions) in
+      let solution = List.hd_exn (Codes.to_list possible_solutions) in
       let guess = Guess.compute ~possible_solutions ~candidate:solution in
       print guess)
     else (
@@ -67,7 +67,7 @@ let solve () =
   in
   let opening_book = Lazy.force Opening_book.opening_book in
   let root = Opening_book.root opening_book in
-  aux root ~possible_solutions:Permutations.all
+  aux root ~possible_solutions:Codes.all
 ;;
 
 let cmd =

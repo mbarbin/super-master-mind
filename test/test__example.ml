@@ -5,8 +5,7 @@ let verify_steps (ts : Guess.t list) = ignore (ts : Guess.t list)
 
 let%expect_test "" =
   verify_steps
-    (Example.solve
-       ~solution:(Permutation.create_exn [| Green; Blue; Orange; White; Red |]));
+    (Example.solve ~solution:(Code.create_exn [| Green; Blue; Orange; White; Red |]));
   [%expect
     {|
     (1

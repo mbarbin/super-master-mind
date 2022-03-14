@@ -3,7 +3,7 @@ open! Import
 
 type t = int [@@deriving compare, equal, hash]
 
-let size = Cue.permutation_size
+let size = Cue.code_size
 let cardinality = Float.of_int Color.cardinality ** Float.of_int size |> Float.to_int
 
 module Hum = struct
@@ -15,7 +15,7 @@ module Computing = struct
 
   let create_exn hum =
     if Array.length hum <> size
-    then raise_s [%sexp "Invalid permutation size", [%here], (hum : Hum.t)];
+    then raise_s [%sexp "Invalid code size", [%here], (hum : Hum.t)];
     Array.map hum ~f:Color.of_hum
   ;;
 

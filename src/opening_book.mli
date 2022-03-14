@@ -10,7 +10,7 @@ type t [@@deriving sexp_of]
 val opening_book : t Lazy.t
 
 (** A canonical first candidate: simply the 5 first different colors. *)
-val canonical_first_candidate : Permutation.t
+val canonical_first_candidate : Code.t
 
 (** Function used to recompute the opening book. *)
 val compute : depth:int -> t

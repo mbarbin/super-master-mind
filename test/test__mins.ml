@@ -21,11 +21,11 @@ let%expect_test "min sequence" =
     add t;
     let by_cue = Nonempty_list.hd t.by_cue in
     let possible_solutions =
-      Permutations.filter possible_solutions ~candidate:t.candidate ~cue:by_cue.cue
+      Codes.filter possible_solutions ~candidate:t.candidate ~cue:by_cue.cue
     in
-    if Permutations.size possible_solutions = 1
+    if Codes.size possible_solutions = 1
     then (
-      let solution = List.hd_exn (Permutations.to_list possible_solutions) in
+      let solution = List.hd_exn (Codes.to_list possible_solutions) in
       add (Guess.compute ~possible_solutions ~candidate:solution))
     else (
       match by_cue.next_best_guesses with
@@ -38,7 +38,7 @@ let%expect_test "min sequence" =
   in
   let opening_book = Lazy.force Opening_book.opening_book in
   let root = Opening_book.root opening_book in
-  aux root ~possible_solutions:Permutations.all;
+  aux root ~possible_solutions:Codes.all;
   let steps = Queue.to_list steps |> List.mapi ~f:(fun i e -> succ i, e) in
   print_s [%sexp { number_of_steps = (List.length steps : int) }];
   print_s [%sexp (steps : (int * Guess.t) list)];

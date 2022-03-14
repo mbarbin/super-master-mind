@@ -1,11 +1,11 @@
 open! Core
+module Code = Code
+module Codes = Codes
 module Color = Color
 module Cue = Cue
 module Example = Example
 module Guess = Guess
 module Kheap = Kheap
 module Opening_book = Opening_book
-module Permutation = Permutation
-module Permutations = Permutations
 
 val main : Command.t

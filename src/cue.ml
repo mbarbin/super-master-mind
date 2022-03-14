@@ -9,36 +9,31 @@ module Hum = struct
   [@@deriving sexp]
 end
 
-let permutation_size = 5
+let code_size = 5
 
-(* The sum of [white] and [black] cannot exceed the permutation size.
-   This means that given a correct value for [white], [black] has to
-   verify : [0 <= black <= permutation_size - white].
+(* The sum of [white] and [black] cannot exceed the code size. This
+   means that given a correct value for [white], [black] has to verify
+   : [0 <= black <= code_size - white].
 
-   0 white: permutation_size + 1 choices for black
-   1 white: permutation_size - 1 choices for black
-   2 white: permutation_size - 1 choices for black
-   ...
-   ps white: 1 choice for black (0).
-*)
+   0 white: code_size + 1 choices for black 1 white: code_size - 1
+   choices for black 2 white: code_size - 1 choices for black ... ps
+   white: 1 choice for black (0). *)
 
-let cardinality = ((permutation_size + 1) * (permutation_size + 2) / 2) - 1
+let cardinality = ((code_size + 1) * (code_size + 2) / 2) - 1
 
 module Raw_code = struct
   type t = int
 
-  let of_hum { Hum.white; black } : t = (black * (permutation_size + 1)) + white
-  let cardinality = (permutation_size + 1) * (permutation_size + 1)
+  let of_hum { Hum.white; black } : t = (black * (code_size + 1)) + white
+  let cardinality = (code_size + 1) * (code_size + 1)
 end
 
 let raw_code_to_index, index_to_hum =
   let index = ref (-1) in
   let raw_code_to_index = Array.create ~len:Raw_code.cardinality None in
   let index_to_hum = Array.create ~len:cardinality None in
-  for white = 0 to permutation_size do
-    for
-      black = 0 to if white = 1 then permutation_size - 2 else permutation_size - white
-    do
+  for white = 0 to code_size do
+    for black = 0 to if white = 1 then code_size - 2 else code_size - white do
       let hum = { Hum.white; black } in
       let raw_code = Raw_code.of_hum hum in
       let index =

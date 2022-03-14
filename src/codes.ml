@@ -3,13 +3,13 @@ open! Import
 
 type t =
   | All
-  | Only of { queue : Permutation.t Queue.t }
+  | Only of { queue : Code.t Queue.t }
 [@@deriving sexp_of]
 
 let all = All
 
 let size = function
-  | All -> Permutation.cardinality
+  | All -> Code.cardinality
   | Only { queue } -> Queue.length queue
 ;;
 
@@ -24,9 +24,9 @@ let all_as_queue =
   lazy
     (let t = Queue.create () in
      let rec aux i =
-       if i < Permutation.cardinality
+       if i < Code.cardinality
        then (
-         Queue.enqueue t (Permutation.of_index_exn i);
+         Queue.enqueue t (Code.of_index_exn i);
          aux (succ i))
      in
      aux 0;
@@ -41,8 +41,8 @@ let to_list = function
 let iter t ~f =
   match t with
   | All ->
-    for i = 0 to Permutation.cardinality - 1 do
-      f (Permutation.of_index_exn i)
+    for i = 0 to Code.cardinality - 1 do
+      f (Code.of_index_exn i)
     done
   | Only { queue } -> Queue.iter queue ~f
 ;;
@@ -50,7 +50,7 @@ let iter t ~f =
 let filter t ~candidate ~cue =
   let queue = Queue.create () in
   iter t ~f:(fun solution ->
-      if Cue.equal cue (Permutation.analyse ~solution ~candidate)
+      if Cue.equal cue (Code.analyse ~solution ~candidate)
       then Queue.enqueue queue solution);
   Only { queue }
 ;;

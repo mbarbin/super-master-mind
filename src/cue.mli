@@ -1,10 +1,10 @@
 open! Base
 
 (** During a game, when a player submits a guess (also called a
-   candidate permutation), the other player responds by given back a
-   cue. The cue gives an indication as to how close the guess is to
-   the actual solution, by telling how many colors are correct and how
-   many are misplaced.
+   candidate code), the other player responds by given back a cue. The
+   cue gives an indication as to how close the guess is to the actual
+   solution, by telling how many colors are correct and how many are
+   misplaced.
 
     A misplaced color gets a white pin, while a correct color at the
    right place gets a black pin. *)
@@ -45,4 +45,4 @@ val to_hum : t -> Hum.t
 (** That is the number of slots in the solution, as well as all
    candidates submitted as guesses. In this version of the game, this
    is [5]. *)
-val permutation_size : int
+val code_size : int

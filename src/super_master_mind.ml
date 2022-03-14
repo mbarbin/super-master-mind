@@ -1,13 +1,13 @@
 open! Core
 open! Import
+module Code = Code
+module Codes = Codes
 module Color = Color
 module Cue = Cue
 module Example = Example
 module Guess = Guess
 module Kheap = Kheap
 module Opening_book = Opening_book
-module Permutation = Permutation
-module Permutations = Permutations
 
 let main =
   Command.group

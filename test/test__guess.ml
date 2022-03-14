@@ -2,8 +2,8 @@ open! Core
 open Super_master_mind
 
 let%expect_test "no repetition" =
-  let candidate = Permutation.create_exn [| Green; Blue; Orange; White; Red |] in
-  let possible_solutions = Permutations.all in
+  let candidate = Code.create_exn [| Green; Blue; Orange; White; Red |] in
+  let possible_solutions = Codes.all in
   let guess = Guess.compute ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
@@ -79,15 +79,15 @@ let%expect_test "no repetition" =
   let guess2 =
     Guess.compute
       ~possible_solutions
-      ~candidate:(Permutation.create_exn [| Black; Blue; Brown; Green; Orange |])
+      ~candidate:(Code.create_exn [| Black; Blue; Brown; Green; Orange |])
   in
   print_s [%sexp (Guess.equal guess { guess2 with candidate = guess.candidate } : bool)];
   [%expect {| true |}]
 ;;
 
 let%expect_test "color present 2 times" =
-  let candidate = Permutation.create_exn [| Green; Green; Orange; White; Red |] in
-  let possible_solutions = Permutations.all in
+  let candidate = Code.create_exn [| Green; Green; Orange; White; Red |] in
+  let possible_solutions = Codes.all in
   let guess = Guess.compute ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
@@ -160,15 +160,15 @@ let%expect_test "color present 2 times" =
   let guess2 =
     Guess.compute
       ~possible_solutions
-      ~candidate:(Permutation.create_exn [| Orange; White; Red; Green; Green |])
+      ~candidate:(Code.create_exn [| Orange; White; Red; Green; Green |])
   in
   print_s [%sexp (Guess.equal guess { guess2 with candidate = guess.candidate } : bool)];
   [%expect {| true |}]
 ;;
 
 let%expect_test "color present 3 times" =
-  let candidate = Permutation.create_exn [| Green; Green; Green; White; Red |] in
-  let possible_solutions = Permutations.all in
+  let candidate = Code.create_exn [| Green; Green; Green; White; Red |] in
+  let possible_solutions = Codes.all in
   let guess = Guess.compute ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
@@ -239,15 +239,15 @@ let%expect_test "color present 3 times" =
   let guess2 =
     Guess.compute
       ~possible_solutions
-      ~candidate:(Permutation.create_exn [| White; Red; Green; Green; Green |])
+      ~candidate:(Code.create_exn [| White; Red; Green; Green; Green |])
   in
   print_s [%sexp (Guess.equal guess { guess2 with candidate = guess.candidate } : bool)];
   [%expect {| true |}]
 ;;
 
 let%expect_test "color present 4 times" =
-  let candidate = Permutation.create_exn [| Green; Green; Green; White; Green |] in
-  let possible_solutions = Permutations.all in
+  let candidate = Code.create_exn [| Green; Green; Green; White; Green |] in
+  let possible_solutions = Codes.all in
   let guess = Guess.compute ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
@@ -303,15 +303,15 @@ let%expect_test "color present 4 times" =
   let guess2 =
     Guess.compute
       ~possible_solutions
-      ~candidate:(Permutation.create_exn [| Red; Red; Green; Red; Red |])
+      ~candidate:(Code.create_exn [| Red; Red; Green; Red; Red |])
   in
   print_s [%sexp (Guess.equal guess { guess2 with candidate = guess.candidate } : bool)];
   [%expect {| true |}]
 ;;
 
 let%expect_test "color present 5 times" =
-  let candidate = Permutation.create_exn [| Green; Green; Green; Green; Green |] in
-  let possible_solutions = Permutations.all in
+  let candidate = Code.create_exn [| Green; Green; Green; Green; Green |] in
+  let possible_solutions = Codes.all in
   let guess = Guess.compute ~possible_solutions ~candidate in
   print_s [%sexp (guess : Guess.t)];
   [%expect
@@ -343,7 +343,7 @@ let%expect_test "color present 5 times" =
   let guess2 =
     Guess.compute
       ~possible_solutions
-      ~candidate:(Permutation.create_exn [| Red; Red; Red; Red; Red |])
+      ~candidate:(Code.create_exn [| Red; Red; Red; Red; Red |])
   in
   print_s [%sexp (Guess.equal guess { guess2 with candidate = guess.candidate } : bool)];
   [%expect {| true |}]

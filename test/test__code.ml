@@ -2,21 +2,21 @@ open! Core
 open Super_master_mind
 
 let%expect_test "sexp_of_t" =
-  let t = Permutation.create_exn [| Green; Blue; Orange; White; Red |] in
-  print_s [%sexp (t : Permutation.t)];
+  let t = Code.create_exn [| Green; Blue; Orange; White; Red |] in
+  print_s [%sexp (t : Code.t)];
   [%expect {| (Green Blue Orange White Red) |}]
 ;;
 
 let%expect_test "analyse" =
   let tested = Array.create ~len:Cue.cardinality false in
   let test ~solution ~candidate =
-    let solution = Permutation.create_exn solution
-    and candidate = Permutation.create_exn candidate in
-    let cue = Permutation.analyse ~solution ~candidate in
+    let solution = Code.create_exn solution
+    and candidate = Code.create_exn candidate in
+    let cue = Code.analyse ~solution ~candidate in
     tested.(Cue.to_index cue) <- true;
     print_s [%sexp (cue : Cue.t)];
-    (* Check that [Permutation.analyse] is commutative. *)
-    let cue' = Permutation.analyse ~solution:candidate ~candidate:solution in
+    (* Check that [Code.analyse] is commutative. *)
+    let cue' = Code.analyse ~solution:candidate ~candidate:solution in
     assert (Cue.equal cue cue')
   in
   let solution : Color.Hum.t array = [| Black; Blue; Brown; Green; Orange |] in
@@ -75,8 +75,7 @@ let%expect_test "analyse" =
 let%expect_test "repetition of colors in the solution" =
   let test ~solution ~candidate =
     let cue =
-      Permutation.(
-        analyse ~solution:(create_exn solution) ~candidate:(create_exn candidate))
+      Code.(analyse ~solution:(create_exn solution) ~candidate:(create_exn candidate))
     in
     print_s [%sexp (cue : Cue.t)]
   in
@@ -92,13 +91,13 @@ let%expect_test "repetition of colors in the solution" =
 ;;
 
 let%expect_test "indices" =
-  for i = 0 to Permutation.cardinality - 1 do
-    let permutation = Permutation.of_index_exn i in
-    let index = Permutation.to_index permutation in
-    let hum = Permutation.to_hum permutation in
-    let permutation' = Permutation.create_exn hum in
+  for i = 0 to Code.cardinality - 1 do
+    let code = Code.of_index_exn i in
+    let index = Code.to_index code in
+    let hum = Code.to_hum code in
+    let code' = Code.create_exn hum in
     assert (Int.equal i index);
-    assert (Permutation.equal permutation permutation')
+    assert (Code.equal code code')
   done;
   [%expect {||}]
 ;;

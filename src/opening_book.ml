@@ -2,10 +2,10 @@ open! Core
 open! Import
 
 let canonical_first_candidate =
-  Array.init Permutation.size ~f:Fn.id
+  Array.init Code.size ~f:Fn.id
   |> Array.map ~f:Color.of_index_exn
   |> Array.map ~f:Color.to_hum
-  |> Permutation.create_exn
+  |> Code.create_exn
 ;;
 
 type t = Guess.t [@@deriving sexp]
@@ -30,7 +30,7 @@ let rec compute_internal (t : t) ~possible_solutions ~current_depth ~depth ~k =
                i
                number_of_cue));
       let possible_solutions =
-        Permutations.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
+        Codes.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
       in
       let next_best_guesses = Guess.compute_k_best ~possible_solutions ~k in
       c.next_best_guesses <- Computed next_best_guesses;
@@ -47,7 +47,7 @@ let rec compute_internal (t : t) ~possible_solutions ~current_depth ~depth ~k =
 
 let compute ~depth =
   if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
-  let possible_solutions = Permutations.all in
+  let possible_solutions = Codes.all in
   let t = Guess.compute ~possible_solutions ~candidate:canonical_first_candidate in
   compute_internal t ~possible_solutions ~current_depth:1 ~depth ~k:1;
   t

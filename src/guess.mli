@@ -32,7 +32,7 @@ end
 
 and T : sig
   type t =
-    { candidate : Permutation.t
+    { candidate : Code.t
     ; expected_bits_gained : float
     ; expected_bits_remaining : float
     ; min_bits_gained : float
@@ -48,5 +48,5 @@ include module type of struct
   include T
 end
 
-val compute : possible_solutions:Permutations.t -> candidate:Permutation.t -> t
-val compute_k_best : possible_solutions:Permutations.t -> k:int -> t list
+val compute : possible_solutions:Codes.t -> candidate:Code.t -> t
+val compute_k_best : possible_solutions:Codes.t -> k:int -> t list
