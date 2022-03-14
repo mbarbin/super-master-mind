@@ -97,3 +97,51 @@ https://github.com/janestreet/opam-repository
 Once the ongoing refactoring of core/core_kernel/core_unix etc. lands
 as an official release (perhaps v15 or so), I don't necessarily plan
 on keeping the dependency to unstable libraries. TBD.
+
+## Running the code interactively
+
+To see the program play as code-breaker in the terminal, make sure you've build first:
+
+```bash
+make
+```
+
+Then run the following command:
+
+```bash
+$ dune exec super-master-mind -- solver
+```
+
+You should see a prompt asking you to make sure you've selected a solution.
+```
+Press enter when done choosing a solution:
+```
+
+For example, let's assume our secret code is `(Green Yellow Blue Green
+Red)`. We don't type it in, and just press ENTER.
+
+The program will print a guess, and expects you to manually enter the
+number of black and white pins at each round. For example:
+
+```bash
+...
+(1 (Green Red Brown Blue Orange))
+#black (correctly placed)  : ?
+#white (incorrectly placed): ?
+```
+
+Here, the first `Green` peg is the only one correctly placed (1 peg).
+`Red` and `Blue` are present but misplaced (2 pegs) and `Brown` and
+`Orange` are not part of the secret code so don't account for a black
+nor a white peg. Thus we enter `1` for black and `2` for white:
+
+```bash
+(1 (Green Red Brown Blue Orange))
+#black (correctly placed)  : 1
+#white (incorrectly placed): 2
+(2 (White Red Brown Green Green))
+etc....
+```
+
+The game will continues with new guesses until the program breaks the
+code.
