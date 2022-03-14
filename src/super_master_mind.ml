@@ -3,6 +3,7 @@ open! Import
 module Code = Code
 module Codes = Codes
 module Color = Color
+module Color_permutation = Color_permutation
 module Cue = Cue
 module Example = Example
 module Guess = Guess
