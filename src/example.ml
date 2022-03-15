@@ -47,9 +47,16 @@ let solve ~color_permutation ~solution =
 let cmd =
   Command.basic
     ~summary:"run through an example"
-    (let%map_open.Command () = return () in
+    (let%map_open.Command solution =
+       flag "--solution" (optional sexp) ~doc:"CODE chosen solution (default is random)"
+       >>| Option.map ~f:[%of_sexp: Code.t]
+     in
      fun () ->
-       let solution = Code.create_exn [| Green; Blue; Orange; White; Red |] in
+       let solution =
+         match solution with
+         | Some solution -> solution
+         | None -> Code.create_exn [| Green; Blue; Orange; White; Red |]
+       in
        ignore
          (solve ~color_permutation:Color_permutation.identity ~solution : Guess.t list))
 ;;
