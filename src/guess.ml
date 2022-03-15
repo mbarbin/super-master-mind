@@ -142,6 +142,37 @@ let compute_k_best ~possible_solutions ~k =
   Kheap.to_list ts
 ;;
 
+let rec verify (t : t) ~possible_solutions =
+  let t' = compute ~possible_solutions ~candidate:t.candidate in
+  match Nonempty_list.zip t.by_cue t'.by_cue with
+  | Unequal_lengths -> false
+  | Ok by_cues ->
+    if not (equal t { t' with by_cue = t.by_cue })
+    then false
+    else (
+      let rec aux = function
+        | [] -> true
+        | (by_cue, by_cue') :: tl ->
+          if not
+               (By_cue.equal
+                  { by_cue with next_best_guesses = Not_computed }
+                  { by_cue' with next_best_guesses = Not_computed })
+          then false
+          else (
+            let next_depth =
+              match by_cue.next_best_guesses with
+              | Not_computed -> true
+              | Computed ts ->
+                let possible_solutions =
+                  Codes.filter possible_solutions ~candidate:t.candidate ~cue:by_cue.cue
+                in
+                List.for_all ts ~f:(fun t -> verify t ~possible_solutions)
+            in
+            next_depth && aux tl)
+      in
+      aux (Nonempty_list.to_list by_cues))
+;;
+
 let map_color t ~color_permutation =
   let rec aux_t
       { candidate : Code.t

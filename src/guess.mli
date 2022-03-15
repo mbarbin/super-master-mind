@@ -48,8 +48,16 @@ include module type of struct
   include T
 end
 
+(** Compute the cues and expected probabilities for a candidate at a
+   given stage of the game. *)
 val compute : possible_solutions:Codes.t -> candidate:Code.t -> t
+
+(** Go over all the possible candidates and retain the k that yield
+   the best expected information. *)
 val compute_k_best : possible_solutions:Codes.t -> k:int -> t list
+
+(** Check the accurracy of all computed numbers contained in [t]. *)
+val verify : t -> possible_solutions:Codes.t -> bool
 
 (** Map the color of all codes contained by [t] according to a given
    color permutation. *)

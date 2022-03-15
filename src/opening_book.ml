@@ -90,7 +90,7 @@ let compute_cmd =
        print_s [%sexp (t : t)])
 ;;
 
-let verify_cmd =
+let recompute_and_compare_cmd =
   Command.basic
     ~summary:"recompute and compare with embedded opening book"
     (let%map_open.Command () = return () in
@@ -102,35 +102,20 @@ let verify_cmd =
        then raise_s [%sexp "Embedded opening-book differs when recomputed"])
 ;;
 
-let test_color_permutation_cmd =
+let verify_cmd =
   Command.basic
-    ~summary:"recompute and verify color permutation"
+    ~summary:"verify properties of embedded opening book"
     (let%map_open.Command color_permutation =
        flag
          "--color-permutation"
-         (optional_with_default 40319 int)
-         ~doc:"INT color permutation in [0; 40319] (default MAX)"
+         (optional_with_default 0 int)
+         ~doc:"INT color permutation in [0; 40319] (default Identity)"
        >>| Color_permutation.of_index_exn
      in
      fun () ->
        let t = root (Lazy.force opening_book) ~color_permutation in
-       let depth = depth t in
-       let t' =
-         compute_with_candidate
-           ~candidate:(Code.map_color canonical_first_candidate ~color_permutation)
-           ~depth
-       in
-       if not (Guess.equal t t')
-       then (
-         print_endline "Color permutation differs when recomputed";
-         let mapped = Filename_unix.temp_file "opening-book" "mapped" in
-         let computed = Filename_unix.temp_file "opening-book" "computed" in
-         Sexp.save_hum mapped [%sexp (t : Guess.t)];
-         Sexp.save_hum computed [%sexp (t' : Guess.t)];
-         print_endline (sprintf "Sexps saved as:");
-         print_endline ("  - " ^ mapped);
-         print_endline ("  - " ^ computed);
-         raise_s [%sexp "Unexpected diffs"]))
+       if not (Guess.verify t ~possible_solutions:Codes.all)
+       then raise_s [%sexp "Embedded opening-book does not verify expected properties"])
 ;;
 
 let cmd =
@@ -138,7 +123,7 @@ let cmd =
     ~summary:"opening pre computation"
     [ "dump", dump_cmd
     ; "compute", compute_cmd
-    ; "test-color-permutation", test_color_permutation_cmd
+    ; "recompute-and-compare", recompute_and_compare_cmd
     ; "verify", verify_cmd
     ]
 ;;
