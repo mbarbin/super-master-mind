@@ -1,13 +1,6 @@
 open! Core
 open! Import
 
-let canonical_first_candidate =
-  Array.init Code.size ~f:Fn.id
-  |> Array.map ~f:Color.of_index_exn
-  |> Array.map ~f:Color.to_hum
-  |> Code.create_exn
-;;
-
 type t = Guess.t [@@deriving sexp]
 
 let root t ~color_permutation = Guess.map_color t ~color_permutation
@@ -46,14 +39,19 @@ let rec compute_internal (t : t) ~possible_solutions ~current_depth ~depth ~k =
   { t with by_cue }
 ;;
 
-let compute_with_candidate ~candidate ~depth =
-  if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
-  let possible_solutions = Codes.all in
-  let t = Guess.compute ~possible_solutions ~candidate in
-  compute_internal t ~possible_solutions ~current_depth:1 ~depth ~k:1
+let canonical_first_candidate =
+  Array.init Code.size ~f:Fn.id
+  |> Array.map ~f:Color.of_index_exn
+  |> Array.map ~f:Color.to_hum
+  |> Code.create_exn
 ;;
 
-let compute ~depth = compute_with_candidate ~candidate:canonical_first_candidate ~depth
+let compute ~depth =
+  if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
+  let possible_solutions = Codes.all in
+  let t = Guess.compute ~possible_solutions ~candidate:canonical_first_candidate in
+  compute_internal t ~possible_solutions ~current_depth:1 ~depth ~k:1
+;;
 
 let depth =
   let rec aux (t : Guess.t) =

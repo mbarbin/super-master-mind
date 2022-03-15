@@ -12,6 +12,9 @@ val opening_book : t Lazy.t
 (** Function used to recompute the opening book. *)
 val compute : depth:int -> t
 
+(** Return the depth that was used to compute [t]. *)
+val depth : t -> int
+
 (** Access the root of the book as a [Guess.t]. *)
 val root : t -> color_permutation:Color_permutation.t -> Guess.t
 

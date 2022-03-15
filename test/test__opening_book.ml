@@ -1,6 +1,13 @@
 open! Core
 open Super_master_mind
 
+let%expect_test "depth" =
+  let opening_book = Lazy.force Opening_book.opening_book in
+  let depth = Opening_book.depth opening_book in
+  print_s [%sexp { depth : int }];
+  [%expect {| ((depth 2)) |}]
+;;
+
 let%expect_test "opening-book validity" =
   let opening_book = Lazy.force Opening_book.opening_book in
   let test ~color_permutation =
