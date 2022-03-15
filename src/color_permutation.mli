@@ -4,7 +4,10 @@ open! Core
    choose to map the opening book through a color permutation, that
    is a bijection from the set of colors onto itself. *)
 
-type t [@@deriving compare, equal, sexp]
+type t [@@deriving compare, equal, hash, sexp]
+
+(** The permutation that maps each color to itself. *)
+val identity : t
 
 (** The main operation for which a color permutation is used. A
    permutation is a bijection of the set of colors onto itself. *)

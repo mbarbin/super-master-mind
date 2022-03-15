@@ -37,7 +37,9 @@ let%expect_test "min sequence" =
         | guess :: _ -> aux guess ~possible_solutions))
   in
   let opening_book = Lazy.force Opening_book.opening_book in
-  let root = Opening_book.root opening_book in
+  let root =
+    Opening_book.root opening_book ~color_permutation:Color_permutation.identity
+  in
   aux root ~possible_solutions:Codes.all;
   let steps = Queue.to_list steps |> List.mapi ~f:(fun i e -> succ i, e) in
   print_s [%sexp { number_of_steps = (List.length steps : int) }];

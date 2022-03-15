@@ -13,7 +13,10 @@ let%expect_test "all" =
 let%expect_test "filter" =
   List.iter Cue.all ~f:(fun cue ->
       let t =
-        Codes.filter Codes.all ~candidate:Opening_book.canonical_first_candidate ~cue
+        Codes.filter
+          Codes.all
+          ~candidate:(Code.create_exn [| Black; Blue; Brown; Green; Orange |])
+          ~cue
       in
       print_s [%sexp { cue : Cue.t; size_remaining = (Codes.size t : int) }]);
   [%expect

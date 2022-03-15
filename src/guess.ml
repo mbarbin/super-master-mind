@@ -141,3 +141,76 @@ let compute_k_best ~possible_solutions ~k =
       ANSITerminal.erase Eol);
   Kheap.to_list ts
 ;;
+
+let rec verify (t : t) ~possible_solutions =
+  let t' = compute ~possible_solutions ~candidate:t.candidate in
+  match Nonempty_list.zip t.by_cue t'.by_cue with
+  | Unequal_lengths -> false
+  | Ok by_cues ->
+    if not (equal t { t' with by_cue = t.by_cue })
+    then false
+    else (
+      let rec aux = function
+        | [] -> true
+        | (by_cue, by_cue') :: tl ->
+          if not
+               (By_cue.equal
+                  { by_cue with next_best_guesses = Not_computed }
+                  { by_cue' with next_best_guesses = Not_computed })
+          then false
+          else (
+            let next_depth =
+              match by_cue.next_best_guesses with
+              | Not_computed -> true
+              | Computed ts ->
+                let possible_solutions =
+                  Codes.filter possible_solutions ~candidate:t.candidate ~cue:by_cue.cue
+                in
+                List.for_all ts ~f:(fun t -> verify t ~possible_solutions)
+            in
+            next_depth && aux tl)
+      in
+      aux (Nonempty_list.to_list by_cues))
+;;
+
+let map_color t ~color_permutation =
+  let rec aux_t
+      { candidate : Code.t
+      ; expected_bits_gained : float
+      ; expected_bits_remaining : float
+      ; min_bits_gained : float
+      ; max_bits_gained : float
+      ; max_bits_remaining : float
+      ; by_cue : By_cue.t Nonempty_list.t
+      }
+    =
+    { candidate = Code.map_color candidate ~color_permutation
+    ; expected_bits_gained : float
+    ; expected_bits_remaining : float
+    ; min_bits_gained : float
+    ; max_bits_gained : float
+    ; max_bits_remaining : float
+    ; by_cue = Nonempty_list.map by_cue ~f:aux_by_cue
+    }
+  and aux_by_cue
+      { By_cue.cue : Cue.t
+      ; size_remaining : int
+      ; bits_remaining : float
+      ; bits_gained : float
+      ; probability : float
+      ; next_best_guesses : Next_best_guesses.t
+      }
+    =
+    { By_cue.cue : Cue.t
+    ; size_remaining : int
+    ; bits_remaining : float
+    ; bits_gained : float
+    ; probability : float
+    ; next_best_guesses = aux_next_best_guesses next_best_guesses
+    }
+  and aux_next_best_guesses : Next_best_guesses.t -> Next_best_guesses.t = function
+    | Not_computed -> Not_computed
+    | Computed ts -> Computed (List.map ts ~f:aux_t)
+  in
+  aux_t t
+;;

@@ -66,6 +66,10 @@ module Computing = struct
             solution.(j) <- None));
     Cue.create_exn { white = !white; black = !black }
   ;;
+
+  let map_color t ~color_permutation =
+    Array.map t ~f:(fun color -> Color_permutation.map_color color_permutation color)
+  ;;
 end
 
 let create_exn hum = hum |> Computing.create_exn |> Computing.to_code
@@ -84,4 +88,8 @@ let analyse ~solution ~candidate =
   Computing.analyse
     ~solution:(Computing.of_code solution)
     ~candidate:(Computing.of_code candidate)
+;;
+
+let map_color t ~color_permutation =
+  t |> Computing.of_code |> Computing.map_color ~color_permutation |> Computing.to_code
 ;;

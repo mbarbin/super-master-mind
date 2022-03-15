@@ -30,6 +30,9 @@ let rec input_cue () =
 ;;
 
 let solve () =
+  let color_permutation =
+    Color_permutation.of_index_exn (Random.int Color_permutation.cardinality)
+  in
   if not (ANSITerminal.isatty.contents Core_unix.stdin)
   then raise_s [%sexp "Solver expected to run in a terminal with user input"];
   print_string "Press enter when done choosing a solution: ";
@@ -66,7 +69,7 @@ let solve () =
         | guess :: _ -> aux guess ~possible_solutions))
   in
   let opening_book = Lazy.force Opening_book.opening_book in
-  let root = Opening_book.root opening_book in
+  let root = Opening_book.root opening_book ~color_permutation in
   aux root ~possible_solutions:Codes.all
 ;;
 
