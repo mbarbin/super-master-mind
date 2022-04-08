@@ -86,18 +86,6 @@ Wordle, by YouTuber 3Blue1Brown. See it here:
 
 ## Compiling the code
 
-### OCaml dependencies : janestreet-bleeding
-
-Currently this project depends on unstable version of Janestreet
-librairies, and requires the opam switch to refer to janestreet
-opam-repository located here:
-
-https://github.com/janestreet/opam-repository
-
-Once the ongoing refactoring of core/core_kernel/core_unix etc. lands
-as an official release (perhaps v15 or so), I don't necessarily plan
-on keeping the dependency to unstable libraries. TBD.
-
 ## Running the code interactively
 
 To see the program play as code-breaker in the terminal, make sure you've build first:
