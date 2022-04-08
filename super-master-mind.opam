@@ -8,14 +8,14 @@ homepage: "https://github.com/mbarbin/super-master-mind"
 doc: "https://mbarbin.github.io/super-master-mind/odoc/super-master-mind/index.html"
 bug-reports: "https://github.com/mbarbin/super-master-mind/issues"
 depends: [
-  "ocaml" {>= "4.09.0"}
+  "ocaml" {>= "4.12"}
   "dune" {>= "2.0.0"}
   "ANSITerminal" {>= "0.8.3"}
-  "core" {>= "v0.15~preview.126.09+332"}
-  "core_kernel" {>= "v0.15~preview.126.09+332"}
-  "core_unix" {>= "v0.15~preview.126.09+332"}
+  "core" {>= "v0.15"}
+  "core_kernel" {>= "v0.15"}
+  "core_unix" {>= "v0.15"}
   "ocaml-embed-file"
-  "ppx_jane" {>= "v0.15~preview.126.09+332"}
+  "ppx_jane" {>= "v0.15"}
 ]
 build: [
   ["dune" "subst"] {pinned}
