@@ -38,7 +38,8 @@ let%expect_test "verify" =
         Nonempty_list.(
           { (hd guess.by_cue) with size_remaining = 7071 } :: tl guess.by_cue)
     };
-  [%expect {|
+  [%expect
+    {|
     (Error
      ("Unexpected by_cue"
        " ((cue ((white 2) (black 0)))           ((cue ((white 2) (black 0)))        \
