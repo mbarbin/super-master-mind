@@ -1,6 +1,6 @@
 (library
  (name super_master_mind_test)
- (flags -w +a-40-42-66 -warn-error +a)
+ (flags -w +a-40-42-45-66 -warn-error +a)
  (libraries core core_kernel.nonempty_list super-master-mind)
  (inline_tests)
  (preprocess

@@ -112,8 +112,13 @@ let verify_cmd =
      in
      fun () ->
        let t = root (Lazy.force opening_book) ~color_permutation in
-       if not (Guess.verify t ~possible_solutions:Codes.all)
-       then raise_s [%sexp "Embedded opening-book does not verify expected properties"])
+       match Guess.verify t ~possible_solutions:Codes.all with
+       | Ok () -> ()
+       | Error error ->
+         raise_s
+           [%sexp
+             "Embedded opening-book does not verify expected properties"
+             , (error : Error.t)])
 ;;
 
 let cmd =

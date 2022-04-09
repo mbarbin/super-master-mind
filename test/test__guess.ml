@@ -1,6 +1,57 @@
 open! Core
 open Super_master_mind
 
+let%expect_test "verify" =
+  let candidate = Code.create_exn [| Green; Blue; Orange; White; Red |] in
+  let possible_solutions = Codes.all in
+  let guess = Guess.compute ~possible_solutions ~candidate in
+  let test guess =
+    let result = Guess.verify guess ~possible_solutions in
+    print_s [%sexp (result : unit Or_error.t)]
+  in
+  test guess;
+  [%expect {| (Ok ()) |}];
+  (* Unexpected values at the toplevel of [t] *)
+  test { guess with expected_bits_gained = 3.14 };
+  [%expect
+    {|
+    (Error
+     ("Unexpected values"
+       " ((candidate (Green Blue Orange White Red))            ((candidate (Green Blue Orange White Red))         \
+      \n  (expected_bits_gained                                 (expected_bits_gained                             \
+      \n-  3.2315534058614328                                 +  3.14                                             \
+      \n  )                                                     )                                                 \
+      \n  (expected_bits_remaining 11.768446594138567)          (expected_bits_remaining 11.768446594138567)      \
+      \n                                        ...62 unchanged lines...                                        \
+      \n     (bits_gained 15) (probability 3.0517578125E-05)       (bits_gained 15) (probability 3.0517578125E-05)\
+      \n     (next_best_guesses Not_computed)))))                  (next_best_guesses Not_computed)))))           ")) |}];
+  (* Mismatch in the length of by_cues cases. *)
+  test
+    { guess with
+      by_cue = Nonempty_list.cons (Nonempty_list.hd guess.by_cue) guess.by_cue
+    };
+  [%expect {| (Error ("Unexpected by_cue length" "-20  +21")) |}];
+  (* Mismatch in one of the by_cues. *)
+  test
+    { guess with
+      by_cue =
+        Nonempty_list.(
+          { (hd guess.by_cue) with size_remaining = 7071 } :: tl guess.by_cue)
+    };
+  [%expect {|
+    (Error
+     ("Unexpected by_cue"
+       " ((cue ((white 2) (black 0)))           ((cue ((white 2) (black 0)))        \
+      \n  (size_remaining                        (size_remaining                    \
+      \n-  7070                                +  7071                              \
+      \n  )                                      )                                  \
+      \n  (bits_remaining 12.787494499696761)    (bits_remaining 12.787494499696761)\
+      \n  (bits_gained 2.212505500303239)        (bits_gained 2.212505500303239)    \
+      \n  (probability 0.21575927734375)         (probability 0.21575927734375)     \
+      \n  (next_best_guesses Not_computed))      (next_best_guesses Not_computed))  ")) |}];
+  ()
+;;
+
 let%expect_test "no repetition" =
   let candidate = Code.create_exn [| Green; Blue; Orange; White; Red |] in
   let possible_solutions = Codes.all in

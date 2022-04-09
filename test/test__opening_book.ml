@@ -12,10 +12,8 @@ let%expect_test "opening-book validity" =
   let opening_book = Lazy.force Opening_book.opening_book in
   let test ~color_permutation =
     let t = Opening_book.root opening_book ~color_permutation in
-    let result =
-      if Guess.verify t ~possible_solutions:Codes.all then Ok () else Error ()
-    in
-    print_s [%sexp (result : (unit, unit) Result.t)]
+    let result = Guess.verify t ~possible_solutions:Codes.all in
+    print_s [%sexp (result : unit Or_error.t)]
   in
   test ~color_permutation:Color_permutation.identity;
   [%expect {| (Ok ()) |}];

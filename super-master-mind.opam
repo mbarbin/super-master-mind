@@ -16,6 +16,7 @@ depends: [
   "core_unix" {>= "v0.15"}
   "ocaml-embed-file"
   "ppx_jane" {>= "v0.15"}
+  "sexp_diff" {>= "v0.15"}
 ]
 build: [
   ["dune" "subst"] {pinned}

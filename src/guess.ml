@@ -8,11 +8,18 @@ module rec Next_best_guesses : sig
     | Not_computed
     | Computed of T.t list
   [@@deriving equal, sexp]
+
+  val is_computed : t -> bool
 end = struct
   type t =
     | Not_computed
     | Computed of T.t list
   [@@deriving equal, sexp]
+
+  let is_computed = function
+    | Computed _ -> true
+    | Not_computed -> false
+  ;;
 end
 
 and By_cue : sig
@@ -142,35 +149,62 @@ let compute_k_best ~possible_solutions ~k =
   Kheap.to_list ts
 ;;
 
+let iter_or_error list ~f =
+  let open Or_error.Let_syntax in
+  let rec aux = function
+    | [] -> return ()
+    | hd :: tl ->
+      let%bind () = f hd in
+      aux tl
+  in
+  aux list
+;;
+
+let unexpected (type a) ~name ~(expected : a) ~(got : a) (sexp_of_a : a -> Sexp.t) =
+  let diff =
+    Sexp_diff.Algo.diff ~original:[%sexp (expected : a)] ~updated:[%sexp (got : a)] ()
+  in
+  let display =
+    Sexp_diff.Display.display_as_plain_string
+      (Sexp_diff.Display.Display_options.create ~num_shown:2 Two_column)
+      diff
+  in
+  Or_error.error_s [%sexp ("Unexpected " ^ name : string), (display : string)]
+;;
+
 let rec verify (t : t) ~possible_solutions =
+  let open Or_error.Let_syntax in
   let t' = compute ~possible_solutions ~candidate:t.candidate in
   match Nonempty_list.zip t.by_cue t'.by_cue with
-  | Unequal_lengths -> false
+  | Unequal_lengths ->
+    unexpected
+      ~name:"by_cue length"
+      ~expected:(Nonempty_list.length t'.by_cue)
+      ~got:(Nonempty_list.length t.by_cue)
+      [%sexp_of: int]
   | Ok by_cues ->
-    if not (equal t { t' with by_cue = t.by_cue })
-    then false
-    else (
-      let rec aux = function
-        | [] -> true
-        | (by_cue, by_cue') :: tl ->
-          if not
-               (By_cue.equal
-                  { by_cue with next_best_guesses = Not_computed }
-                  { by_cue' with next_best_guesses = Not_computed })
-          then false
-          else (
-            let next_depth =
-              match by_cue.next_best_guesses with
-              | Not_computed -> true
-              | Computed ts ->
-                let possible_solutions =
-                  Codes.filter possible_solutions ~candidate:t.candidate ~cue:by_cue.cue
-                in
-                List.for_all ts ~f:(fun t -> verify t ~possible_solutions)
-            in
-            next_depth && aux tl)
-      in
-      aux (Nonempty_list.to_list by_cues))
+    let%bind () =
+      let t = { t with by_cue = t'.by_cue } in
+      if equal t t'
+      then return ()
+      else unexpected ~name:"values" ~expected:t' ~got:t [%sexp_of: t]
+    in
+    iter_or_error (Nonempty_list.to_list by_cues) ~f:(fun (by_cue, by_cue') ->
+        assert (not (Next_best_guesses.is_computed by_cue'.next_best_guesses));
+        let%bind () =
+          let by_cue = { by_cue with next_best_guesses = Not_computed } in
+          if By_cue.equal by_cue' by_cue
+          then return ()
+          else
+            unexpected ~name:"by_cue" ~expected:by_cue' ~got:by_cue [%sexp_of: By_cue.t]
+        in
+        match by_cue.next_best_guesses with
+        | Not_computed -> return ()
+        | Computed ts ->
+          let possible_solutions =
+            Codes.filter possible_solutions ~candidate:t.candidate ~cue:by_cue.cue
+          in
+          iter_or_error ts ~f:(fun t -> verify t ~possible_solutions))
 ;;
 
 let map_color t ~color_permutation =

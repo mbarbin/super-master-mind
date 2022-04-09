@@ -57,7 +57,7 @@ val compute : possible_solutions:Codes.t -> candidate:Code.t -> t
 val compute_k_best : possible_solutions:Codes.t -> k:int -> t list
 
 (** Check the accurracy of all computed numbers contained in [t]. *)
-val verify : t -> possible_solutions:Codes.t -> bool
+val verify : t -> possible_solutions:Codes.t -> unit Or_error.t
 
 (** Map the color of all codes contained by [t] according to a given
    color permutation. *)
