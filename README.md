@@ -1,6 +1,6 @@
 # super-master-mind
 
-[![Actions Status](https://github.com/mbarbin/super-master-mind/workflows/CI/badge.svg)](https://github.com/mbarbin/super-master-mind/actions)
+[![Actions Status](https://github.com/mbarbin/super-master-mind/workflows/CI/badge.svg)](https://github.com/mbarbin/super-master-mind/actions/workflows/ci.yml)
 [![Deploy odoc Actions Status](https://github.com/mbarbin/super-master-mind/workflows/Deploy-odoc/badge.svg)](https://github.com/mbarbin/super-master-mind/actions/workflows/deploy-odoc.yml)
 
 This is a toy project implementing a solver for the super-master-mind
