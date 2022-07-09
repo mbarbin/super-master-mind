@@ -66,7 +66,7 @@ let%expect_test "analyse" =
   [%expect {| ((white 5) (black 0)) |}];
   let not_tested =
     Array.find_mapi tested ~f:(fun i tested ->
-        if not tested then Some (Cue.of_index_exn i) else None)
+      if not tested then Some (Cue.of_index_exn i) else None)
   in
   print_s [%sexp (not_tested : Cue.t option)];
   [%expect {| () |}]

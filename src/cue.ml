@@ -46,9 +46,9 @@ let raw_code_to_index, index_to_hum =
   done;
   let index_to_hum =
     Array.mapi index_to_hum ~f:(fun i value ->
-        match value with
-        | Some value -> value
-        | None -> raise_s [%sexp "Missing index", [%here], (i : int)])
+      match value with
+      | Some value -> value
+      | None -> raise_s [%sexp "Missing index", [%here], (i : int)])
   in
   raw_code_to_index, index_to_hum
 ;;

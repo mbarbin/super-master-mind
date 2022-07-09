@@ -34,7 +34,7 @@ module Computing = struct
 
   let to_code (t : t) : int =
     Array.fold_right t ~init:0 ~f:(fun color acc ->
-        (acc * Color.cardinality) + Color.to_index color)
+      (acc * Color.cardinality) + Color.to_index color)
   ;;
 
   let analyse ~(solution : t) ~(candidate : t) =
@@ -43,27 +43,27 @@ module Computing = struct
     let black = ref 0 in
     let white = ref 0 in
     Array.iteri candidate ~f:(fun i color ->
-        match solution.(i) with
-        | None -> assert false
-        | Some color' ->
-          if Color.equal color color'
-          then (
-            incr black;
-            accounted.(i) <- true;
-            solution.(i) <- None));
-    Array.iteri candidate ~f:(fun i color ->
-        if not accounted.(i)
+      match solution.(i) with
+      | None -> assert false
+      | Some color' ->
+        if Color.equal color color'
         then (
+          incr black;
           accounted.(i) <- true;
-          match
-            Array.find_mapi solution ~f:(fun j solution ->
-                Option.bind solution ~f:(fun solution ->
-                    if Color.equal color solution then Some j else None))
-          with
-          | None -> ()
-          | Some j ->
-            incr white;
-            solution.(j) <- None));
+          solution.(i) <- None));
+    Array.iteri candidate ~f:(fun i color ->
+      if not accounted.(i)
+      then (
+        accounted.(i) <- true;
+        match
+          Array.find_mapi solution ~f:(fun j solution ->
+            Option.bind solution ~f:(fun solution ->
+              if Color.equal color solution then Some j else None))
+        with
+        | None -> ()
+        | Some j ->
+          incr white;
+          solution.(j) <- None));
     Cue.create_exn { white = !white; black = !black }
   ;;
 

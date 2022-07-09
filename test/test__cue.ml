@@ -32,16 +32,16 @@ let%expect_test "sexp_of_t" =
 
 let%expect_test "indices" =
   List.iter Cue.all ~f:(fun cue ->
-      let index = Cue.to_index cue in
-      let cue' = Cue.of_index_exn index in
-      assert (Cue.equal cue cue'));
+    let index = Cue.to_index cue in
+    let cue' = Cue.of_index_exn index in
+    assert (Cue.equal cue cue'));
   [%expect {||}]
 ;;
 
 let%expect_test "hum" =
   List.iter Cue.all ~f:(fun cue ->
-      let hum = Cue.to_hum cue in
-      let cue' = Cue.create_exn hum in
-      assert (Cue.equal cue cue'));
+    let hum = Cue.to_hum cue in
+    let cue' = Cue.create_exn hum in
+    assert (Cue.equal cue cue'));
   [%expect {||}]
 ;;

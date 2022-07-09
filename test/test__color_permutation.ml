@@ -8,7 +8,7 @@ let%expect_test "bounds" =
   in
   let max =
     Array.init Color.cardinality ~f:(fun i ->
-        Color.of_index_exn (Color.cardinality - 1 - i) |> Color.to_hum)
+      Color.of_index_exn (Color.cardinality - 1 - i) |> Color.to_hum)
     |> Color_permutation.create_exn
   in
   let test i expected =

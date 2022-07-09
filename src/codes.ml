@@ -50,7 +50,6 @@ let iter t ~f =
 let filter t ~candidate ~cue =
   let queue = Queue.create () in
   iter t ~f:(fun solution ->
-      if Cue.equal cue (Code.analyse ~solution ~candidate)
-      then Queue.enqueue queue solution);
+    if Cue.equal cue (Code.analyse ~solution ~candidate) then Queue.enqueue queue solution);
   Only { queue }
 ;;

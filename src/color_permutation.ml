@@ -22,11 +22,11 @@ let create_exn hums =
   let visited = Array.create ~len:Color.cardinality false in
   let count = ref 0 in
   Array.iter colors ~f:(fun color ->
-      let index = Color.to_index color in
-      if not visited.(index)
-      then (
-        visited.(index) <- true;
-        incr count));
+    let index = Color.to_index color in
+    if not visited.(index)
+    then (
+      visited.(index) <- true;
+      incr count));
   if Array.length colors <> Color.cardinality || !count <> Color.cardinality
   then raise_s [%sexp "Invalid color permutation", [%here], (hums : Color.Hum.t array)];
   colors
@@ -102,5 +102,5 @@ let to_index t =
     factorial_decomposition.(Color.cardinality - 1 - i) <- !count
   done;
   Array.foldi factorial_decomposition ~init:0 ~f:(fun i acc d ->
-      acc + (d * factorial.(i)))
+    acc + (d * factorial.(i)))
 ;;

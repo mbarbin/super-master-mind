@@ -35,8 +35,8 @@ let solve ~color_permutation ~solution =
       | Computed (guess :: _) -> aux guess ~possible_solutions
       | Not_computed ->
         (match Guess.compute_k_best ~possible_solutions ~k:1 with
-        | [] -> ()
-        | guess :: _ -> aux guess ~possible_solutions))
+         | [] -> ()
+         | guess :: _ -> aux guess ~possible_solutions))
   in
   let opening_book = Lazy.force Opening_book.opening_book in
   let root = Opening_book.root opening_book ~color_permutation in
