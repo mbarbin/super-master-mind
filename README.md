@@ -6,13 +6,12 @@
 This is a toy project implementing a solver for the super-master-mind
 game, written in OCaml.
 
-## What's so super about this master mind anyway ?
+## What is the super-master-mind ?
 
-This is just the name of a particular variation of the famous
-master-mind game, which was commercialised by Invicta and popular in
-the 70th.
+This is the name of a particular variation of the famous master-mind
+game, which was commercialised by Invicta and popular in the 70th.
 
-![The board game](images/board.png)
+![The board game](doc/board.png)
 
 ## Rules of the game
 
@@ -35,19 +34,12 @@ the color is also duplicated in the secret code.
 The pegs must be placed randomly and not indicate the actual position
 of the code pegs they are accounting. See for example:
 
-![Rules variation 1](images/variation-1.png)
+![Rules variation 1](doc/variation-1.png)
 
 This is the variation implemented by this repository.
 
-### Alternative rules
-
-A simpler version of the game can be played, when the pegs are placed
-exactly at the position of the code pegs they are referring to. For
-the example shown above, this would be played as shown here:
-
-![Rules variation 2](images/variation-2.png)
-
-This variation is not implemented here.
+[Other rules](doc/other-rules.md) are possible, but there are not
+implemented here.
 
 ## What does this repository implement ?
 
@@ -57,34 +49,6 @@ code-breaker.
 The repo does not implement any user interface to play the game
 interactively. Rather, the motivation is simply to go over the
 algorithmic solving part of the game.
-
-## Motivations
-
-The main motivation for me was to learn some concepts of information
-theory and entropy:
-
-Recently I have been playing Wordle with family. I watched a video on
-YouTube made by 3Blue1Brown on solving Wordle (see the link in the
-Acknowledgements section). As he puts it in the video, the game of
-Wordle is a good excuse to him for an information theory lesson. I got
-inspired by his video, and thought that the game of super-master-mind
-was well suited to implement some of the concepts contained in the
-video.
-
-## Code documentation
-
-The tip of the master branch is compiled with odoc and published to
-github pages
-[here](https://mbarbin.github.io/super-master-mind/odoc/super-master-mind/index.html).
-
-## Acknowledgements
-
-The resolution algorithm was inspired by a video on solving the game
-Wordle, by YouTuber 3Blue1Brown. See it here:
-
-- https://www.youtube.com/watch?v=v68zYyaEmEA
-
-## Compiling the code
 
 ## Running the code interactively
 
@@ -133,3 +97,29 @@ etc....
 
 The game will continues with new guesses until the program breaks the
 code.
+
+## Code documentation
+
+The tip of the master branch is compiled with odoc and published to
+github pages
+[here](https://mbarbin.github.io/super-master-mind/odoc/super-master-mind/index.html).
+
+## Motivations
+
+The main motivation for me was to learn some concepts of information
+theory and entropy:
+
+Recently I have been playing Wordle with family. I watched a video on
+YouTube made by 3Blue1Brown on solving Wordle (see the link in the
+Acknowledgements section). As he puts it in the video, the game of
+Wordle is a good excuse to him for an information theory lesson. I got
+inspired by his video, and thought that the game of super-master-mind
+was well suited to implement some of the concepts contained in the
+video.
+
+## Acknowledgements
+
+The resolution algorithm was inspired by a video on solving the game
+Wordle, by YouTuber 3Blue1Brown. See it here:
+
+- https://www.youtube.com/watch?v=v68zYyaEmEA
