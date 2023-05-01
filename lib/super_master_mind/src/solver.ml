@@ -29,12 +29,7 @@ let rec input_cue () =
   | cue -> cue
 ;;
 
-let solve ~task_pool =
-  let color_permutation =
-    Color_permutation.of_index_exn (Random.int Color_permutation.cardinality)
-  in
-  if not (ANSITerminal.isatty.contents Core_unix.stdin)
-  then raise_s [%sexp "Solver expected to run in a terminal with user input"];
+let solve ~color_permutation ~task_pool =
   print_string "Press enter when done choosing a solution: ";
   Stdio.Out_channel.(flush stdout);
   let (_ : string) = input_line () in
@@ -76,6 +71,25 @@ let solve ~task_pool =
 let cmd =
   Command.basic
     ~summary:"solve interactively"
-    (let%map_open.Command task_pool_config = Task_pool.Config.param in
-     fun () -> Task_pool.with_t task_pool_config ~f:(fun ~task_pool -> solve ~task_pool))
+    (let open Command.Let_syntax in
+     let%map_open.Command color_permutation =
+       let%map index =
+         flag
+           "--color-permutation"
+           (optional int)
+           ~doc:
+             (sprintf
+                "[0-%d] force use of permutation (random by default)"
+                (Color_permutation.cardinality - 1))
+       in
+       let index =
+         match index with
+         | Some index -> index
+         | None -> Random.int Color_permutation.cardinality
+       in
+       Color_permutation.of_index_exn index
+     and task_pool_config = Task_pool.Config.param in
+     fun () ->
+       Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
+         solve ~color_permutation ~task_pool))
 ;;
