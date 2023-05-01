@@ -1,10 +1,9 @@
 open! Core
 open Super_master_mind
 
-(* This test shows the sequence of what would happen, assuming that
-   each time we make a guess, we get back the cue that is the most
-   likely - that is the one that gives back the least amount of
-   information. *)
+(* This test shows the sequence of what would happen, assuming that each time we
+   make a guess, we get back the cue that is the most likely - that is the one
+   that gives back the least amount of information. *)
 
 let%expect_test "min sequence" =
   let steps = Queue.create () in
@@ -16,8 +15,8 @@ let%expect_test "min sequence" =
     Queue.enqueue steps { t with by_cue }
   in
   let rec aux (t : Guess.t) ~possible_solutions =
-    (* At each step, we choose to act as if we were in the case
-       leading to the cue offering the least amount of information. *)
+    (* At each step, we choose to act as if we were in the case leading to the
+       cue offering the least amount of information. *)
     add t;
     let by_cue = Nonempty_list.hd t.by_cue in
     let possible_solutions =

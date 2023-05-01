@@ -50,11 +50,11 @@ let add t a =
     | Some (node : _ Node.t) as head ->
       (match Ordering.of_int (t.compare node.value a) with
        | Greater ->
-         (* Insert [a] before [node.value] *)
+         (* Insert [a] before [node.value]. *)
          let tail = cut head ~k:(pred k) in
          Some { Node.value = a; tail }
        | Equal | Less ->
-         (* Insert [a] after [node.value] *)
+         (* Insert [a] after [node.value]. *)
          node.tail <- aux (pred k) node.tail;
          head)
   in

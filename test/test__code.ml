@@ -7,16 +7,16 @@ let%expect_test "sexp_of_t" =
   [%expect {| (Green Blue Orange White Red) |}]
 ;;
 
-let%expect_test "analyse" =
+let%expect_test "analyze" =
   let tested = Array.create ~len:Cue.cardinality false in
   let test ~solution ~candidate =
     let solution = Code.create_exn solution
     and candidate = Code.create_exn candidate in
-    let cue = Code.analyse ~solution ~candidate in
+    let cue = Code.analyze ~solution ~candidate in
     tested.(Cue.to_index cue) <- true;
     print_s [%sexp (cue : Cue.t)];
-    (* Check that [Code.analyse] is commutative. *)
-    let cue' = Code.analyse ~solution:candidate ~candidate:solution in
+    (* Check that [Code.analyze] is commutative. *)
+    let cue' = Code.analyze ~solution:candidate ~candidate:solution in
     assert (Cue.equal cue cue')
   in
   let solution : Color.Hum.t array = [| Black; Blue; Brown; Green; Orange |] in
@@ -75,7 +75,7 @@ let%expect_test "analyse" =
 let%expect_test "repetition of colors in the solution" =
   let test ~solution ~candidate =
     let cue =
-      Code.(analyse ~solution:(create_exn solution) ~candidate:(create_exn candidate))
+      Code.(analyze ~solution:(create_exn solution) ~candidate:(create_exn candidate))
     in
     print_s [%sexp (cue : Cue.t)]
   in

@@ -1,12 +1,12 @@
 open! Core
 
-(** The role of this module is to use some pre-computation for the
-   beginning of the game in order for it to be fast. *)
+(** The role of this module is to use some pre-computation for the beginning of
+    the game in order for it to be fast. *)
 
 type t [@@deriving sexp_of]
 
-(** This is the main opening book used by the application. It is
-   computed via [compute] and embedded as an s-expression. *)
+(** This is the main opening book used by the application. It is computed via
+    [compute] and embedded as an s-expression. *)
 val opening_book : t Lazy.t
 
 (** Function used to recompute the opening book. *)

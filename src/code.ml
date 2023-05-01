@@ -37,7 +37,7 @@ module Computing = struct
       (acc * Color.cardinality) + Color.to_index color)
   ;;
 
-  let analyse ~(solution : t) ~(candidate : t) =
+  let analyze ~(solution : t) ~(candidate : t) =
     let solution = Array.map solution ~f:(fun i -> Some i) in
     let accounted = Array.map candidate ~f:(fun _ -> false) in
     let black = ref 0 in
@@ -84,8 +84,8 @@ let of_index_exn index =
   index
 ;;
 
-let analyse ~solution ~candidate =
-  Computing.analyse
+let analyze ~solution ~candidate =
+  Computing.analyze
     ~solution:(Computing.of_code solution)
     ~candidate:(Computing.of_code candidate)
 ;;

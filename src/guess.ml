@@ -79,7 +79,7 @@ let compute ~possible_solutions ~candidate : t =
   let by_cue =
     let by_cue = Array.init Cue.cardinality ~f:(fun _ -> Queue.create ()) in
     Codes.iter possible_solutions ~f:(fun solution ->
-      let cue = Code.analyse ~solution ~candidate in
+      let cue = Code.analyze ~solution ~candidate in
       Queue.enqueue by_cue.(Cue.to_index cue) solution);
     let by_cue =
       Array.filter_mapi by_cue ~f:(fun i remains ->

@@ -17,7 +17,7 @@ let rec input_code () =
 let run ~solution =
   let rec aux i =
     let candidate = input_code () in
-    let cue = Code.analyse ~solution ~candidate in
+    let cue = Code.analyze ~solution ~candidate in
     let { Cue.Hum.white; black } = Cue.to_hum cue in
     print_s [%sexp (i : int), (candidate : Code.t)];
     print_endline (sprintf "#black (correctly placed)  : %d" black);

@@ -15,7 +15,7 @@ let solve ~color_permutation ~solution =
     print_s [%sexp (!step_index : int), (t : Guess.t)]
   in
   let rec aux (t : Guess.t) ~possible_solutions =
-    let cue = Code.analyse ~solution ~candidate:t.candidate in
+    let cue = Code.analyze ~solution ~candidate:t.candidate in
     let by_cue =
       Nonempty_list.find t.by_cue ~f:(fun by_cue -> Cue.equal cue by_cue.cue)
       |> Option.value_exn ~here:[%here]

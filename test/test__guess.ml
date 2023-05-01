@@ -11,7 +11,7 @@ let%expect_test "verify" =
   in
   test guess;
   [%expect {| (Ok ()) |}];
-  (* Unexpected values at the toplevel of [t] *)
+  (* Unexpected values at the top level of [t]. *)
   test { guess with expected_bits_gained = 3.14 };
   [%expect
     {|
@@ -126,7 +126,7 @@ let%expect_test "no repetition" =
        ((cue ((white 0) (black 5))) (size_remaining 1) (bits_remaining 0)
         (bits_gained 15) (probability 3.0517578125E-05)
         (next_best_guesses Not_computed))))) |}];
-  (* Due to the symetry of the game, choosing different colors yields
+  (* Due to the symmetry of the game, choosing different colors yields
      the same expected values. *)
   let guess2 =
     Guess.compute

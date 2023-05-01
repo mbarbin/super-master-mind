@@ -3,7 +3,7 @@
  (deps))
 
 ;; Currently I cannot figure out how to disable the following target
-;; from cmd [dune build] when run in the toplevel directory. Replaced
+;; from cmd [dune build] when run in the top level directory. Replaced
 ;; by a Makefile for now.
 
 ;(rule

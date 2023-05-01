@@ -11,13 +11,13 @@ end
 
 let code_size = 5
 
-(* The sum of [white] and [black] cannot exceed the code size. This
-   means that given a correct value for [white], [black] has to verify
-   : [0 <= black <= code_size - white].
+(* The sum of [white] and [black] cannot exceed the code size. This means that
+   given a correct value for [white], [black] has to verify : [0 <= black <=
+   code_size - white].
 
-   0 white: code_size + 1 choices for black 1 white: code_size - 1
-   choices for black 2 white: code_size - 1 choices for black ... ps
-   white: 1 choice for black (0). *)
+   0 white: code_size + 1 choices for black 1 white: code_size - 1 choices for
+   black 2 white: code_size - 1 choices for black ... ps white: 1 choice for
+   black (0). *)
 
 let cardinality = ((code_size + 1) * (code_size + 2) / 2) - 1
 
