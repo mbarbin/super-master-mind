@@ -10,13 +10,13 @@ game, written in OCaml.
 ## What is the super-master-mind ?
 
 This is the name of a particular variation of the famous master-mind
-game, which was commercialised by Invicta and popular in the 70th.
+game, which was commercialized by Invicta and popular in the 70th.
 
 ![The board game](doc/board.png)
 
 ## Rules of the game
 
-The person playing as code-maker chooses 5 code pegs amoung 8 colors
+The person playing as code-maker chooses 5 code pegs among 8 colors
 (allowing color repetitions), and place them in the 5 holes code
 section, which is hidden to the code-breaker (the other player). The
 code-breaker will then submit up to 12 guesses to try and figure out
