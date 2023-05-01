@@ -11,12 +11,14 @@ depends: [
   "ocaml" {>= "5.0"}
   "dune" {>= "3.0"}
   "ANSITerminal" {>= "0.8.3"}
+  "bisect_ppx" {dev & >= "2.8"}
   "core" {>= "v0.15"}
   "core_kernel" {>= "v0.15"}
   "core_unix" {>= "v0.15"}
   "domainslib" {>= "0.5"}
   "ocaml-embed-file"
   "ppx_jane" {>= "v0.15"}
+  "ppx_js_style" {>= "v0.15"}
   "sexp_diff" {>= "v0.15"}
 ]
 build: [

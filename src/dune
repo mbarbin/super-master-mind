@@ -9,8 +9,10 @@
   core_kernel.nonempty_list
   domainslib
   sexp_diff)
+ (instrumentation
+  (backend bisect_ppx))
  (preprocess
-  (pps ppx_jane)))
+  (pps ppx_jane ppx_js_style -check-doc-comments)))
 
 (rule
  (targets embedded_files.ml embedded_files.mli)
