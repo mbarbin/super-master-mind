@@ -1,7 +1,8 @@
 # super-master-mind
 
-[![Actions Status](https://github.com/mbarbin/super-master-mind/workflows/CI/badge.svg)](https://github.com/mbarbin/super-master-mind/actions/workflows/ci.yml)
-[![Deploy odoc Actions Status](https://github.com/mbarbin/super-master-mind/workflows/Deploy-odoc/badge.svg)](https://github.com/mbarbin/super-master-mind/actions/workflows/deploy-odoc.yml)
+[![Actions Status](https://github.com/mbarbin/super-master-mind/workflows/ci/badge.svg)](https://github.com/mbarbin/super-master-mind/actions/workflows/ci.yml)
+[![Deploy odoc Actions Status](https://github.com/mbarbin/super-master-mind/workflows/deploy-odoc/badge.svg)](https://github.com/mbarbin/super-master-mind/actions/workflows/deploy-odoc.yml)
+[![Coverage Status](https://coveralls.io/repos/github/mbarbin/super-master-mind/badge.svg?branch=master)](https://coveralls.io/github/mbarbin/super-master-mind?branch=master)
 
 This is a toy project implementing a solver for the super-master-mind
 game, written in OCaml.
