@@ -80,14 +80,23 @@ let dump_cmd =
 
 let compute_cmd =
   Command.basic
-    ~summary:"compute and dump opening book"
+    ~summary:"compute and save opening book"
     (let%map_open.Command depth =
        flag "--depth" (optional_with_default 2 int) ~doc:"INT depth of book (default 2)"
-     and task_pool_config = Task_pool.Config.param in
+     and task_pool_config = Task_pool.Config.param
+     and filename =
+       flag
+         "--output-file"
+         ~aliases:[ "o" ]
+         (required string)
+         ~doc:"FILE save output to file"
+     in
      fun () ->
        Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
          let t = compute ~task_pool ~depth in
-         print_s [%sexp (t : t)]))
+         Out_channel.with_file filename ~f:(fun oc ->
+           Out_channel.output_string oc (Sexp.to_string_hum [%sexp (t : t)]);
+           Out_channel.output_char oc '\n')))
 ;;
 
 let recompute_and_compare_cmd =

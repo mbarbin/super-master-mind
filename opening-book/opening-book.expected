@@ -9,7 +9,7 @@
     (probability 0.21575927734375)
     (next_best_guesses
      (Computed
-      (((candidate (Orange White Red Red Black))
+      (((candidate (Blue Black White Yellow Yellow))
         (expected_bits_gained 3.4095562101846211)
         (expected_bits_remaining 9.37793828951214)
         (min_bits_gained 2.4487581171228445)
@@ -21,7 +21,7 @@
            (bits_gained 2.4487581171228445) (probability 0.18316831683168316)
            (next_best_guesses
             (Computed
-             (((candidate (White Black Yellow Yellow Brown))
+             (((candidate (Orange White Blue Red Red))
                (expected_bits_gained 3.6487586980150946)
                (expected_bits_remaining 6.6899776845588219)
                (min_bits_gained 2.71668456311754)
@@ -130,7 +130,7 @@
            (bits_gained 2.6175694982544488) (probability 0.16294200848656296)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Red Blue Red Brown))
+             (((candidate (Green Red Yellow Brown Yellow))
                (expected_bits_gained 3.60560570602553)
                (expected_bits_remaining 6.5643192954167819)
                (min_bits_gained 2.6307661903342812)
@@ -238,7 +238,7 @@
            (bits_gained 2.9326261164365253) (probability 0.13097595473833099)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Brown Green White Brown))
+             (((candidate (Green Red Green Orange White))
                (expected_bits_gained 3.7195235580852848)
                (expected_bits_remaining 6.1353448251749505)
                (min_bits_gained 2.7674055420098966)
@@ -346,7 +346,7 @@
            (bits_gained 3.0342777505178056) (probability 0.12206506364922207)
            (next_best_guesses
             (Computed
-             (((candidate (Red Orange Yellow Red Brown))
+             (((candidate (Yellow Green Blue Red Yellow))
                (expected_bits_gained 3.5648974563877078)
                (expected_bits_remaining 6.1883192927912472)
                (min_bits_gained 2.708822629820502)
@@ -451,7 +451,7 @@
            (probability 0.088260254596888257)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Red Green Black White))
+             (((candidate (Red White Yellow Blue Green))
                (expected_bits_gained 3.6477836608142611)
                (expected_bits_remaining 5.6376185580479881)
                (min_bits_gained 2.5439352324611013)
@@ -555,7 +555,7 @@
            (probability 0.075247524752475245)
            (next_best_guesses
             (Computed
-             (((candidate (Green Yellow Yellow Red Brown))
+             (((candidate (Green Orange Red Red Yellow))
                (expected_bits_gained 3.74533075205098)
                (expected_bits_remaining 5.3099516834502083)
                (min_bits_gained 2.7698802166389402)
@@ -663,7 +663,7 @@
            (probability 0.056435643564356437)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Yellow White Red Blue))
+             (((candidate (Brown Green Red White Yellow))
                (expected_bits_gained 3.5913087063907847)
                (expected_bits_remaining 5.04893622983156)
                (min_bits_gained 2.7822639410947732)
@@ -764,7 +764,7 @@
            (probability 0.0545968882602546)
            (next_best_guesses
             (Computed
-             (((candidate (Red Yellow Red Brown Black))
+             (((candidate (Blue Yellow Red Orange Yellow))
                (expected_bits_gained 3.5631028491712344)
                (expected_bits_remaining 5.0293541880968453)
                (min_bits_gained 2.5700892242396254)
@@ -861,7 +861,7 @@
            (probability 0.032673267326732675)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Yellow Green Blue Yellow))
+             (((candidate (Red Red Green Orange Red))
                (expected_bits_gained 3.8128541028906624)
                (expected_bits_remaining 4.0388949385253952)
                (min_bits_gained 3.0443941193584534)
@@ -961,7 +961,7 @@
            (probability 0.025176803394625177)
            (next_best_guesses
             (Computed
-             (((candidate (White Red Yellow Black White))
+             (((candidate (White White Yellow Blue Red))
                (expected_bits_gained 3.3283002061428584)
                (expected_bits_remaining 4.1474332248235388)
                (min_bits_gained 2.6177524358388258)
@@ -1032,7 +1032,7 @@
            (probability 0.019943422913719942)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Orange Red Orange Black))
+             (((candidate (Red Black Blue Blue Yellow))
                (expected_bits_gained 3.3614703215720256)
                (expected_bits_remaining 3.778081030826768)
                (min_bits_gained 2.4391116342577019)
@@ -1104,7 +1104,7 @@
            (probability 0.018387553041018388)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Yellow White Red Black))
+             (((candidate (Blue Brown Red White Yellow))
                (expected_bits_gained 3.4830714730774006)
                (expected_bits_remaining 3.5392963399510537)
                (min_bits_gained 2.5629361943911571)
@@ -1189,7 +1189,7 @@
            (probability 0.016973125884016973)
            (next_best_guesses
             (Computed
-             (((candidate (White Yellow White Black Red))
+             (((candidate (White Yellow Red Blue White))
                (expected_bits_gained 3.4375860741884385)
                (expected_bits_remaining 3.46930452142008)
                (min_bits_gained 2.8194277543581796)
@@ -1255,7 +1255,7 @@
            (probability 0.0050919377652050924)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Orange Red Orange Black))
+             (((candidate (Red Black Blue Blue Yellow))
                (expected_bits_gained 3.3718956694089632)
                (expected_bits_remaining 1.7980293320333489)
                (min_bits_gained 2.5849625007211561)
@@ -1319,7 +1319,7 @@
            (probability 0.0025459688826025462)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Orange Red Black Black))
+             (((candidate (Black Black Blue Red Yellow))
                (expected_bits_gained 2.8910611120726526)
                (expected_bits_remaining 1.2788638893696596)
                (min_bits_gained 2.5849625007211561)
@@ -1368,7 +1368,7 @@
            (probability 0.0019801980198019802)
            (next_best_guesses
             (Computed
-             (((candidate (White Orange Red Black Red))
+             (((candidate (Yellow White Black Blue Yellow))
                (expected_bits_gained 2.2170218858797179)
                (expected_bits_remaining 1.5903330361778862)
                (min_bits_gained 1.8073549220576042)
@@ -1402,17 +1402,17 @@
            (probability 0.0011315417256011315)
            (next_best_guesses
             (Computed
-             (((candidate (Red Orange Red Orange Black))
+             (((candidate (Blue Yellow Yellow White Yellow))
                (expected_bits_gained 2.1556390622295662)
                (expected_bits_remaining 0.84436093777043375)
                (min_bits_gained 1.4150374992788439) (max_bits_gained 3)
                (max_bits_remaining 1.5849625007211561)
                (by_cue
-                (((cue ((white 3) (black 1))) (size_remaining 3)
+                (((cue ((white 2) (black 2))) (size_remaining 3)
                   (bits_remaining 1.5849625007211561)
                   (bits_gained 1.4150374992788439) (probability 0.375)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 2)
+                 ((cue ((white 3) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 4))) (size_remaining 1)
@@ -1429,23 +1429,23 @@
            (probability 0.0011315417256011315)
            (next_best_guesses
             (Computed
-             (((candidate (Red Orange Red Black Black))
+             (((candidate (Blue White Yellow White Yellow))
                (expected_bits_gained 2.25) (expected_bits_remaining 0.75)
                (min_bits_gained 2) (max_bits_gained 3) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 2) (black 2))) (size_remaining 2)
+                (((cue ((white 1) (black 3))) (size_remaining 2)
+                  (bits_remaining 1) (bits_gained 2) (probability 0.25)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 2) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
                  ((cue ((white 3) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 4) (black 0))) (size_remaining 2)
-                  (bits_remaining 1) (bits_gained 2) (probability 0.25)
-                  (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 4))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 1)
+                 ((cue ((white 4) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 5) (black 0))) (size_remaining 8) (bits_remaining 3)
@@ -1453,17 +1453,17 @@
            (probability 0.0011315417256011315)
            (next_best_guesses
             (Computed
-             (((candidate (White Red Orange Black Black))
+             (((candidate (White Yellow Black Blue White))
                (expected_bits_gained 2.1556390622295662)
                (expected_bits_remaining 0.84436093777043375)
                (min_bits_gained 1.4150374992788439) (max_bits_gained 3)
                (max_bits_remaining 1.5849625007211561)
                (by_cue
-                (((cue ((white 3) (black 1))) (size_remaining 3)
+                (((cue ((white 2) (black 2))) (size_remaining 3)
                   (bits_remaining 1.5849625007211561)
                   (bits_gained 1.4150374992788439) (probability 0.375)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 4) (black 0))) (size_remaining 2)
+                 ((cue ((white 3) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 4))) (size_remaining 1)
@@ -1472,7 +1472,7 @@
                  ((cue ((white 1) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
+                 ((cue ((white 4) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 0) (black 5))) (size_remaining 1) (bits_remaining 0)
@@ -1484,7 +1484,7 @@
     (probability 0.17120361328125)
     (next_best_guesses
      (Computed
-      (((candidate (White Red Green Blue Black))
+      (((candidate (Brown Green Orange White Yellow))
         (expected_bits_gained 3.3319719695851018)
         (expected_bits_remaining 9.1218130859110538)
         (min_bits_gained 2.4750745963897973)
@@ -1496,7 +1496,7 @@
            (bits_gained 2.4750745963897973) (probability 0.17985739750445634)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Yellow Blue Black Red))
+             (((candidate (Orange Yellow Green Black Red))
                (expected_bits_gained 3.5844362231975211)
                (expected_bits_remaining 6.3942742359088367)
                (min_bits_gained 2.621158454488274)
@@ -1599,7 +1599,7 @@
            (bits_gained 2.4894441877037377) (probability 0.17807486631016042)
            (next_best_guesses
             (Computed
-             (((candidate (Orange Brown White Orange Green))
+             (((candidate (White Brown Blue Blue Black))
                (expected_bits_gained 3.5694725267444727)
                (expected_bits_remaining 6.3948683410479443)
                (min_bits_gained 2.6789386489301688)
@@ -1701,7 +1701,7 @@
            (probability 0.16524064171122996)
            (next_best_guesses
             (Computed
-             (((candidate (Green Orange White Blue Yellow))
+             (((candidate (White Red Orange Brown Blue))
                (expected_bits_gained 3.5046474975923867)
                (expected_bits_remaining 6.3517780310331435)
                (min_bits_gained 2.5076973743944535)
@@ -1806,7 +1806,7 @@
            (bits_gained 2.9146262443881241) (probability 0.13262032085561498)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Orange White Yellow Black))
+             (((candidate (White Green Red Black Blue))
                (expected_bits_gained 3.5305120296265788)
                (expected_bits_remaining 6.0086467814814526)
                (min_bits_gained 2.5504741243358655)
@@ -1913,7 +1913,7 @@
            (probability 0.066310160427807491)
            (next_best_guesses
             (Computed
-             (((candidate (Red Orange Green Yellow Blue))
+             (((candidate (Brown Orange Red Yellow Blue))
                (expected_bits_gained 3.58748191768604)
                (expected_bits_remaining 4.9516768934219915)
                (min_bits_gained 2.8112383565448322)
@@ -2011,7 +2011,7 @@
            (probability 0.052941176470588235)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Black Yellow Orange Brown))
+             (((candidate (Red Black Blue Red Green))
                (expected_bits_gained 3.694115262304)
                (expected_bits_remaining 4.5202038584967665)
                (min_bits_gained 2.5996092766855581)
@@ -2105,7 +2105,7 @@
            (bits_gained 4.366322214245816) (probability 0.048484848484848485)
            (next_best_guesses
             (Computed
-             (((candidate (Green Black Black Blue Yellow))
+             (((candidate (Green Red Orange Brown Green))
                (expected_bits_gained 3.1992934362887762)
                (expected_bits_remaining 4.8881694049615625)
                (min_bits_gained 2.021373650792567)
@@ -2177,7 +2177,7 @@
            (bits_gained 4.414866066203853) (probability 0.046880570409982177)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Green Orange Black Yellow))
+             (((candidate (Blue Red Green Orange Brown))
                (expected_bits_gained 3.2358505667804107)
                (expected_bits_remaining 4.8030684225118918)
                (min_bits_gained 2.3950627995175777)
@@ -2248,7 +2248,7 @@
            (probability 0.037967914438502677)
            (next_best_guesses
             (Computed
-             (((candidate (Green Brown Yellow Blue Green))
+             (((candidate (Red Brown Orange Brown Black))
                (expected_bits_gained 3.566004005068991)
                (expected_bits_remaining 4.1687056151568473)
                (min_bits_gained 2.5252562545968882)
@@ -2338,7 +2338,7 @@
            (probability 0.029946524064171122)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Orange Yellow Yellow Black))
+             (((candidate (Red Green Red Black Blue))
                (expected_bits_gained 3.6327810715184619)
                (expected_bits_remaining 3.7595363512602988)
                (min_bits_gained 2.6374299206152925)
@@ -2425,7 +2425,7 @@
            (probability 0.024777183600713012)
            (next_best_guesses
             (Computed
-             (((candidate (Green Green Yellow Blue Black))
+             (((candidate (Red Green Orange Brown Brown))
                (expected_bits_gained 3.3275714131010878)
                (expected_bits_remaining 3.79136965962242)
                (min_bits_gained 2.3115861506659039)
@@ -2495,7 +2495,7 @@
            (probability 0.016221033868092691)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Red Yellow Blue Green))
+             (((candidate (Red Brown Orange Black Yellow))
                (expected_bits_gained 3.5157294646510562)
                (expected_bits_remaining 2.99206517554764)
                (min_bits_gained 2.5077946401986964)
@@ -2573,7 +2573,7 @@
            (bits_gained 7.1318569606087925) (probability 0.0071301247771836)
            (next_best_guesses
             (Computed
-             (((candidate (White Brown Red Blue Blue))
+             (((candidate (Red Yellow Orange White Black))
                (expected_bits_gained 3.133783409004101)
                (expected_bits_remaining 2.1881446858832616)
                (min_bits_gained 2.3219280948873626)
@@ -2582,11 +2582,11 @@
                 (((cue ((white 1) (black 1))) (size_remaining 8)
                   (bits_remaining 3) (bits_gained 2.3219280948873626)
                   (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 2))) (size_remaining 7)
+                 ((cue ((white 2) (black 1))) (size_remaining 7)
                   (bits_remaining 2.8073549220576042)
                   (bits_gained 2.5145731728297585) (probability 0.175)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 6)
+                 ((cue ((white 0) (black 2))) (size_remaining 6)
                   (bits_remaining 2.5849625007211561)
                   (bits_gained 2.7369655941662066) (probability 0.15)
                   (next_best_guesses Not_computed))
@@ -2594,17 +2594,17 @@
                   (bits_remaining 2.3219280948873622)
                   (bits_gained 3.0000000000000004) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 4)
+                 ((cue ((white 3) (black 1))) (size_remaining 4)
                   (bits_remaining 2) (bits_gained 3.3219280948873626)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 3)
+                 ((cue ((white 2) (black 0))) (size_remaining 3)
                   (bits_remaining 1.5849625007211561)
                   (bits_gained 3.7369655941662066) (probability 0.075)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 3))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 4.3219280948873626)
                   (probability 0.05) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 2)
+                 ((cue ((white 3) (black 0))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 4.3219280948873626)
                   (probability 0.05) (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 4))) (size_remaining 1)
@@ -2613,7 +2613,7 @@
                  ((cue ((white 1) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 5.3219280948873626)
                   (probability 0.025) (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 0))) (size_remaining 1)
+                 ((cue ((white 2) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 5.3219280948873626)
                   (probability 0.025) (next_best_guesses Not_computed)))))))))
           ((cue ((white 4) (black 1))) (size_remaining 24)
@@ -2622,7 +2622,7 @@
            (probability 0.0042780748663101605)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Black Green White Green))
+             (((candidate (Brown Brown White Orange Green))
                (expected_bits_gained 2.08429531609601)
                (expected_bits_remaining 2.5006671846251463)
                (min_bits_gained 1.5849625007211561)
@@ -2654,7 +2654,7 @@
            (bits_gained 8.1318569606087934) (probability 0.0035650623885918)
            (next_best_guesses
             (Computed
-             (((candidate (Green Black Blue White Blue))
+             (((candidate (Orange Orange White Brown Green))
                (expected_bits_gained 2.2427376486136676)
                (expected_bits_remaining 2.079190446273695)
                (min_bits_gained 2.0000000000000004)
@@ -2686,7 +2686,7 @@
            (probability 0.0021390374331550803)
            (next_best_guesses
             (Computed
-             (((candidate (Red Green Yellow Blue Brown))
+             (((candidate (Red Black Orange Brown White))
                (expected_bits_gained 2.792481250360578)
                (expected_bits_remaining 0.792481250360578)
                (min_bits_gained 2) (max_bits_gained 3.5849625007211561)
@@ -2728,17 +2728,17 @@
            (probability 0.0021390374331550803)
            (next_best_guesses
             (Computed
-             (((candidate (Red Green Black Blue Black))
+             (((candidate (Green White Orange Yellow Yellow))
                (expected_bits_gained 2.1258145836939111)
                (expected_bits_remaining 1.459147917027245)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 3.5849625007211561) (max_bits_remaining 2)
                (by_cue
-                (((cue ((white 2) (black 2))) (size_remaining 4)
+                (((cue ((white 3) (black 1))) (size_remaining 4)
                   (bits_remaining 2) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 3)
+                 ((cue ((white 2) (black 2))) (size_remaining 3)
                   (bits_remaining 1.5849625007211561) (bits_gained 2)
                   (probability 0.25) (next_best_guesses Not_computed))
                  ((cue ((white 4) (black 0))) (size_remaining 3)
@@ -2758,7 +2758,7 @@
            (probability 0.0012477718360071302)
            (next_best_guesses
             (Computed
-             (((candidate (Green Green Red Blue Black))
+             (((candidate (Yellow Green Orange Yellow White))
                (expected_bits_gained 2.1280852788913944)
                (expected_bits_remaining 0.67926964316620975)
                (min_bits_gained 1.2223924213364481)
@@ -2794,7 +2794,7 @@
     (probability 0.14892578125)
     (next_best_guesses
      (Computed
-      (((candidate (Yellow White Red Green Orange))
+      (((candidate (Black Blue Red White Yellow))
         (expected_bits_gained 3.3902031886027832)
         (expected_bits_remaining 8.8624622438474656)
         (min_bits_gained 2.4582495661001431)
@@ -2806,7 +2806,7 @@
            (bits_gained 2.4582495661001431) (probability 0.18196721311475411)
            (next_best_guesses
             (Computed
-             (((candidate (White Yellow Brown Black Black))
+             (((candidate (Orange Orange Brown Yellow White))
                (expected_bits_gained 3.6446537524179092)
                (expected_bits_remaining 6.1497621139321961)
                (min_bits_gained 2.6244908649077932)
@@ -2914,7 +2914,7 @@
            (bits_gained 2.6677029317290923) (probability 0.15737704918032788)
            (next_best_guesses
             (Computed
-             (((candidate (White Red Black Green Green))
+             (((candidate (Blue Blue Orange Red White))
                (expected_bits_gained 3.4940852963396147)
                (expected_bits_remaining 6.0908772043815418)
                (min_bits_gained 2.6542251631582694)
@@ -3011,7 +3011,7 @@
            (probability 0.14795081967213114)
            (next_best_guesses
             (Computed
-             (((candidate (Black White Blue Red Black))
+             (((candidate (Green Yellow Brown Red Yellow))
                (expected_bits_gained 3.4558714937208825)
                (expected_bits_remaining 6.0399835331662874)
                (min_bits_gained 2.4846277714639164)
@@ -3114,7 +3114,7 @@
            (bits_gained 3.0978473233981436) (probability 0.11680327868852459)
            (next_best_guesses
             (Computed
-             (((candidate (Orange Blue Blue White Red))
+             (((candidate (Yellow White Blue Orange Orange))
                (expected_bits_gained 3.496109613473517)
                (expected_bits_remaining 5.6587084955785878)
                (min_bits_gained 2.6002292573744672)
@@ -3207,7 +3207,7 @@
            (bits_gained 3.517955812224411) (probability 0.087295081967213112)
            (next_best_guesses
             (Computed
-             (((candidate (White Blue Blue Black Black))
+             (((candidate (Orange Orange Green Green White))
                (expected_bits_gained 3.7021880428290852)
                (expected_bits_remaining 5.0325215773967518)
                (min_bits_gained 2.6686204297680653)
@@ -3315,7 +3315,7 @@
            (bits_gained 3.7369655941662057) (probability 0.075)
            (next_best_guesses
             (Computed
-             (((candidate (Red White Black Green Green))
+             (((candidate (Blue Blue Green Red Yellow))
                (expected_bits_gained 3.4835501103206914)
                (expected_bits_remaining 5.0321497279633514)
                (min_bits_gained 2.5156998382840428)
@@ -3405,7 +3405,7 @@
            (probability 0.056557377049180325)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Yellow Orange Orange Black))
+             (((candidate (Blue Orange Blue Yellow Yellow))
                (expected_bits_gained 3.4162898555647616)
                (expected_bits_remaining 4.6922346012134071)
                (min_bits_gained 2.2505434616505964)
@@ -3492,7 +3492,7 @@
            (probability 0.045491803278688528)
            (next_best_guesses
             (Computed
-             (((candidate (Green Green Orange Red Orange))
+             (((candidate (Black Red Black Blue Blue))
                (expected_bits_gained 3.33878152438322)
                (expected_bits_remaining 4.4556343419668867)
                (min_bits_gained 2.20945336562895)
@@ -3559,7 +3559,7 @@
            (probability 0.044262295081967211)
            (next_best_guesses
             (Computed
-             (((candidate (Red Blue Blue Black Black))
+             (((candidate (Orange Orange Brown Brown White))
                (expected_bits_gained 3.5611833872057153)
                (expected_bits_remaining 4.193704114957753)
                (min_bits_gained 2.6256044852185019)
@@ -3649,7 +3649,7 @@
            (probability 0.029508196721311476)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Orange Orange Green Green))
+             (((candidate (Black Black Blue Blue Yellow))
                (expected_bits_gained 3.3457830053570574)
                (expected_bits_remaining 3.8241419960852547)
                (min_bits_gained 2.4694852833012204)
@@ -3717,7 +3717,7 @@
            (probability 0.020901639344262295)
            (next_best_guesses
             (Computed
-             (((candidate (Red Yellow Red Green Black))
+             (((candidate (Black Green White Yellow Yellow))
                (expected_bits_gained 3.3925424911885877)
                (expected_bits_remaining 3.2798828507829074)
                (min_bits_gained 2.42449782852791)
@@ -3794,7 +3794,7 @@
            (bits_gained 6.208271313091795) (probability 0.013524590163934426)
            (next_best_guesses
             (Computed
-             (((candidate (Orange Yellow Brown White Red))
+             (((candidate (Yellow Red Brown Blue White))
                (expected_bits_gained 3.2934525513284609)
                (expected_bits_remaining 2.7509415680299925)
                (min_bits_gained 2.4594316186372973)
@@ -3865,7 +3865,7 @@
            (bits_gained 6.8603480096714877) (probability 0.00860655737704918)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Blue Blue Black Black))
+             (((candidate (Green Green Orange Orange Orange))
                (expected_bits_gained 3.5998361724181831)
                (expected_bits_remaining 1.7924812503605776)
                (min_bits_gained 2.3923174227787607)
@@ -3939,7 +3939,7 @@
            (probability 0.0061475409836065573)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Brown Black Red Orange))
+             (((candidate (Black White Green Orange Yellow))
                (expected_bits_gained 3.1362434129830605)
                (expected_bits_remaining 1.7706471826254582)
                (min_bits_gained 2.3219280948873626)
@@ -3997,7 +3997,7 @@
            (probability 0.0036885245901639345)
            (next_best_guesses
             (Computed
-             (((candidate (White Yellow Orange Red Orange))
+             (((candidate (Red Blue Blue Yellow White))
                (expected_bits_gained 2.1552215288595118)
                (expected_bits_remaining 2.0147034725828004)
                (min_bits_gained 1.5849625007211561)
@@ -4032,7 +4032,7 @@
            (probability 0.0024590163934426232)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Green Green Red Orange))
+             (((candidate (Black White White Red Yellow))
                (expected_bits_gained 2.1258145836939111)
                (expected_bits_remaining 1.459147917027245)
                (min_bits_gained 1.5849625007211561)
@@ -4062,29 +4062,29 @@
            (probability 0.0012295081967213116)
            (next_best_guesses
             (Computed
-             (((candidate (Green Blue Black Black Black))
+             (((candidate (Black Green Orange Yellow Yellow))
                (expected_bits_gained 2.2516291673878226)
                (expected_bits_remaining 0.33333333333333348)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 2.5849625007211561) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 0))) (size_remaining 2)
+                (((cue ((white 1) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 0))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2.5849625007211561)
-                  (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2.5849625007211561)
+                  (probability 0.16666666666666666)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed)))))))))
@@ -4094,7 +4094,7 @@
            (probability 0.0012295081967213116)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Orange Green Green Black))
+             (((candidate (Black Yellow Blue Yellow Yellow))
                (expected_bits_gained 1.9182958340544891)
                (expected_bits_remaining 0.666666666666667)
                (min_bits_gained 1.5849625007211561)
@@ -4121,7 +4121,7 @@
     (probability 0.142822265625)
     (next_best_guesses
      (Computed
-      (((candidate (Red Blue Brown Black Black))
+      (((candidate (Black Blue Orange Orange Yellow))
         (expected_bits_gained 3.2916088087636)
         (expected_bits_remaining 8.9006840057071663)
         (min_bits_gained 2.3374244312105308)
@@ -4133,7 +4133,7 @@
            (bits_gained 2.3374244312105308) (probability 0.19786324786324785)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Brown Black White Orange))
+             (((candidate (Blue Orange Brown Red White))
                (expected_bits_gained 3.5776513741349674)
                (expected_bits_remaining 6.2772170091252679)
                (min_bits_gained 2.7051212637555535)
@@ -4238,7 +4238,7 @@
            (bits_gained 2.5412411232918384) (probability 0.1717948717948718)
            (next_best_guesses
             (Computed
-             (((candidate (Green White Brown Blue Blue))
+             (((candidate (Black White Blue Blue Green))
                (expected_bits_gained 3.6890883278111639)
                (expected_bits_remaining 5.9619633633677642)
                (min_bits_gained 2.7562339278709844)
@@ -4342,7 +4342,7 @@
            (bits_gained 3.027385887795079) (probability 0.12264957264957264)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Orange Brown Red Blue))
+             (((candidate (Black Brown Blue Yellow Blue))
                (expected_bits_gained 3.63894111607609)
                (expected_bits_remaining 5.5259658105995975)
                (min_bits_gained 2.5799444259545314)
@@ -4445,7 +4445,7 @@
            (probability 0.11581196581196582)
            (next_best_guesses
             (Computed
-             (((candidate (Black Green Red White Blue))
+             (((candidate (Yellow Green Blue White Orange))
                (expected_bits_gained 3.6230708233227116)
                (expected_bits_remaining 5.4590782180311592)
                (min_bits_gained 2.3956485141706523)
@@ -4549,7 +4549,7 @@
            (probability 0.11196581196581197)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Green Green White Orange))
+             (((candidate (Green Green Brown White Blue))
                (expected_bits_gained 3.5724284934850732)
                (expected_bits_remaining 5.4609945080523765)
                (min_bits_gained 2.5739913829001528)
@@ -4642,7 +4642,7 @@
            (probability 0.069230769230769235)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow White Brown Blue Black))
+             (((candidate (Black Red Blue Orange White))
                (expected_bits_gained 3.5682767780710121)
                (expected_bits_remaining 4.7715732248136122)
                (min_bits_gained 2.6394102847435326)
@@ -4747,7 +4747,7 @@
            (probability 0.059829059829059832)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Green Brown White Black))
+             (((candidate (Black Green Orange Red White))
                (expected_bits_gained 3.7249049284531512)
                (expected_bits_remaining 4.404378088491816)
                (min_bits_gained 2.8073549220576046)
@@ -4847,7 +4847,7 @@
            (probability 0.057264957264957263)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow White Brown Orange Green))
+             (((candidate (Black Red Green Brown White))
                (expected_bits_gained 3.5304949623473028)
                (expected_bits_remaining 4.5355942281104689)
                (min_bits_gained 2.3112016882943038)
@@ -4934,7 +4934,7 @@
            (bits_gained 5.505792287287548) (probability 0.02200854700854701)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Red Brown White Black))
+             (((candidate (Black Yellow Orange White Blue))
                (expected_bits_gained 3.5029155496218016)
                (expected_bits_remaining 3.1835849775614169)
                (min_bits_gained 2.5990376859328794)
@@ -5008,7 +5008,7 @@
            (probability 0.021581196581196581)
            (next_best_guesses
             (Computed
-             (((candidate (White Brown Black Blue Blue))
+             (((candidate (Orange Black Blue Blue White))
                (expected_bits_gained 3.3747584153408448)
                (expected_bits_remaining 3.28345306741095)
                (min_bits_gained 2.6582114827517946)
@@ -5074,7 +5074,7 @@
            (probability 0.019230769230769232)
            (next_best_guesses
             (Computed
-             (((candidate (Black White Blue Brown Blue))
+             (((candidate (Blue White Black Blue Orange))
                (expected_bits_gained 3.3065980508744741)
                (expected_bits_remaining 3.1852550454552007)
                (min_bits_gained 2.4918530963296748)
@@ -5141,7 +5141,7 @@
            (probability 0.017948717948717947)
            (next_best_guesses
             (Computed
-             (((candidate (White Green Brown Red Black))
+             (((candidate (Black Green Orange Yellow White))
                (expected_bits_gained 3.6273091578471504)
                (expected_bits_remaining 2.7650082649316103)
                (min_bits_gained 2.6918777046376685)
@@ -5224,7 +5224,7 @@
            (probability 0.0068376068376068376)
            (next_best_guesses
             (Computed
-             (((candidate (Brown White Brown Blue Black))
+             (((candidate (Black White Black Orange Blue))
                (expected_bits_gained 3.3911267670198741)
                (expected_bits_remaining 1.6088732329801259)
                (min_bits_gained 2.6780719051126378) (max_bits_gained 5)
@@ -5276,20 +5276,20 @@
            (probability 0.0017094017094017094)
            (next_best_guesses
             (Computed
-             (((candidate (Black Brown Black Blue Blue))
+             (((candidate (Orange Yellow Blue Blue Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 1)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 0) (black 4))) (size_remaining 2)
+                (((cue ((white 0) (black 3))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 2)
+                 ((cue ((white 1) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 2)
+                 ((cue ((white 2) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 2)
+                 ((cue ((white 3) (black 0))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 2) (black 3))) (size_remaining 6)
@@ -5297,7 +5297,7 @@
            (probability 0.0012820512820512821)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Black Brown Blue Black))
+             (((candidate (Black Orange Black Blue Yellow))
                (expected_bits_gained 2.2516291673878226)
                (expected_bits_remaining 0.33333333333333348)
                (min_bits_gained 1.5849625007211561)
@@ -5328,25 +5328,25 @@
            (probability 0.0012820512820512821)
            (next_best_guesses
             (Computed
-             (((candidate (Black Brown Red Blue Black))
+             (((candidate (Blue Yellow Orange Yellow Yellow))
                (expected_bits_gained 1.9182958340544891)
                (expected_bits_remaining 0.666666666666667)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 2.5849625007211561) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 2) (black 3))) (size_remaining 2)
+                (((cue ((white 0) (black 3))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 2))) (size_remaining 2)
+                 ((cue ((white 2) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 5))) (size_remaining 1)
+                 ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 4) (black 1))) (size_remaining 1)
+                 ((cue ((white 3) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed)))))))))
@@ -5355,20 +5355,20 @@
            (probability 0.0008547008547008547)
            (next_best_guesses
             (Computed
-             (((candidate (Green Blue Black Black Black))
+             (((candidate (Blue Green Yellow Yellow Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 2))) (size_remaining 1)
+                (((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                 ((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 1)
+                 ((cue ((white 2) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 3) (black 2))) (size_remaining 4) (bits_remaining 2)
@@ -5376,7 +5376,7 @@
            (probability 0.0008547008547008547)
            (next_best_guesses
             (Computed
-             (((candidate (Black Blue Black Blue Black))
+             (((candidate (Black Orange White Yellow Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
@@ -5397,7 +5397,7 @@
     (probability 0.080108642578125)
     (next_best_guesses
      (Computed
-      (((candidate (White White Red Red Black))
+      (((candidate (Orange White White Yellow Yellow))
         (expected_bits_gained 3.5320926406221043)
         (expected_bits_remaining 7.8260090668187425)
         (min_bits_gained 2.3274345711939048)
@@ -5409,7 +5409,7 @@
            (bits_gained 2.3274345711939048) (probability 0.19923809523809524)
            (next_best_guesses
             (Computed
-             (((candidate (Blue White Yellow Yellow White))
+             (((candidate (Yellow Red Red Yellow Green))
                (expected_bits_gained 3.832474782774276)
                (expected_bits_remaining 5.1981923534726659)
                (min_bits_gained 2.8408425773669244)
@@ -5515,7 +5515,7 @@
            (bits_gained 2.8702616736177955) (probability 0.13676190476190475)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Green White Red Red))
+             (((candidate (White Yellow White Brown Red))
                (expected_bits_gained 3.649297455443981)
                (expected_bits_remaining 4.83854257837907)
                (min_bits_gained 2.5571026962601646)
@@ -5614,7 +5614,7 @@
            (bits_gained 3.0913151667459449) (probability 0.11733333333333333)
            (next_best_guesses
             (Computed
-             (((candidate (Green Yellow Yellow White Red))
+             (((candidate (White Red Yellow Red Brown))
                (expected_bits_gained 3.7863656082264674)
                (expected_bits_remaining 4.4804209324684345)
                (min_bits_gained 2.5943611987234068)
@@ -5717,7 +5717,7 @@
            (probability 0.0998095238095238)
            (next_best_guesses
             (Computed
-             (((candidate (Blue White Yellow Red Red))
+             (((candidate (White Red White Yellow Green))
                (expected_bits_gained 3.711782159356142)
                (expected_bits_remaining 4.3216408421813082)
                (min_bits_gained 2.5739913829001528)
@@ -5821,7 +5821,7 @@
            (probability 0.081904761904761911)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Brown Yellow White Yellow))
+             (((candidate (Red Yellow Red Brown Red))
                (expected_bits_gained 3.7324978301739131)
                (expected_bits_remaining 4.0156950194155474)
                (min_bits_gained 2.6189098326444942)
@@ -5919,7 +5919,7 @@
            (bits_gained 3.721477086897198) (probability 0.075809523809523813)
            (next_best_guesses
             (Computed
-             (((candidate (Red White Yellow Yellow Brown))
+             (((candidate (Brown Red Red Yellow White))
                (expected_bits_gained 3.7750615221698003)
                (expected_bits_remaining 3.8615630983738485)
                (min_bits_gained 3.1771930019063515)
@@ -6012,7 +6012,7 @@
            (bits_gained 3.8267202469245349) (probability 0.07047619047619047)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Red Yellow White White))
+             (((candidate (Yellow Yellow Red White Brown))
                (expected_bits_gained 3.6105515910102595)
                (expected_bits_remaining 3.9208298695060524)
                (min_bits_gained 2.5771851501294369)
@@ -6109,7 +6109,7 @@
            (probability 0.054857142857142854)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow White Yellow Yellow Orange))
+             (((candidate (Black Red Red Yellow Red))
                (expected_bits_gained 3.7481749725205895)
                (expected_bits_remaining 3.4217500289217226)
                (min_bits_gained 2.7776075786635515)
@@ -6203,7 +6203,7 @@
            (probability 0.034666666666666665)
            (next_best_guesses
             (Computed
-             (((candidate (White Red Red Black Yellow))
+             (((candidate (Red Orange White White Yellow))
                (expected_bits_gained 3.415769643810187)
                (expected_bits_remaining 3.0920249963885094)
                (min_bits_gained 2.4203317989483573)
@@ -6282,7 +6282,7 @@
            (probability 0.032761904761904763)
            (next_best_guesses
             (Computed
-             (((candidate (Red White Red Brown Yellow))
+             (((candidate (Red Brown White Yellow White))
                (expected_bits_gained 3.42061252604786)
                (expected_bits_remaining 3.0056522286542378)
                (min_bits_gained 2.4262647547020979)
@@ -6361,7 +6361,7 @@
            (probability 0.030476190476190476)
            (next_best_guesses
             (Computed
-             (((candidate (White Yellow White Black Red))
+             (((candidate (White Orange Yellow Red Yellow))
                (expected_bits_gained 3.5398723851616936)
                (expected_bits_remaining 2.7820557097256691)
                (min_bits_gained 2.6214883767462704)
@@ -6425,7 +6425,7 @@
            (probability 0.022857142857142857)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Yellow Yellow Green Blue))
+             (((candidate (Black Green Red Red Red))
                (expected_bits_gained 3.2869022578479345)
                (expected_bits_remaining 2.6199883377605842)
                (min_bits_gained 2.2064508774674265)
@@ -6492,7 +6492,7 @@
            (bits_gained 5.9657842846620861) (probability 0.016)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Green White Black Red))
+             (((candidate (White Yellow Orange Brown Red))
                (expected_bits_gained 3.4435442934462768)
                (expected_bits_remaining 1.9487731293324839)
                (min_bits_gained 2.8073549220576046)
@@ -6559,7 +6559,7 @@
            (probability 0.012571428571428572)
            (next_best_guesses
             (Computed
-             (((candidate (White Orange Red Black Yellow))
+             (((candidate (Red Black White Orange Yellow))
                (expected_bits_gained 3.2647257571402548)
                (expected_bits_remaining 1.7796683622181986)
                (min_bits_gained 2.7224660244710912)
@@ -6620,7 +6620,7 @@
            (probability 0.0053333333333333332)
            (next_best_guesses
             (Computed
-             (((candidate (White Red Yellow Red Blue))
+             (((candidate (Green Red White White Yellow))
                (expected_bits_gained 2.8962915290459286)
                (expected_bits_remaining 0.9110633930116756)
                (min_bits_gained 2.2223924213364481)
@@ -6666,7 +6666,7 @@
            (probability 0.0026666666666666666)
            (next_best_guesses
             (Computed
-             (((candidate (Red White White Black Black))
+             (((candidate (Yellow White Yellow Orange Yellow))
                (expected_bits_gained 2.2359263506290326)
                (expected_bits_remaining 0.57142857142857162)
                (min_bits_gained 1.8073549220576042)
@@ -6698,7 +6698,7 @@
            (probability 0.0026666666666666666)
            (next_best_guesses
             (Computed
-             (((candidate (White Red White Black Black))
+             (((candidate (White Red Yellow White Yellow))
                (expected_bits_gained 2.2359263506290326)
                (expected_bits_remaining 0.57142857142857162)
                (min_bits_gained 1.8073549220576042)
@@ -6708,7 +6708,7 @@
                   (bits_remaining 1) (bits_gained 1.8073549220576042)
                   (probability 0.2857142857142857)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 4) (black 0))) (size_remaining 2)
+                 ((cue ((white 3) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.8073549220576042)
                   (probability 0.2857142857142857)
                   (next_best_guesses Not_computed))
@@ -6720,7 +6720,7 @@
                   (bits_remaining 0) (bits_gained 2.8073549220576042)
                   (probability 0.14285714285714285)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 1)
+                 ((cue ((white 4) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.8073549220576042)
                   (probability 0.14285714285714285)
                   (next_best_guesses Not_computed)))))))))
@@ -6729,13 +6729,13 @@
            (probability 0.0022857142857142859)
            (next_best_guesses
             (Computed
-             (((candidate (White Black Red Black Red))
+             (((candidate (White White Yellow White Yellow))
                (expected_bits_gained 2.2516291673878226)
                (expected_bits_remaining 0.33333333333333348)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 2.5849625007211561) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 3))) (size_remaining 2)
+                (((cue ((white 2) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
@@ -6743,7 +6743,7 @@
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
+                 ((cue ((white 1) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
@@ -6760,21 +6760,21 @@
            (probability 0.0011428571428571429)
            (next_best_guesses
             (Computed
-             (((candidate (Black Red Blue Black Black))
+             (((candidate (White White Yellow Yellow Yellow))
                (expected_bits_gained 1.5849625007211559)
                (expected_bits_remaining 2.2204460492503131E-16)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 1.5849625007211561) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 2))) (size_remaining 1)
+                (((cue ((white 2) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                 ((cue ((white 4) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed)))))))))
@@ -6787,7 +6787,7 @@
     (probability 0.05035400390625)
     (next_best_guesses
      (Computed
-      (((candidate (White Red Brown Green Black))
+      (((candidate (Black Blue Orange White Yellow))
         (expected_bits_gained 3.372550062901011)
         (expected_bits_remaining 7.3157002462321667)
         (min_bits_gained 2.3219280948873617)
@@ -6799,7 +6799,7 @@
            (bits_gained 2.3219280948873617) (probability 0.2)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Yellow Orange Green Orange))
+             (((candidate (Black Brown Brown Red Blue))
                (expected_bits_gained 3.5929307803721571)
                (expected_bits_remaining 4.7733914338736589)
                (min_bits_gained 2.6658824961047243)
@@ -6896,7 +6896,7 @@
            (bits_gained 2.4594316186372964) (probability 0.18181818181818182)
            (next_best_guesses
             (Computed
-             (((candidate (Black Orange Yellow Green Red))
+             (((candidate (Black Red White Brown Orange))
                (expected_bits_gained 3.6348431743771314)
                (expected_bits_remaining 4.59397551611875)
                (min_bits_gained 2.6742298388182437)
@@ -6987,7 +6987,7 @@
            (bits_gained 3.0588936890535683) (probability 0.12)
            (next_best_guesses
             (Computed
-             (((candidate (Red Yellow Green Blue Orange))
+             (((candidate (Blue Green Brown Red White))
                (expected_bits_gained 3.5116739564230155)
                (expected_bits_remaining 4.117682663656594)
                (min_bits_gained 2.5418937788292704)
@@ -7078,7 +7078,7 @@
            (bits_gained 3.2959328863544171) (probability 0.10181818181818182)
            (next_best_guesses
             (Computed
-             (((candidate (Orange White Yellow Green Brown))
+             (((candidate (Black Red Blue Yellow Brown))
                (expected_bits_gained 3.5733157274999749)
                (expected_bits_remaining 3.8190016952787857)
                (min_bits_gained 2.485426827170242)
@@ -7173,7 +7173,7 @@
            (probability 0.073939393939393944)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Green White Black Orange))
+             (((candidate (Yellow Orange Brown Blue Red))
                (expected_bits_gained 3.5390152382256348)
                (expected_bits_remaining 3.3917220993372519)
                (min_bits_gained 2.6088092426755241)
@@ -7260,7 +7260,7 @@
            (bits_gained 3.781359713524659) (probability 0.072727272727272724)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Brown Blue Green Brown))
+             (((candidate (Black Green Blue Blue Red))
                (expected_bits_gained 3.5250763710894013)
                (expected_bits_remaining 3.3818142245191174)
                (min_bits_gained 2.5849625007211561)
@@ -7340,7 +7340,7 @@
            (probability 0.059393939393939395)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Orange Blue Yellow))
+             (((candidate (Brown Green Red Orange Orange))
                (expected_bits_gained 3.5179702244251847)
                (expected_bits_remaining 3.0967396196900236)
                (min_bits_gained 2.2927817492278457)
@@ -7424,7 +7424,7 @@
            (probability 0.055151515151515153)
            (next_best_guesses
             (Computed
-             (((candidate (Orange Blue Brown Brown Yellow))
+             (((candidate (Blue Blue Red Green Brown))
                (expected_bits_gained 3.7079155515035875)
                (expected_bits_remaining 2.7998790886951088)
                (min_bits_gained 3.048363021561399)
@@ -7507,7 +7507,7 @@
            (probability 0.046060606060606059)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Brown White Green White))
+             (((candidate (Black Yellow Yellow Blue Red))
                (expected_bits_gained 3.2888500826890321)
                (expected_bits_remaining 2.9590774307545531)
                (min_bits_gained 2.547487795302493)
@@ -7575,7 +7575,7 @@
            (probability 0.029696969696969697)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Black White Green Blue))
+             (((candidate (Black Yellow Green Orange Red))
                (expected_bits_gained 3.3073904558302769)
                (expected_bits_remaining 2.3073193882849314)
                (min_bits_gained 2.0297473433940523)
@@ -7645,7 +7645,7 @@
            (probability 0.026666666666666668)
            (next_best_guesses
             (Computed
-             (((candidate (Red Black Yellow Green Red))
+             (((candidate (Black Red White Orange White))
                (expected_bits_gained 3.2985814727367564)
                (expected_bits_remaining 2.1608501459005409)
                (min_bits_gained 2.6520766965796931)
@@ -7710,7 +7710,7 @@
            (bits_gained 6.5183253076908656) (probability 0.01090909090909091)
            (next_best_guesses
             (Computed
-             (((candidate (White Black Yellow Blue White))
+             (((candidate (Green Red Yellow Orange Yellow))
                (expected_bits_gained 3.0441104177484006)
                (expected_bits_remaining 1.1258145836939115)
                (min_bits_gained 2.5849625007211561)
@@ -7762,49 +7762,49 @@
            (probability 0.0084848484848484857)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Blue White Red Black))
+             (((candidate (White Yellow Blue Green Yellow))
                (expected_bits_gained 3.2359263506290334)
                (expected_bits_remaining 0.57142857142857073)
                (min_bits_gained 2.8073549220576042)
                (max_bits_gained 3.8073549220576042) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 2) (black 2))) (size_remaining 2)
+                (((cue ((white 1) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.8073549220576042)
                   (probability 0.14285714285714285)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 2)
+                 ((cue ((white 2) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.8073549220576042)
                   (probability 0.14285714285714285)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 4) (black 0))) (size_remaining 2)
+                 ((cue ((white 2) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.8073549220576042)
                   (probability 0.14285714285714285)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 4) (black 1))) (size_remaining 2)
+                 ((cue ((white 3) (black 0))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.8073549220576042)
                   (probability 0.14285714285714285)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.8073549220576042)
                   (probability 0.071428571428571425)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 1)
+                 ((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.8073549220576042)
                   (probability 0.071428571428571425)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 0) (black 4))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.8073549220576042)
                   (probability 0.071428571428571425)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 3))) (size_remaining 1)
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.8073549220576042)
                   (probability 0.071428571428571425)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 0))) (size_remaining 1)
+                 ((cue ((white 2) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.8073549220576042)
                   (probability 0.071428571428571425)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 2))) (size_remaining 1)
+                 ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.8073549220576042)
                   (probability 0.071428571428571425)
                   (next_best_guesses Not_computed)))))))))
@@ -7814,28 +7814,28 @@
            (probability 0.0060606060606060606)
            (next_best_guesses
             (Computed
-             (((candidate (White Black Yellow Brown Brown))
+             (((candidate (Blue Blue Red Orange Yellow))
                (expected_bits_gained 2.5219280948873619)
                (expected_bits_remaining 0.80000000000000027)
                (min_bits_gained 2.3219280948873622)
                (max_bits_gained 3.3219280948873622) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 2) (black 0))) (size_remaining 2)
+                (((cue ((white 1) (black 1))) (size_remaining 2)
+                  (bits_remaining 1) (bits_gained 2.3219280948873622)
+                  (probability 0.2) (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 0))) (size_remaining 2)
+                 ((cue ((white 2) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 2)
-                  (bits_remaining 1) (bits_gained 2.3219280948873622)
-                  (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed)))))))))
           ((cue ((white 4) (black 1))) (size_remaining 6)
@@ -7844,25 +7844,25 @@
            (probability 0.0036363636363636364)
            (next_best_guesses
             (Computed
-             (((candidate (Black White Red Green Black))
+             (((candidate (Black White White Yellow Yellow))
                (expected_bits_gained 1.9182958340544891)
                (expected_bits_remaining 0.666666666666667)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 2.5849625007211561) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 2) (black 2))) (size_remaining 2)
+                (((cue ((white 1) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 2)
+                 ((cue ((white 2) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 4))) (size_remaining 1)
+                 ((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 1)
+                 ((cue ((white 3) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed)))))))))
@@ -7872,21 +7872,21 @@
            (probability 0.0018181818181818182)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Black Brown Black Black))
+             (((candidate (Black White Yellow Yellow Yellow))
                (expected_bits_gained 1.5849625007211559)
                (expected_bits_remaining 2.2204460492503131E-16)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 1.5849625007211561) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 2))) (size_remaining 1)
+                (((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 2) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                 ((cue ((white 3) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed)))))))))
@@ -7895,7 +7895,7 @@
            (probability 0.0012121212121212121)
            (next_best_guesses
             (Computed
-             (((candidate (Red Black Black Black Black))
+             (((candidate (Yellow Yellow White Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
@@ -7914,7 +7914,7 @@
     (probability 0.0390625)
     (next_best_guesses
      (Computed
-      (((candidate (Yellow White Red Red Orange))
+      (((candidate (Black Red White Yellow Yellow))
         (expected_bits_gained 3.4590509298741656)
         (expected_bits_remaining 6.8628771650131961)
         (min_bits_gained 2.5804611084862143)
@@ -7926,7 +7926,7 @@
            (bits_gained 2.5804611084862143) (probability 0.1671875)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Yellow Yellow White))
+             (((candidate (Red Brown Brown White White))
                (expected_bits_gained 3.7060715607376569)
                (expected_bits_remaining 4.0353954256634905)
                (min_bits_gained 2.697072867042694)
@@ -8022,7 +8022,7 @@
            (bits_gained 2.594007640324163) (probability 0.165625)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Green Yellow White White))
+             (((candidate (Red Green White Red White))
                (expected_bits_gained 3.6524822696610966)
                (expected_bits_remaining 4.0754381849021026)
                (min_bits_gained 2.5986374376182324)
@@ -8114,7 +8114,7 @@
            (bits_gained 2.6637166121355671) (probability 0.1578125)
            (next_best_guesses
             (Computed
-             (((candidate (White Blue White Red Red))
+             (((candidate (Yellow White Brown White Yellow))
                (expected_bits_gained 3.5006125232757128)
                (expected_bits_remaining 4.1575989594760818)
                (min_bits_gained 2.3006594781337109)
@@ -8203,7 +8203,7 @@
            (bits_gained 3.3911907573244751) (probability 0.0953125)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Orange White Orange White))
+             (((candidate (White Red Black Black White))
                (expected_bits_gained 3.6152110414948031)
                (expected_bits_remaining 3.3155262960680836)
                (min_bits_gained 2.7608123361205745)
@@ -8293,7 +8293,7 @@
            (bits_gained 3.415037499278843) (probability 0.09375)
            (next_best_guesses
             (Computed
-             (((candidate (White Blue Yellow White Red))
+             (((candidate (Yellow Blue Red Red White))
                (expected_bits_gained 3.572020454487804)
                (expected_bits_remaining 3.3348701411207147)
                (min_bits_gained 2.6589630821649335)
@@ -8375,7 +8375,7 @@
            (bits_gained 3.964376090269278) (probability 0.0640625)
            (next_best_guesses
             (Computed
-             (((candidate (Blue White White Blue Black))
+             (((candidate (Blue Brown White Brown White))
                (expected_bits_gained 3.2809163425707744)
                (expected_bits_remaining 3.0766356620473094)
                (min_bits_gained 2.0356239097307212)
@@ -8451,7 +8451,7 @@
            (bits_gained 4.0740005814437765) (probability 0.059375)
            (next_best_guesses
             (Computed
-             (((candidate (Brown White Yellow Green White))
+             (((candidate (Red Red Orange Green White))
                (expected_bits_gained 3.4398709387830637)
                (expected_bits_remaining 2.8080565746605215)
                (min_bits_gained 2.547487795302493)
@@ -8523,7 +8523,7 @@
            (probability 0.04296875)
            (next_best_guesses
             (Computed
-             (((candidate (White Green Brown White Brown))
+             (((candidate (Green White Orange Green White))
                (expected_bits_gained 3.39515709087736)
                (expected_bits_remaining 2.3862026226473)
                (min_bits_gained 2.0809199953835678)
@@ -8597,7 +8597,7 @@
            (bits_gained 4.6780719051126374) (probability 0.0390625)
            (next_best_guesses
             (Computed
-             (((candidate (White Yellow Yellow Red White))
+             (((candidate (Red White Red White Yellow))
                (expected_bits_gained 3.3786885704510969)
                (expected_bits_remaining 2.2651676193236274)
                (min_bits_gained 2.6438561897747244)
@@ -8651,7 +8651,7 @@
            (bits_gained 4.929610672108601) (probability 0.0328125)
            (next_best_guesses
             (Computed
-             (((candidate (White Red Yellow Red Black))
+             (((candidate (Brown Yellow Red White Yellow))
                (expected_bits_gained 3.3259623664889877)
                (expected_bits_remaining 2.066355056289773)
                (min_bits_gained 2.5849625007211565)
@@ -8718,7 +8718,7 @@
            (bits_gained 4.964376090269278) (probability 0.03203125)
            (next_best_guesses
             (Computed
-             (((candidate (White Orange Yellow White Orange))
+             (((candidate (Black Black Red Red White))
                (expected_bits_gained 3.5723459216934326)
                (expected_bits_remaining 1.7852060829246512)
                (min_bits_gained 3.0356239097307216)
@@ -8791,7 +8791,7 @@
            (bits_gained 5.7369655941662057) (probability 0.01875)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Orange Red Orange White))
+             (((candidate (Red Black White Black Yellow))
                (expected_bits_gained 3.2406015629507228)
                (expected_bits_remaining 1.3443609377704333)
                (min_bits_gained 2) (max_bits_gained 4.5849625007211561)
@@ -8848,7 +8848,7 @@
            (bits_gained 6.7369655941662057) (probability 0.009375)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Yellow White Red White))
+             (((candidate (White Red Red White Yellow))
                (expected_bits_gained 2.9182958340544896)
                (expected_bits_remaining 0.66666666666666652)
                (min_bits_gained 2.5849625007211561)
@@ -8891,7 +8891,7 @@
            (bits_gained 6.7369655941662057) (probability 0.009375)
            (next_best_guesses
             (Computed
-             (((candidate (Black Red Yellow Brown White))
+             (((candidate (Red Yellow Brown Orange White))
                (expected_bits_gained 2.9182958340544896)
                (expected_bits_remaining 0.66666666666666652)
                (min_bits_gained 2.5849625007211561)
@@ -8934,7 +8934,7 @@
            (probability 0.00390625)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Red Red Black Black))
+             (((candidate (Yellow White Yellow White Yellow))
                (expected_bits_gained 1.9219280948873623)
                (expected_bits_remaining 0.39999999999999991)
                (min_bits_gained 1.3219280948873622)
@@ -8956,7 +8956,7 @@
            (bits_gained 8.3219280948873617) (probability 0.003125)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Black Black Black Black))
+             (((candidate (Green Orange Orange Yellow Yellow))
                (expected_bits_gained 1.5) (expected_bits_remaining 0.5)
                (min_bits_gained 1) (max_bits_gained 2) (max_bits_remaining 1)
                (by_cue
@@ -8966,41 +8966,41 @@
                  ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 4))) (size_remaining 1)
+                 ((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 3) (black 2))) (size_remaining 4) (bits_remaining 2)
            (bits_gained 8.3219280948873617) (probability 0.003125)
            (next_best_guesses
             (Computed
-             (((candidate (White Red Red Black Black))
+             (((candidate (Yellow Yellow Red White Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 3))) (size_remaining 1)
+                (((cue ((white 0) (black 4))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 2) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 0))) (size_remaining 1)
+                 ((cue ((white 4) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 4) (black 1))) (size_remaining 2) (bits_remaining 1)
            (bits_gained 9.3219280948873617) (probability 0.0015625)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black White Black Black))
+             (((candidate (Yellow Yellow Yellow White Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 1))) (size_remaining 1)
+                (((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 0))) (size_remaining 1)
+                 ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 0) (black 5))) (size_remaining 1) (bits_remaining 0)
@@ -9011,7 +9011,7 @@
     (probability 0.03814697265625)
     (next_best_guesses
      (Computed
-      (((candidate (White Red Brown Black Black))
+      (((candidate (Black Orange Orange White Yellow))
         (expected_bits_gained 3.3868269259787116)
         (expected_bits_remaining 6.9008854535707371)
         (min_bits_gained 2.480357457491845)
@@ -9023,7 +9023,7 @@
            (bits_gained 2.480357457491845) (probability 0.1792)
            (next_best_guesses
             (Computed
-             (((candidate (Red Yellow Brown Brown Blue))
+             (((candidate (Black Black Green Red White))
                (expected_bits_gained 3.6587680896429737)
                (expected_bits_remaining 4.1485868324146296)
                (min_bits_gained 2.8531586116707288)
@@ -9114,7 +9114,7 @@
            (bits_gained 2.7799177393507524) (probability 0.1456)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Yellow Red Green Blue))
+             (((candidate (White Blue Green Red Green))
                (expected_bits_gained 3.6678926388968844)
                (expected_bits_remaining 3.8399020013018119)
                (min_bits_gained 2.7004397181410926)
@@ -9210,7 +9210,7 @@
            (bits_gained 2.9567955014348319) (probability 0.1288)
            (next_best_guesses
             (Computed
-             (((candidate (Red Blue White Yellow Green))
+             (((candidate (Yellow Brown Red Green White))
                (expected_bits_gained 3.6509366590562715)
                (expected_bits_remaining 3.6799802190583453)
                (min_bits_gained 2.8073549220576037)
@@ -9304,7 +9304,7 @@
            (bits_gained 3.1078032895345142) (probability 0.116)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Green Brown Yellow Green))
+             (((candidate (Black Brown Red Brown Black))
                (expected_bits_gained 3.6839050363080084)
                (expected_bits_remaining 3.4960040537069261)
                (min_bits_gained 2.5949465892937784)
@@ -9395,7 +9395,7 @@
            (bits_gained 3.2216231890916767) (probability 0.1072)
            (next_best_guesses
             (Computed
-             (((candidate (Green White Brown Yellow Red))
+             (((candidate (Black White Red Yellow Brown))
                (expected_bits_gained 3.577448050997031)
                (expected_bits_remaining 3.4886411394607411)
                (min_bits_gained 2.6737717676790114)
@@ -9485,7 +9485,7 @@
            (bits_gained 3.8282807609121514) (probability 0.0704)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Red Orange Green Brown))
+             (((candidate (Blue Black Brown White Red))
                (expected_bits_gained 3.4776134119441982)
                (expected_bits_remaining 2.9818182066930992)
                (min_bits_gained 2.5525410230287786)
@@ -9563,7 +9563,7 @@
            (bits_gained 3.8282807609121514) (probability 0.0704)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Blue Black White Red))
+             (((candidate (Orange White Yellow Green Red))
                (expected_bits_gained 3.556365133952395)
                (expected_bits_remaining 2.9030664846849024)
                (min_bits_gained 2.6520766965796931)
@@ -9637,7 +9637,7 @@
            (bits_gained 3.9478623766648244) (probability 0.0648)
            (next_best_guesses
             (Computed
-             (((candidate (Orange Yellow Blue Yellow Orange))
+             (((candidate (Blue Blue Red Red Green))
                (expected_bits_gained 3.7159885909912149)
                (expected_bits_remaining 2.6238614118934094)
                (min_bits_gained 3.0179219079972621)
@@ -9723,7 +9723,7 @@
            (bits_gained 4.480357457491845) (probability 0.0448)
            (next_best_guesses
             (Computed
-             (((candidate (White Green Brown Yellow Red))
+             (((candidate (Black White Red Brown Yellow))
                (expected_bits_gained 3.6628898086263453)
                (expected_bits_remaining 2.1444651134312585)
                (min_bits_gained 2.8073549220576037)
@@ -9798,7 +9798,7 @@
            (bits_gained 5.4297313844218769) (probability 0.0232)
            (next_best_guesses
             (Computed
-             (((candidate (Green Black Brown Red Brown))
+             (((candidate (Black Red White Orange Brown))
                (expected_bits_gained 3.2240472714981188)
                (expected_bits_remaining 1.6339337236294531)
                (min_bits_gained 2.2730184944064158)
@@ -9859,7 +9859,7 @@
            (bits_gained 5.5328248773859805) (probability 0.0216)
            (next_best_guesses
             (Computed
-             (((candidate (Brown White Brown White Black))
+             (((candidate (Black Orange Yellow Yellow Red))
                (expected_bits_gained 3.1578721140611075)
                (expected_bits_remaining 1.5970153881023608)
                (min_bits_gained 2.432959407276106)
@@ -9914,7 +9914,7 @@
            (bits_gained 6.5872726614083561) (probability 0.0104)
            (next_best_guesses
             (Computed
-             (((candidate (White Brown Yellow White Orange))
+             (((candidate (Red Blue Yellow Black Yellow))
                (expected_bits_gained 2.8150724101159437)
                (expected_bits_remaining 0.88536730802514851)
                (min_bits_gained 2.1154772174199361)
@@ -9959,29 +9959,29 @@
            (bits_gained 7.2877123795494487) (probability 0.0064)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Black Red Green Black))
+             (((candidate (Yellow Blue Green Orange Yellow))
                (expected_bits_gained 2.75) (expected_bits_remaining 0.25)
                (min_bits_gained 2) (max_bits_gained 3) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 4) (black 0))) (size_remaining 2)
+                (((cue ((white 3) (black 0))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 0) (black 2))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 1)
+                 ((cue ((white 2) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 0))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 1) (black 3))) (size_remaining 7)
@@ -9989,17 +9989,25 @@
            (bits_gained 7.480357457491845) (probability 0.0056)
            (next_best_guesses
             (Computed
-             (((candidate (Red Red Black Brown Black))
+             (((candidate (Red Black Orange Yellow Yellow))
                (expected_bits_gained 2.5216406363433186)
                (expected_bits_remaining 0.28571428571428559)
                (min_bits_gained 1.8073549220576042)
                (max_bits_gained 2.8073549220576042) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 3) (black 1))) (size_remaining 2)
+                (((cue ((white 2) (black 0))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.8073549220576042)
                   (probability 0.2857142857142857)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 1)
+                 ((cue ((white 0) (black 2))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2.8073549220576042)
+                  (probability 0.14285714285714285)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2.8073549220576042)
+                  (probability 0.14285714285714285)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.8073549220576042)
                   (probability 0.14285714285714285)
                   (next_best_guesses Not_computed))
@@ -10007,15 +10015,7 @@
                   (bits_remaining 0) (bits_gained 2.8073549220576042)
                   (probability 0.14285714285714285)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2.8073549220576042)
-                  (probability 0.14285714285714285)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 2))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2.8073549220576042)
-                  (probability 0.14285714285714285)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 4) (black 1))) (size_remaining 1)
+                 ((cue ((white 3) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.8073549220576042)
                   (probability 0.14285714285714285)
                   (next_best_guesses Not_computed)))))))))
@@ -10023,21 +10023,21 @@
            (bits_gained 9.2877123795494487) (probability 0.0016)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Black Blue Black))
+             (((candidate (Yellow White Yellow Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 2))) (size_remaining 1)
+                (((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 2) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 3) (black 2))) (size_remaining 2) (bits_remaining 1)
            (bits_gained 9.2877123795494487) (probability 0.0016)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Black Blue Black))
+             (((candidate (Yellow White Yellow Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
@@ -10051,14 +10051,14 @@
            (bits_gained 9.2877123795494487) (probability 0.0016)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Black Red Black))
+             (((candidate (Yellow White Yellow Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 3))) (size_remaining 1)
+                (((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 2) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 0) (black 4))) (size_remaining 1) (bits_remaining 0)
@@ -10069,7 +10069,7 @@
     (probability 0.037078857421875)
     (next_best_guesses
      (Computed
-      (((candidate (Red Brown Blue Black Black))
+      (((candidate (Blue Black Orange Orange Yellow))
         (expected_bits_gained 3.0838519191797964)
         (expected_bits_remaining 7.1628886793133475)
         (min_bits_gained 2.4012505475487691)
@@ -10081,7 +10081,7 @@
            (bits_gained 2.4012505475487691) (probability 0.18930041152263374)
            (next_best_guesses
             (Computed
-             (((candidate (Orange Green Green White Black))
+             (((candidate (Brown Brown White Orange Green))
                (expected_bits_gained 3.3646403470129496)
                (expected_bits_remaining 4.4808497039314252)
                (min_bits_gained 2.5975625375007896)
@@ -10151,7 +10151,7 @@
            (bits_gained 2.4138505843284026) (probability 0.18765432098765433)
            (next_best_guesses
             (Computed
-             (((candidate (Brown White Green Orange Blue))
+             (((candidate (Green White Black Brown Blue))
                (expected_bits_gained 3.3377676472031377)
                (expected_bits_remaining 4.4951223669616036)
                (min_bits_gained 2.5109619192773787)
@@ -10230,7 +10230,7 @@
            (bits_gained 2.6768849901621961) (probability 0.15637860082304528)
            (next_best_guesses
             (Computed
-             (((candidate (White Brown Black Brown Blue))
+             (((candidate (Blue Orange Black Blue White))
                (expected_bits_gained 3.2412492565820421)
                (expected_bits_remaining 4.3286063517489062)
                (min_bits_gained 2.1104239896936505)
@@ -10302,7 +10302,7 @@
            (bits_gained 2.7075817873851129) (probability 0.15308641975308643)
            (next_best_guesses
             (Computed
-             (((candidate (Blue White Black Brown Blue))
+             (((candidate (Orange White Black Blue Blue))
                (expected_bits_gained 3.4461577393524454)
                (expected_bits_remaining 4.0930010717555856)
                (min_bits_gained 2.6811778159804591)
@@ -10373,7 +10373,7 @@
            (probability 0.10534979423868313)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Brown White Blue Black))
+             (((candidate (White Black Blue Orange Blue))
                (expected_bits_gained 3.4697221613026263)
                (expected_bits_remaining 3.5302778386973737)
                (min_bits_gained 2.6780719051126374)
@@ -10433,7 +10433,7 @@
            (probability 0.057613168724279837)
            (next_best_guesses
             (Computed
-             (((candidate (Green White Blue Orange Black))
+             (((candidate (Blue White Orange Brown Green))
                (expected_bits_gained 3.458315562208472)
                (expected_bits_remaining 2.6709674547364943)
                (min_bits_gained 2.8073549220576042)
@@ -10503,7 +10503,7 @@
            (probability 0.042798353909465021)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Green Black Blue Black))
+             (((candidate (Green Orange Black Orange Blue))
                (expected_bits_gained 3.4314505466145158)
                (expected_bits_remaining 2.268989171526576)
                (min_bits_gained 2.3785116232537296)
@@ -10578,7 +10578,7 @@
            (bits_gained 4.9248125036057813) (probability 0.03292181069958848)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Red Black Orange Blue))
+             (((candidate (Orange Yellow Black Brown Blue))
                (expected_bits_gained 3.3995817701478348)
                (expected_bits_remaining 1.9223463247395278)
                (min_bits_gained 2.7369655941662066)
@@ -10633,7 +10633,7 @@
            (probability 0.029629629629629631)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Brown Black Orange Black))
+             (((candidate (Orange Black Green Orange Blue))
                (expected_bits_gained 3.5486881132034149)
                (expected_bits_remaining 1.6212368882388972)
                (min_bits_gained 2.84799690655495)
@@ -10704,7 +10704,7 @@
            (probability 0.028806584362139918)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Yellow White Orange Black))
+             (((candidate (Red White Green Orange Blue))
                (expected_bits_gained 3.0425526615261833)
                (expected_bits_remaining 2.086730355418783)
                (min_bits_gained 2.3219280948873622)
@@ -10760,41 +10760,41 @@
            (probability 0.013168724279835391)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Green Blue Red Black))
+             (((candidate (Blue Green Orange Yellow Green))
                (expected_bits_gained 3.25) (expected_bits_remaining 0.75)
                (min_bits_gained 2) (max_bits_gained 4) (max_bits_remaining 2)
                (by_cue
-                (((cue ((white 3) (black 1))) (size_remaining 4)
+                (((cue ((white 2) (black 1))) (size_remaining 4)
                   (bits_remaining 2) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 3))) (size_remaining 2)
+                 ((cue ((white 0) (black 3))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 4) (black 1))) (size_remaining 2)
+                 ((cue ((white 2) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                 ((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 4))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 4) (probability 0.0625)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 4) (probability 0.0625)
+                  (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 3) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 4) (probability 0.0625)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 2))) (size_remaining 1)
+                 ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed))
                  ((cue ((white 4) (black 0))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 4) (probability 0.0625)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 5) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 0) (black 4))) (size_remaining 4) (bits_remaining 2)
@@ -10802,17 +10802,17 @@
            (probability 0.0032921810699588477)
            (next_best_guesses
             (Computed
-             (((candidate (Green Black Black Black Black))
+             (((candidate (Green Yellow Yellow Yellow Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 1))) (size_remaining 1)
+                (((cue ((white 0) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 2))) (size_remaining 1)
+                 ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 1))) (size_remaining 1)
@@ -10823,7 +10823,7 @@
     (probability 0.0341796875)
     (next_best_guesses
      (Computed
-      (((candidate (Green Red Brown Black Black))
+      (((candidate (Brown Brown Blue Green Yellow))
         (expected_bits_gained 2.9972110929010194)
         (expected_bits_remaining 7.1320719240439479)
         (min_bits_gained 2.079434467494405)
@@ -10835,7 +10835,7 @@
            (bits_gained 2.079434467494405) (probability 0.23660714285714285)
            (next_best_guesses
             (Computed
-             (((candidate (Black Orange Orange White Blue))
+             (((candidate (Orange White Brown Black Black))
                (expected_bits_gained 3.3170201747959869)
                (expected_bits_remaining 4.7328283746545754)
                (min_bits_gained 2.3494088313094705)
@@ -10904,7 +10904,7 @@
            (bits_gained 2.3810901673555067) (probability 0.19196428571428573)
            (next_best_guesses
             (Computed
-             (((candidate (Black Green White Brown Green))
+             (((candidate (Blue Green Brown White Blue))
                (expected_bits_gained 3.4487786860606073)
                (expected_bits_remaining 4.2994141635288532)
                (min_bits_gained 2.8413022539809418)
@@ -10974,7 +10974,7 @@
            (bits_gained 2.6946547893082426) (probability 0.15446428571428572)
            (next_best_guesses
             (Computed
-             (((candidate (White Blue Orange Orange Black))
+             (((candidate (Brown Black White Black Orange))
                (expected_bits_gained 3.3604284685755985)
                (expected_bits_remaining 4.0741997590611261)
                (min_bits_gained 2.4804319172498497)
@@ -11046,7 +11046,7 @@
            (bits_gained 2.7717310123268835) (probability 0.14642857142857144)
            (next_best_guesses
             (Computed
-             (((candidate (Brown White Green Green Black))
+             (((candidate (Brown Blue Green Blue White))
                (expected_bits_gained 3.3038261393539017)
                (expected_bits_remaining 4.0537258652641821)
                (min_bits_gained 2) (max_bits_gained 5.7725895038969277)
@@ -11114,7 +11114,7 @@
            (bits_gained 3.7030182622428693) (probability 0.07678571428571429)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Green Brown White Black))
+             (((candidate (Brown Red White Green Blue))
                (expected_bits_gained 3.4098003620499155)
                (expected_bits_remaining 3.0164643926521824)
                (min_bits_gained 2.6189098326444937)
@@ -11182,7 +11182,7 @@
            (bits_gained 4.3219280948873635) (probability 0.05)
            (next_best_guesses
             (Computed
-             (((candidate (White Orange Brown Black Blue))
+             (((candidate (Orange Brown White Green Black))
                (expected_bits_gained 3.4587291457598934)
                (expected_bits_remaining 2.3486257762977103)
                (min_bits_gained 2.6374299206152916)
@@ -11252,7 +11252,7 @@
            (bits_gained 4.5145731728297589) (probability 0.04375)
            (next_best_guesses
             (Computed
-             (((candidate (Black Green Red Orange Brown))
+             (((candidate (Green Black Brown Yellow Blue))
                (expected_bits_gained 3.5515754782009052)
                (expected_bits_remaining 2.0631343659143031)
                (min_bits_gained 2.6147098441152083)
@@ -11325,7 +11325,7 @@
            (probability 0.042857142857142858)
            (next_best_guesses
             (Computed
-             (((candidate (Orange Brown Black Green Black))
+             (((candidate (Brown Blue Black Brown Green))
                (expected_bits_gained 3.5561275426950281)
                (expected_bits_remaining 2.028834958026128)
                (min_bits_gained 2.5849625007211561)
@@ -11390,7 +11390,7 @@
            (bits_gained 5.374395514781499) (probability 0.024107142857142858)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Green Brown Orange Black))
+             (((candidate (Brown Black White Green Blue))
                (expected_bits_gained 3.1615708351762888)
                (expected_bits_remaining 1.5933166669871794)
                (min_bits_gained 2.1699250014423122)
@@ -11450,7 +11450,7 @@
            (probability 0.021428571428571429)
            (next_best_guesses
             (Computed
-             (((candidate (Orange Green Brown Black Red))
+             (((candidate (Yellow Brown Black Green Blue))
                (expected_bits_gained 3.5739348962840563)
                (expected_bits_remaining 1.0110276044370998)
                (min_bits_gained 3) (max_bits_gained 4.5849625007211561)
@@ -11511,7 +11511,7 @@
            (probability 0.0080357142857142849)
            (next_best_guesses
             (Computed
-             (((candidate (Green Black Black Blue Black))
+             (((candidate (Blue Brown Orange Brown White))
                (expected_bits_gained 3.1699250014423122)
                (expected_bits_remaining 0)
                (min_bits_gained 3.1699250014423122)
@@ -11522,10 +11522,6 @@
                   (probability 0.1111111111111111)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 3))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3.1699250014423122)
-                  (probability 0.1111111111111111)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 4))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.1699250014423122)
                   (probability 0.1111111111111111)
                   (next_best_guesses Not_computed))
@@ -11552,17 +11548,24 @@
                  ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.1699250014423122)
                   (probability 0.1111111111111111)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 4) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3.1699250014423122)
+                  (probability 0.1111111111111111)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 0) (black 4))) (size_remaining 4) (bits_remaining 2)
            (bits_gained 8.1292830169449672)
            (probability 0.0035714285714285713)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Black Blue Black))
+             (((candidate (Orange Yellow Yellow Yellow Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 1))) (size_remaining 1)
+                (((cue ((white 0) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2) (probability 0.25)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 2))) (size_remaining 1)
@@ -11570,16 +11573,13 @@
                   (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))))))))))))))))
    ((cue ((white 2) (black 2))) (size_remaining 510)
     (bits_remaining 8.9943534368588587) (bits_gained 6.0056465631411413)
     (probability 0.01556396484375)
     (next_best_guesses
      (Computed
-      (((candidate (Red Blue Brown Black Black))
+      (((candidate (Black Blue Orange Orange Yellow))
         (expected_bits_gained 3.1137107647516928)
         (expected_bits_remaining 5.8806426721071663)
         (min_bits_gained 2.2528864504577113)
@@ -11591,7 +11591,7 @@
            (bits_gained 2.2528864504577113) (probability 0.20980392156862746)
            (next_best_guesses
             (Computed
-             (((candidate (Black White Brown Blue Blue))
+             (((candidate (Black White Blue Blue Orange))
                (expected_bits_gained 3.4552987630277876)
                (expected_bits_remaining 3.28616822337336)
                (min_bits_gained 2.7414669864011474)
@@ -11658,7 +11658,7 @@
            (bits_gained 2.4397645851812211) (probability 0.18431372549019609)
            (next_best_guesses
             (Computed
-             (((candidate (Orange White Brown Green Blue))
+             (((candidate (Black White Brown Blue Green))
                (expected_bits_gained 3.3508279469132205)
                (expected_bits_remaining 3.2037609047644171)
                (min_bits_gained 2.232660756790275)
@@ -11734,7 +11734,7 @@
            (bits_gained 2.602036014080098) (probability 0.16470588235294117)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Orange Orange Green Blue))
+             (((candidate (Brown Brown Blue Green Blue))
                (expected_bits_gained 3.317869576362634)
                (expected_bits_remaining 3.0744478464161267)
                (min_bits_gained 2.5849625007211565)
@@ -11801,7 +11801,7 @@
            (probability 0.098039215686274508)
            (next_best_guesses
             (Computed
-             (((candidate (Orange White Brown Green Black))
+             (((candidate (Black White Brown Orange Green))
                (expected_bits_gained 3.3655332505568514)
                (expected_bits_remaining 2.278322939217873)
                (min_bits_gained 2.6438561897747244)
@@ -11855,7 +11855,7 @@
            (probability 0.098039215686274508)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Orange Red Green Blue))
+             (((candidate (Yellow Brown Blue Green Blue))
                (expected_bits_gained 3.2511050551650404)
                (expected_bits_remaining 2.3927511346096839)
                (min_bits_gained 2.1844245711374271)
@@ -11908,7 +11908,7 @@
            (probability 0.066666666666666666)
            (next_best_guesses
             (Computed
-             (((candidate (Green White Brown Red Orange))
+             (((candidate (Black White Brown Yellow Green))
                (expected_bits_gained 3.2483650467509038)
                (expected_bits_remaining 1.8390977944994353)
                (min_bits_gained 2.502500340529183)
@@ -11969,7 +11969,7 @@
            (probability 0.060784313725490195)
            (next_best_guesses
             (Computed
-             (((candidate (Green Blue White Blue Black))
+             (((candidate (Black Red Orange White Green))
                (expected_bits_gained 3.0307881521468643)
                (expected_bits_remaining 1.9234081582400107)
                (min_bits_gained 2.1468413883292707)
@@ -12026,7 +12026,7 @@
            (probability 0.043137254901960784)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Brown Orange Blue))
+             (((candidate (Black Orange Blue Brown Orange))
                (expected_bits_gained 3.3564924137968233)
                (expected_bits_remaining 1.102939204840474)
                (min_bits_gained 2.4594316186372973)
@@ -12088,7 +12088,7 @@
            (bits_gained 4.6724253419714961) (probability 0.0392156862745098)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Blue Black Orange Black))
+             (((candidate (Black Orange Green Orange Blue))
                (expected_bits_gained 3.4086949695628421)
                (expected_bits_remaining 0.9132331253245205)
                (min_bits_gained 2.7369655941662066)
@@ -12139,54 +12139,54 @@
            (bits_gained 5.6724253419714969) (probability 0.0196078431372549)
            (next_best_guesses
             (Computed
-             (((candidate (Green Brown Red Blue Blue))
+             (((candidate (Yellow Black Blue Green Yellow))
                (expected_bits_gained 3.121928094887362)
                (expected_bits_remaining 0.20000000000000018)
                (min_bits_gained 2.3219280948873622)
                (max_bits_gained 3.3219280948873622) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 3) (black 0))) (size_remaining 2)
+                (((cue ((white 2) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 2))) (size_remaining 1)
+                 ((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                 ((cue ((white 0) (black 4))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3.3219280948873622)
+                  (probability 0.1) (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3.3219280948873622)
-                  (probability 0.1) (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 2) (black 2))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3.3219280948873622)
+                  (probability 0.1) (next_best_guesses Not_computed))
+                 ((cue ((white 3) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
                  ((cue ((white 3) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3.3219280948873622)
-                  (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 4) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed)))))))))
           ((cue ((white 0) (black 4))) (size_remaining 4) (bits_remaining 2)
            (bits_gained 6.9943534368588587) (probability 0.00784313725490196)
            (next_best_guesses
             (Computed
-             (((candidate (Green Black Black Black Black))
+             (((candidate (Green Yellow Yellow Yellow Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 1))) (size_remaining 1)
+                (((cue ((white 0) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 2))) (size_remaining 1)
+                 ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 1))) (size_remaining 1)
@@ -12196,20 +12196,20 @@
            (bits_gained 6.9943534368588587) (probability 0.00784313725490196)
            (next_best_guesses
             (Computed
-             (((candidate (Green Black Black Blue Black))
+             (((candidate (Green Yellow White Yellow Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 1) (black 1))) (size_remaining 1)
+                (((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2) (probability 0.25)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 0))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2) (probability 0.25)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))))))))))))))))
    ((cue ((white 0) (black 3))) (size_remaining 360)
@@ -12217,7 +12217,7 @@
     (probability 0.010986328125)
     (next_best_guesses
      (Computed
-      (((candidate (White Red Brown Black Black))
+      (((candidate (Black Orange Orange White Yellow))
         (expected_bits_gained 3.2057494391836259)
         (expected_bits_remaining 5.2861036571460485)
         (min_bits_gained 2.2823997307007238)
@@ -12229,7 +12229,7 @@
            (probability 0.20555555555555555)
            (next_best_guesses
             (Computed
-             (((candidate (Red Yellow Brown Orange Blue))
+             (((candidate (Black Brown Green Red White))
                (expected_bits_gained 3.4354773072774449)
                (expected_bits_remaining 2.7739760583515052)
                (min_bits_gained 2.4020984435713459)
@@ -12305,7 +12305,7 @@
            (bits_gained 2.7639326417664751) (probability 0.14722222222222223)
            (next_best_guesses
             (Computed
-             (((candidate (Green Yellow Blue Green Blue))
+             (((candidate (Brown Brown Red Green Green))
                (expected_bits_gained 3.298768220898971)
                (expected_bits_remaining 2.4291522336642277)
                (min_bits_gained 2.4059923596758366)
@@ -12370,7 +12370,7 @@
            (bits_gained 2.7914133781885822) (probability 0.14444444444444443)
            (next_best_guesses
             (Computed
-             (((candidate (Red Yellow White Green Blue))
+             (((candidate (Yellow Blue Green Red White))
                (expected_bits_gained 3.2814453723879726)
                (expected_bits_remaining 2.4189943457531191)
                (min_bits_gained 2.5305147166987796)
@@ -12436,7 +12436,7 @@
            (bits_gained 2.8771432522144655) (probability 0.1361111111111111)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Blue White White Brown))
+             (((candidate (Yellow Black Yellow Green Red))
                (expected_bits_gained 3.2284114397428247)
                (expected_bits_remaining 2.3862984043723836)
                (min_bits_gained 2.2927817492278462)
@@ -12501,7 +12501,7 @@
            (bits_gained 3.1699250014423113) (probability 0.1111111111111111)
            (next_best_guesses
             (Computed
-             (((candidate (Black Yellow Green Blue Blue))
+             (((candidate (Brown Green Green Red Orange))
                (expected_bits_gained 3.2995817701478347)
                (expected_bits_remaining 2.0223463247395279)
                (min_bits_gained 2.7369655941662066)
@@ -12555,7 +12555,7 @@
            (probability 0.066666666666666666)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Orange Red Green Black))
+             (((candidate (Red Blue Orange Brown White))
                (expected_bits_gained 3.1572682296173893)
                (expected_bits_remaining 1.4276942711037668)
                (min_bits_gained 2.5849625007211561)
@@ -12604,7 +12604,7 @@
            (probability 0.055555555555555552)
            (next_best_guesses
             (Computed
-             (((candidate (White Blue Green Yellow Green))
+             (((candidate (Brown Brown Red Green Yellow))
                (expected_bits_gained 3.0086949695628427)
                (expected_bits_remaining 1.31323312532452)
                (min_bits_gained 2.3219280948873626)
@@ -12645,7 +12645,7 @@
            (probability 0.044444444444444446)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Blue Green Blue Blue))
+             (((candidate (Brown Green Green Green Red))
                (expected_bits_gained 2.6022170014624826)
                (expected_bits_remaining 1.3977829985375174)
                (min_bits_gained 1.6780719051126378) (max_bits_gained 4)
@@ -12680,13 +12680,13 @@
            (probability 0.033333333333333333)
            (next_best_guesses
             (Computed
-             (((candidate (Green Blue Black Red Red))
+             (((candidate (Orange White Yellow Green Brown))
                (expected_bits_gained 3.2516291673878226)
                (expected_bits_remaining 0.33333333333333348)
                (min_bits_gained 2.5849625007211561)
                (max_bits_gained 3.5849625007211561) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 2))) (size_remaining 2)
+                (((cue ((white 2) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
@@ -12694,15 +12694,11 @@
                   (bits_remaining 1) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 2))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3.5849625007211561)
-                  (probability 0.083333333333333329)
-                  (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.5849625007211561)
                   (probability 0.083333333333333329)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.5849625007211561)
                   (probability 0.083333333333333329)
                   (next_best_guesses Not_computed))
@@ -12710,19 +12706,23 @@
                   (bits_remaining 0) (bits_gained 3.5849625007211561)
                   (probability 0.083333333333333329)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3.5849625007211561)
-                  (probability 0.083333333333333329)
-                  (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.5849625007211561)
                   (probability 0.083333333333333329)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
+                 ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.5849625007211561)
                   (probability 0.083333333333333329)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 1)
+                 ((cue ((white 3) (black 2))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3.5849625007211561)
+                  (probability 0.083333333333333329)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 4) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3.5849625007211561)
+                  (probability 0.083333333333333329)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 4) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.5849625007211561)
                   (probability 0.083333333333333329)
                   (next_best_guesses Not_computed)))))))))
@@ -12731,11 +12731,11 @@
            (probability 0.022222222222222223)
            (next_best_guesses
             (Computed
-             (((candidate (Red Blue Blue Blue Black))
+             (((candidate (Brown Orange Yellow Yellow Yellow))
                (expected_bits_gained 2.75) (expected_bits_remaining 0.25)
                (min_bits_gained 2) (max_bits_gained 3) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 2) (black 0))) (size_remaining 2)
+                (((cue ((white 1) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 1))) (size_remaining 1)
@@ -12747,13 +12747,13 @@
                  ((cue ((white 1) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
-                  (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 3) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 3) (black 1))) (size_remaining 8) (bits_remaining 3)
@@ -12761,7 +12761,7 @@
            (probability 0.022222222222222223)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Black Blue Red Orange))
+             (((candidate (Green Blue White Orange White))
                (expected_bits_gained 3) (expected_bits_remaining 0)
                (min_bits_gained 3) (max_bits_gained 3) (max_bits_remaining 0)
                (by_cue
@@ -12794,14 +12794,14 @@
            (probability 0.0055555555555555558)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Black Black Black))
+             (((candidate (Yellow Yellow Yellow Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
                 (((cue ((white 0) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                 ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 1) (black 3))) (size_remaining 2) (bits_remaining 1)
@@ -12809,14 +12809,14 @@
            (probability 0.0055555555555555558)
            (next_best_guesses
             (Computed
-             (((candidate (Green Black Black Black Black))
+             (((candidate (Brown Yellow Yellow Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 1) (black 1))) (size_remaining 1)
+                (((cue ((white 0) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed))))))))))))))))
    ((cue ((white 0) (black 0))) (size_remaining 243)
@@ -12824,7 +12824,7 @@
     (probability 0.007415771484375)
     (next_best_guesses
      (Computed
-      (((candidate (Yellow White Red Red Red))
+      (((candidate (Red White Yellow Yellow Yellow))
         (expected_bits_gained 3.7432016722283694)
         (expected_bits_remaining 4.1816108313774123)
         (min_bits_gained 2.7548875021634691)
@@ -12836,7 +12836,7 @@
            (bits_gained 2.7548875021634691) (probability 0.14814814814814814)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Red White White Red))
+             (((candidate (Red Yellow White White Yellow))
                (expected_bits_gained 3.68354236243323)
                (expected_bits_remaining 1.486382639009082)
                (min_bits_gained 3.1699250014423122)
@@ -12904,7 +12904,7 @@
            (bits_gained 2.9248125036057813) (probability 0.13168724279835392)
            (next_best_guesses
             (Computed
-             (((candidate (White Yellow White White Red))
+             (((candidate (White Red White White Yellow))
                (expected_bits_gained 3.7386085007312415)
                (expected_bits_remaining 1.2613914992687585)
                (min_bits_gained 2.6780719051126378) (max_bits_gained 5)
@@ -12963,7 +12963,7 @@
            (probability 0.098765432098765427)
            (next_best_guesses
             (Computed
-             (((candidate (White White Yellow White Red))
+             (((candidate (White White Red White Yellow))
                (expected_bits_gained 3.6572682296173897)
                (expected_bits_remaining 0.92769427110376634)
                (min_bits_gained 3) (max_bits_gained 4.5849625007211561)
@@ -13028,7 +13028,7 @@
            (probability 0.098765432098765427)
            (next_best_guesses
             (Computed
-             (((candidate (White Red Yellow White Red))
+             (((candidate (White Yellow Red White Yellow))
                (expected_bits_gained 3.4906015629507228)
                (expected_bits_remaining 1.0943609377704333)
                (min_bits_gained 2.5849625007211561)
@@ -13089,7 +13089,7 @@
            (probability 0.078189300411522639)
            (next_best_guesses
             (Computed
-             (((candidate (White White Yellow White Red))
+             (((candidate (White White Red White Yellow))
                (expected_bits_gained 3.6163485660751626)
                (expected_bits_remaining 0.63157894736842257)
                (min_bits_gained 2.2479275134435852)
@@ -13155,7 +13155,7 @@
            (bits_gained 3.9248125036057813) (probability 0.06584362139917696)
            (next_best_guesses
             (Computed
-             (((candidate (White White Yellow White Black))
+             (((candidate (White White Orange Red White))
                (expected_bits_gained 3.5) (expected_bits_remaining 0.5)
                (min_bits_gained 3) (max_bits_gained 4) (max_bits_remaining 1)
                (by_cue
@@ -13199,17 +13199,17 @@
            (bits_gained 3.9248125036057813) (probability 0.06584362139917696)
            (next_best_guesses
             (Computed
-             (((candidate (Red White White White Black))
+             (((candidate (Yellow White White White Yellow))
                (expected_bits_gained 3.375) (expected_bits_remaining 0.625)
                (min_bits_gained 3) (max_bits_gained 4) (max_bits_remaining 1)
                (by_cue
                 (((cue ((white 0) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 2)
+                 ((cue ((white 1) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 2)
+                 ((cue ((white 1) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 1))) (size_remaining 2)
@@ -13218,19 +13218,19 @@
                  ((cue ((white 3) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 4) (probability 0.0625)
-                  (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 1) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 2))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 4) (probability 0.0625)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 2) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
                   (next_best_guesses Not_computed))
                  ((cue ((white 3) (black 0))) (size_remaining 1)
@@ -13242,7 +13242,7 @@
            (probability 0.057613168724279837)
            (next_best_guesses
             (Computed
-             (((candidate (White White Yellow White Red))
+             (((candidate (White White Red White Yellow))
                (expected_bits_gained 3.1820058147602142)
                (expected_bits_remaining 0.62534910729739)
                (min_bits_gained 2.2223924213364481)
@@ -13296,7 +13296,7 @@
            (probability 0.057613168724279837)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Red Yellow White Red))
+             (((candidate (Red Yellow Red White Yellow))
                (expected_bits_gained 3.3787834934861767)
                (expected_bits_remaining 0.42857142857142749)
                (min_bits_gained 2.8073549220576042)
@@ -13351,34 +13351,34 @@
            (bits_gained 4.6028844087184186) (probability 0.0411522633744856)
            (next_best_guesses
             (Computed
-             (((candidate (White Yellow White Red Black))
+             (((candidate (White Yellow Red White Yellow))
                (expected_bits_gained 2.9219280948873623)
                (expected_bits_remaining 0.39999999999999991)
                (min_bits_gained 2.3219280948873622)
                (max_bits_gained 3.3219280948873622) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 1))) (size_remaining 2)
+                (((cue ((white 2) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 2)
+                 ((cue ((white 2) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 2))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3.3219280948873622)
-                  (probability 0.1) (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 2))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3.3219280948873622)
-                  (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3.3219280948873622)
-                  (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
                  ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
+                 ((cue ((white 3) (black 2))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3.3219280948873622)
+                  (probability 0.1) (next_best_guesses Not_computed))
                  ((cue ((white 4) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3.3219280948873622)
+                  (probability 0.1) (next_best_guesses Not_computed))
+                 ((cue ((white 4) (black 1))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3.3219280948873622)
+                  (probability 0.1) (next_best_guesses Not_computed))
+                 ((cue ((white 5) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed)))))))))
           ((cue ((white 2) (black 0))) (size_remaining 10)
@@ -13386,34 +13386,34 @@
            (bits_gained 4.6028844087184186) (probability 0.0411522633744856)
            (next_best_guesses
             (Computed
-             (((candidate (White White Yellow White Black))
+             (((candidate (White White White White Yellow))
                (expected_bits_gained 2.9219280948873623)
                (expected_bits_remaining 0.39999999999999991)
                (min_bits_gained 2.3219280948873622)
                (max_bits_gained 3.3219280948873622) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 2))) (size_remaining 2)
+                (((cue ((white 0) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 2)
+                 ((cue ((white 1) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 2))) (size_remaining 1)
+                 ((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3.3219280948873622)
+                  (probability 0.1) (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3.3219280948873622)
-                  (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 1)
+                 ((cue ((white 2) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed)))))))))
           ((cue ((white 2) (black 3))) (size_remaining 7)
@@ -13422,7 +13422,7 @@
            (probability 0.028806584362139918)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Red Yellow White Red))
+             (((candidate (Red Yellow Red White Yellow))
                (expected_bits_gained 2.2359263506290326)
                (expected_bits_remaining 0.57142857142857162)
                (min_bits_gained 1.8073549220576042)
@@ -13454,13 +13454,13 @@
            (probability 0.024691358024691357)
            (next_best_guesses
             (Computed
-             (((candidate (Red Yellow White Red Black))
+             (((candidate (White Yellow Red White Yellow))
                (expected_bits_gained 2.2516291673878226)
                (expected_bits_remaining 0.33333333333333348)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 2.5849625007211561) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 3) (black 1))) (size_remaining 2)
+                (((cue ((white 2) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
@@ -13472,7 +13472,7 @@
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
+                 ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
@@ -13486,33 +13486,33 @@
            (probability 0.024691358024691357)
            (next_best_guesses
             (Computed
-             (((candidate (White Black Yellow White Black))
+             (((candidate (White Yellow Red White Yellow))
                (expected_bits_gained 2.5849625007211561)
                (expected_bits_remaining 0)
                (min_bits_gained 2.5849625007211561)
                (max_bits_gained 2.5849625007211561) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 2))) (size_remaining 1)
+                (((cue ((white 1) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 2) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 2) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                 ((cue ((white 3) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 3) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 0))) (size_remaining 1)
+                 ((cue ((white 4) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed)))))))))
@@ -13522,21 +13522,21 @@
            (probability 0.024691358024691357)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black White Red Red))
+             (((candidate (Yellow Yellow White Yellow Yellow))
                (expected_bits_gained 1.5849625007211559)
                (expected_bits_remaining 1.0000000000000002)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 1.5849625007211561) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 2))) (size_remaining 2)
+                (((cue ((white 0) (black 4))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 2)
+                 ((cue ((white 1) (black 3))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 0))) (size_remaining 2)
+                 ((cue ((white 2) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed)))))))))
@@ -13544,7 +13544,7 @@
            (bits_gained 6.9248125036057813) (probability 0.00823045267489712)
            (next_best_guesses
             (Computed
-             (((candidate (White Black Black Black Black))
+             (((candidate (White Yellow Yellow Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
@@ -13562,7 +13562,7 @@
     (probability 0.003662109375)
     (next_best_guesses
      (Computed
-      (((candidate (White Red Brown Green Black))
+      (((candidate (Black Blue Orange White Yellow))
         (expected_bits_gained 2.9539301858819007)
         (expected_bits_remaining 3.952960409726618) (min_bits_gained 2)
         (max_bits_gained 6.9068905956085187)
@@ -13573,7 +13573,7 @@
            (probability 0.25)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Blue Orange Orange Yellow))
+             (((candidate (Brown Brown Red Green Blue))
                (expected_bits_gained 3.307751647240615)
                (expected_bits_remaining 1.5991389483679037)
                (min_bits_gained 2.5849625007211565)
@@ -13631,7 +13631,7 @@
            (bits_gained 2.099535673550915) (probability 0.23333333333333334)
            (next_best_guesses
             (Computed
-             (((candidate (Black Yellow Black Green Brown))
+             (((candidate (Black Orange Blue Red Orange))
                (expected_bits_gained 3.1514789228933076)
                (expected_bits_remaining 1.6558759991642962)
                (min_bits_gained 2.4854268271702415)
@@ -13685,7 +13685,7 @@
            (bits_gained 2.7369655941662066) (probability 0.15)
            (next_best_guesses
             (Computed
-             (((candidate (Orange Black Yellow Red Orange))
+             (((candidate (Red White Brown Orange Brown))
                (expected_bits_gained 3.0441104177484006)
                (expected_bits_remaining 1.1258145836939115)
                (min_bits_gained 2.5849625007211561)
@@ -13737,7 +13737,7 @@
            (probability 0.083333333333333329)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Green Brown Brown Blue))
+             (((candidate (Brown Blue Blue Green Red))
                (expected_bits_gained 2.7219280948873621)
                (expected_bits_remaining 0.60000000000000009)
                (min_bits_gained 2.3219280948873622)
@@ -13749,7 +13749,7 @@
                  ((cue ((white 2) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 2)
+                 ((cue ((white 3) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 3))) (size_remaining 1)
@@ -13758,10 +13758,10 @@
                  ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                 ((cue ((white 1) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 1)
+                 ((cue ((white 2) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.3219280948873622)
                   (probability 0.1) (next_best_guesses Not_computed)))))))))
           ((cue ((white 2) (black 0))) (size_remaining 8) (bits_remaining 3)
@@ -13769,7 +13769,7 @@
            (probability 0.066666666666666666)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Black Green Black Black))
+             (((candidate (Blue Orange Orange Red Yellow))
                (expected_bits_gained 2.25) (expected_bits_remaining 0.75)
                (min_bits_gained 2) (max_bits_gained 3) (max_bits_remaining 1)
                (by_cue
@@ -13793,32 +13793,32 @@
            (probability 0.066666666666666666)
            (next_best_guesses
             (Computed
-             (((candidate (Black Blue Red Green Brown))
+             (((candidate (Black Yellow Blue Green Yellow))
                (expected_bits_gained 3) (expected_bits_remaining 0)
                (min_bits_gained 3) (max_bits_gained 3) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 4))) (size_remaining 1)
+                (((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 5))) (size_remaining 1)
+                 ((cue ((white 0) (black 4))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 1)
+                 ((cue ((white 2) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
+                 ((cue ((white 3) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
                  ((cue ((white 3) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 3) (probability 0.125)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 0) (black 3))) (size_remaining 6)
@@ -13826,29 +13826,29 @@
            (bits_gained 4.3219280948873626) (probability 0.05)
            (next_best_guesses
             (Computed
-             (((candidate (Brown Blue Blue Black Black))
+             (((candidate (Green Green Orange Yellow Red))
                (expected_bits_gained 2.2516291673878226)
                (expected_bits_remaining 0.33333333333333348)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 2.5849625007211561) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 2))) (size_remaining 2)
+                (((cue ((white 1) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 3))) (size_remaining 1)
+                 ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2.5849625007211561)
+                  (probability 0.16666666666666666)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2.5849625007211561)
-                  (probability 0.16666666666666666)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed)))))))))
@@ -13857,14 +13857,11 @@
            (probability 0.033333333333333333)
            (next_best_guesses
             (Computed
-             (((candidate (Black White Black Black Black))
+             (((candidate (Green Yellow Brown Yellow Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
                 (((cue ((white 0) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2) (probability 0.25)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 0))) (size_remaining 1)
@@ -13872,26 +13869,29 @@
                   (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 3) (black 0))) (size_remaining 4) (bits_remaining 2)
            (bits_gained 4.9068905956085187)
            (probability 0.033333333333333333)
            (next_best_guesses
             (Computed
-             (((candidate (Red Black Green Black Black))
+             (((candidate (Blue Yellow Yellow Yellow Yellow))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 1) (black 0))) (size_remaining 1)
+                (((cue ((white 0) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                 ((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 1) (black 3))) (size_remaining 3)
@@ -13899,7 +13899,7 @@
            (bits_gained 5.3219280948873626) (probability 0.025)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Black Black Black Black))
+             (((candidate (Yellow Yellow Orange Yellow Yellow))
                (expected_bits_gained 1.5849625007211559)
                (expected_bits_remaining 2.2204460492503131E-16)
                (min_bits_gained 1.5849625007211561)
@@ -13909,11 +13909,11 @@
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed)))))))))
@@ -13926,7 +13926,7 @@
     (probability 0.001373291015625)
     (next_best_guesses
      (Computed
-      (((candidate (Blue Green Brown Black Black))
+      (((candidate (Blue Black Green Orange Orange))
         (expected_bits_gained 1.8592970522734902)
         (expected_bits_remaining 3.6325560440561846)
         (min_bits_gained 1.3219280948873626)
@@ -13938,9 +13938,9 @@
            (bits_gained 1.3219280948873626) (probability 0.4)
            (next_best_guesses
             (Computed
-             (((candidate (Black Blue Orange Black Brown))
-               (expected_bits_gained 2.1552215288595118)
-               (expected_bits_remaining 2.0147034725828004)
+             (((candidate (Black Orange Blue Orange Brown))
+               (expected_bits_gained 2.1077352526221036)
+               (expected_bits_remaining 2.0621897488202086)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 4.1699250014423122)
                (max_bits_remaining 2.5849625007211561)
@@ -13950,18 +13950,18 @@
                   (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
+                 ((cue ((white 3) (black 1))) (size_remaining 5)
+                  (bits_remaining 2.3219280948873622)
+                  (bits_gained 1.84799690655495)
+                  (probability 0.27777777777777779)
+                  (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 2))) (size_remaining 4)
                   (bits_remaining 2) (bits_gained 2.1699250014423122)
                   (probability 0.22222222222222221)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 4)
-                  (bits_remaining 2) (bits_gained 2.1699250014423122)
-                  (probability 0.22222222222222221)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 3)
-                  (bits_remaining 1.5849625007211561)
-                  (bits_gained 2.5849625007211561)
-                  (probability 0.16666666666666666)
+                 ((cue ((white 1) (black 3))) (size_remaining 2)
+                  (bits_remaining 1) (bits_gained 3.1699250014423122)
+                  (probability 0.1111111111111111)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 4))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4.1699250014423122)
@@ -13971,26 +13971,24 @@
            (bits_gained 1.4918530963296748) (probability 0.35555555555555557)
            (next_best_guesses
             (Computed
-             (((candidate (Black Brown Green Blue Blue))
-               (expected_bits_gained 2.1800365325772657)
-               (expected_bits_remaining 1.8199634674227343)
+             (((candidate (Black Orange Orange Brown Green))
+               (expected_bits_gained 2.1493974703476995)
+               (expected_bits_remaining 1.8506025296523005)
                (min_bits_gained 1.6780719051126378) (max_bits_gained 4)
                (max_bits_remaining 2.3219280948873622)
                (by_cue
-                (((cue ((white 4) (black 0))) (size_remaining 5)
+                (((cue ((white 3) (black 1))) (size_remaining 5)
                   (bits_remaining 2.3219280948873622)
                   (bits_gained 1.6780719051126378) (probability 0.3125)
                   (next_best_guesses Not_computed))
                  ((cue ((white 2) (black 2))) (size_remaining 4)
                   (bits_remaining 2) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 3)
-                  (bits_remaining 1.5849625007211561)
-                  (bits_gained 2.4150374992788439) (probability 0.1875)
+                 ((cue ((white 4) (black 0))) (size_remaining 4)
+                  (bits_remaining 2) (bits_gained 2) (probability 0.25)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 3)
-                  (bits_remaining 1.5849625007211561)
-                  (bits_gained 2.4150374992788439) (probability 0.1875)
+                 ((cue ((white 1) (black 3))) (size_remaining 2)
+                  (bits_remaining 1) (bits_gained 3) (probability 0.125)
                   (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 4))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 4) (probability 0.0625)
@@ -14000,7 +13998,7 @@
            (bits_gained 2.6844981742720706) (probability 0.15555555555555556)
            (next_best_guesses
             (Computed
-             (((candidate (Green Orange Brown Black Green))
+             (((candidate (Blue Green Brown Brown Orange))
                (expected_bits_gained 2.2359263506290326)
                (expected_bits_remaining 0.57142857142857162)
                (min_bits_gained 1.8073549220576042)
@@ -14032,7 +14030,7 @@
            (probability 0.066666666666666666)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Black Black Blue Black))
+             (((candidate (Blue Brown Yellow Yellow Yellow))
                (expected_bits_gained 1.5849625007211559)
                (expected_bits_remaining 2.2204460492503131E-16)
                (min_bits_gained 1.5849625007211561)
@@ -14059,7 +14057,7 @@
     (probability 0.0013427734375)
     (next_best_guesses
      (Computed
-      (((candidate (Brown Orange Green Blue Black))
+      (((candidate (Orange Black Blue Brown Green))
         (expected_bits_gained 2.0153862392447426)
         (expected_bits_remaining 3.4440453793925547)
         (min_bits_gained 1.5525410230287786)
@@ -14071,14 +14069,14 @@
            (bits_gained 1.5525410230287786) (probability 0.34090909090909088)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Green Black Brown Black))
+             (((candidate (Blue Brown Green Orange Green))
                (expected_bits_gained 2.1492553971685)
                (expected_bits_remaining 1.7576351984400187)
                (min_bits_gained 1.5849625007211565)
                (max_bits_gained 3.9068905956085187)
                (max_bits_remaining 2.3219280948873622)
                (by_cue
-                (((cue ((white 3) (black 1))) (size_remaining 5)
+                (((cue ((white 2) (black 2))) (size_remaining 5)
                   (bits_remaining 2.3219280948873622)
                   (bits_gained 1.5849625007211565)
                   (probability 0.33333333333333331)
@@ -14087,7 +14085,7 @@
                   (bits_remaining 2) (bits_gained 1.9068905956085187)
                   (probability 0.26666666666666666)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 3)
+                 ((cue ((white 3) (black 1))) (size_remaining 3)
                   (bits_remaining 1.5849625007211561)
                   (bits_gained 2.3219280948873626) (probability 0.2)
                   (next_best_guesses Not_computed))
@@ -14104,7 +14102,7 @@
            (bits_gained 1.7589919004962051) (probability 0.29545454545454547)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Brown Orange Black Black))
+             (((candidate (Brown Green Orange Black Yellow))
                (expected_bits_gained 2.1996877947313278)
                (expected_bits_remaining 1.5007519234097644)
                (min_bits_gained 1.7004397181410922)
@@ -14137,7 +14135,7 @@
            (bits_gained 2.1375035237499351) (probability 0.22727272727272727)
            (next_best_guesses
             (Computed
-             (((candidate (Green Brown Black Blue Black))
+             (((candidate (Brown Orange Orange Blue Green))
                (expected_bits_gained 2.1709505944546685)
                (expected_bits_remaining 1.1509775004326936)
                (min_bits_gained 1.7369655941662061)
@@ -14166,19 +14164,19 @@
            (bits_gained 3.1375035237499351) (probability 0.11363636363636363)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Black Green Black Black))
+             (((candidate (Orange Green Blue Yellow Yellow))
                (expected_bits_gained 1.9219280948873623)
                (expected_bits_remaining 0.39999999999999991)
                (min_bits_gained 1.3219280948873622)
                (max_bits_gained 2.3219280948873622) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 2))) (size_remaining 2)
+                (((cue ((white 2) (black 1))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.3219280948873622)
                   (probability 0.4) (next_best_guesses Not_computed))
                  ((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 1) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed))
                  ((cue ((white 3) (black 0))) (size_remaining 1)
@@ -14193,7 +14191,7 @@
     (probability 0.001068115234375)
     (next_best_guesses
      (Computed
-      (((candidate (White Red Orange Green Black))
+      (((candidate (Black Brown Orange White Yellow))
         (expected_bits_gained 2.5031857884239668)
         (expected_bits_remaining 2.6260972285209996)
         (min_bits_gained 1.5443205162238103)
@@ -14205,7 +14203,7 @@
            (bits_gained 1.5443205162238103) (probability 0.34285714285714286)
            (next_best_guesses
             (Computed
-             (((candidate (Red Brown Green Orange Orange))
+             (((candidate (Brown Black Brown Blue White))
                (expected_bits_gained 2.792481250360578)
                (expected_bits_remaining 0.792481250360578)
                (min_bits_gained 2) (max_bits_gained 3.5849625007211561)
@@ -14246,13 +14244,17 @@
            (bits_gained 1.9593580155026542) (probability 0.25714285714285712)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Orange Blue Blue Orange))
+             (((candidate (Brown Green Brown Green Red))
                (expected_bits_gained 2.2810361125534233)
                (expected_bits_remaining 0.88888888888888884)
                (min_bits_gained 2.1699250014423122)
                (max_bits_gained 3.1699250014423122) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 0))) (size_remaining 2)
+                (((cue ((white 0) (black 1))) (size_remaining 2)
+                  (bits_remaining 1) (bits_gained 2.1699250014423122)
+                  (probability 0.22222222222222221)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 0) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.1699250014423122)
                   (probability 0.22222222222222221)
                   (next_best_guesses Not_computed))
@@ -14260,15 +14262,11 @@
                   (bits_remaining 1) (bits_gained 2.1699250014423122)
                   (probability 0.22222222222222221)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 2)
+                 ((cue ((white 1) (black 2))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 2.1699250014423122)
                   (probability 0.22222222222222221)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 2)
-                  (bits_remaining 1) (bits_gained 2.1699250014423122)
-                  (probability 0.22222222222222221)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 0) (black 3))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 3.1699250014423122)
                   (probability 0.1111111111111111)
                   (next_best_guesses Not_computed)))))))))
@@ -14277,19 +14275,19 @@
            (bits_gained 2.8073549220576042) (probability 0.14285714285714285)
            (next_best_guesses
             (Computed
-             (((candidate (Yellow Blue Blue Black Black))
+             (((candidate (Green Orange Orange Red Yellow))
                (expected_bits_gained 1.5219280948873621)
                (expected_bits_remaining 0.8)
                (min_bits_gained 1.3219280948873622)
                (max_bits_gained 2.3219280948873622) (max_bits_remaining 1)
                (by_cue
-                (((cue ((white 1) (black 1))) (size_remaining 2)
+                (((cue ((white 2) (black 0))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.3219280948873622)
                   (probability 0.4) (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 2)
+                 ((cue ((white 3) (black 0))) (size_remaining 2)
                   (bits_remaining 1) (bits_gained 1.3219280948873622)
                   (probability 0.4) (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 2.3219280948873622)
                   (probability 0.2) (next_best_guesses Not_computed)))))))))
           ((cue ((white 3) (black 1))) (size_remaining 3)
@@ -14298,21 +14296,21 @@
            (probability 0.085714285714285715)
            (next_best_guesses
             (Computed
-             (((candidate (Red Blue Black Black Black))
+             (((candidate (Green Yellow Yellow Yellow Yellow))
                (expected_bits_gained 1.5849625007211559)
                (expected_bits_remaining 2.2204460492503131E-16)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 1.5849625007211561) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 1) (black 0))) (size_remaining 1)
+                (((cue ((white 0) (black 1))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 1.5849625007211561)
+                  (probability 0.33333333333333331)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
                  ((cue ((white 1) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 1.5849625007211561)
-                  (probability 0.33333333333333331)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed)))))))))
@@ -14321,7 +14319,7 @@
            (probability 0.057142857142857141)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Black Black Black))
+             (((candidate (Yellow Yellow Yellow Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
@@ -14336,14 +14334,14 @@
            (probability 0.057142857142857141)
            (next_best_guesses
             (Computed
-             (((candidate (Red Black Black Black Black))
+             (((candidate (Yellow Yellow Yellow Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 1) (black 0))) (size_remaining 1)
+                (((cue ((white 0) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 0))) (size_remaining 1)
+                 ((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 0) (black 2))) (size_remaining 1) (bits_remaining 0)
@@ -14359,7 +14357,7 @@
     (probability 0.0006103515625)
     (next_best_guesses
      (Computed
-      (((candidate (Green Blue Brown Black Black))
+      (((candidate (Brown Brown Blue Green Orange))
         (expected_bits_gained 1.9954618442383221)
         (expected_bits_remaining 2.3264662506490406)
         (min_bits_gained 1.7369655941662066)
@@ -14371,38 +14369,7 @@
            (bits_gained 1.7369655941662066) (probability 0.3)
            (next_best_guesses
             (Computed
-             (((candidate (Blue Green Brown Green Black))
-               (expected_bits_gained 2.2516291673878226)
-               (expected_bits_remaining 0.33333333333333348)
-               (min_bits_gained 1.5849625007211561)
-               (max_bits_gained 2.5849625007211561) (max_bits_remaining 1)
-               (by_cue
-                (((cue ((white 4) (black 0))) (size_remaining 2)
-                  (bits_remaining 1) (bits_gained 1.5849625007211561)
-                  (probability 0.33333333333333331)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 0) (black 4))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2.5849625007211561)
-                  (probability 0.16666666666666666)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 3))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2.5849625007211561)
-                  (probability 0.16666666666666666)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 2))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2.5849625007211561)
-                  (probability 0.16666666666666666)
-                  (next_best_guesses Not_computed))
-                 ((cue ((white 3) (black 1))) (size_remaining 1)
-                  (bits_remaining 0) (bits_gained 2.5849625007211561)
-                  (probability 0.16666666666666666)
-                  (next_best_guesses Not_computed)))))))))
-          ((cue ((white 3) (black 1))) (size_remaining 6)
-           (bits_remaining 2.5849625007211561)
-           (bits_gained 1.7369655941662066) (probability 0.3)
-           (next_best_guesses
-            (Computed
-             (((candidate (Black Green Brown Blue Blue))
+             (((candidate (Black Green Green Brown Orange))
                (expected_bits_gained 2.2516291673878226)
                (expected_bits_remaining 0.33333333333333348)
                (min_bits_gained 1.5849625007211561)
@@ -14428,12 +14395,43 @@
                   (bits_remaining 0) (bits_gained 2.5849625007211561)
                   (probability 0.16666666666666666)
                   (next_best_guesses Not_computed)))))))))
+          ((cue ((white 3) (black 1))) (size_remaining 6)
+           (bits_remaining 2.5849625007211561)
+           (bits_gained 1.7369655941662066) (probability 0.3)
+           (next_best_guesses
+            (Computed
+             (((candidate (Green Black Brown Brown Orange))
+               (expected_bits_gained 2.2516291673878226)
+               (expected_bits_remaining 0.33333333333333348)
+               (min_bits_gained 1.5849625007211561)
+               (max_bits_gained 2.5849625007211561) (max_bits_remaining 1)
+               (by_cue
+                (((cue ((white 2) (black 2))) (size_remaining 2)
+                  (bits_remaining 1) (bits_gained 1.5849625007211561)
+                  (probability 0.33333333333333331)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 0) (black 4))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2.5849625007211561)
+                  (probability 0.16666666666666666)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 1) (black 3))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2.5849625007211561)
+                  (probability 0.16666666666666666)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 3) (black 1))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2.5849625007211561)
+                  (probability 0.16666666666666666)
+                  (next_best_guesses Not_computed))
+                 ((cue ((white 4) (black 0))) (size_remaining 1)
+                  (bits_remaining 0) (bits_gained 2.5849625007211561)
+                  (probability 0.16666666666666666)
+                  (next_best_guesses Not_computed)))))))))
           ((cue ((white 4) (black 0))) (size_remaining 6)
            (bits_remaining 2.5849625007211561)
            (bits_gained 1.7369655941662066) (probability 0.3)
            (next_best_guesses
             (Computed
-             (((candidate (Black Brown Black Blue Black))
+             (((candidate (Black Green Orange Orange Yellow))
                (expected_bits_gained 1.9182958340544891)
                (expected_bits_remaining 0.666666666666667)
                (min_bits_gained 1.5849625007211561)
@@ -14466,7 +14464,7 @@
     (probability 0.00030517578125)
     (next_best_guesses
      (Computed
-      (((candidate (Brown Blue Black Black Black))
+      (((candidate (Green Green Green Brown Orange))
         (expected_bits_gained 1.8464393446710154)
         (expected_bits_remaining 1.4754887502163467)
         (min_bits_gained 1.3219280948873622)
@@ -14476,7 +14474,7 @@
            (bits_gained 1.3219280948873622) (probability 0.4)
            (next_best_guesses
             (Computed
-             (((candidate (Black Brown Blue Blue Black))
+             (((candidate (Black Orange Yellow Orange Green))
                (expected_bits_gained 2) (expected_bits_remaining 0)
                (min_bits_gained 2) (max_bits_gained 2) (max_bits_remaining 0)
                (by_cue
@@ -14497,21 +14495,21 @@
            (bits_gained 1.7369655941662061) (probability 0.3)
            (next_best_guesses
             (Computed
-             (((candidate (Black Black Green Brown Brown))
+             (((candidate (Blue Brown Brown Yellow Yellow))
                (expected_bits_gained 1.5849625007211559)
                (expected_bits_remaining 2.2204460492503131E-16)
                (min_bits_gained 1.5849625007211561)
                (max_bits_gained 1.5849625007211561) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 3))) (size_remaining 1)
+                (((cue ((white 0) (black 2))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 2))) (size_remaining 1)
+                 ((cue ((white 1) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 2) (black 1))) (size_remaining 1)
+                 ((cue ((white 2) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1.5849625007211561)
                   (probability 0.33333333333333331)
                   (next_best_guesses Not_computed)))))))))
@@ -14519,14 +14517,14 @@
            (bits_gained 2.3219280948873622) (probability 0.2)
            (next_best_guesses
             (Computed
-             (((candidate (Green Black Black Black Black))
+             (((candidate (Green Yellow Yellow Yellow Yellow))
                (expected_bits_gained 1) (expected_bits_remaining 0)
                (min_bits_gained 1) (max_bits_gained 1) (max_bits_remaining 0)
                (by_cue
-                (((cue ((white 0) (black 2))) (size_remaining 1)
+                (((cue ((white 0) (black 1))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed))
-                 ((cue ((white 1) (black 1))) (size_remaining 1)
+                 ((cue ((white 1) (black 0))) (size_remaining 1)
                   (bits_remaining 0) (bits_gained 1) (probability 0.5)
                   (next_best_guesses Not_computed)))))))))
           ((cue ((white 0) (black 3))) (size_remaining 1) (bits_remaining 0)
