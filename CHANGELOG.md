@@ -13,5 +13,9 @@ and this project adheres to
 - Added changelog (#1)
 
 ### Changed
+
+- Uses [Domainslib] to run computation in parallel. In particular this speeds-up
+  the computation of the opening-book.
+
 ### Fixed
 ### Removed
