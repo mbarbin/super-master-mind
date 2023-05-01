@@ -76,7 +76,8 @@ let%expect_test "indices" =
   Expect_test_helpers_core.require_does_raise [%here] (fun () ->
     ignore
       (Color_permutation.of_index_exn Color_permutation.cardinality : Color_permutation.t));
-  [%expect {|
+  [%expect
+    {|
     ("Index out of bounds"
      lib/super_master_mind/src/color_permutation.ml:60:45
      40320) |}];
@@ -94,4 +95,20 @@ let%expect_test "inverse" =
   done;
   print_s [%sexp (!count : int)];
   [%expect {| 764 |}]
+;;
+
+let%expect_test "to_hum | create_exn" =
+  for i = 0 to Color_permutation.cardinality - 1 do
+    let t = Color_permutation.of_index_exn i in
+    let hum = Color_permutation.to_hum t in
+    let t' = Color_permutation.create_exn hum in
+    if not (Color_permutation.equal t t')
+    then
+      raise_s
+        [%sexp
+          "Color_permutation does not round-trip"
+          , [%here]
+          , { t : Color_permutation.t; hum : Color.Hum.t array; t' : Color_permutation.t }]
+  done;
+  [%expect {||}]
 ;;
