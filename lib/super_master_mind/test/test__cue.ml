@@ -50,7 +50,8 @@ let%expect_test "hum" =
   [%expect {||}];
   Expect_test_helpers_core.require_does_raise [%here] (fun () ->
     ignore (Cue.create_exn { white = 3; black = 3 } : Cue.t));
-  [%expect {|
+  [%expect
+    {|
     ("Invalid hum representation"
      lib/super_master_mind/src/cue.ml:73:57
      ((white 3)

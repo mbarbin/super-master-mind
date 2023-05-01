@@ -26,7 +26,8 @@ let%expect_test "to_list" =
   print_s [%sexp (Codes.all : Codes.t)];
   [%expect {| All |}];
   print_s [%sexp (t : Codes.t)];
-  [%expect {|
+  [%expect
+    {|
     (Only
      (queue
       ((Orange Blue Brown Green Black) (Black Orange Brown Green Blue)
