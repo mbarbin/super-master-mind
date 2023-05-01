@@ -1,7 +1,7 @@
 open! Core
 open! Import
 
-let solve ~color_permutation ~solution =
+let solve ~task_pool ~color_permutation ~solution =
   let steps = Queue.create () in
   let step_index = ref 0 in
   let add (t : Guess.t) ~by_cue =
@@ -34,7 +34,7 @@ let solve ~color_permutation ~solution =
       | Computed [] -> ()
       | Computed (guess :: _) -> aux guess ~possible_solutions
       | Not_computed ->
-        (match Guess.compute_k_best ~possible_solutions ~k:1 with
+        (match Guess.compute_k_best ~task_pool ~possible_solutions ~k:1 with
          | [] -> ()
          | guess :: _ -> aux guess ~possible_solutions))
   in
@@ -50,13 +50,15 @@ let cmd =
     (let%map_open.Command solution =
        flag "--solution" (optional sexp) ~doc:"CODE chosen solution (default is random)"
        >>| Option.map ~f:[%of_sexp: Code.t]
-     in
+     and task_pool_config = Task_pool.Config.param in
      fun () ->
-       let solution =
-         match solution with
-         | Some solution -> solution
-         | None -> Code.create_exn [| Green; Blue; Orange; White; Red |]
-       in
-       ignore
-         (solve ~color_permutation:Color_permutation.identity ~solution : Guess.t list))
+       Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
+         let solution =
+           match solution with
+           | Some solution -> solution
+           | None -> Code.create_exn [| Green; Blue; Orange; White; Red |]
+         in
+         ignore
+           (solve ~task_pool ~color_permutation:Color_permutation.identity ~solution
+             : Guess.t list)))
 ;;

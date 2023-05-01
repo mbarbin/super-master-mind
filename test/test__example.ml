@@ -2,12 +2,15 @@ open! Core
 open Super_master_mind
 
 let verify_steps (ts : Guess.t list) = ignore (ts : Guess.t list)
+let with_task_pool ~f = Task_pool.with_t Task_pool.Config.default ~f
 
 let%expect_test "1" =
   verify_steps
-    (Example.solve
-       ~color_permutation:Color_permutation.identity
-       ~solution:(Code.create_exn [| Green; Blue; Orange; White; Red |]));
+    (with_task_pool ~f:(fun ~task_pool ->
+       Example.solve
+         ~task_pool
+         ~color_permutation:Color_permutation.identity
+         ~solution:(Code.create_exn [| Green; Blue; Orange; White; Red |])));
   [%expect
     {|
     (1
@@ -71,9 +74,11 @@ let%expect_test "1" =
 
 let%expect_test "2" =
   verify_steps
-    (Example.solve
-       ~color_permutation:(Color_permutation.of_index_exn 40319)
-       ~solution:(Code.create_exn [| Green; Blue; Orange; White; Red |]));
+    (with_task_pool ~f:(fun ~task_pool ->
+       Example.solve
+         ~task_pool
+         ~color_permutation:(Color_permutation.of_index_exn 40319)
+         ~solution:(Code.create_exn [| Green; Blue; Orange; White; Red |])));
   [%expect
     {|
     (1

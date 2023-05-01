@@ -6,7 +6,7 @@ type t = Guess.t [@@deriving sexp]
 let root t ~color_permutation = Guess.map_color t ~color_permutation
 let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
-let rec compute_internal (t : t) ~possible_solutions ~current_depth ~depth ~k =
+let rec compute_internal (t : t) ~task_pool ~possible_solutions ~current_depth ~depth ~k =
   let number_of_cue = Nonempty_list.length t.by_cue in
   let by_cue =
     Nonempty_list.mapi t.by_cue ~f:(fun i c ->
@@ -21,13 +21,14 @@ let rec compute_internal (t : t) ~possible_solutions ~current_depth ~depth ~k =
       let possible_solutions =
         Codes.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
       in
-      let next_best_guesses = Guess.compute_k_best ~possible_solutions ~k in
+      let next_best_guesses = Guess.compute_k_best ~task_pool ~possible_solutions ~k in
       let next_best_guesses =
         if current_depth < depth
         then
           List.map next_best_guesses ~f:(fun t ->
             compute_internal
               t
+              ~task_pool
               ~possible_solutions
               ~current_depth:(succ current_depth)
               ~depth
@@ -46,11 +47,11 @@ let canonical_first_candidate =
   |> Code.create_exn
 ;;
 
-let compute ~depth =
+let compute ~task_pool ~depth =
   if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
   let possible_solutions = Codes.all in
   let t = Guess.compute ~possible_solutions ~candidate:canonical_first_candidate in
-  compute_internal t ~possible_solutions ~current_depth:1 ~depth ~k:1
+  compute_internal t ~task_pool ~possible_solutions ~current_depth:1 ~depth ~k:1
 ;;
 
 let depth =
@@ -82,22 +83,24 @@ let compute_cmd =
     ~summary:"compute and dump opening book"
     (let%map_open.Command depth =
        flag "--depth" (optional_with_default 2 int) ~doc:"INT depth of book (default 2)"
-     in
+     and task_pool_config = Task_pool.Config.param in
      fun () ->
-       let t = compute ~depth in
-       print_s [%sexp (t : t)])
+       Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
+         let t = compute ~task_pool ~depth in
+         print_s [%sexp (t : t)]))
 ;;
 
 let recompute_and_compare_cmd =
   Command.basic
     ~summary:"recompute and compare with embedded opening book"
-    (let%map_open.Command () = return () in
+    (let%map_open.Command task_pool_config = Task_pool.Config.param in
      fun () ->
-       let t = Lazy.force opening_book in
-       let depth = depth t in
-       let t' = compute ~depth in
-       if not (Guess.equal t t')
-       then raise_s [%sexp "Embedded opening-book differs when recomputed"])
+       Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
+         let t = Lazy.force opening_book in
+         let depth = depth t in
+         let t' = compute ~task_pool ~depth in
+         if not (Guess.equal t t')
+         then raise_s [%sexp "Embedded opening-book differs when recomputed"]))
 ;;
 
 let verify_cmd =

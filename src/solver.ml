@@ -29,7 +29,7 @@ let rec input_cue () =
   | cue -> cue
 ;;
 
-let solve () =
+let solve ~task_pool =
   let color_permutation =
     Color_permutation.of_index_exn (Random.int Color_permutation.cardinality)
   in
@@ -64,7 +64,7 @@ let solve () =
       | Computed [] -> ()
       | Computed (guess :: _) -> aux guess ~possible_solutions
       | Not_computed ->
-        (match Guess.compute_k_best ~possible_solutions ~k:1 with
+        (match Guess.compute_k_best ~task_pool ~possible_solutions ~k:1 with
          | [] -> ()
          | guess :: _ -> aux guess ~possible_solutions))
   in
@@ -76,6 +76,6 @@ let solve () =
 let cmd =
   Command.basic
     ~summary:"solve interactively"
-    (let%map_open.Command () = return () in
-     fun () -> solve ())
+    (let%map_open.Command task_pool_config = Task_pool.Config.param in
+     fun () -> Task_pool.with_t task_pool_config ~f:(fun ~task_pool -> solve ~task_pool))
 ;;

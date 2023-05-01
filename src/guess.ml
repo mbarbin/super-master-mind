@@ -125,22 +125,45 @@ let compute ~possible_solutions ~candidate : t =
 
 let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
 
-let compute_k_best ~possible_solutions ~k =
+let compute_k_best ~task_pool ~possible_solutions ~k =
   if k < 1 then raise_s [%sexp "k >= 1 value expected", [%here], { k : int }];
   let ts =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
       let r = Float.compare t2.expected_bits_gained t1.expected_bits_gained in
       if r <> 0 then r else Code.compare t2.candidate t1.candidate)
   in
-  for candidate = 0 to Code.cardinality - 1 do
-    do_ansi (fun () ->
-      ANSITerminal.move_bol ();
-      ANSITerminal.print_string
-        []
-        (sprintf "Guess.compute_k_best : %d / %d" (succ candidate) (Code.cardinality - 1)));
-    let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
-    if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
-  done;
+  let chan = Domainslib.Chan.make_unbounded () in
+  let num_computed = ref 0 in
+  let reduce () =
+    let finished = ref false in
+    while not !finished do
+      match Domainslib.Chan.recv chan with
+      | `Finished -> finished := true
+      | `Computed (t : t) ->
+        incr num_computed;
+        do_ansi (fun () ->
+          ANSITerminal.move_bol ();
+          ANSITerminal.print_string
+            []
+            (sprintf
+               "Guess.compute_k_best : %d / %d"
+               !num_computed
+               (Code.cardinality - 1)));
+        if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
+    done
+  in
+  Task_pool.run task_pool ~f:(fun ~pool ->
+    let reduced = Domainslib.Task.async pool reduce in
+    Domainslib.Task.parallel_for
+      pool
+      ~start:0
+      ~finish:(Code.cardinality - 1)
+      ~body:(fun candidate ->
+      let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
+      if Float.( > ) t.expected_bits_gained 0.
+      then Domainslib.Chan.send chan (`Computed t));
+    Domainslib.Chan.send chan `Finished;
+    Domainslib.Task.await pool reduced);
   do_ansi (fun () ->
     ANSITerminal.move_bol ();
     ANSITerminal.erase Eol);

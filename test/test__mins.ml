@@ -14,7 +14,7 @@ let%expect_test "min sequence" =
     in
     Queue.enqueue steps { t with by_cue }
   in
-  let rec aux (t : Guess.t) ~possible_solutions =
+  let rec aux (t : Guess.t) ~task_pool ~possible_solutions =
     (* At each step, we choose to act as if we were in the case leading to the
        cue offering the least amount of information. *)
     add t;
@@ -29,17 +29,18 @@ let%expect_test "min sequence" =
     else (
       match by_cue.next_best_guesses with
       | Computed [] -> ()
-      | Computed (guess :: _) -> aux guess ~possible_solutions
+      | Computed (guess :: _) -> aux guess ~task_pool ~possible_solutions
       | Not_computed ->
-        (match Guess.compute_k_best ~possible_solutions ~k:1 with
+        (match Guess.compute_k_best ~task_pool ~possible_solutions ~k:1 with
          | [] -> ()
-         | guess :: _ -> aux guess ~possible_solutions))
+         | guess :: _ -> aux guess ~task_pool ~possible_solutions))
   in
   let opening_book = Lazy.force Opening_book.opening_book in
   let root =
     Opening_book.root opening_book ~color_permutation:Color_permutation.identity
   in
-  aux root ~possible_solutions:Codes.all;
+  Task_pool.with_t Task_pool.Config.default ~f:(fun ~task_pool ->
+    aux root ~task_pool ~possible_solutions:Codes.all);
   let steps = Queue.to_list steps |> List.mapi ~f:(fun i e -> succ i, e) in
   print_s [%sexp { number_of_steps = (List.length steps : int) }];
   print_s [%sexp (steps : (int * Guess.t) list)];

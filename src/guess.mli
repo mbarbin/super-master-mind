@@ -54,7 +54,11 @@ val compute : possible_solutions:Codes.t -> candidate:Code.t -> t
 
 (** Go over all the possible candidates and retain the k that yield the best
     expected information. *)
-val compute_k_best : possible_solutions:Codes.t -> k:int -> t list
+val compute_k_best
+  :  task_pool:Task_pool.t
+  -> possible_solutions:Codes.t
+  -> k:int
+  -> t list
 
 (** Check the accuracy of all computed numbers contained in [t]. *)
 val verify : t -> possible_solutions:Codes.t -> unit Or_error.t

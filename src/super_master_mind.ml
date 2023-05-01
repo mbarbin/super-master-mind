@@ -9,6 +9,7 @@ module Example = Example
 module Guess = Guess
 module Kheap = Kheap
 module Opening_book = Opening_book
+module Task_pool = Task_pool
 
 let main =
   Command.group

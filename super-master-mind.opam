@@ -14,6 +14,7 @@ depends: [
   "core" {>= "v0.15"}
   "core_kernel" {>= "v0.15"}
   "core_unix" {>= "v0.15"}
+  "domainslib" {>= "0.5"}
   "ocaml-embed-file"
   "ppx_jane" {>= "v0.15"}
   "sexp_diff" {>= "v0.15"}
