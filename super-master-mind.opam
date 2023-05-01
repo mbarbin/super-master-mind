@@ -16,6 +16,7 @@ depends: [
   "core_kernel" {>= "v0.15"}
   "core_unix" {>= "v0.15"}
   "domainslib" {>= "0.5"}
+  "expect_test_helpers_core" {with-test & >= "v0.15"}
   "ocaml-embed-file"
   "ppx_jane" {>= "v0.15"}
   "ppx_js_style" {>= "v0.15"}

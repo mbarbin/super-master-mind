@@ -72,7 +72,12 @@ let%expect_test "indices" =
   done;
   let length = Hashtbl.length all in
   assert (length = Color_permutation.cardinality);
-  [%expect {||}]
+  [%expect {||}];
+  Expect_test_helpers_core.require_does_raise [%here] (fun () ->
+    ignore
+      (Color_permutation.of_index_exn Color_permutation.cardinality : Color_permutation.t));
+  [%expect {| ("Index out of bounds" src/color_permutation.ml:60:45 40320) |}];
+  ()
 ;;
 
 let%expect_test "inverse" =

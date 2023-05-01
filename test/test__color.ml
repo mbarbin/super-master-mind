@@ -23,7 +23,11 @@ let%expect_test "indices" =
     let index = Color.to_index color in
     let color' = Color.of_index_exn index in
     assert (Color.equal color color'));
-  [%expect {||}]
+  [%expect {||}];
+  Expect_test_helpers_core.require_does_raise [%here] (fun () ->
+    ignore (Color.of_index_exn Color.cardinality : Color.t));
+  [%expect {| ("Index out of bounds" src/color.ml:52:45 8) |}];
+  ()
 ;;
 
 let%expect_test "hum" =

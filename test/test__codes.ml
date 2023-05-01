@@ -10,6 +10,33 @@ let%expect_test "all" =
   [%expect {| ((is_empty false)) |}]
 ;;
 
+let%expect_test "to_list" =
+  let test t = print_s [%sexp (List.length (Codes.to_list t) : int)] in
+  test Codes.all;
+  [%expect {| 32768 |}];
+  let t =
+    Codes.filter
+      Codes.all
+      ~candidate:(Code.create_exn [| Black; Blue; Brown; Green; Orange |])
+      ~cue:(Cue.create_exn { white = 2; black = 3 })
+  in
+  test t;
+  [%expect {| 10 |}];
+  (* sexp_of_t *)
+  print_s [%sexp (Codes.all : Codes.t)];
+  [%expect {| All |}];
+  print_s [%sexp (t : Codes.t)];
+  [%expect {|
+    (Only
+     (queue
+      ((Orange Blue Brown Green Black) (Black Orange Brown Green Blue)
+       (Black Blue Orange Green Brown) (Black Blue Brown Orange Green)
+       (Green Blue Brown Black Orange) (Black Green Brown Blue Orange)
+       (Black Blue Green Brown Orange) (Brown Blue Black Green Orange)
+       (Black Brown Blue Green Orange) (Blue Black Brown Green Orange)))) |}];
+  ()
+;;
+
 let%expect_test "filter" =
   List.iter Cue.all ~f:(fun cue ->
     let t =
