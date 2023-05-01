@@ -129,7 +129,8 @@ let compute_k_best ~possible_solutions ~k =
   if k < 1 then raise_s [%sexp "k >= 1 value expected", [%here], { k : int }];
   let ts =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
-      Float.compare t2.expected_bits_gained t1.expected_bits_gained)
+      let r = Float.compare t2.expected_bits_gained t1.expected_bits_gained in
+      if r <> 0 then r else Code.compare t2.candidate t1.candidate)
   in
   for candidate = 0 to Code.cardinality - 1 do
     do_ansi (fun () ->

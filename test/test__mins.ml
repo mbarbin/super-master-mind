@@ -87,24 +87,24 @@ let%expect_test "min sequence" =
           (bits_remaining 4.7548875021634682) (bits_gained 2.8671643172929082)
           (probability 0.13705583756345177) (next_best_guesses Not_computed))))))
      (5
-      ((candidate (Yellow Red Yellow Brown Blue))
+      ((candidate (Brown Yellow Blue Yellow Red))
        (expected_bits_gained 3.6619328723735829)
        (expected_bits_remaining 1.0929546297898853)
        (min_bits_gained 2.7548875021634682) (max_bits_gained 4.7548875021634682)
        (max_bits_remaining 2)
        (by_cue
-        (((cue ((white 1) (black 0))) (size_remaining 4) (bits_remaining 2)
+        (((cue ((white 2) (black 0))) (size_remaining 4) (bits_remaining 2)
           (bits_gained 2.7548875021634682) (probability 0.14814814814814814)
           (next_best_guesses Not_computed))))))
      (6
-      ((candidate (Blue Brown Black Black Black)) (expected_bits_gained 2)
+      ((candidate (Red Green Yellow Yellow Yellow)) (expected_bits_gained 2)
        (expected_bits_remaining 0) (min_bits_gained 2) (max_bits_gained 2)
        (max_bits_remaining 0)
        (by_cue
-        (((cue ((white 0) (black 1))) (size_remaining 1) (bits_remaining 0)
+        (((cue ((white 0) (black 2))) (size_remaining 1) (bits_remaining 0)
           (bits_gained 2) (probability 0.25) (next_best_guesses Not_computed))))))
      (7
-      ((candidate (Brown Brown Orange White Brown)) (expected_bits_gained 0)
+      ((candidate (Red Green Green White Brown)) (expected_bits_gained 0)
        (expected_bits_remaining 0) (min_bits_gained 0) (max_bits_gained 0)
        (max_bits_remaining 0)
        (by_cue
