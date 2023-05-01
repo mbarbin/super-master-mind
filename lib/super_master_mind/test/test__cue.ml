@@ -47,5 +47,13 @@ let%expect_test "hum" =
     let hum = Cue.to_hum cue in
     let cue' = Cue.create_exn hum in
     assert (Cue.equal cue cue'));
-  [%expect {||}]
+  [%expect {||}];
+  Expect_test_helpers_core.require_does_raise [%here] (fun () ->
+    ignore (Cue.create_exn { white = 3; black = 3 } : Cue.t));
+  [%expect {|
+    ("Invalid hum representation"
+     lib/super_master_mind/src/cue.ml:73:57
+     ((white 3)
+      (black 3))) |}];
+  ()
 ;;
