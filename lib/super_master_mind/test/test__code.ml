@@ -102,6 +102,6 @@ let%expect_test "indices" =
   [%expect {||}];
   Expect_test_helpers_core.require_does_raise [%here] (fun () ->
     ignore (Code.of_index_exn Code.cardinality : Code.t));
-  [%expect {| ("Index out of bounds" src/code.ml:83:45 32768) |}];
+  [%expect {| ("Index out of bounds" lib/super_master_mind/src/code.ml:83:45 32768) |}];
   ()
 ;;

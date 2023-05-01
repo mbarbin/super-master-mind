@@ -76,7 +76,10 @@ let%expect_test "indices" =
   Expect_test_helpers_core.require_does_raise [%here] (fun () ->
     ignore
       (Color_permutation.of_index_exn Color_permutation.cardinality : Color_permutation.t));
-  [%expect {| ("Index out of bounds" src/color_permutation.ml:60:45 40320) |}];
+  [%expect {|
+    ("Index out of bounds"
+     lib/super_master_mind/src/color_permutation.ml:60:45
+     40320) |}];
   ()
 ;;
 

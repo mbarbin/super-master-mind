@@ -26,7 +26,7 @@ let%expect_test "indices" =
   [%expect {||}];
   Expect_test_helpers_core.require_does_raise [%here] (fun () ->
     ignore (Color.of_index_exn Color.cardinality : Color.t));
-  [%expect {| ("Index out of bounds" src/color.ml:52:45 8) |}];
+  [%expect {| ("Index out of bounds" lib/super_master_mind/src/color.ml:52:45 8) |}];
   ()
 ;;
 

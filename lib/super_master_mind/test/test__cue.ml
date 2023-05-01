@@ -38,7 +38,7 @@ let%expect_test "indices" =
   [%expect {||}];
   Expect_test_helpers_core.require_does_raise [%here] (fun () ->
     ignore (Cue.of_index_exn Cue.cardinality : Cue.t));
-  [%expect {| ("Index out of bounds" src/cue.ml:65:45 20) |}];
+  [%expect {| ("Index out of bounds" lib/super_master_mind/src/cue.ml:65:45 20) |}];
   ()
 ;;
 
