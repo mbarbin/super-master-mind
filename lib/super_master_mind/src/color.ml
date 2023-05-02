@@ -1,7 +1,7 @@
 open! Core
 open! Import
 
-let cardinality = 8
+let cardinality = lazy (Game_dimensions.num_colors [%here])
 
 module Hum = struct
   type t =
@@ -37,8 +37,6 @@ module Hum = struct
     | 7 -> Yellow
     | code -> raise_s [%sexp "Invalid code", [%here], { code : int }]
   ;;
-
-  let () = assert (List.length all = cardinality)
 end
 
 type t = int [@@deriving compare, equal, hash]
@@ -48,11 +46,11 @@ let of_hum = Hum.to_index
 let to_index t = t
 
 let of_index_exn index =
-  if not (0 <= index && index < cardinality)
+  if not (0 <= index && index < force cardinality)
   then raise_s [%sexp "Index out of bounds", [%here], (index : int)];
   index
 ;;
 
-let all = List.map Hum.all ~f:of_hum
+let all = lazy (List.init (force cardinality) ~f:Fn.id)
 let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
 let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> of_hum

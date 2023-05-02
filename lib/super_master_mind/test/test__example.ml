@@ -67,7 +67,7 @@ let%expect_test "2" =
     (with_task_pool ~f:(fun ~task_pool ->
        Example.solve
          ~task_pool
-         ~color_permutation:(Color_permutation.of_index_exn 40319)
+         ~color_permutation:(lazy (Color_permutation.of_index_exn 40319))
          ~solution:(Code.create_exn [| Green; Blue; Orange; White; Red |])));
   [%expect
     {|

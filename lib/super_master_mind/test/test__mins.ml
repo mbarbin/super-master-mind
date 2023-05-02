@@ -37,7 +37,7 @@ let%expect_test "min sequence" =
   in
   let opening_book = Lazy.force Opening_book.opening_book in
   let root =
-    Opening_book.root opening_book ~color_permutation:Color_permutation.identity
+    Opening_book.root opening_book ~color_permutation:(force Color_permutation.identity)
   in
   Task_pool.with_t Task_pool.Config.default ~f:(fun ~task_pool ->
     aux root ~task_pool ~possible_solutions:Codes.all);

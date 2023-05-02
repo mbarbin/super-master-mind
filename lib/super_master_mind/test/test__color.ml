@@ -2,10 +2,10 @@ open! Core
 open Super_master_mind
 
 let%expect_test "sexp_of_t" =
-  print_s [%sexp (Color.cardinality : int)];
+  print_s [%sexp (force Color.cardinality : int)];
   [%expect {| 8 |}];
-  assert (Color.cardinality = List.length Color.all);
-  List.iter Color.all ~f:(fun t -> print_s [%sexp (t : Color.t)]);
+  assert (force Color.cardinality = List.length (force Color.all));
+  List.iter (force Color.all) ~f:(fun t -> print_s [%sexp (t : Color.t)]);
   [%expect
     {|
     Black
@@ -19,14 +19,14 @@ let%expect_test "sexp_of_t" =
 ;;
 
 let%expect_test "indices" =
-  List.iter Color.all ~f:(fun color ->
+  List.iter (force Color.all) ~f:(fun color ->
     let index = Color.to_index color in
     let color' = Color.of_index_exn index in
     assert (Color.equal color color'));
   [%expect {||}];
   Expect_test_helpers_core.require_does_raise [%here] (fun () ->
-    ignore (Color.of_index_exn Color.cardinality : Color.t));
-  [%expect {| ("Index out of bounds" lib/super_master_mind/src/color.ml:52:45 8) |}];
+    ignore (Color.of_index_exn (force Color.cardinality) : Color.t));
+  [%expect {| ("Index out of bounds" lib/super_master_mind/src/color.ml:50:45 8) |}];
   ()
 ;;
 

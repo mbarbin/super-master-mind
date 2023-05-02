@@ -7,7 +7,7 @@ open! Core
 type t [@@deriving compare, equal, hash, sexp]
 
 (** The permutation that maps each color to itself. *)
-val identity : t
+val identity : t Lazy.t
 
 (** The main operation for which a color permutation is used. A permutation is a
     bijection of the set of colors onto itself. *)
@@ -25,7 +25,7 @@ val to_hum : t -> Color.Hum.t array
 val create_exn : Color.Hum.t array -> t
 
 (** The number of different color permutations that exists. *)
-val cardinality : int
+val cardinality : int Lazy.t
 
 (** Color permutations are ordered and indexed. The index may serve as efficient
     encoding. *)

@@ -39,7 +39,9 @@ let solve ~task_pool ~color_permutation ~solution =
          | guess :: _ -> aux guess ~possible_solutions))
   in
   let opening_book = Lazy.force Opening_book.opening_book in
-  let root = Opening_book.root opening_book ~color_permutation in
+  let root =
+    Opening_book.root opening_book ~color_permutation:(force color_permutation)
+  in
   aux root ~possible_solutions:Codes.all;
   Queue.to_list steps
 ;;

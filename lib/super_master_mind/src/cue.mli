@@ -9,7 +9,9 @@ open! Base
     gets a black pin. *)
 
 (** [t] is an efficient representation for a cue. *)
-type t [@@deriving compare, equal, enumerate, hash, sexp]
+type t [@@deriving compare, equal, hash, sexp]
+
+val all : t list Lazy.t
 
 module Hum : sig
   (** Human readable representation for a cue. *)
@@ -21,7 +23,7 @@ module Hum : sig
 end
 
 (** The number of different cues that are encountered in the game. *)
-val cardinality : int
+val cardinality : int Lazy.t
 
 (** Cues are ordered and indexed. The index may serve as efficient encoding. *)
 
@@ -43,4 +45,4 @@ val to_hum : t -> Hum.t
 
 (** That is the number of slots in the solution, as well as all candidates
     submitted as guesses. In this version of the game, this is [5]. *)
-val code_size : int
+val code_size : int Lazy.t

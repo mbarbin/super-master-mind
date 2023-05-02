@@ -8,7 +8,7 @@ let%expect_test "sexp_of_t" =
 ;;
 
 let%expect_test "analyze" =
-  let tested = Array.create ~len:Cue.cardinality false in
+  let tested = Array.create ~len:(force Cue.cardinality) false in
   let test ~solution ~candidate =
     let solution = Code.create_exn solution
     and candidate = Code.create_exn candidate in
@@ -91,7 +91,7 @@ let%expect_test "repetition of colors in the solution" =
 ;;
 
 let%expect_test "indices" =
-  for i = 0 to Code.cardinality - 1 do
+  for i = 0 to force Code.cardinality - 1 do
     let code = Code.of_index_exn i in
     let index = Code.to_index code in
     let hum = Code.to_hum code in
@@ -101,7 +101,7 @@ let%expect_test "indices" =
   done;
   [%expect {||}];
   Expect_test_helpers_core.require_does_raise [%here] (fun () ->
-    ignore (Code.of_index_exn Code.cardinality : Code.t));
-  [%expect {| ("Index out of bounds" lib/super_master_mind/src/code.ml:83:45 32768) |}];
+    ignore (Code.of_index_exn (force Code.cardinality) : Code.t));
+  [%expect {| ("Index out of bounds" lib/super_master_mind/src/code.ml:90:45 32768) |}];
   ()
 ;;

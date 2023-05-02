@@ -77,7 +77,7 @@ let compute ~possible_solutions ~candidate : t =
   let original_size = Float.of_int (Codes.size possible_solutions) in
   let original_bits = Float.log2 original_size in
   let by_cue =
-    let by_cue = Array.init Cue.cardinality ~f:(fun _ -> Queue.create ()) in
+    let by_cue = Array.init (force Cue.cardinality) ~f:(fun _ -> Queue.create ()) in
     Codes.iter possible_solutions ~f:(fun solution ->
       let cue = Code.analyze ~solution ~candidate in
       Queue.enqueue by_cue.(Cue.to_index cue) solution);
@@ -148,7 +148,7 @@ let compute_k_best ~task_pool ~possible_solutions ~k =
             (sprintf
                "Guess.compute_k_best : %d / %d"
                !num_computed
-               (Code.cardinality - 1)));
+               (force Code.cardinality - 1)));
         if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
     done
   in
@@ -157,11 +157,11 @@ let compute_k_best ~task_pool ~possible_solutions ~k =
     Domainslib.Task.parallel_for
       pool
       ~start:0
-      ~finish:(Code.cardinality - 1)
+      ~finish:(force Code.cardinality - 1)
       ~body:(fun candidate ->
-      let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
-      if Float.( > ) t.expected_bits_gained 0.
-      then Domainslib.Chan.send chan (`Computed t));
+        let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
+        if Float.( > ) t.expected_bits_gained 0.
+        then Domainslib.Chan.send chan (`Computed t));
     Domainslib.Chan.send chan `Finished;
     Domainslib.Task.await pool reduced);
   do_ansi (fun () ->

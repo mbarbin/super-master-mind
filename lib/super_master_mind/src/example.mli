@@ -4,7 +4,7 @@ open! Core
     parameter. *)
 val solve
   :  task_pool:Task_pool.t
-  -> color_permutation:Color_permutation.t
+  -> color_permutation:Color_permutation.t Lazy.t
   -> solution:Code.t
   -> Guess.t list
 

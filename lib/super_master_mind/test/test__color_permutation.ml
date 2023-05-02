@@ -2,13 +2,14 @@ open! Core
 open Super_master_mind
 
 let%expect_test "bounds" =
+  let color_cardinality = force Color.cardinality in
   let zero =
-    Array.init Color.cardinality ~f:(fun i -> i |> Color.of_index_exn |> Color.to_hum)
+    Array.init color_cardinality ~f:(fun i -> i |> Color.of_index_exn |> Color.to_hum)
     |> Color_permutation.create_exn
   in
   let max =
-    Array.init Color.cardinality ~f:(fun i ->
-      Color.of_index_exn (Color.cardinality - 1 - i) |> Color.to_hum)
+    Array.init color_cardinality ~f:(fun i ->
+      Color.of_index_exn (color_cardinality - 1 - i) |> Color.to_hum)
     |> Color_permutation.create_exn
   in
   let test i expected =
@@ -23,7 +24,7 @@ let%expect_test "bounds" =
   in
   test 0 zero;
   [%expect {| (0 (Black Blue Brown Green Orange Red White Yellow)) |}];
-  test (Color_permutation.cardinality - 1) max;
+  test (force Color_permutation.cardinality - 1) max;
   [%expect {| (40319 (Yellow White Red Orange Green Brown Blue Black)) |}]
 ;;
 
@@ -65,28 +66,29 @@ let%expect_test "indices" =
         [%sexp
           "Duplicated permutation", [%here], { i : int; j : int; e : Color_permutation.t }]
   in
-  for i = 0 to Color_permutation.cardinality - 1 do
+  for i = 0 to force Color_permutation.cardinality - 1 do
     let color_permutation = add i in
     let i' = Color_permutation.to_index color_permutation in
     assert (i = i')
   done;
   let length = Hashtbl.length all in
-  assert (length = Color_permutation.cardinality);
+  assert (length = force Color_permutation.cardinality);
   [%expect {||}];
   Expect_test_helpers_core.require_does_raise [%here] (fun () ->
     ignore
-      (Color_permutation.of_index_exn Color_permutation.cardinality : Color_permutation.t));
+      (Color_permutation.of_index_exn (force Color_permutation.cardinality)
+        : Color_permutation.t));
   [%expect
     {|
     ("Index out of bounds"
-     lib/super_master_mind/src/color_permutation.ml:60:45
+     lib/super_master_mind/src/color_permutation.ml:65:45
      40320) |}];
   ()
 ;;
 
 let%expect_test "inverse" =
   let count = ref 0 in
-  for i = 0 to Color_permutation.cardinality - 1 do
+  for i = 0 to force Color_permutation.cardinality - 1 do
     let t = Color_permutation.of_index_exn i in
     let t' = Color_permutation.inverse t in
     if Color_permutation.equal t t' then incr count;
@@ -98,7 +100,7 @@ let%expect_test "inverse" =
 ;;
 
 let%expect_test "to_hum | create_exn" =
-  for i = 0 to Color_permutation.cardinality - 1 do
+  for i = 0 to force Color_permutation.cardinality - 1 do
     let t = Color_permutation.of_index_exn i in
     let hum = Color_permutation.to_hum t in
     let t' = Color_permutation.create_exn hum in

@@ -72,24 +72,21 @@ let cmd =
   Command.basic
     ~summary:"solve interactively"
     (let open Command.Let_syntax in
-     let%map_open.Command color_permutation =
-       let%map index =
-         flag
-           "--color-permutation"
-           (optional int)
-           ~doc:
-             (sprintf
-                "[0-%d] force use of permutation (random by default)"
-                (Color_permutation.cardinality - 1))
-       in
-       let index =
-         match index with
-         | Some index -> index
-         | None -> Random.int Color_permutation.cardinality
-       in
-       Color_permutation.of_index_exn index
+     let%map_open color_permutation =
+       flag
+         "--color-permutation"
+         (optional int)
+         ~doc:(sprintf "N force use of permutation (random by default)")
      and task_pool_config = Task_pool.Config.param in
      fun () ->
+       let color_permutation =
+         let index =
+           match color_permutation with
+           | Some index -> index
+           | None -> Random.int (force Color_permutation.cardinality)
+         in
+         Color_permutation.of_index_exn index
+       in
        Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
          solve ~color_permutation ~task_pool))
 ;;

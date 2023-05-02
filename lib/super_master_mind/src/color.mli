@@ -3,7 +3,9 @@ open! Core
 (** In the game, pins may be of 8 different colors. Colors may be encoded to
     allow for a more efficient representation. *)
 
-type t [@@deriving compare, equal, enumerate, hash, sexp]
+type t [@@deriving compare, equal, hash, sexp]
+
+val all : t list Lazy.t
 
 module Hum : sig
   (** Human readable representation of colors. *)
@@ -24,7 +26,7 @@ val to_hum : t -> Hum.t
 
 (** The number of different colors that are encountered in the game. In this
     version of the game, this is [8] (see Hum.t). *)
-val cardinality : int
+val cardinality : int Lazy.t
 
 (** Colors are ordered and indexed. The index may serve as efficient encoding. *)
 
