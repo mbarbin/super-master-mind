@@ -21,11 +21,11 @@ val to_hum : t -> Hum.t
 
 (** The number of slots in the code. In this version of the game, this is [5].
      *)
-val size : int
+val size : int Lazy.t
 
 (** The number of different codes that can be formed using all available colors,
     allowing repetition of colors. *)
-val cardinality : int
+val cardinality : int Lazy.t
 
 (** Codes are ordered and indexed. The index may serve as efficient encoding. *)
 

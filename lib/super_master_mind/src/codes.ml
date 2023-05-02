@@ -9,7 +9,7 @@ type t =
 let all = All
 
 let size = function
-  | All -> Code.cardinality
+  | All -> force Code.cardinality
   | Only { queue } -> Queue.length queue
 ;;
 
@@ -22,9 +22,10 @@ let is_empty = function
 
 let all_as_queue =
   lazy
-    (let t = Queue.create () in
+    (let code_cardinality = force Code.cardinality in
+     let t = Queue.create () in
      let rec aux i =
-       if i < Code.cardinality
+       if i < code_cardinality
        then (
          Queue.enqueue t (Code.of_index_exn i);
          aux (succ i))
@@ -41,7 +42,7 @@ let to_list = function
 let iter t ~f =
   match t with
   | All ->
-    for i = 0 to Code.cardinality - 1 do
+    for i = 0 to force Code.cardinality - 1 do
       f (Code.of_index_exn i)
     done
   | Only { queue } -> Queue.iter queue ~f

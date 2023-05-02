@@ -41,16 +41,19 @@ let rec compute_internal (t : t) ~task_pool ~possible_solutions ~current_depth ~
 ;;
 
 let canonical_first_candidate =
-  Array.init Code.size ~f:Fn.id
-  |> Array.map ~f:Color.of_index_exn
-  |> Array.map ~f:Color.to_hum
-  |> Code.create_exn
+  lazy
+    (Array.init (force Code.size) ~f:Fn.id
+     |> Array.map ~f:Color.of_index_exn
+     |> Array.map ~f:Color.to_hum
+     |> Code.create_exn)
 ;;
 
 let compute ~task_pool ~depth =
   if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
   let possible_solutions = Codes.all in
-  let t = Guess.compute ~possible_solutions ~candidate:canonical_first_candidate in
+  let t =
+    Guess.compute ~possible_solutions ~candidate:(force canonical_first_candidate)
+  in
   compute_internal t ~task_pool ~possible_solutions ~current_depth:1 ~depth ~k:1
 ;;
 
@@ -81,7 +84,8 @@ let dump_cmd =
 let compute_cmd =
   Command.basic
     ~summary:"compute and save opening book"
-    (let%map_open.Command depth =
+    (let%map_open.Command () = Game_dimensions.param [%here]
+     and depth =
        flag "--depth" (optional_with_default 2 int) ~doc:"INT depth of book (default 2)"
      and task_pool_config = Task_pool.Config.param
      and filename =
@@ -97,19 +101,6 @@ let compute_cmd =
          Out_channel.with_file filename ~f:(fun oc ->
            Out_channel.output_string oc (Sexp.to_string_hum [%sexp (t : t)]);
            Out_channel.output_char oc '\n')))
-;;
-
-let recompute_and_compare_cmd =
-  Command.basic
-    ~summary:"recompute and compare with embedded opening book"
-    (let%map_open.Command task_pool_config = Task_pool.Config.param in
-     fun () ->
-       Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
-         let t = Lazy.force opening_book in
-         let depth = depth t in
-         let t' = compute ~task_pool ~depth in
-         if not (Guess.equal t t')
-         then raise_s [%sexp "Embedded opening-book differs when recomputed"]))
 ;;
 
 let verify_cmd =
@@ -136,9 +127,5 @@ let verify_cmd =
 let cmd =
   Command.group
     ~summary:"opening pre computation"
-    [ "dump", dump_cmd
-    ; "compute", compute_cmd
-    ; "recompute-and-compare", recompute_and_compare_cmd
-    ; "verify", verify_cmd
-    ]
+    [ "dump", dump_cmd; "compute", compute_cmd; "verify", verify_cmd ]
 ;;

@@ -15,6 +15,7 @@ let rec input_code () =
 ;;
 
 let run ~solution =
+  let code_size = force Cue.code_size in
   let rec aux i =
     let candidate = input_code () in
     let cue = Code.analyze ~solution ~candidate in
@@ -23,7 +24,7 @@ let run ~solution =
     print_endline (sprintf "#black (correctly placed)  : %d" black);
     print_endline (sprintf "#white (incorrectly placed): %d" white);
     Stdio.Out_channel.(flush stdout);
-    if black < Cue.code_size then aux (succ i)
+    if black < code_size then aux (succ i)
   in
   aux 1
 ;;
@@ -39,7 +40,7 @@ let cmd =
        let solution =
          match solution with
          | Some solution -> solution
-         | None -> Code.of_index_exn (Random.int Code.cardinality)
+         | None -> Code.of_index_exn (Random.int (force Code.cardinality))
        in
        run ~solution)
 ;;

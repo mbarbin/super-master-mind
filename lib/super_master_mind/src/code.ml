@@ -4,7 +4,11 @@ open! Import
 type t = int [@@deriving compare, equal, hash]
 
 let size = Cue.code_size
-let cardinality = Float.of_int Color.cardinality ** Float.of_int size |> Float.to_int
+
+let cardinality =
+  lazy
+    (Float.of_int (force Color.cardinality) ** Float.of_int (force size) |> Float.to_int)
+;;
 
 module Hum = struct
   type t = Color.Hum.t array [@@deriving sexp]
@@ -14,7 +18,7 @@ module Computing = struct
   type t = Color.t array
 
   let create_exn hum =
-    if Array.length hum <> size
+    if Array.length hum <> force size
     then raise_s [%sexp "Invalid code size", [%here], (hum : Hum.t)];
     Array.map hum ~f:Color.of_hum
   ;;
@@ -22,19 +26,22 @@ module Computing = struct
   let to_hum t = t |> Array.map ~f:Color.to_hum
 
   let of_code (i : int) : t =
+    let size = force size in
+    let color_cardinality = force Color.cardinality in
     let colors = Array.create ~len:size (Color.of_index_exn 0) in
     let remainder = ref i in
     for i = 0 to size - 1 do
-      let rem = !remainder mod Color.cardinality in
-      remainder := !remainder / Color.cardinality;
+      let rem = !remainder mod color_cardinality in
+      remainder := !remainder / color_cardinality;
       colors.(i) <- Color.of_index_exn rem
     done;
     colors
   ;;
 
   let to_code (t : t) : int =
+    let color_cardinality = force Color.cardinality in
     Array.fold_right t ~init:0 ~f:(fun color acc ->
-      (acc * Color.cardinality) + Color.to_index color)
+      (acc * color_cardinality) + Color.to_index color)
   ;;
 
   let analyze ~(solution : t) ~(candidate : t) =
@@ -79,7 +86,7 @@ let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
 let to_index t = t
 
 let of_index_exn index =
-  if not (0 <= index && index < cardinality)
+  if not (0 <= index && index < force cardinality)
   then raise_s [%sexp "Index out of bounds", [%here], (index : int)];
   index
 ;;

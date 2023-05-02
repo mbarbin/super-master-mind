@@ -15,7 +15,7 @@ let%expect_test "opening-book validity" =
     let result = Guess.verify t ~possible_solutions:Codes.all in
     print_s [%sexp (result : unit Or_error.t)]
   in
-  test ~color_permutation:Color_permutation.identity;
+  test ~color_permutation:(force Color_permutation.identity);
   [%expect {| (Ok ()) |}];
   test ~color_permutation:(Color_permutation.of_index_exn 100);
   [%expect {| (Ok ()) |}];
