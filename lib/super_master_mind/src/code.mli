@@ -19,8 +19,7 @@ val create_exn : Hum.t -> t
 (** Returns the human readable representation of the code. *)
 val to_hum : t -> Hum.t
 
-(** The number of slots in the code. In this version of the game, this is [5].
-     *)
+(** The number of slots in the code. In this version of the game, this is [5]. *)
 val size : int Lazy.t
 
 (** The number of different codes that can be formed using all available colors,
