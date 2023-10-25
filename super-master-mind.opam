@@ -9,7 +9,7 @@ doc: "https://mbarbin.github.io/super-master-mind/odoc/super-master-mind/index.h
 bug-reports: "https://github.com/mbarbin/super-master-mind/issues"
 depends: [
   "ocaml" {>= "5.0"}
-  "dune" {>= "3.0"}
+  "dune" {>= "3.11"}
   "ANSITerminal" {>= "0.8.3"}
   "bisect_ppx" {dev & >= "2.8"}
   "core" {>= "v0.15"}
