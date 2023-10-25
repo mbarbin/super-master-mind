@@ -1,4 +1,4 @@
-open! Core
+open! Base
 
 (** A each point of the game, there's a number of remaining possible solutions.
     Each guess that one can make may be evaluated in order to determine its

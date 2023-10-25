@@ -1,14 +1,10 @@
-open! Core
+open! Base
 open! Import
 
 type t = int [@@deriving compare, equal, hash]
 
 let size = Cue.code_size
-
-let cardinality =
-  lazy
-    (Float.of_int (force Color.cardinality) ** Float.of_int (force size) |> Float.to_int)
-;;
+let cardinality = lazy (Int.pow (force Color.cardinality) (force size))
 
 module Hum = struct
   type t = Color.Hum.t array [@@deriving sexp]
@@ -31,7 +27,7 @@ module Computing = struct
     let colors = Array.create ~len:size (Color.of_index_exn 0) in
     let remainder = ref i in
     for i = 0 to size - 1 do
-      let rem = !remainder mod color_cardinality in
+      let rem = !remainder % color_cardinality in
       remainder := !remainder / color_cardinality;
       colors.(i) <- Color.of_index_exn rem
     done;
@@ -55,7 +51,7 @@ module Computing = struct
       | Some color' ->
         if Color.equal color color'
         then (
-          incr black;
+          Int.incr black;
           accounted.(i) <- true;
           solution.(i) <- None));
     Array.iteri candidate ~f:(fun i color ->
@@ -69,7 +65,7 @@ module Computing = struct
         with
         | None -> ()
         | Some j ->
-          incr white;
+          Int.incr white;
           solution.(j) <- None));
     Cue.create_exn { white = !white; black = !black }
   ;;

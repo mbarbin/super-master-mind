@@ -1,3 +1,3 @@
-open! Core
+open! Base
 
 val cmd : Command.t

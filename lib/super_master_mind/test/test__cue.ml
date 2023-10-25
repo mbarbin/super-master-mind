@@ -1,4 +1,5 @@
-open! Core
+open! Base
+open! Stdio
 open Super_master_mind
 
 let%expect_test "sexp_of_t" =
@@ -36,7 +37,7 @@ let%expect_test "indices" =
     let cue' = Cue.of_index_exn index in
     assert (Cue.equal cue cue'));
   [%expect {||}];
-  Expect_test_helpers_core.require_does_raise [%here] (fun () ->
+  Expect_test_helpers_base.require_does_raise [%here] (fun () ->
     ignore (Cue.of_index_exn (force Cue.cardinality) : Cue.t));
   [%expect {| ("Index out of bounds" lib/super_master_mind/src/cue.ml:88:45 20) |}];
   ()
@@ -48,7 +49,7 @@ let%expect_test "hum" =
     let cue' = Cue.create_exn hum in
     assert (Cue.equal cue cue'));
   [%expect {||}];
-  Expect_test_helpers_core.require_does_raise [%here] (fun () ->
+  Expect_test_helpers_base.require_does_raise [%here] (fun () ->
     ignore (Cue.create_exn { white = 3; black = 3 } : Cue.t));
   [%expect
     {|

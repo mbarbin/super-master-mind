@@ -1,4 +1,5 @@
-open! Core
+open! Base
+open! Stdio
 open! Import
 
 type t = Guess.t [@@deriving sexp]
@@ -13,10 +14,10 @@ let rec compute_internal (t : t) ~task_pool ~possible_solutions ~current_depth ~
       (* For each cue, we compute the best k candidate. *)
       do_ansi (fun () ->
         print_endline
-          (sprintf
+          (Printf.sprintf
              "Opening.compute[depth:%d]: cue %d / %d"
              current_depth
-             (succ i)
+             (Int.succ i)
              number_of_cue));
       let possible_solutions =
         Codes.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
@@ -30,7 +31,7 @@ let rec compute_internal (t : t) ~task_pool ~possible_solutions ~current_depth ~
               t
               ~task_pool
               ~possible_solutions
-              ~current_depth:(succ current_depth)
+              ~current_depth:(Int.succ current_depth)
               ~depth
               ~k)
         else next_best_guesses
@@ -69,7 +70,9 @@ let depth =
 ;;
 
 let opening_book =
-  lazy (Sexp.of_string_conv_exn Embedded_files.opening_book_dot_expected [%of_sexp: t])
+  lazy
+    (Parsexp.Single.parse_string_exn Embedded_files.opening_book_dot_expected
+     |> [%of_sexp: t])
 ;;
 
 let dump_cmd =

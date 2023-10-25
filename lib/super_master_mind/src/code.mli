@@ -1,4 +1,4 @@
-open! Core
+open! Base
 
 (** A code is a sequence of colors, allowing repetition. A given solution to a
     game is a code, and each candidate submitted during the game is a code as

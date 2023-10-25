@@ -1,4 +1,4 @@
-open! Core
+open! Base
 open! Import
 
 type t =
@@ -28,7 +28,7 @@ let all_as_queue =
        if i < code_cardinality
        then (
          Queue.enqueue t (Code.of_index_exn i);
-         aux (succ i))
+         aux (Int.succ i))
      in
      aux 0;
      t)

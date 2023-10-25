@@ -1,4 +1,4 @@
-open! Core
+open! Base
 
 type t = Color.t array [@@deriving compare, equal, sexp]
 
@@ -27,7 +27,7 @@ let create_exn hums =
     if not visited.(index)
     then (
       visited.(index) <- true;
-      incr count));
+      Int.incr count));
   if Array.length colors <> color_cardinality || !count <> color_cardinality
   then raise_s [%sexp "Invalid color permutation", [%here], (hums : Color.Hum.t array)];
   colors
@@ -38,7 +38,7 @@ let factorial =
     (let color_cardinality = force Color.cardinality in
      let results = Array.create ~len:(color_cardinality + 1) 1 in
      for i = 2 to color_cardinality do
-       results.(i) <- i * results.(pred i)
+       results.(i) <- i * results.(Int.pred i)
      done;
      results)
 ;;
@@ -52,8 +52,8 @@ let find_nth array ~n ~f =
     if i >= Array.length array
     then None
     else (
-      let k = if f array.(i) then succ k else k in
-      if k >= n then Some i else aux k (succ i))
+      let k = if f array.(i) then Int.succ k else k in
+      if k >= n then Some i else aux k (Int.succ i))
   in
   aux (-1) 0
 ;;
@@ -67,7 +67,7 @@ let of_index_exn index =
   let remainder = ref index in
   for i = color_cardinality - 1 downto 1 do
     factorial_decomposition.(i) <- !remainder / factorial.(i);
-    remainder := !remainder mod factorial.(i)
+    remainder := !remainder % factorial.(i)
   done;
   let available_colors = Array.create ~len:color_cardinality true in
   let t = Array.create ~len:color_cardinality (Color.of_index_exn 0) in
@@ -103,7 +103,7 @@ let to_index t =
     let color = Color.to_index t.(i) in
     let count = ref 0 in
     for j = 0 to color - 1 do
-      if available_colors.(j) then incr count
+      if available_colors.(j) then Int.incr count
     done;
     available_colors.(color) <- false;
     factorial_decomposition.(color_cardinality - 1 - i) <- !count

@@ -1,4 +1,4 @@
-open! Core
+open! Base
 
 (** To perform computation in parallel, we use [Domainslib]. This module is a
     thin wrapper on top of [Domainslib.Task], which allows to make it easier

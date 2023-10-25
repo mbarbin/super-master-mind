@@ -1,4 +1,4 @@
-open! Core
+open! Base
 
 (** In the game, pins may be of 8 different colors. Colors may be encoded to
     allow for a more efficient representation. *)

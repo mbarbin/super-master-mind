@@ -1,4 +1,4 @@
-open! Core
+open! Base
 open! Import
 
 (** So that the code is easier to test with smaller versions of the game, we

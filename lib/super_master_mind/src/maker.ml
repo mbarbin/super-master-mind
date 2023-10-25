@@ -1,4 +1,5 @@
-open! Core
+open! Base
+open! Stdio
 
 let input_line () = Stdio.In_channel.(input_line_exn stdin)
 
@@ -7,7 +8,9 @@ let rec input_code () =
   print_string prompt;
   Stdio.Out_channel.(flush stdout);
   let line = input_line () in
-  match line |> Sexp.of_string |> [%of_sexp: Code.Hum.t] |> Code.create_exn with
+  match
+    line |> Parsexp.Single.parse_string_exn |> [%of_sexp: Code.Hum.t] |> Code.create_exn
+  with
   | exception e ->
     print_s [%sexp (e : Exn.t)];
     input_code ()
@@ -21,10 +24,10 @@ let run ~solution =
     let cue = Code.analyze ~solution ~candidate in
     let { Cue.Hum.white; black } = Cue.to_hum cue in
     print_s [%sexp (i : int), (candidate : Code.t)];
-    print_endline (sprintf "#black (correctly placed)  : %d" black);
-    print_endline (sprintf "#white (incorrectly placed): %d" white);
+    print_endline (Printf.sprintf "#black (correctly placed)  : %d" black);
+    print_endline (Printf.sprintf "#white (incorrectly placed): %d" white);
     Stdio.Out_channel.(flush stdout);
-    if black < code_size then aux (succ i)
+    if black < code_size then aux (Int.succ i)
   in
   aux 1
 ;;

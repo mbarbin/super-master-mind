@@ -1,4 +1,4 @@
-open! Core
+open! Base
 open! Import
 
 module rec Next_best_guesses : sig
@@ -140,12 +140,12 @@ let compute_k_best ~task_pool ~possible_solutions ~k =
       match Domainslib.Chan.recv chan with
       | `Finished -> finished := true
       | `Computed (t : t) ->
-        incr num_computed;
+        Int.incr num_computed;
         do_ansi (fun () ->
           ANSITerminal.move_bol ();
           ANSITerminal.print_string
             []
-            (sprintf
+            (Printf.sprintf
                "Guess.compute_k_best : %d / %d"
                !num_computed
                (force Code.cardinality - 1)));

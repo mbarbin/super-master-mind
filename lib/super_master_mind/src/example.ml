@@ -1,4 +1,5 @@
-open! Core
+open! Base
+open! Stdio
 open! Import
 
 let solve ~task_pool ~color_permutation ~solution =
@@ -11,7 +12,7 @@ let solve ~task_pool ~color_permutation ~solution =
     in
     let t = { t with by_cue } in
     Queue.enqueue steps t;
-    incr step_index;
+    Int.incr step_index;
     print_s [%sexp (!step_index : int), (t : Guess.t)]
   in
   let rec aux (t : Guess.t) ~possible_solutions =

@@ -1,4 +1,5 @@
-open! Core
+open! Base
+open! Stdio
 open Super_master_mind
 
 (* This test shows the sequence of what would happen, assuming that each time we
@@ -41,7 +42,7 @@ let%expect_test "min sequence" =
   in
   Task_pool.with_t Task_pool.Config.default ~f:(fun ~task_pool ->
     aux root ~task_pool ~possible_solutions:Codes.all);
-  let steps = Queue.to_list steps |> List.mapi ~f:(fun i e -> succ i, e) in
+  let steps = Queue.to_list steps |> List.mapi ~f:(fun i e -> Int.succ i, e) in
   print_s [%sexp { number_of_steps = (List.length steps : int) }];
   print_s [%sexp (steps : (int * Guess.t) list)];
   [%expect

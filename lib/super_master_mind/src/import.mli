@@ -1,4 +1,4 @@
-open! Core
+open! Base
 
 module Float : sig
   include module type of struct

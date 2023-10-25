@@ -1,11 +1,12 @@
-open! Core
+open! Base
+open! Stdio
 
-let input_line () = Stdio.In_channel.(input_line_exn stdin)
+let input_line () = In_channel.(input_line_exn stdin)
 
 let rec input_cue () =
   let rec input_int ~prompt =
     print_string prompt;
-    Stdio.Out_channel.(flush stdout);
+    Out_channel.(flush stdout);
     let int = input_line () in
     match Int.of_string int with
     | exception e ->
@@ -31,13 +32,13 @@ let rec input_cue () =
 
 let solve ~color_permutation ~task_pool =
   print_string "Press enter when done choosing a solution: ";
-  Stdio.Out_channel.(flush stdout);
+  Out_channel.(flush stdout);
   let (_ : string) = input_line () in
   let step_index = ref 0 in
   let print (t : Guess.t) =
-    incr step_index;
+    Int.incr step_index;
     print_s [%sexp (!step_index : int), (t.candidate : Code.t)];
-    Stdio.Out_channel.(flush stdout)
+    Out_channel.(flush stdout)
   in
   let rec aux (t : Guess.t) ~possible_solutions =
     print t;
@@ -76,7 +77,7 @@ let cmd =
        flag
          "--color-permutation"
          (optional int)
-         ~doc:(sprintf "N force use of permutation (random by default)")
+         ~doc:(Printf.sprintf "N force use of permutation (random by default)")
      and task_pool_config = Task_pool.Config.param in
      fun () ->
        let color_permutation =

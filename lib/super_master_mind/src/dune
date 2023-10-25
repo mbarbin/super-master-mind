@@ -4,11 +4,14 @@
  (flags -w +a-4-40-42-44-66 -warn-error +a)
  (libraries
   ANSITerminal
-  core
+  base
+  core.command
   core_unix
   core_kernel.nonempty_list
   domainslib
-  sexp_diff)
+  parsexp
+  sexp_diff
+  stdio)
  (instrumentation
   (backend bisect_ppx))
  (preprocess

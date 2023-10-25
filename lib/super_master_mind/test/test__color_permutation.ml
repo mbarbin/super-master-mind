@@ -1,4 +1,5 @@
-open! Core
+open! Base
+open! Stdio
 open Super_master_mind
 
 let%expect_test "bounds" =
@@ -74,7 +75,7 @@ let%expect_test "indices" =
   let length = Hashtbl.length all in
   assert (length = force Color_permutation.cardinality);
   [%expect {||}];
-  Expect_test_helpers_core.require_does_raise [%here] (fun () ->
+  Expect_test_helpers_base.require_does_raise [%here] (fun () ->
     ignore
       (Color_permutation.of_index_exn (force Color_permutation.cardinality)
        : Color_permutation.t));
@@ -91,7 +92,7 @@ let%expect_test "inverse" =
   for i = 0 to force Color_permutation.cardinality - 1 do
     let t = Color_permutation.of_index_exn i in
     let t' = Color_permutation.inverse t in
-    if Color_permutation.equal t t' then incr count;
+    if Color_permutation.equal t t' then Int.incr count;
     let t'' = Color_permutation.inverse t' in
     assert (Color_permutation.equal t t'')
   done;

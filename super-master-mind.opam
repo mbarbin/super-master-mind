@@ -11,6 +11,7 @@ depends: [
   "ocaml" {>= "5.0"}
   "dune" {>= "3.11"}
   "ANSITerminal" {>= "0.8.3"}
+  "base" {>= "v0.16"}
   "bisect_ppx" {dev & >= "2.8"}
   "core" {>= "v0.16"}
   "core_kernel" {>= "v0.16"}
@@ -18,9 +19,11 @@ depends: [
   "domainslib" {>= "0.5"}
   "expect_test_helpers_core" {with-test & >= "v0.16"}
   "ocaml-embed-file"
+  "parsexp" {>= "v0.16"}
   "ppx_jane" {>= "v0.16"}
   "ppx_js_style" {>= "v0.16"}
   "sexp_diff" {>= "v0.16"}
+  "stdio" {>= "v0.16"}
 ]
 build: [
   ["dune" "subst"] {pinned}

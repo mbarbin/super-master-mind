@@ -1,4 +1,4 @@
-open! Core
+open! Base
 
 (** Print and return the steps that lead to finding the solution given as
     parameter. *)

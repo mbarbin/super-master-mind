@@ -1,4 +1,4 @@
-open! Core
+open! Base
 open! Import
 
 module Node = struct
@@ -40,7 +40,7 @@ let rec cut node ~k =
     if k = 0
     then None
     else (
-      t.tail <- cut tail ~k:(pred k);
+      t.tail <- cut tail ~k:(Int.pred k);
       node)
 ;;
 
@@ -51,11 +51,11 @@ let add t a =
       (match Ordering.of_int (t.compare node.value a) with
        | Greater ->
          (* Insert [a] before [node.value]. *)
-         let tail = cut head ~k:(pred k) in
+         let tail = cut head ~k:(Int.pred k) in
          Some { Node.value = a; tail }
        | Equal | Less ->
          (* Insert [a] after [node.value]. *)
-         node.tail <- aux (pred k) node.tail;
+         node.tail <- aux (Int.pred k) node.tail;
          head)
   in
   t.head <- aux t.k t.head
