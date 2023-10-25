@@ -12,15 +12,15 @@ depends: [
   "dune" {>= "3.11"}
   "ANSITerminal" {>= "0.8.3"}
   "bisect_ppx" {dev & >= "2.8"}
-  "core" {>= "v0.15"}
-  "core_kernel" {>= "v0.15"}
-  "core_unix" {>= "v0.15"}
+  "core" {>= "v0.16"}
+  "core_kernel" {>= "v0.16"}
+  "core_unix" {>= "v0.16"}
   "domainslib" {>= "0.5"}
-  "expect_test_helpers_core" {with-test & >= "v0.15"}
+  "expect_test_helpers_core" {with-test & >= "v0.16"}
   "ocaml-embed-file"
-  "ppx_jane" {>= "v0.15"}
-  "ppx_js_style" {>= "v0.15"}
-  "sexp_diff" {>= "v0.15"}
+  "ppx_jane" {>= "v0.16"}
+  "ppx_js_style" {>= "v0.16"}
+  "sexp_diff" {>= "v0.16"}
 ]
 build: [
   ["dune" "subst"] {pinned}
