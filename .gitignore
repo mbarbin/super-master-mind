@@ -1,4 +1,4 @@
 _build
 _coverage
+_bisect_ppx_data
 target
-.vscode
