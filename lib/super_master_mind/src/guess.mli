@@ -39,7 +39,7 @@ and T : sig
     ; max_bits_gained : float
     ; max_bits_remaining : float
     ; by_cue : By_cue.t Nonempty_list.t
-        (** Sorted by decreasing number of remaining sizes *)
+    (** Sorted by decreasing number of remaining sizes *)
     }
   [@@deriving equal, sexp]
 end

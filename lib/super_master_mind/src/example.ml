@@ -62,5 +62,5 @@ let cmd =
          in
          ignore
            (solve ~task_pool ~color_permutation:Color_permutation.identity ~solution
-             : Guess.t list)))
+            : Guess.t list)))
 ;;
