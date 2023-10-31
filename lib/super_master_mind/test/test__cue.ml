@@ -7,26 +7,46 @@ let%expect_test "sexp_of_t" =
   List.iter (force Cue.all) ~f:(fun t -> print_s [%sexp (t : Cue.t)]);
   [%expect
     {|
-    ((white 0) (black 0))
-    ((white 0) (black 1))
-    ((white 0) (black 2))
-    ((white 0) (black 3))
-    ((white 0) (black 4))
-    ((white 0) (black 5))
-    ((white 1) (black 0))
-    ((white 1) (black 1))
-    ((white 1) (black 2))
-    ((white 1) (black 3))
-    ((white 2) (black 0))
-    ((white 2) (black 1))
-    ((white 2) (black 2))
-    ((white 2) (black 3))
-    ((white 3) (black 0))
-    ((white 3) (black 1))
-    ((white 3) (black 2))
-    ((white 4) (black 0))
-    ((white 4) (black 1))
-    ((white 5) (black 0)) |}]
+    ((white 0)
+     (black 0))
+    ((white 0)
+     (black 1))
+    ((white 0)
+     (black 2))
+    ((white 0)
+     (black 3))
+    ((white 0)
+     (black 4))
+    ((white 0)
+     (black 5))
+    ((white 1)
+     (black 0))
+    ((white 1)
+     (black 1))
+    ((white 1)
+     (black 2))
+    ((white 1)
+     (black 3))
+    ((white 2)
+     (black 0))
+    ((white 2)
+     (black 1))
+    ((white 2)
+     (black 2))
+    ((white 2)
+     (black 3))
+    ((white 3)
+     (black 0))
+    ((white 3)
+     (black 1))
+    ((white 3)
+     (black 2))
+    ((white 4)
+     (black 0))
+    ((white 4)
+     (black 1))
+    ((white 5)
+     (black 0)) |}]
 ;;
 
 let%expect_test "indices" =
@@ -37,7 +57,7 @@ let%expect_test "indices" =
   [%expect {||}];
   require_does_raise [%here] (fun () ->
     ignore (Cue.of_index_exn (force Cue.cardinality) : Cue.t));
-  [%expect {| ("Index out of bounds" lib/super_master_mind/src/cue.ml:88:45 20) |}];
+  [%expect {| ("Index out of bounds" lib/super_master_mind/src/cue.ml:85:45 20) |}];
   ()
 ;;
 
@@ -52,7 +72,7 @@ let%expect_test "hum" =
   [%expect
     {|
     ("Invalid hum representation"
-     lib/super_master_mind/src/cue.ml:97:57
+     lib/super_master_mind/src/cue.ml:94:57
      ((white 3)
       (black 3))) |}];
   ()

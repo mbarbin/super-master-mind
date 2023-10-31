@@ -13,7 +13,7 @@
   Please enter your guess: (Of_sexp_error
    "lib/super_master_mind/src/color.ml.Hum.t_of_sexp: unexpected variant constructor"
    (invalid_sexp Invalid_color))
-  Please enter your guess: ("Invalid code size" lib/super_master_mind/src/code.ml:18:45
+  Please enter your guess: ("Invalid code size" lib/super_master_mind/src/code.ml:15:45
    (Black Black Black Black Black Black Black Black Black Black Black))
   Please enter your guess: (1 (Black Blue Brown Green Orange))
   #black (correctly placed)  : 1

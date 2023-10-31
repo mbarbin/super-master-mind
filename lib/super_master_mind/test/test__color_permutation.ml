@@ -80,7 +80,7 @@ let%expect_test "indices" =
   [%expect
     {|
     ("Index out of bounds"
-     lib/super_master_mind/src/color_permutation.ml:65:45
+     lib/super_master_mind/src/color_permutation.ml:63:45
      40320) |}];
   ()
 ;;

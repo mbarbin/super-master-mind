@@ -7,8 +7,8 @@ let%expect_test "set twice" =
   [%expect
     {|
     ("Game_dimensions is already set"
-     lib/super_master_mind/test/test__game_dimensions.ml:8:50
-     ((was_set_here lib/super_master_mind/test/test__game_dimensions.ml:6:48))) |}]
+     lib/super_master_mind/test/test__game_dimensions.ml:6:50
+     ((was_set_here lib/super_master_mind/test/test__game_dimensions.ml:4:48))) |}]
 ;;
 
 let%expect_test "set after use" =
@@ -19,8 +19,8 @@ let%expect_test "set after use" =
     {|
     ((code_size 3))
     ("Game_dimensions is already set"
-     lib/super_master_mind/test/test__game_dimensions.ml:19:50
-     ((was_set_here lib/super_master_mind/test/test__game_dimensions.ml:6:48))) |}]
+     lib/super_master_mind/test/test__game_dimensions.ml:17:50
+     ((was_set_here lib/super_master_mind/test/test__game_dimensions.ml:4:48))) |}]
 ;;
 
 let%expect_test "defaults" =
@@ -29,5 +29,7 @@ let%expect_test "defaults" =
       { code_size = (Game_dimensions.code_size [%here] : int)
       ; num_colors = (Game_dimensions.num_colors [%here] : int)
       }];
-  [%expect {| ((code_size 3) (num_colors 4)) |}]
+  [%expect {|
+    ((code_size  3)
+     (num_colors 4)) |}]
 ;;

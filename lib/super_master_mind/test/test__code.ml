@@ -20,49 +20,93 @@ let%expect_test "analyze" =
   in
   let solution : Color.Hum.t array = [| Black; Blue; Brown; Green; Orange |] in
   test ~solution ~candidate:[| Red; White; Yellow; Red; Red |];
-  [%expect {| ((white 0) (black 0)) |}];
+  [%expect {|
+    ((white 0)
+     (black 0)) |}];
   test ~solution ~candidate:[| Black; White; Yellow; Red; Red |];
-  [%expect {| ((white 0) (black 1)) |}];
+  [%expect {|
+    ((white 0)
+     (black 1)) |}];
   test ~solution ~candidate:[| Black; Black; Yellow; Red; Red |];
-  [%expect {| ((white 0) (black 1)) |}];
+  [%expect {|
+    ((white 0)
+     (black 1)) |}];
   test ~solution ~candidate:[| Black; Black; Yellow; Orange; Orange |];
-  [%expect {| ((white 0) (black 2)) |}];
+  [%expect {|
+    ((white 0)
+     (black 2)) |}];
   test ~solution ~candidate:[| Black; Brown; Brown; Orange; Orange |];
-  [%expect {| ((white 0) (black 3)) |}];
+  [%expect {|
+    ((white 0)
+     (black 3)) |}];
   test ~solution ~candidate:[| Black; Brown; Brown; Green; Orange |];
-  [%expect {| ((white 0) (black 4)) |}];
+  [%expect {|
+    ((white 0)
+     (black 4)) |}];
   test ~solution ~candidate:[| Black; Blue; Brown; Green; Orange |];
-  [%expect {| ((white 0) (black 5)) |}];
+  [%expect {|
+    ((white 0)
+     (black 5)) |}];
   test ~solution ~candidate:[| Red; White; Yellow; Red; Black |];
-  [%expect {| ((white 1) (black 0)) |}];
+  [%expect {|
+    ((white 1)
+     (black 0)) |}];
   test ~solution ~candidate:[| Red; White; Yellow; Black; Black |];
-  [%expect {| ((white 1) (black 0)) |}];
+  [%expect {|
+    ((white 1)
+     (black 0)) |}];
   test ~solution ~candidate:[| Black; Black; Blue; Yellow; White |];
-  [%expect {| ((white 1) (black 1)) |}];
+  [%expect {|
+    ((white 1)
+     (black 1)) |}];
   test ~solution ~candidate:[| Black; Black; Blue; Green; White |];
-  [%expect {| ((white 1) (black 2)) |}];
+  [%expect {|
+    ((white 1)
+     (black 2)) |}];
   test ~solution ~candidate:[| Black; Black; Blue; Green; Orange |];
-  [%expect {| ((white 1) (black 3)) |}];
+  [%expect {|
+    ((white 1)
+     (black 3)) |}];
   test ~solution ~candidate:[| Red; White; Yellow; Blue; Black |];
-  [%expect {| ((white 2) (black 0)) |}];
+  [%expect {|
+    ((white 2)
+     (black 0)) |}];
   test ~solution ~candidate:[| Red; White; Brown; Blue; Black |];
-  [%expect {| ((white 2) (black 1)) |}];
+  [%expect {|
+    ((white 2)
+     (black 1)) |}];
   test ~solution ~candidate:[| Red; Blue; Brown; Orange; Black |];
-  [%expect {| ((white 2) (black 2)) |}];
+  [%expect {|
+    ((white 2)
+     (black 2)) |}];
   test ~solution ~candidate:[| Green; Blue; Brown; Black; Orange |];
-  [%expect {| ((white 2) (black 3)) |}];
+  [%expect {|
+    ((white 2)
+     (black 3)) |}];
   test ~solution ~candidate:[| Green; White; Yellow; Blue; Black |];
-  [%expect {| ((white 3) (black 0)) |}];
+  [%expect {|
+    ((white 3)
+     (black 0)) |}];
   test ~solution ~candidate:[| Green; White; Brown; Blue; Black |];
-  [%expect {| ((white 3) (black 1)) |}];
+  [%expect {|
+    ((white 3)
+     (black 1)) |}];
   test ~solution ~candidate:[| Green; Blue; Brown; Orange; Black |];
-  [%expect {| ((white 3) (black 2)) |}];
+  [%expect {|
+    ((white 3)
+     (black 2)) |}];
   test ~solution ~candidate:[| Green; Orange; Yellow; Blue; Black |];
-  [%expect {| ((white 4) (black 0)) |}];
+  [%expect {|
+    ((white 4)
+     (black 0)) |}];
   test ~solution ~candidate:[| Green; Orange; Brown; Blue; Black |];
-  [%expect {| ((white 4) (black 1)) |}];
+  [%expect {|
+    ((white 4)
+     (black 1)) |}];
   test ~solution ~candidate:[| Green; Brown; Orange; Blue; Black |];
-  [%expect {| ((white 5) (black 0)) |}];
+  [%expect {|
+    ((white 5)
+     (black 0)) |}];
   let not_tested =
     Array.find_mapi tested ~f:(fun i tested ->
       if not tested then Some (Cue.of_index_exn i) else None)
@@ -80,13 +124,21 @@ let%expect_test "repetition of colors in the solution" =
   in
   let solution : Color.Hum.t array = [| Black; Green; Brown; Green; Brown |] in
   test ~solution ~candidate:[| Red; White; Yellow; Red; Red |];
-  [%expect {| ((white 0) (black 0)) |}];
+  [%expect {|
+    ((white 0)
+     (black 0)) |}];
   test ~solution ~candidate:[| Green; White; Green; Red; Red |];
-  [%expect {| ((white 2) (black 0)) |}];
+  [%expect {|
+    ((white 2)
+     (black 0)) |}];
   test ~solution ~candidate:[| Green; Green; Green; Red; Red |];
-  [%expect {| ((white 1) (black 1)) |}];
+  [%expect {|
+    ((white 1)
+     (black 1)) |}];
   test ~solution ~candidate:[| Green; Green; Green; Brown; Red |];
-  [%expect {| ((white 2) (black 1)) |}]
+  [%expect {|
+    ((white 2)
+     (black 1)) |}]
 ;;
 
 let%expect_test "indices" =
@@ -101,6 +153,6 @@ let%expect_test "indices" =
   [%expect {||}];
   require_does_raise [%here] (fun () ->
     ignore (Code.of_index_exn (force Code.cardinality) : Code.t));
-  [%expect {| ("Index out of bounds" lib/super_master_mind/src/code.ml:86:45 32768) |}];
+  [%expect {| ("Index out of bounds" lib/super_master_mind/src/code.ml:83:45 32768) |}];
   ()
 ;;
