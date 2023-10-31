@@ -99,7 +99,7 @@ let%expect_test "indices" =
     assert (Code.equal code code')
   done;
   [%expect {||}];
-  Expect_test_helpers_base.require_does_raise [%here] (fun () ->
+  require_does_raise [%here] (fun () ->
     ignore (Code.of_index_exn (force Code.cardinality) : Code.t));
   [%expect {| ("Index out of bounds" lib/super_master_mind/src/code.ml:86:45 32768) |}];
   ()

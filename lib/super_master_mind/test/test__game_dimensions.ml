@@ -2,7 +2,7 @@ open Super_master_mind
 
 let%expect_test "set twice" =
   Game_dimensions.use_small_game_dimensions_exn [%here];
-  Expect_test_helpers_base.require_does_raise [%here] (fun () ->
+  require_does_raise [%here] (fun () ->
     Game_dimensions.use_small_game_dimensions_exn [%here]);
   [%expect
     {|
@@ -13,7 +13,7 @@ let%expect_test "set twice" =
 
 let%expect_test "set after use" =
   print_s [%sexp { code_size = (Game_dimensions.code_size [%here] : int) }];
-  Expect_test_helpers_base.require_does_raise [%here] (fun () ->
+  require_does_raise [%here] (fun () ->
     Game_dimensions.use_small_game_dimensions_exn [%here]);
   [%expect
     {|
