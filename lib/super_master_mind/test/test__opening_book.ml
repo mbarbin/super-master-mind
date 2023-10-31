@@ -1,5 +1,3 @@
-open Super_master_mind
-
 let%expect_test "depth" =
   let opening_book = Lazy.force Opening_book.opening_book in
   let depth = Opening_book.depth opening_book in

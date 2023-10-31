@@ -1,5 +1,3 @@
-open Super_master_mind
-
 let%expect_test "verify" =
   let candidate = Code.create_exn [| Green; Blue; Orange; White; Red |] in
   let possible_solutions = Codes.all in

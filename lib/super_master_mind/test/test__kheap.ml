@@ -1,5 +1,3 @@
-open Super_master_mind
-
 let%expect_test "kheap" =
   let h = Kheap.create ~k:3 ~compare:Int.compare in
   let print () = print_s [%sexp (h : int Kheap.t)] in

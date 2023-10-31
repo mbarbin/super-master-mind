@@ -10,7 +10,9 @@
   -open
   Stdio
   -open
-  Expect_test_helpers_base)
+  Expect_test_helpers_base
+  -open
+  Super_master_mind)
  (libraries
   base
   core_kernel.nonempty_list

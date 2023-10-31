@@ -1,5 +1,3 @@
-open Super_master_mind
-
 let%expect_test "set twice" =
   Game_dimensions.use_small_game_dimensions_exn [%here];
   require_does_raise [%here] (fun () ->
@@ -7,8 +5,8 @@ let%expect_test "set twice" =
   [%expect
     {|
     ("Game_dimensions is already set"
-     lib/super_master_mind/test/test__game_dimensions.ml:6:50
-     ((was_set_here lib/super_master_mind/test/test__game_dimensions.ml:4:48))) |}]
+     lib/super_master_mind/test/test__game_dimensions.ml:4:50
+     ((was_set_here lib/super_master_mind/test/test__game_dimensions.ml:2:48))) |}]
 ;;
 
 let%expect_test "set after use" =
@@ -19,8 +17,8 @@ let%expect_test "set after use" =
     {|
     ((code_size 3))
     ("Game_dimensions is already set"
-     lib/super_master_mind/test/test__game_dimensions.ml:17:50
-     ((was_set_here lib/super_master_mind/test/test__game_dimensions.ml:4:48))) |}]
+     lib/super_master_mind/test/test__game_dimensions.ml:15:50
+     ((was_set_here lib/super_master_mind/test/test__game_dimensions.ml:2:48))) |}]
 ;;
 
 let%expect_test "defaults" =

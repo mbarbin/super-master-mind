@@ -1,5 +1,3 @@
-open Super_master_mind
-
 (* This test shows the sequence of what would happen, assuming that each time we
    make a guess, we get back the cue that is the most likely - that is the one
    that gives back the least amount of information. *)

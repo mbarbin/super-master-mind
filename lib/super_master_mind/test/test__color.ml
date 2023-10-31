@@ -1,5 +1,3 @@
-open Super_master_mind
-
 let%expect_test "sexp_of_t" =
   print_s [%sexp (force Color.cardinality : int)];
   [%expect {| 8 |}];

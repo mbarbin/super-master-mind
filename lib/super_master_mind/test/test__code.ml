@@ -1,5 +1,3 @@
-open Super_master_mind
-
 let%expect_test "sexp_of_t" =
   let t = Code.create_exn [| Green; Blue; Orange; White; Red |] in
   print_s [%sexp (t : Code.t)];

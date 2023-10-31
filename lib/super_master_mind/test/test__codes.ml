@@ -1,5 +1,3 @@
-open Super_master_mind
-
 let%expect_test "all" =
   print_s [%sexp (Codes.size Codes.all : int)];
   [%expect {| 32768 |}];

@@ -1,5 +1,3 @@
-open Super_master_mind
-
 let%expect_test "bounds" =
   let color_cardinality = force Color.cardinality in
   let zero =
