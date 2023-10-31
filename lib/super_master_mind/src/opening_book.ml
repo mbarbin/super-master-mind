@@ -117,10 +117,9 @@ let verify_cmd =
        match Guess.verify t ~possible_solutions:Codes.all with
        | Ok () -> ()
        | Error error ->
-         raise_s
-           [%sexp
-             "Embedded opening-book does not verify expected properties"
-             , (error : Error.t)])
+         prerr_endline "Embedded opening-book does not verify expected properties.";
+         Guess.Verify_error.print_hum ~color:true error Out_channel.stderr;
+         Stdlib.exit 1)
 ;;
 
 let cmd =

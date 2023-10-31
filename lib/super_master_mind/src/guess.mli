@@ -58,8 +58,15 @@ val compute_k_best
   -> k:int
   -> t list
 
+module Verify_error : sig
+  type t
+
+  val print_hum : ?color:bool -> t -> Out_channel.t -> unit
+  val to_error : t -> Error.t
+end
+
 (** Check the accuracy of all computed numbers contained in [t]. *)
-val verify : t -> possible_solutions:Codes.t -> unit Or_error.t
+val verify : t -> possible_solutions:Codes.t -> (unit, Verify_error.t) Result.t
 
 (** Map the color of all codes contained by [t] according to a given color
     permutation. *)

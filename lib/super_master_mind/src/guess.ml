@@ -167,36 +167,53 @@ let compute_k_best ~task_pool ~possible_solutions ~k =
   Kheap.to_list ts
 ;;
 
-let iter_or_error list ~f =
-  let open Or_error.Let_syntax in
-  let rec aux = function
-    | [] -> return ()
-    | hd :: tl ->
-      let%bind () = f hd in
-      aux tl
-  in
-  aux list
-;;
+let iter_result list ~f = List.fold_result list ~init:() ~f:(fun () a -> f a)
 
-let unexpected (type a) ~name ~(expected : a) ~(got : a) (sexp_of_a : a -> Sexp.t) =
+module Verify_error = struct
+  type t =
+    { unexpected_field : string
+    ; diff : Sexp_diff.Diff.t
+    }
+  [@@deriving sexp_of]
+
+  let to_error t = Error.create_s [%sexp (t : t)]
+
+  let print_hum ?(color = false) { unexpected_field; diff } oc =
+    let diff =
+      if color
+      then
+        Sexp_diff.Display.display_with_ansi_colors
+          (Sexp_diff.Display.Display_options.create ~num_shown:2 Two_column)
+          diff
+      else
+        Sexp_diff.Display.display_as_plain_string
+          (Sexp_diff.Display.Display_options.create ~num_shown:2 Two_column)
+          diff
+    in
+    Out_channel.output_lines oc [ Printf.sprintf "Unexpected %s:" unexpected_field; diff ]
+  ;;
+end
+
+let unexpected
+  (type a)
+  ~unexpected_field
+  ~(expected : a)
+  ~(got : a)
+  (sexp_of_a : a -> Sexp.t)
+  =
   let diff =
     Sexp_diff.Algo.diff ~original:[%sexp (expected : a)] ~updated:[%sexp (got : a)] ()
   in
-  let display =
-    Sexp_diff.Display.display_as_plain_string
-      (Sexp_diff.Display.Display_options.create ~num_shown:2 Two_column)
-      diff
-  in
-  Or_error.error_s [%sexp ("Unexpected " ^ name : string), (display : string)]
+  Error { Verify_error.unexpected_field; diff }
 ;;
 
 let rec verify (t : t) ~possible_solutions =
-  let open Or_error.Let_syntax in
+  let open Result.Let_syntax in
   let t' = compute ~possible_solutions ~candidate:t.candidate in
   match Nonempty_list.zip t.by_cue t'.by_cue with
   | Unequal_lengths ->
     unexpected
-      ~name:"by_cue length"
+      ~unexpected_field:"by_cue length"
       ~expected:(Nonempty_list.length t'.by_cue)
       ~got:(Nonempty_list.length t.by_cue)
       [%sexp_of: int]
@@ -205,15 +222,20 @@ let rec verify (t : t) ~possible_solutions =
       let t = { t with by_cue = t'.by_cue } in
       if equal t t'
       then return ()
-      else unexpected ~name:"values" ~expected:t' ~got:t [%sexp_of: t]
+      else unexpected ~unexpected_field:"values" ~expected:t' ~got:t [%sexp_of: t]
     in
-    iter_or_error (Nonempty_list.to_list by_cues) ~f:(fun (by_cue, by_cue') ->
+    iter_result (Nonempty_list.to_list by_cues) ~f:(fun (by_cue, by_cue') ->
       assert (not (Next_best_guesses.is_computed by_cue'.next_best_guesses));
       let%bind () =
         let by_cue = { by_cue with next_best_guesses = Not_computed } in
         if By_cue.equal by_cue' by_cue
         then return ()
-        else unexpected ~name:"by_cue" ~expected:by_cue' ~got:by_cue [%sexp_of: By_cue.t]
+        else
+          unexpected
+            ~unexpected_field:"by_cue"
+            ~expected:by_cue'
+            ~got:by_cue
+            [%sexp_of: By_cue.t]
       in
       match by_cue.next_best_guesses with
       | Not_computed -> return ()
@@ -221,7 +243,7 @@ let rec verify (t : t) ~possible_solutions =
         let possible_solutions =
           Codes.filter possible_solutions ~candidate:t.candidate ~cue:by_cue.cue
         in
-        iter_or_error ts ~f:(fun t -> verify t ~possible_solutions))
+        iter_result ts ~f:(fun t -> verify t ~possible_solutions))
 ;;
 
 let map_color t ~color_permutation =
