@@ -1,5 +1,3 @@
-open! Base
-
 module Float : sig
   include module type of struct
     include Float

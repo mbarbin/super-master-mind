@@ -1,6 +1,3 @@
-open! Base
-open! Import
-
 type t =
   { code_size : int
   ; num_colors : int

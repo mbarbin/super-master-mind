@@ -1,5 +1,3 @@
-open! Base
-
 (** In order for the program to vary its opening guesses, we can choose to map
     the opening book through a color permutation, that is a bijection from the
     set of colors onto itself. *)

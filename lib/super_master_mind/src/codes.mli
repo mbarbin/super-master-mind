@@ -1,5 +1,3 @@
-open! Base
-
 (** [t] is a container for several unordered [Code.t]. It is used to represent
     the set of possible solutions as the game goes on, shrinking from its
     original value (all possible combinations) down to the final guessed

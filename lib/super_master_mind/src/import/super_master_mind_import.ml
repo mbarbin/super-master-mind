@@ -1,5 +1,3 @@
-open! Base
-
 module Float = struct
   include Float
 

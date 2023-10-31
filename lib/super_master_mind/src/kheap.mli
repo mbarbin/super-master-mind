@@ -1,5 +1,3 @@
-open! Base
-
 (** A [Kheap.t] is a mutable containers that retains the [k] smallest elements
     added to it overtime (and discard the others). *)
 

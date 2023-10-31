@@ -1,6 +1,3 @@
-open! Base
-open! Import
-
 type t = int [@@deriving compare, equal, hash]
 
 let size = Cue.code_size

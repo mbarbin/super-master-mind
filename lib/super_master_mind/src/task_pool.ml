@@ -1,5 +1,3 @@
-open! Base
-
 module Config = struct
   type t = { num_domains : int }
 

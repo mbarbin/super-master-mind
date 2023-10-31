@@ -1,4 +1,3 @@
-open! Base
 module Code = Code
 module Codes = Codes
 module Color = Color

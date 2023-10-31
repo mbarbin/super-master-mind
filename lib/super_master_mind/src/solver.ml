@@ -1,6 +1,3 @@
-open! Base
-open! Stdio
-
 let input_line () = In_channel.(input_line_exn stdin)
 
 let rec input_cue () =

@@ -1,7 +1,3 @@
-open! Base
-open! Stdio
-open! Import
-
 type t = Guess.t [@@deriving sexp]
 
 let root t ~color_permutation = Guess.map_color t ~color_permutation

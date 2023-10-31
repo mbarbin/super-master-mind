@@ -1,6 +1,3 @@
-open! Base
-open! Import
-
 module rec Next_best_guesses : sig
   (* When computed, best guesses are sorted by decreasing number of
      expected_bits_gained. *)

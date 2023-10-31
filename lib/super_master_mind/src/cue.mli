@@ -1,5 +1,3 @@
-open! Base
-
 (** During a game, when a player submits a guess (also called a candidate code),
     the other player responds by given back a cue. The cue gives an indication
     as to how close the guess is to the actual solution, by telling how many

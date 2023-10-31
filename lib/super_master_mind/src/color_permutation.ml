@@ -1,5 +1,3 @@
-open! Base
-
 type t = Color.t array [@@deriving compare, equal, sexp]
 
 let identity = lazy (Array.init (force Color.cardinality) ~f:Color.of_index_exn)

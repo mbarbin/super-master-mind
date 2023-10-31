@@ -1,6 +1,3 @@
-open! Base
-open! Import
-
 (** So that the code is easier to test with smaller versions of the game, we
     make the rest of the code depend on global dimensions that are made
     available in this module. To change the default dimensions, the values

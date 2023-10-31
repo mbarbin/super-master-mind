@@ -1,0 +1,9 @@
+(library
+ (name super_master_mind_import)
+ (public_name super-master-mind.import)
+ (flags -w +a-4-40-42-44-66 -warn-error +a -open Base)
+ (libraries base)
+ (instrumentation
+  (backend bisect_ppx))
+ (preprocess
+  (pps ppx_jane ppx_js_style -check-doc-comments)))

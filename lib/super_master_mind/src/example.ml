@@ -1,7 +1,3 @@
-open! Base
-open! Stdio
-open! Import
-
 let solve ~task_pool ~color_permutation ~solution =
   let steps = Queue.create () in
   let step_index = ref 0 in

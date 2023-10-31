@@ -1,6 +1,3 @@
-open! Base
-open! Import
-
 let cardinality = lazy (Game_dimensions.num_colors [%here])
 
 module Hum = struct

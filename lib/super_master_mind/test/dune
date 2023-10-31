@@ -1,6 +1,16 @@
 (library
  (name super_master_mind_test)
- (flags -w +a-40-42-45-66 -warn-error +a)
+ (flags
+  -w
+  +a-40-42-45-66
+  -warn-error
+  +a
+  -open
+  Base
+  -open
+  Stdio
+  -open
+  Expect_test_helpers_base)
  (libraries
   base
   core_kernel.nonempty_list

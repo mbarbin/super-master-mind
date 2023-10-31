@@ -1,5 +1,3 @@
-open! Base
-
 (** A each point of the game, there's a number of remaining possible solutions.
     Each guess that one can make may be evaluated in order to determine its
     quality. The goal of the guessing player is to propose candidates that

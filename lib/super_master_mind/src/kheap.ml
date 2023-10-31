@@ -1,6 +1,3 @@
-open! Base
-open! Import
-
 module Node = struct
   type 'a t =
     { value : 'a

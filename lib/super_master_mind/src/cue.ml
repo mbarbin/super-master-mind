@@ -1,6 +1,3 @@
-open! Base
-open! Import
-
 module Hum = struct
   type t =
     { white : int

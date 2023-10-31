@@ -1,5 +1,3 @@
-open! Base
-open! Import
 module Code = Code
 module Codes = Codes
 module Color = Color

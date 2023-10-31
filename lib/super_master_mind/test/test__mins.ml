@@ -1,5 +1,3 @@
-open! Base
-open! Stdio
 open Super_master_mind
 
 (* This test shows the sequence of what would happen, assuming that each time we

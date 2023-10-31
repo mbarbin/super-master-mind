@@ -1,5 +1,3 @@
-open! Base
-open! Stdio
 open Super_master_mind
 
 let%expect_test "set twice" =
