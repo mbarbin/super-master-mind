@@ -6,6 +6,10 @@
 - Now building distribution with `dune-release`.
 - Internal refactoring related to -open via flags.
 
+### Fixed
+
+- Make `super-master-mind -version` output the package version.
+
 ## 0.0.1 (2023-10-30)
 
 ### Added
