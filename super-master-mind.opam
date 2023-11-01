@@ -5,7 +5,7 @@ maintainer: "Mathieu Barbin"
 authors: "Mathieu Barbin"
 license: "MIT"
 homepage: "https://github.com/mbarbin/super-master-mind"
-doc: "https://mbarbin.github.io/super-master-mind/odoc/super-master-mind/index.html"
+doc: "https://mbarbin.github.io/super-master-mind/odoc/"
 bug-reports: "https://github.com/mbarbin/super-master-mind/issues"
 depends: [
   "ocaml" {>= "5.1"}

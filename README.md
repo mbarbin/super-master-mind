@@ -102,8 +102,7 @@ code.
 ## Code documentation
 
 The tip of the master branch is compiled with odoc and published to
-github pages
-[here](https://mbarbin.github.io/super-master-mind/odoc/super-master-mind/index.html).
+GitHub pages [here](https://mbarbin.github.io/super-master-mind/odoc/).
 
 ## Motivations
 
