@@ -10,7 +10,6 @@ bug-reports: "https://github.com/mbarbin/super-master-mind/issues"
 depends: [
   "ocaml" {>= "5.1"}
   "dune" {>= "3.11"}
-  "ANSITerminal" {>= "0.8.3"}
   "base" {>= "v0.16"}
   "bisect_ppx" {dev & >= "2.8"}
   "core" {>= "v0.16"}
@@ -22,6 +21,7 @@ depends: [
   "parsexp" {>= "v0.16"}
   "ppx_jane" {>= "v0.16"}
   "ppx_js_style" {>= "v0.16"}
+  "progress" {>= "0.2.3-preview"}
   "sexp_diff" {>= "v0.16"}
   "stdio" {>= "v0.16"}
 ]

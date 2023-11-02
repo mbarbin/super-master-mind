@@ -28,7 +28,7 @@ let%expect_test "min sequence" =
       | Computed [] -> ()
       | Computed (guess :: _) -> aux guess ~task_pool ~possible_solutions
       | Not_computed ->
-        (match Guess.compute_k_best ~task_pool ~possible_solutions ~k:1 with
+        (match Guess.compute_k_best ~task_pool ~possible_solutions ~k:1 () with
          | [] -> ()
          | guess :: _ -> aux guess ~task_pool ~possible_solutions))
   in

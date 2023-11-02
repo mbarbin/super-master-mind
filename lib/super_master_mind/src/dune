@@ -13,13 +13,13 @@
   -open
   Super_master_mind_import)
  (libraries
-  ANSITerminal
   base
   core.command
   core_unix
   core_kernel.nonempty_list
   domainslib
   parsexp
+  progress
   sexp_diff
   super_master_mind_import
   stdio)
