@@ -1,12 +1,11 @@
-## unreleased
+## 0.0.3-preview.1
 
-### Added
+This is a preview release used for testing.
 
 ### Changed
 
-### Fixed
-
-### Removed
+- Change how progress is reported during the computation of the opening-book.
+  Now displays [progress](https://github.com/craigfe/progress) bars.
 
 ## 0.0.2 (2023-11-01)
 
