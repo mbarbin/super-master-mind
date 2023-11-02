@@ -51,11 +51,26 @@ end
 val compute : possible_solutions:Codes.t -> candidate:Code.t -> t
 
 (** Go over all the possible candidates and retain the k that yield the best
-    expected information. *)
+    expected information.
+
+    Because this computation tends to be long, it reports its progression into a
+    progress bar:
+
+    1. If [display] is provided a new bar will be added to it. This is used for
+    example during the computation of the opening-book, when each level of
+    the computation at different depths gets its own bar. In the case, the
+    bar is removed upon completion and before the function returns, and the
+    display is left open.
+
+    2. If display is not provided, this functions creates a new display with a
+    single in it. In this case the display is closed before the function
+    returns. *)
 val compute_k_best
-  :  task_pool:Task_pool.t
+  :  ?display:_ Progress.Display.t
+  -> task_pool:Task_pool.t
   -> possible_solutions:Codes.t
   -> k:int
+  -> unit
   -> t list
 
 module Verify_error : sig
