@@ -1,30 +1,42 @@
 type t = Guess.t [@@deriving sexp]
 
 let root t ~color_permutation = Guess.map_color t ~color_permutation
-let do_ansi f = if Stdlib.Out_channel.isatty Out_channel.stdout then f ()
 
-let rec compute_internal (t : t) ~task_pool ~possible_solutions ~current_depth ~depth ~k =
+let rec compute_internal
+  (t : t)
+  ~display
+  ~task_pool
+  ~possible_solutions
+  ~current_depth
+  ~depth
+  ~k
+  =
   let number_of_cue = Nonempty_list.length t.by_cue in
+  let bar =
+    let open Progress.Line in
+    list
+      [ bar number_of_cue
+      ; count_to number_of_cue
+      ; parens (const "eta: " ++ eta number_of_cue)
+      ]
+  in
+  let reporter = Progress.Display.add_line display bar in
   let by_cue =
-    Nonempty_list.mapi t.by_cue ~f:(fun i c ->
+    Nonempty_list.map t.by_cue ~f:(fun c ->
       (* For each cue, we compute the best k candidate. *)
-      do_ansi (fun () ->
-        print_endline
-          (Printf.sprintf
-             "Opening.compute[depth:%d]: cue %d / %d"
-             current_depth
-             (Int.succ i)
-             number_of_cue));
       let possible_solutions =
         Codes.filter possible_solutions ~candidate:t.candidate ~cue:c.cue
       in
-      let next_best_guesses = Guess.compute_k_best ~task_pool ~possible_solutions ~k in
+      let next_best_guesses =
+        Guess.compute_k_best ~display ~task_pool ~possible_solutions ~k ()
+      in
       let next_best_guesses =
         if current_depth < depth
         then
           List.map next_best_guesses ~f:(fun t ->
             compute_internal
               t
+              ~display
               ~task_pool
               ~possible_solutions
               ~current_depth:(Int.succ current_depth)
@@ -32,8 +44,11 @@ let rec compute_internal (t : t) ~task_pool ~possible_solutions ~current_depth ~
               ~k)
         else next_best_guesses
       in
+      Progress.Reporter.report reporter 1;
       { c with next_best_guesses = Computed next_best_guesses })
   in
+  Progress.Reporter.finalise reporter;
+  Progress.Display.remove_line display reporter;
   { t with by_cue }
 ;;
 
@@ -47,11 +62,27 @@ let canonical_first_candidate =
 
 let compute ~task_pool ~depth =
   if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
+  let display =
+    Progress.Display.start
+      ~config:(Progress.Config.v ~persistent:false ())
+      (Progress.Multi.lines [])
+  in
   let possible_solutions = Codes.all in
   let t =
     Guess.compute ~possible_solutions ~candidate:(force canonical_first_candidate)
   in
-  compute_internal t ~task_pool ~possible_solutions ~current_depth:1 ~depth ~k:1
+  let t =
+    compute_internal
+      t
+      ~display
+      ~task_pool
+      ~possible_solutions
+      ~current_depth:1
+      ~depth
+      ~k:1
+  in
+  Progress.Display.finalise display;
+  t
 ;;
 
 let depth =

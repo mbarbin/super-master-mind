@@ -120,9 +120,7 @@ let compute ~possible_solutions ~candidate : t =
   }
 ;;
 
-let do_ansi f = if Stdlib.Out_channel.isatty Out_channel.stdout then f ()
-
-let compute_k_best ~task_pool ~possible_solutions ~k =
+let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
   if k < 1 then raise_s [%sexp "k >= 1 value expected", [%here], { k : int }];
   let ts =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
@@ -131,6 +129,22 @@ let compute_k_best ~task_pool ~possible_solutions ~k =
   in
   let chan = Domainslib.Chan.make_unbounded () in
   let num_computed = ref 0 in
+  let bar =
+    let total = force Code.cardinality in
+    let open Progress.Line in
+    list [ bar total; count_to total; parens (const "eta: " ++ eta total) ]
+  in
+  let reporter, local_display =
+    match display with
+    | Some display -> Progress.Display.add_line display bar, None
+    | None ->
+      let display =
+        Progress.Display.start
+          ~config:(Progress.Config.v ~persistent:false ())
+          (Progress.Multi.line bar)
+      in
+      Progress.Display.add_line display bar, Some display
+  in
   let reduce () =
     let finished = ref false in
     while not !finished do
@@ -138,14 +152,7 @@ let compute_k_best ~task_pool ~possible_solutions ~k =
       | `Finished -> finished := true
       | `Computed (t : t) ->
         Int.incr num_computed;
-        do_ansi (fun () ->
-          ANSITerminal.move_bol ();
-          ANSITerminal.print_string
-            []
-            (Printf.sprintf
-               "Guess.compute_k_best : %d / %d"
-               !num_computed
-               (force Code.cardinality - 1)));
+        Progress.Reporter.report reporter 1;
         if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
     done
   in
@@ -161,9 +168,9 @@ let compute_k_best ~task_pool ~possible_solutions ~k =
         then Domainslib.Chan.send chan (`Computed t));
     Domainslib.Chan.send chan `Finished;
     Domainslib.Task.await pool reduced);
-  do_ansi (fun () ->
-    ANSITerminal.move_bol ();
-    ANSITerminal.erase Eol);
+  Progress.Reporter.finalise reporter;
+  Option.iter display ~f:(fun display -> Progress.Display.remove_line display reporter);
+  Option.iter local_display ~f:Progress.Display.finalise;
   Kheap.to_list ts
 ;;
 

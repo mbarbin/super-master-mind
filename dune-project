@@ -64,6 +64,8 @@
    (and
     (>= v0.16)
     (< v0.17)))
+  (progress
+   (>= 0.2.3-preview))
   (sexp_diff
    (and
     (>= v0.16)
