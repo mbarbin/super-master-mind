@@ -5,6 +5,8 @@
 ### Changed
 
 - Generate opam file from `dune-project`.
+- Change how progress is reported during the computation of the opening-book.
+  Now displays [progress](https://github.com/craigfe/progress) bars.
 
 ### Fixed
 
