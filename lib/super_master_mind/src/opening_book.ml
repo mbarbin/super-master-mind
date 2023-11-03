@@ -1,7 +1,7 @@
 type t = Guess.t [@@deriving sexp]
 
 let root t ~color_permutation = Guess.map_color t ~color_permutation
-let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
+let do_ansi f = if Stdlib.Out_channel.isatty Out_channel.stdout then f ()
 
 let rec compute_internal (t : t) ~task_pool ~possible_solutions ~current_depth ~depth ~k =
   let number_of_cue = Nonempty_list.length t.by_cue in

@@ -42,11 +42,9 @@
    (and
     (>= v0.16)
     (< v0.17)))
-  (core_unix
-   (and
-    (>= v0.16)
-    (< v0.17)))
-  (dmonainslib
+  (command-unix-for-opam
+   (>= 0.0.1))
+  (domainslib
    (>= 0.5))
   (expect_test_helpers_core
    (and

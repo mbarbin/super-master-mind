@@ -120,7 +120,7 @@ let compute ~possible_solutions ~candidate : t =
   }
 ;;
 
-let do_ansi f = if ANSITerminal.isatty.contents Core_unix.stdout then f ()
+let do_ansi f = if Stdlib.Out_channel.isatty Out_channel.stdout then f ()
 
 let compute_k_best ~task_pool ~possible_solutions ~k =
   if k < 1 then raise_s [%sexp "k >= 1 value expected", [%here], { k : int }];

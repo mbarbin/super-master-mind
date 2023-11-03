@@ -3,6 +3,6 @@
  (public_name super-master-mind)
  (package super-master-mind)
  (flags -w +a-40-42-66 -warn-error +a)
- (libraries super-master-mind core_unix.command_unix)
+ (libraries super-master-mind command-unix-for-opam)
  (instrumentation
   (backend bisect_ppx)))
