@@ -81,8 +81,9 @@ let to_hum t =
 let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
 
 let of_index_exn index =
-  if not (0 <= index && index < force cardinality)
-  then raise_s [%sexp "Index out of bounds", [%here], (index : int)];
+  let cardinality = force cardinality in
+  if not (0 <= index && index < cardinality)
+  then raise_s [%sexp "Index out of bounds", { index : int; cardinality : int }];
   index
 ;;
 
@@ -91,7 +92,7 @@ let create_exn hum =
   let cache = force Cache.value in
   match cache.raw_code_to_index.(raw_code) with
   | Some index -> index
-  | None -> raise_s [%sexp "Invalid hum representation", [%here], (hum : Hum.t)]
+  | None -> raise_s [%sexp "Invalid cue", (hum : Hum.t)]
 ;;
 
 let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn

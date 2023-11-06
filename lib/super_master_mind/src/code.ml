@@ -11,8 +11,14 @@ module Computing = struct
   type t = Color.t array
 
   let create_exn hum =
-    if Array.length hum <> force size
-    then raise_s [%sexp "Invalid code size", [%here], (hum : Hum.t)];
+    let expected_size = force size in
+    let code_size = Array.length hum in
+    if code_size <> expected_size
+    then
+      raise_s
+        [%sexp
+          "Invalid code size"
+          , { code = (hum : Hum.t); code_size : int; expected_size : int }];
     Array.map hum ~f:Color.of_hum
   ;;
 
@@ -79,8 +85,9 @@ let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
 let to_index t = t
 
 let of_index_exn index =
-  if not (0 <= index && index < force cardinality)
-  then raise_s [%sexp "Index out of bounds", [%here], (index : int)];
+  let cardinality = force cardinality in
+  if not (0 <= index && index < cardinality)
+  then raise_s [%sexp "Index out of bounds", { index : int; cardinality : int }];
   index
 ;;
 

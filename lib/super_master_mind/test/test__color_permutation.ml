@@ -77,9 +77,9 @@ let%expect_test "indices" =
        : Color_permutation.t));
   [%expect
     {|
-    ("Index out of bounds"
-     lib/super_master_mind/src/color_permutation.ml:63:45
-     40320) |}];
+    ("Index out of bounds" (
+      (index       40320)
+      (cardinality 40320))) |}];
   ()
 ;;
 

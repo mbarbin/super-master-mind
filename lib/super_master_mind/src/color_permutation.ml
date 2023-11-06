@@ -27,7 +27,7 @@ let create_exn hums =
       visited.(index) <- true;
       Int.incr count));
   if Array.length colors <> color_cardinality || !count <> color_cardinality
-  then raise_s [%sexp "Invalid color permutation", [%here], (hums : Color.Hum.t array)];
+  then raise_s [%sexp "Invalid color permutation", (hums : Color.Hum.t array)];
   colors
 ;;
 
@@ -58,9 +58,10 @@ let find_nth array ~n ~f =
 
 let of_index_exn index =
   let color_cardinality = force Color.cardinality in
+  let cardinality = force cardinality in
   let factorial = force factorial in
-  if not (0 <= index && index < force cardinality)
-  then raise_s [%sexp "Index out of bounds", [%here], (index : int)];
+  if not (0 <= index && index < cardinality)
+  then raise_s [%sexp "Index out of bounds", { index : int; cardinality : int }];
   let factorial_decomposition = Array.create ~len:color_cardinality 0 in
   let remainder = ref index in
   for i = color_cardinality - 1 downto 1 do

@@ -43,8 +43,9 @@ let of_hum = Hum.to_index
 let to_index t = t
 
 let of_index_exn index =
-  if not (0 <= index && index < force cardinality)
-  then raise_s [%sexp "Index out of bounds", [%here], (index : int)];
+  let cardinality = force cardinality in
+  if not (0 <= index && index < cardinality)
+  then raise_s [%sexp "Index out of bounds", { index : int; cardinality : int }];
   index
 ;;
 

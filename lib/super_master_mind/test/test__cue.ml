@@ -55,7 +55,11 @@ let%expect_test "indices" =
   [%expect {||}];
   require_does_raise [%here] (fun () ->
     ignore (Cue.of_index_exn (force Cue.cardinality) : Cue.t));
-  [%expect {| ("Index out of bounds" lib/super_master_mind/src/cue.ml:85:45 20) |}];
+  [%expect
+    {|
+    ("Index out of bounds" (
+      (index       20)
+      (cardinality 20))) |}];
   ()
 ;;
 
@@ -67,11 +71,9 @@ let%expect_test "hum" =
   [%expect {||}];
   require_does_raise [%here] (fun () ->
     ignore (Cue.create_exn { white = 3; black = 3 } : Cue.t));
-  [%expect
-    {|
-    ("Invalid hum representation"
-     lib/super_master_mind/src/cue.ml:94:57
-     ((white 3)
+  [%expect {|
+    ("Invalid cue" (
+      (white 3)
       (black 3))) |}];
   ()
 ;;
