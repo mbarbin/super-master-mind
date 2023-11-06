@@ -2,7 +2,7 @@
  (name main)
  (public_name super-master-mind)
  (package super-master-mind)
- (flags -w +a-40-42-66 -warn-error +a)
- (libraries super-master-mind command-unix-for-opam)
+ (flags :standard -w +a-4-40-41-42-44-45-66 -warn-error +a)
+ (libraries command-unix-for-opam super-master-mind)
  (instrumentation
   (backend bisect_ppx)))

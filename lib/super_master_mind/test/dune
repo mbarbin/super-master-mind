@@ -1,8 +1,9 @@
 (library
  (name super_master_mind_test)
  (flags
+  :standard
   -w
-  +a-40-42-45-66
+  +a-4-40-41-42-44-45-66
   -warn-error
   +a
   -open
@@ -18,7 +19,7 @@
   core_kernel.nonempty_list
   expect_test_helpers_core.expect_test_helpers_base
   stdio
-  super-master-mind)
+  super_master_mind)
  (inline_tests)
  (preprocess
   (pps ppx_jane ppx_js_style -check-doc-comments)))

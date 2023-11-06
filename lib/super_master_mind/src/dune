@@ -2,8 +2,9 @@
  (name super_master_mind)
  (public_name super-master-mind)
  (flags
+  :standard
   -w
-  +a-4-40-42-44-66
+  +a-4-40-41-42-44-45-66
   -warn-error
   +a
   -open
@@ -20,8 +21,8 @@
   parsexp
   progress
   sexp_diff
-  super_master_mind_import
-  stdio)
+  stdio
+  super_master_mind_import)
  (instrumentation
   (backend bisect_ppx))
  (preprocess
