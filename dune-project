@@ -32,6 +32,8 @@
    (and
     :dev
     (>= 2.8)))
+  (command-unix-for-opam
+   (>= 0.0.1))
   (core
    (and
     (>= v0.16)
@@ -40,8 +42,6 @@
    (and
     (>= v0.16)
     (< v0.17)))
-  (command-unix-for-opam
-   (>= 0.0.1))
   (domainslib
    (>= 0.5))
   (expect_test_helpers_core
@@ -49,7 +49,10 @@
     :with-test
     (>= v0.16)
     (< v0.17)))
-  ocaml-embed-file
+  (ocaml-embed-file
+   (and
+    (>= v0.16)
+    (< v0.17)))
   (parsexp
    (and
     (>= v0.16)

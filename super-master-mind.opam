@@ -13,12 +13,12 @@ depends: [
   "dune" {>= "3.11" & >= "3.11"}
   "base" {>= "v0.16" & < "v0.17"}
   "bisect_ppx" {dev & >= "2.8"}
+  "command-unix-for-opam" {>= "0.0.1"}
   "core" {>= "v0.16" & < "v0.17"}
   "core_kernel" {>= "v0.16" & < "v0.17"}
-  "command-unix-for-opam" {>= "0.0.1"}
   "domainslib" {>= "0.5"}
   "expect_test_helpers_core" {with-test & >= "v0.16" & < "v0.17"}
-  "ocaml-embed-file"
+  "ocaml-embed-file" {>= "v0.16" & < "v0.17"}
   "parsexp" {>= "v0.16" & < "v0.17"}
   "ppx_jane" {>= "v0.16" & < "v0.17"}
   "ppx_js_style" {>= "v0.16" & < "v0.17"}
