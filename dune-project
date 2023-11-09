@@ -38,15 +38,15 @@
    (and
     (>= v0.16)
     (< v0.17)))
-  (core_kernel
-   (and
-    (>= v0.16)
-    (< v0.17)))
   (domainslib
    (>= 0.5))
   (expect_test_helpers_core
    (and
     :with-test
+    (>= v0.16)
+    (< v0.17)))
+  (nonempty-list
+   (and
     (>= v0.16)
     (< v0.17)))
   (ocaml-embed-file

@@ -16,8 +16,8 @@
  (libraries
   base
   core.command
-  core_kernel.nonempty_list
   domainslib
+  nonempty-list
   parsexp
   progress
   sexp_diff

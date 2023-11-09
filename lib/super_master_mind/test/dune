@@ -16,8 +16,8 @@
   Super_master_mind)
  (libraries
   base
-  core_kernel.nonempty_list
   expect_test_helpers_core.expect_test_helpers_base
+  nonempty-list
   stdio
   super_master_mind)
  (inline_tests)
