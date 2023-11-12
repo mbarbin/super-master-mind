@@ -57,6 +57,10 @@
    (and
     (>= v0.16)
     (< v0.17)))
+  (patdiff
+   (and
+    (>= v0.16)
+    (< v0.17)))
   (ppx_jane
    (and
     (>= v0.16)
@@ -67,10 +71,6 @@
     (< v0.17)))
   (progress
    (>= 0.2.3-preview))
-  (sexp_diff
-   (and
-    (>= v0.16)
-    (< v0.17)))
   (stdio
    (and
     (>= v0.16)

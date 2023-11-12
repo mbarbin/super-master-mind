@@ -118,7 +118,7 @@ let compute_cmd =
      and depth =
        flag "--depth" (optional_with_default 2 int) ~doc:"INT depth of book (default 2)"
      and task_pool_config = Task_pool.Config.param
-     and filename =
+     and path =
        flag
          "--output-file"
          ~aliases:[ "o" ]
@@ -128,7 +128,7 @@ let compute_cmd =
      fun () ->
        Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
          let t = compute ~task_pool ~depth in
-         Out_channel.with_file filename ~f:(fun oc ->
+         Out_channel.with_file path ~f:(fun oc ->
            Out_channel.output_string oc (Sexp.to_string_hum [%sexp (t : t)]);
            Out_channel.output_char oc '\n')))
 ;;

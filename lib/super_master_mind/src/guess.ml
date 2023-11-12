@@ -179,23 +179,25 @@ let iter_result list ~f = List.fold_result list ~init:() ~f:(fun () a -> f a)
 module Verify_error = struct
   type t =
     { unexpected_field : string
-    ; diff : Sexp_diff.Diff.t
+    ; expected : Sexp.t
+    ; computed : Sexp.t
     }
   [@@deriving sexp_of]
 
-  let to_error t = Error.create_s [%sexp (t : t)]
+  let to_error { unexpected_field; expected; computed } =
+    let diff = Expect_test_patdiff.patdiff_s expected computed ~context:3 in
+    Error.create_s [%sexp { unexpected_field : string; diff : string }]
+  ;;
 
-  let print_hum ?(color = false) { unexpected_field; diff } oc =
+  let print_hum ?(color = false) { unexpected_field; expected; computed } oc =
     let diff =
       if color
       then
-        Sexp_diff.Display.display_with_ansi_colors
-          (Sexp_diff.Display.Display_options.create ~num_shown:2 Two_column)
-          diff
-      else
-        Sexp_diff.Display.display_as_plain_string
-          (Sexp_diff.Display.Display_options.create ~num_shown:2 Two_column)
-          diff
+        Patdiff.Patdiff_core.patdiff
+          ~prev:{ name = "expected"; text = Sexp.to_string_hum expected }
+          ~next:{ name = "computed"; text = Sexp.to_string_hum computed }
+          ()
+      else Expect_test_patdiff.patdiff_s expected computed ~context:3
     in
     Out_channel.output_lines oc [ Printf.sprintf "Unexpected %s:" unexpected_field; diff ]
   ;;
@@ -205,13 +207,14 @@ let unexpected
   (type a)
   ~unexpected_field
   ~(expected : a)
-  ~(got : a)
+  ~(computed : a)
   (sexp_of_a : a -> Sexp.t)
   =
-  let diff =
-    Sexp_diff.Algo.diff ~original:[%sexp (expected : a)] ~updated:[%sexp (got : a)] ()
-  in
-  Error { Verify_error.unexpected_field; diff }
+  Error
+    { Verify_error.unexpected_field
+    ; expected = [%sexp (expected : a)]
+    ; computed = [%sexp (computed : a)]
+    }
 ;;
 
 let rec verify (t : t) ~possible_solutions =
@@ -222,14 +225,14 @@ let rec verify (t : t) ~possible_solutions =
     unexpected
       ~unexpected_field:"by_cue length"
       ~expected:(Nonempty_list.length t'.by_cue)
-      ~got:(Nonempty_list.length t.by_cue)
+      ~computed:(Nonempty_list.length t.by_cue)
       [%sexp_of: int]
   | Ok by_cues ->
     let%bind () =
       let t = { t with by_cue = t'.by_cue } in
       if equal t t'
       then return ()
-      else unexpected ~unexpected_field:"values" ~expected:t' ~got:t [%sexp_of: t]
+      else unexpected ~unexpected_field:"values" ~expected:t' ~computed:t [%sexp_of: t]
     in
     iter_result (Nonempty_list.to_list by_cues) ~f:(fun (by_cue, by_cue') ->
       assert (not (Next_best_guesses.is_computed by_cue'.next_best_guesses));
@@ -241,7 +244,7 @@ let rec verify (t : t) ~possible_solutions =
           unexpected
             ~unexpected_field:"by_cue"
             ~expected:by_cue'
-            ~got:by_cue
+            ~computed:by_cue
             [%sexp_of: By_cue.t]
       in
       match by_cue.next_best_guesses with

@@ -20,10 +20,10 @@ depends: [
   "nonempty-list" {>= "v0.16" & < "v0.17"}
   "ocaml-embed-file" {>= "v0.16" & < "v0.17"}
   "parsexp" {>= "v0.16" & < "v0.17"}
+  "patdiff" {>= "v0.16" & < "v0.17"}
   "ppx_jane" {>= "v0.16" & < "v0.17"}
   "ppx_js_style" {>= "v0.16" & < "v0.17"}
   "progress" {>= "0.2.3-preview"}
-  "sexp_diff" {>= "v0.16" & < "v0.17"}
   "stdio" {>= "v0.16" & < "v0.17"}
   "odoc" {with-doc}
 ]

@@ -19,8 +19,9 @@
   domainslib
   nonempty-list
   parsexp
+  patdiff
+  patdiff.expect_test_patdiff
   progress
-  sexp_diff
   stdio
   super_master_mind_import)
  (instrumentation
