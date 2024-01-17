@@ -1,7 +1,6 @@
 # super-master-mind
 
 [![Actions Status](https://github.com/mbarbin/super-master-mind/workflows/ci/badge.svg)](https://github.com/mbarbin/super-master-mind/actions/workflows/ci.yml)
-[![Deploy odoc Actions Status](https://github.com/mbarbin/super-master-mind/workflows/deploy-odoc/badge.svg)](https://github.com/mbarbin/super-master-mind/actions/workflows/deploy-odoc.yml)
 [![Coverage Status](https://coveralls.io/repos/github/mbarbin/super-master-mind/badge.svg?branch=master&service=github)](https://coveralls.io/github/mbarbin/super-master-mind?branch=master)
 
 This is a toy project implementing a solver for the super-master-mind game,
@@ -108,8 +107,8 @@ The game will continues with new guesses until the program breaks the code.
 
 ## Code documentation
 
-The tip of the master branch is compiled with odoc and published to GitHub pages
-[here](https://mbarbin.github.io/super-master-mind/odoc/).
+The code documentation of the latest release is built with `odoc` and published
+to `GitHub` pages [here](https://mbarbin.github.io/super-master-mind).
 
 ## Motivations
 
