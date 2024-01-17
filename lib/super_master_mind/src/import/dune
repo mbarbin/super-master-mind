@@ -1,7 +1,7 @@
 (library
  (name super_master_mind_import)
  (public_name super-master-mind.import)
- (flags :standard -w +a-4-40-41-42-44-45-66 -warn-error +a -open Base)
+ (flags :standard -w +a-4-40-41-42-44-45-48-66 -warn-error +a -open Base)
  (libraries base)
  (instrumentation
   (backend bisect_ppx))
