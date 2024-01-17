@@ -18,7 +18,6 @@
 (package
  (name super-master-mind)
  (synopsis "A solver for the super master mind game")
- (description "A solver for the super master mind game")
  (depends
   (ocaml
    (>= 5.1))
