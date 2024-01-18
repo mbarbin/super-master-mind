@@ -15,6 +15,15 @@ let the_t here =
     regular
 ;;
 
+let normalize_fname (p : Source_code_position.t) =
+  let aux f =
+    let parts = String.split f ~on:'/' in
+    List.drop_while parts ~f:(fun part -> not (String.equal part "lib"))
+    |> String.concat ~sep:"/"
+  in
+  { p with pos_fname = aux p.pos_fname }
+;;
+
 let use_small_game_dimensions_exn here =
   match !cell with
   | None -> cell := Some (here, small_for_tests)
@@ -22,8 +31,8 @@ let use_small_game_dimensions_exn here =
     raise_s
       [%sexp
         "Game_dimensions is already set"
-        , (here : Source_code_position.t)
-        , { was_set_here : Source_code_position.t }]
+        , (normalize_fname here : Source_code_position.t)
+        , { was_set_here = (was_set_here |> normalize_fname : Source_code_position.t) }]
 ;;
 
 let param here =

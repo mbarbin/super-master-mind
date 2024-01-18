@@ -12,6 +12,12 @@ module Hum = struct
     | Yellow
   [@@deriving compare, equal, enumerate, hash, sexp]
 
+  let t_of_sexp sexp =
+    match t_of_sexp sexp with
+    | t -> t
+    | exception _ -> raise_s [%sexp "Invalid color", (sexp : Sexp.t)]
+  ;;
+
   let to_index = function
     | Black -> 0
     | Blue -> 1
@@ -51,4 +57,9 @@ let of_index_exn index =
 
 let all = lazy (List.init (force cardinality) ~f:Fn.id)
 let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
-let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> of_hum
+
+let t_of_sexp sexp =
+  match sexp |> [%of_sexp: Hum.t] with
+  | hum -> hum |> of_hum
+  | exception _ -> raise_s [%sexp "Invalid color", (sexp : Sexp.t)]
+;;
