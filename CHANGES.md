@@ -1,16 +1,15 @@
-## unreleased
-
-### Added
+## 0.0.3 (2024-01-18)
 
 ### Changed
 
+- Internal changes related to build and release process.
 - Generate opam file from `dune-project`.
 - Change how progress is reported during the computation of the opening-book.
   Now displays [progress](https://github.com/craigfe/progress) bars.
 
-### Fixed
-
 ### Removed
+
+- Refactor to remove `Core_kernel` and `ANSITerminal` dependencies.
 
 ## 0.0.2 (2023-11-01)
 
