@@ -8,7 +8,7 @@ homepage: "https://github.com/mbarbin/super-master-mind"
 doc: "https://mbarbin.github.io/super-master-mind/odoc/"
 bug-reports: "https://github.com/mbarbin/super-master-mind/issues"
 depends: [
-  "dune" {>= "3.12"}
+  "dune" {>= "3.13"}
   "ocaml" {>= "5.1"}
   "base" {>= "v0.16" & < "v0.17"}
   "bisect_ppx" {dev & >= "2.8"}
