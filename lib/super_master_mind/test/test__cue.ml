@@ -53,8 +53,7 @@ let%expect_test "indices" =
     let cue' = Cue.of_index_exn index in
     assert (Cue.equal cue cue'));
   [%expect {||}];
-  require_does_raise [%here] (fun () ->
-    ignore (Cue.of_index_exn (force Cue.cardinality) : Cue.t));
+  require_does_raise [%here] (fun () : Cue.t -> Cue.of_index_exn (force Cue.cardinality));
   [%expect
     {|
     ("Index out of bounds" (
@@ -69,8 +68,7 @@ let%expect_test "hum" =
     let cue' = Cue.create_exn hum in
     assert (Cue.equal cue cue'));
   [%expect {||}];
-  require_does_raise [%here] (fun () ->
-    ignore (Cue.create_exn { white = 3; black = 3 } : Cue.t));
+  require_does_raise [%here] (fun () : Cue.t -> Cue.create_exn { white = 3; black = 3 });
   [%expect {|
     ("Invalid cue" (
       (white 3)

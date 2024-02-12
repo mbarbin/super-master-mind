@@ -71,10 +71,8 @@ let%expect_test "indices" =
   let length = Hashtbl.length all in
   assert (length = force Color_permutation.cardinality);
   [%expect {||}];
-  require_does_raise [%here] (fun () ->
-    ignore
-      (Color_permutation.of_index_exn (force Color_permutation.cardinality)
-       : Color_permutation.t));
+  require_does_raise [%here] (fun () : Color_permutation.t ->
+    Color_permutation.of_index_exn (force Color_permutation.cardinality));
   [%expect
     {|
     ("Index out of bounds" (

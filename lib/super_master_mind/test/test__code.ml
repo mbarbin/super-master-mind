@@ -149,8 +149,8 @@ let%expect_test "indices" =
     assert (Code.equal code code')
   done;
   [%expect {||}];
-  require_does_raise [%here] (fun () ->
-    ignore (Code.of_index_exn (force Code.cardinality) : Code.t));
+  require_does_raise [%here] (fun () : Code.t ->
+    Code.of_index_exn (force Code.cardinality));
   [%expect
     {|
     ("Index out of bounds" (
