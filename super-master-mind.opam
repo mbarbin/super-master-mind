@@ -20,8 +20,15 @@ depends: [
   "ocaml-embed-file" {>= "v0.16" & < "v0.17"}
   "parsexp" {>= "v0.16" & < "v0.17"}
   "patdiff" {>= "v0.16" & < "v0.17"}
-  "ppx_jane" {>= "v0.16" & < "v0.17"}
+  "ppx_compare" {>= "v0.16" & < "v0.17"}
+  "ppx_enumerate" {>= "v0.16" & < "v0.17"}
+  "ppx_expect" {with-test & >= "v0.16" & < "v0.17"}
+  "ppx_hash" {>= "v0.16" & < "v0.17"}
+  "ppx_here" {>= "v0.16" & < "v0.17"}
   "ppx_js_style" {>= "v0.16" & < "v0.17"}
+  "ppx_let" {>= "v0.16" & < "v0.17"}
+  "ppx_sexp_conv" {>= "v0.16" & < "v0.17"}
+  "ppx_sexp_value" {>= "v0.16" & < "v0.17"}
   "progress" {>= "0.2.3-preview"}
   "stdio" {>= "v0.16" & < "v0.17"}
   "odoc" {with-doc}
