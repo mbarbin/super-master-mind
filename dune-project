@@ -37,7 +37,7 @@
     (< v0.17)))
   (domainslib
    (>= 0.5))
-  (expect_test_helpers_core
+  (expect-test-helpers
    (and
     :with-test
     (>= v0.16)
