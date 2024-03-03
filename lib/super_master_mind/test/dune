@@ -9,12 +9,10 @@
   -open
   Base
   -open
-  Stdio
-  -open
   Expect_test_helpers
   -open
   Super_master_mind)
- (libraries base expect-test-helpers nonempty-list stdio super_master_mind)
+ (libraries base expect-test-helpers nonempty-list super_master_mind)
  (inline_tests)
  (instrumentation
   (backend bisect_ppx))
