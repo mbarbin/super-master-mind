@@ -1,4 +1,7 @@
+_opam
 _build
 _coverage
+.worktree
+*.install
 _bisect_ppx_data
 target
