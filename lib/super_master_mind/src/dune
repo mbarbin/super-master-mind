@@ -40,6 +40,6 @@
 
 (rule
  (targets embedded_files.ml embedded_files.mli)
- (deps %{bin:ocaml-embed-file} ../../../opening-book/opening-book.expected)
+ (deps ../../../opening-book/opening-book.expected)
  (action
-  (bash "%{deps} -output embedded_files")))
+  (run %{bin:ocaml-embed-file} %{deps} -output embedded_files)))
