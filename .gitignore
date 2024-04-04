@@ -1,8 +1,6 @@
 _opam
 _build
 _coverage
-.worktree
 *.install
-dune-workspace
 _bisect_ppx_data
 target
