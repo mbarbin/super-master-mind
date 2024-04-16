@@ -29,7 +29,7 @@ depends: [
   "ppx_let" {>= "v0.16" & < "v0.17"}
   "ppx_sexp_conv" {>= "v0.16" & < "v0.17"}
   "ppx_sexp_value" {>= "v0.16" & < "v0.17"}
-  "progress" {>= "0.2.3-preview"}
+  "progress" {>= "0.3.0"}
   "stdio" {>= "v0.16" & < "v0.17"}
   "odoc" {with-doc}
 ]
