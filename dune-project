@@ -20,7 +20,7 @@
  (synopsis "A solver for the super master mind game")
  (depends
   (ocaml
-   (>= 5.1))
+   (>= 5.2))
   (base
    (and
     (>= v0.17)
