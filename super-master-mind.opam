@@ -10,27 +10,27 @@ bug-reports: "https://github.com/mbarbin/super-master-mind/issues"
 depends: [
   "dune" {>= "3.15"}
   "ocaml" {>= "5.1"}
-  "base" {>= "v0.16" & < "v0.17"}
+  "base" {>= "v0.17" & < "v0.18"}
   "bisect_ppx" {dev & >= "2.8.3"}
   "command-unix-for-opam" {>= "0.0.2"}
-  "core" {>= "v0.16" & < "v0.17"}
+  "core" {>= "v0.17" & < "v0.18"}
   "domainslib" {>= "0.5"}
-  "expect-test-helpers" {with-test & >= "v0.16" & < "v0.17"}
-  "nonempty-list" {>= "v0.16" & < "v0.17"}
-  "ocaml-embed-file" {>= "v0.16" & < "v0.17"}
-  "parsexp" {>= "v0.16" & < "v0.17"}
-  "patdiff" {>= "v0.16" & < "v0.17"}
-  "ppx_compare" {>= "v0.16" & < "v0.17"}
-  "ppx_enumerate" {>= "v0.16" & < "v0.17"}
-  "ppx_expect" {with-test & >= "v0.16" & < "v0.17"}
-  "ppx_hash" {>= "v0.16" & < "v0.17"}
-  "ppx_here" {>= "v0.16" & < "v0.17"}
-  "ppx_js_style" {dev & >= "v0.16" & < "v0.17"}
-  "ppx_let" {>= "v0.16" & < "v0.17"}
-  "ppx_sexp_conv" {>= "v0.16" & < "v0.17"}
-  "ppx_sexp_value" {>= "v0.16" & < "v0.17"}
+  "expect-test-helpers" {with-test & >= "v0.17" & < "v0.18"}
+  "nonempty-list" {>= "v0.17" & < "v0.18"}
+  "ocaml-embed-file" {>= "v0.17" & < "v0.18"}
+  "parsexp" {>= "v0.17" & < "v0.18"}
+  "patdiff" {>= "v0.17" & < "v0.18"}
+  "ppx_compare" {>= "v0.17" & < "v0.18"}
+  "ppx_enumerate" {>= "v0.17" & < "v0.18"}
+  "ppx_expect" {with-test & >= "v0.17" & < "v0.18"}
+  "ppx_hash" {>= "v0.17" & < "v0.18"}
+  "ppx_here" {>= "v0.17" & < "v0.18"}
+  "ppx_js_style" {dev & >= "v0.17" & < "v0.18"}
+  "ppx_let" {>= "v0.17" & < "v0.18"}
+  "ppx_sexp_conv" {>= "v0.17" & < "v0.18"}
+  "ppx_sexp_value" {>= "v0.17" & < "v0.18"}
   "progress" {>= "0.3.0"}
-  "stdio" {>= "v0.16" & < "v0.17"}
+  "stdio" {>= "v0.17" & < "v0.18"}
   "odoc" {with-doc}
 ]
 build: [
