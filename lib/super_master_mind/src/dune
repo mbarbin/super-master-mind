@@ -10,9 +10,7 @@
   -open
   Base
   -open
-  Stdio
-  -open
-  Super_master_mind_import)
+  Stdio)
  (libraries
   base
   core.command
@@ -22,8 +20,7 @@
   patdiff
   patdiff.expect_test_patdiff
   progress
-  stdio
-  super_master_mind_import)
+  stdio)
  (instrumentation
   (backend bisect_ppx))
  (lint
