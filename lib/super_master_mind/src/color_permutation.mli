@@ -36,3 +36,11 @@ val to_index : t -> int
     are expected to verify [0 <= index < cardinality]. An invalid index will
     cause the function to raise. *)
 val of_index_exn : int -> t
+
+module Private : sig
+  (** Find the index of the nth value in an array of values that verify some
+      predicate [f]. nth-index is 0-based, meaning passing [n:0] means that
+      the function shall return the index of the left-most value that verifies
+      the predicate. *)
+  val find_nth : 'a array -> n:int -> f:('a -> bool) -> int option
+end

@@ -1,6 +1,4 @@
 module rec Next_best_guesses : sig
-  (* When computed, best guesses are sorted by decreasing number of
-     expected_bits_gained. *)
   type t =
     | Not_computed
     | Computed of T.t list
@@ -182,11 +180,12 @@ module Verify_error = struct
     ; expected : Sexp.t
     ; computed : Sexp.t
     }
-  [@@deriving sexp_of]
 
   let to_error { unexpected_field; expected; computed } =
-    let diff = Expect_test_patdiff.patdiff_s expected computed ~context:3 in
-    Error.create_s [%sexp { unexpected_field : string; diff : string }]
+    let diff =
+      Expect_test_patdiff.patdiff_s expected computed ~context:3 |> String.split_lines
+    in
+    Error.create_s [%sexp { unexpected_field : string; diff : string list }]
   ;;
 
   let print_hum ?(color = false) { unexpected_field; expected; computed } oc =
@@ -196,7 +195,7 @@ module Verify_error = struct
         Patdiff.Patdiff_core.patdiff
           ~prev:{ name = "expected"; text = Sexp.to_string_hum expected }
           ~next:{ name = "computed"; text = Sexp.to_string_hum computed }
-          ()
+          () [@coverage off]
       else Expect_test_patdiff.patdiff_s expected computed ~context:3
     in
     Out_channel.output_lines oc [ Printf.sprintf "Unexpected %s:" unexpected_field; diff ]

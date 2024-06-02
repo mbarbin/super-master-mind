@@ -106,10 +106,12 @@ let%expect_test "analyze" =
     ((white 5)
      (black 0)) |}];
   let not_tested =
-    Array.find_mapi tested ~f:(fun i tested ->
-      if not tested then Some (Cue.of_index_exn i) else None)
+    tested
+    |> Array.filter_mapi ~f:(fun i tested -> Option.some_if (not tested) i)
+    |> Array.map ~f:Cue.of_index_exn
   in
-  print_s [%sexp (not_tested : Cue.t option)];
+  print_s [%sexp (not_tested : Cue.t array)];
+  require [%here] (Array.is_empty not_tested);
   [%expect {| () |}]
 ;;
 
@@ -137,6 +139,38 @@ let%expect_test "repetition of colors in the solution" =
   [%expect {|
     ((white 2)
      (black 1)) |}]
+;;
+
+let%expect_test "create_exn" =
+  let size = force Code.size in
+  print_s [%sexp { size : int }];
+  [%expect {| ((size 5)) |}];
+  require_does_raise [%here] (fun () : Code.t -> Code.create_exn [||]);
+  [%expect
+    {|
+    ("Invalid code size" (
+      (code ())
+      (code_size     0)
+      (expected_size 5)))
+    |}];
+  require_does_raise [%here] (fun () : Code.t -> Code.create_exn [| Red |]);
+  [%expect
+    {|
+    ("Invalid code size" (
+      (code (Red))
+      (code_size     1)
+      (expected_size 5)))
+    |}];
+  require_does_raise [%here] (fun () : Code.t ->
+    Code.create_exn (Array.create ~len:(size + 1) Color.Hum.Red));
+  [%expect
+    {|
+    ("Invalid code size" (
+      (code (Red Red Red Red Red Red))
+      (code_size     6)
+      (expected_size 5)))
+    |}];
+  ()
 ;;
 
 let%expect_test "indices" =

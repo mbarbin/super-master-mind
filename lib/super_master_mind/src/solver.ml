@@ -53,13 +53,16 @@ let solve ~color_permutation ~task_pool =
       let guess = Guess.compute ~possible_solutions ~candidate:solution in
       print guess)
     else (
-      match by_cue.next_best_guesses with
-      | Computed [] -> ()
-      | Computed (guess :: _) -> aux guess ~possible_solutions
-      | Not_computed ->
-        (match Guess.compute_k_best ~task_pool ~possible_solutions ~k:1 () with
-         | [] -> ()
-         | guess :: _ -> aux guess ~possible_solutions))
+      let guess =
+        match by_cue.next_best_guesses with
+        | Computed [] -> assert false
+        | Computed (guess :: _) -> guess
+        | Not_computed ->
+          (match Guess.compute_k_best ~task_pool ~possible_solutions ~k:1 () with
+           | [] -> assert false
+           | guess :: _ -> guess)
+      in
+      aux guess ~possible_solutions)
   in
   let opening_book = Lazy.force Opening_book.opening_book in
   let root = Opening_book.root opening_book ~color_permutation in
@@ -81,7 +84,7 @@ let cmd =
          let index =
            match color_permutation with
            | Some index -> index
-           | None -> Random.int (force Color_permutation.cardinality)
+           | None -> Random.int (force Color_permutation.cardinality) [@coverage off]
          in
          Color_permutation.of_index_exn index
        in

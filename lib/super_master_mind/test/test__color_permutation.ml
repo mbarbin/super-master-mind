@@ -18,6 +18,7 @@ let%expect_test "bounds" =
         [%sexp
           "Unexpected value"
           , { i : int; expected : Color_permutation.t; got = (t : Color_permutation.t) }]
+      [@coverage off]
   in
   test 0 zero;
   [%expect {| (0 (Black Blue Brown Green Orange Red White Yellow)) |}];
@@ -60,8 +61,7 @@ let%expect_test "indices" =
       e
     | Some j ->
       raise_s
-        [%sexp
-          "Duplicated permutation", [%here], { i : int; j : int; e : Color_permutation.t }]
+        [%sexp "Duplicated permutation", { i : int; j : int; e : Color_permutation.t }]
   in
   for i = 0 to force Color_permutation.cardinality - 1 do
     let color_permutation = add i in
@@ -78,6 +78,15 @@ let%expect_test "indices" =
     ("Index out of bounds" (
       (index       40320)
       (cardinality 40320))) |}];
+  (* Testing the [add] function itself. *)
+  require_does_raise [%here] (fun () : Color_permutation.t -> add 0);
+  [%expect
+    {|
+    ("Duplicated permutation" (
+      (i 0)
+      (j 0)
+      (e (Black Blue Brown Green Orange Red White Yellow))))
+    |}];
   ()
 ;;
 
@@ -106,6 +115,29 @@ let%expect_test "to_hum | create_exn" =
           "Color_permutation does not round-trip"
           , [%here]
           , { t : Color_permutation.t; hum : Color.Hum.t array; t' : Color_permutation.t }]
+      [@coverage off]
   done;
   [%expect {||}]
+;;
+
+let%expect_test "find_nth" =
+  let test a n f =
+    let result = Color_permutation.Private.find_nth a ~n ~f in
+    print_s [%sexp (result : int option)]
+  in
+  test [||] 0 (fun _ -> assert false);
+  [%expect {| () |}];
+  test [||] 1 (fun _ -> assert false);
+  [%expect {| () |}];
+  test [| true |] 0 Fn.id;
+  [%expect {| (0) |}];
+  test [| true |] 1 Fn.id;
+  [%expect {| () |}];
+  test [| false; true |] 0 Fn.id;
+  [%expect {| (1) |}];
+  test [| false; true; false; true; false; true |] 1 Fn.id;
+  [%expect {| (3) |}];
+  test [| false; true; false; true; false; true |] 2 Fn.id;
+  [%expect {| (5) |}];
+  ()
 ;;

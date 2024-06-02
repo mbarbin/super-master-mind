@@ -43,8 +43,6 @@ let factorial =
 
 let cardinality = lazy (force factorial).(force Color.cardinality)
 
-(* Find the nth index in an array of values that verify some predicate
-   [f]. nth-index is 0-based. *)
 let find_nth array ~n ~f =
   let rec aux k i =
     if i >= Array.length array
@@ -88,7 +86,7 @@ let of_index_exn index =
             ; factorial_decomposition : int array
             ; available_colors : bool array
             ; t : Color.t array
-            }]
+            }] [@coverage off]
   done;
   t
 ;;
@@ -110,3 +108,7 @@ let to_index t =
   Array.foldi factorial_decomposition ~init:0 ~f:(fun i acc d ->
     acc + (d * factorial.(i)))
 ;;
+
+module Private = struct
+  let find_nth = find_nth
+end
