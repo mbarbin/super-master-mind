@@ -126,7 +126,6 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       if r <> 0 then r else Code.compare t2.candidate t1.candidate)
   in
   let chan = Domainslib.Chan.make_unbounded () in
-  let num_computed = ref 0 in
   let bar =
     let total = force Code.cardinality in
     let open Progress.Line in
@@ -149,7 +148,6 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       match Domainslib.Chan.recv chan with
       | `Finished -> finished := true
       | `Computed (t : t) ->
-        Int.incr num_computed;
         Progress.Reporter.report reporter 1;
         if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
     done
