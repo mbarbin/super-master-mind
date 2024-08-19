@@ -7,4 +7,4 @@ val solve
   -> Guess.t list
 
 (** A command that runs [solve]. *)
-val cmd : Command.t
+val cmd : unit Command.t

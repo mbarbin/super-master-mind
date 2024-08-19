@@ -30,17 +30,18 @@ let run ~solution =
 ;;
 
 let cmd =
-  Command.basic
+  Command.make
     ~summary:"run interactively"
     (let%map_open.Command solution =
-       flag "--solution" (optional sexp) ~doc:"CODE chosen solution (default is random)"
-       >>| Option.map ~f:[%of_sexp: Code.t]
+       Arg.named_opt
+         [ "solution" ]
+         Code.param
+         ~doc:"CODE chosen solution (default is random)"
      in
-     fun () ->
-       let solution =
-         match solution with
-         | Some solution -> solution
-         | None -> Code.of_index_exn (Random.int (force Code.cardinality))
-       in
-       run ~solution)
+     let solution =
+       match solution with
+       | Some solution -> solution
+       | None -> Code.of_index_exn (Random.int (force Code.cardinality))
+     in
+     run ~solution)
 ;;

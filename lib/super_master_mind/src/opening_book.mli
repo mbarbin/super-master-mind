@@ -17,4 +17,4 @@ val depth : t -> int
 val root : t -> color_permutation:Color_permutation.t -> Guess.t
 
 (** The command exported as [super-master-mind opening-book]. *)
-val cmd : Command.t
+val cmd : unit Command.t

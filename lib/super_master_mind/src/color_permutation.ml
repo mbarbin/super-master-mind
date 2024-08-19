@@ -54,11 +54,16 @@ let find_nth array ~n ~f =
   aux (-1) 0
 ;;
 
+let is_valid_index ~index =
+  let cardinality = force cardinality in
+  0 <= index && index < cardinality
+;;
+
 let of_index_exn index =
   let color_cardinality = force Color.cardinality in
   let cardinality = force cardinality in
   let factorial = force factorial in
-  if not (0 <= index && index < cardinality)
+  if not (is_valid_index ~index)
   then raise_s [%sexp "Index out of bounds", { index : int; cardinality : int }];
   let factorial_decomposition = Array.create ~len:color_cardinality 0 in
   let remainder = ref index in
@@ -107,6 +112,19 @@ let to_index t =
   done;
   Array.foldi factorial_decomposition ~init:0 ~f:(fun i acc d ->
     acc + (d * factorial.(i)))
+;;
+
+let param =
+  Command.Param.create
+    ~docv:"COLOR_PERMUTATION"
+    ~parse:(fun i ->
+      match Int.of_string i with
+      | exception _ -> Error (`Msg "Invalid color permutation")
+      | index ->
+        if is_valid_index ~index
+        then Ok (of_index_exn index)
+        else Error (`Msg "Invalid color permutation"))
+    ~print:(fun fmt t -> Stdlib.Format.fprintf fmt "%d" (to_index t))
 ;;
 
 module Private = struct

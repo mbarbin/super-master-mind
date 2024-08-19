@@ -11,8 +11,8 @@ module Config : sig
   val default : t
 
   (** Commands that desire to expose task pool parameters to the user can use
-      [param]. Otherwise see [default]. *)
-  val param : t Command.Param.t
+      [arg]. Otherwise see [default]. *)
+  val arg : t Command.Arg.t
 end
 
 (** This wrapper takes care of setting up the task pool, and tearing it down

@@ -6,7 +6,7 @@
     easily spotted by the tests. *)
 
 val use_small_game_dimensions_exn : Source_code_position.t -> unit
-val param : Source_code_position.t -> unit Command.Param.t
+val arg : Source_code_position.t -> unit Command.Arg.t
 
 (** {1 Root dimensions} *)
 

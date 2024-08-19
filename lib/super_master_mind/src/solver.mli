@@ -1,1 +1,1 @@
-val cmd : Command.t
+val cmd : unit Command.t

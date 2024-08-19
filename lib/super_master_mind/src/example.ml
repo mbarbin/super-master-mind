@@ -44,20 +44,21 @@ let solve ~task_pool ~color_permutation ~solution =
 ;;
 
 let cmd =
-  Command.basic
+  Command.make
     ~summary:"run through an example"
     (let%map_open.Command solution =
-       flag "--solution" (optional sexp) ~doc:"CODE chosen solution (default is random)"
-       >>| Option.map ~f:[%of_sexp: Code.t]
-     and task_pool_config = Task_pool.Config.param in
-     fun () ->
-       Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
-         let solution =
-           match solution with
-           | Some solution -> solution
-           | None -> Code.create_exn [| Green; Blue; Orange; White; Red |]
-         in
-         ignore
-           (solve ~task_pool ~color_permutation:Color_permutation.identity ~solution
-            : Guess.t list)))
+       Arg.named_opt
+         [ "solution" ]
+         Code.param
+         ~doc:"CODE chosen solution (default is arbitrary)"
+     and task_pool_config = Task_pool.Config.arg in
+     Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
+       let solution =
+         match solution with
+         | Some solution -> solution
+         | None -> Code.create_exn [| Green; Blue; Orange; White; Red |]
+       in
+       ignore
+         (solve ~task_pool ~color_permutation:Color_permutation.identity ~solution
+          : Guess.t list)))
 ;;

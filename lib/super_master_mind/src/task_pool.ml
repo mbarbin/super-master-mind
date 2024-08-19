@@ -3,13 +3,13 @@ module Config = struct
 
   let default = { num_domains = 4 }
 
-  let param =
-    let open Command.Let_syntax in
-    let%map_open num_domains =
-      flag
-        "num-domains"
-        (optional_with_default default.num_domains int)
-        ~doc:"N num of domains for parallel computing"
+  let arg =
+    let%map_open.Command num_domains =
+      Arg.named_with_default
+        [ "num-domains" ]
+        Param.int
+        ~default:default.num_domains
+        ~doc:"num of domains for parallel computing"
     in
     { num_domains }
   ;;

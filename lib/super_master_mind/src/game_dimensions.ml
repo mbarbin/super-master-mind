@@ -35,13 +35,11 @@ let use_small_game_dimensions_exn here =
         , { was_set_here = (was_set_here |> normalize_fname : Source_code_position.t) }]
 ;;
 
-let param here =
-  let open Command.Let_syntax in
-  if%map_open
-    flag
-      "--use-small-game-dimensions"
-      no_arg
-      ~doc:" replace normal dimensions by smaller ones for quick tests"
+let arg here =
+  if%map_open.Command
+    Arg.flag
+      [ "use-small-game-dimensions" ]
+      ~doc:"replace normal dimensions by smaller ones for quick tests"
   then use_small_game_dimensions_exn here
   else ()
 ;;

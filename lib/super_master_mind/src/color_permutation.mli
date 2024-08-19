@@ -37,6 +37,9 @@ val to_index : t -> int
     cause the function to raise. *)
 val of_index_exn : int -> t
 
+(** Parse a [t] in the command line. *)
+val param : t Command.Param.t
+
 module Private : sig
   (** Find the index of the nth value in an array of values that verify some
       predicate [f]. nth-index is 0-based, meaning passing [n:0] means that

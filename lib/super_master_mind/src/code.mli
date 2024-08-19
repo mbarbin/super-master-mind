@@ -41,3 +41,6 @@ val analyze : solution:t -> candidate:t -> Cue.t
 
 (** Map the colors of a code according to a given color permutation. *)
 val map_color : t -> color_permutation:Color_permutation.t -> t
+
+(** Parse a code from the command line. *)
+val param : t Command.Param.t

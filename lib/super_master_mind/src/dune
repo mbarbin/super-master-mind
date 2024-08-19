@@ -10,10 +10,12 @@
   -open
   Base
   -open
-  Stdio)
+  Stdio
+  -open
+  Commandlang)
  (libraries
   base
-  core.command
+  commandlang
   domainslib
   nonempty-list
   parsexp

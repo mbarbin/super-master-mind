@@ -103,54 +103,58 @@ let opening_book =
 ;;
 
 let dump_cmd =
-  Command.basic
+  Command.make
     ~summary:"dump embedded opening-book"
-    (let%map_open.Command () = return () in
-     fun () ->
-       let t = Lazy.force opening_book in
-       print_s [%sexp (t : t)])
+    (let%map_open.Command () = Arg.return () in
+     let t = Lazy.force opening_book in
+     print_s [%sexp (t : t)])
 ;;
 
 let compute_cmd =
-  Command.basic
+  Command.make
     ~summary:"compute and save opening book"
-    (let%map_open.Command () = Game_dimensions.param [%here]
+    (let%map_open.Command () = Game_dimensions.arg [%here]
      and depth =
-       flag "--depth" (optional_with_default 2 int) ~doc:"INT depth of book (default 2)"
-     and task_pool_config = Task_pool.Config.param
+       Arg.named_with_default
+         [ "--depth" ]
+         Param.int
+         ~default:2
+         ~doc:"depth of book (default 2)"
+     and task_pool_config = Task_pool.Config.arg
      and path =
-       flag
-         "--output-file"
-         ~aliases:[ "o" ]
-         (required string)
-         ~doc:"FILE save output to file"
+       Arg.named
+         [ "output-file"; "o" ]
+         Param.string
+         ~docv:"FILE"
+         ~doc:"save output to file"
      in
-     fun () ->
-       Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
-         let t = compute ~task_pool ~depth in
-         Out_channel.with_file path ~f:(fun oc ->
-           Out_channel.output_string oc (Sexp.to_string_hum [%sexp (t : t)]);
-           Out_channel.output_char oc '\n')))
+     Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
+       let t = compute ~task_pool ~depth in
+       Out_channel.with_file path ~f:(fun oc ->
+         Out_channel.output_string oc (Sexp.to_string_hum [%sexp (t : t)]);
+         Out_channel.output_char oc '\n')))
 ;;
 
 let verify_cmd =
-  Command.basic
+  Command.make
     ~summary:"verify properties of embedded opening book"
     (let%map_open.Command color_permutation =
-       flag
-         "--color-permutation"
-         (optional_with_default 0 int)
-         ~doc:"INT color permutation in [0; 40319] (default Identity)"
-       >>| Color_permutation.of_index_exn
+       match%map.Command
+         Arg.named_opt
+           [ "color-permutation" ]
+           Color_permutation.param
+           ~doc:"color permutation in [0; 40319] (default Identity)"
+       with
+       | Some color_permutation -> color_permutation
+       | None -> force Color_permutation.identity
      in
-     fun () ->
-       let t = root (Lazy.force opening_book) ~color_permutation in
-       match Guess.verify t ~possible_solutions:Codes.all with
-       | Ok () -> ()
-       | Error error ->
-         prerr_endline "Embedded opening-book does not verify expected properties.";
-         Guess.Verify_error.print_hum ~color:true error Out_channel.stderr;
-         Stdlib.exit 1)
+     let t = root (Lazy.force opening_book) ~color_permutation in
+     match Guess.verify t ~possible_solutions:Codes.all with
+     | Ok () -> ()
+     | Error error ->
+       prerr_endline "Embedded opening-book does not verify expected properties.";
+       Guess.Verify_error.print_hum ~color:true error Out_channel.stderr;
+       Stdlib.exit 1)
 ;;
 
 let cmd =
