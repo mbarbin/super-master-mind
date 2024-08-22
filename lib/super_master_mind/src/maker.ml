@@ -41,7 +41,7 @@ let cmd =
      let solution =
        match solution with
        | Some solution -> solution
-       | None -> Code.of_index_exn (Random.int (force Code.cardinality))
+       | None -> Code.of_index_exn (Random.int (force Code.cardinality)) [@coverage off]
      in
      run ~solution)
 ;;

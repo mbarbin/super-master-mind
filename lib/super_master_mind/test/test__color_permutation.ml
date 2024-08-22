@@ -125,9 +125,9 @@ let%expect_test "find_nth" =
     let result = Color_permutation.Private.find_nth a ~n ~f in
     print_s [%sexp (result : int option)]
   in
-  test [||] 0 (fun _ -> assert false);
+  test [||] 0 (fun _ -> (assert false [@coverage off]));
   [%expect {| () |}];
-  test [||] 1 (fun _ -> assert false);
+  test [||] 1 (fun _ -> (assert false [@coverage off]));
   [%expect {| () |}];
   test [| true |] 0 Fn.id;
   [%expect {| (0) |}];
