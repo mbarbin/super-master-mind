@@ -12,10 +12,10 @@
   -open
   Stdio
   -open
-  Commandlang)
+  Cmdlang)
  (libraries
   base
-  commandlang
+  cmdlang
   domainslib
   nonempty-list
   parsexp

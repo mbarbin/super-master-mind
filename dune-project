@@ -25,16 +25,12 @@
    (and
     (>= v0.17)
     (< v0.18)))
-  (bisect_ppx
-   (and
-    :dev
-    (>= 2.8.3)))
+  (cmdlang
+   (>= 0.0.4))
+  (cmdlang-to-cmdliner
+   (>= 0.0.4))
   (cmdliner
    (= 1.3.0))
-  (commandlang
-   (>= 0.0.2))
-  (commandlang-to-cmdliner
-   (>= 0.0.2))
   (domainslib
    (>= 0.5))
   (nonempty-list
@@ -69,11 +65,6 @@
    (and
     (>= v0.17)
     (< v0.18)))
-  (ppx_js_style
-   (and
-    :dev
-    (>= v0.17)
-    (< v0.18)))
   (ppx_let
    (and
     (>= v0.17)
@@ -101,20 +92,24 @@
  (depends
   (ocaml
    (>= 5.2))
+  (ocamlformat
+   (and
+    :with-dev-setup
+    (= 0.26.2)))
   (base
    (and
     (>= v0.17)
     (< v0.18)))
   (bisect_ppx
    (and
-    :dev
+    :with-dev-setup
     (>= 2.8.3)))
+  (cmdlang
+   (>= 0.0.4))
+  (cmdlang-to-cmdliner
+   (>= 0.0.4))
   (cmdliner
    (= 1.3.0))
-  (commandlang
-   (>= 0.0.2))
-  (commandlang-to-cmdliner
-   (>= 0.0.2))
   (domainslib
    (>= 0.5))
   (expect_test_helpers_core
@@ -159,7 +154,7 @@
     (< v0.18)))
   (ppx_js_style
    (and
-    :dev
+    :with-dev-setup
     (>= v0.17)
     (< v0.18)))
   (ppx_let

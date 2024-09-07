@@ -1,4 +1,5 @@
 (cram
+ (package super-master-mind-tests)
  (deps
   (package super-master-mind)
   %{bin:super-master-mind}))

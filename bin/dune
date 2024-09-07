@@ -3,6 +3,6 @@
  (public_name super-master-mind)
  (package super-master-mind)
  (flags :standard -w +a-4-40-41-42-44-45-48-66 -warn-error +a)
- (libraries commandlang-to-cmdliner super-master-mind)
+ (libraries cmdlang-to-cmdliner super-master-mind)
  (instrumentation
   (backend bisect_ppx)))
