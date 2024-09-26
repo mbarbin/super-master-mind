@@ -105,7 +105,7 @@ etc....
 
 The game will continues with new guesses until the program breaks the code.
 
-## Code documentation
+## Code Documentation
 
 The code documentation of the latest release is built with `odoc` and published
 to `GitHub` pages [here](https://mbarbin.github.io/super-master-mind).
