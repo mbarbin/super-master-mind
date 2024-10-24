@@ -30,7 +30,7 @@
   (cmdlang-cmdliner-runner
    (>= 0.0.5))
   (cmdliner
-   (= 1.3.0))
+   (>= 1.3.0))
   (domainslib
    (>= 0.5))
   (nonempty-list
@@ -111,7 +111,7 @@
   (cmdlang-to-cmdliner
    (>= 0.0.5))
   (cmdliner
-   (= 1.3.0))
+   (>= 1.3.0))
   (domainslib
    (>= 0.5))
   (expect_test_helpers_core
