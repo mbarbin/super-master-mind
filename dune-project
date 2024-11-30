@@ -15,6 +15,8 @@
 
 (documentation "https://mbarbin.github.io/super-master-mind/odoc/")
 
+(implicit_transitive_deps false)
+
 (package
  (name super-master-mind)
  (synopsis "A solver for the super master mind game")
