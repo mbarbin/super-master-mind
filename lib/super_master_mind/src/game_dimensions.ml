@@ -31,8 +31,8 @@ let use_small_game_dimensions_exn here =
     raise_s
       [%sexp
         "Game_dimensions is already set"
-        , (normalize_fname here : Source_code_position.t)
-        , { was_set_here = (was_set_here |> normalize_fname : Source_code_position.t) }]
+      , (normalize_fname here : Source_code_position.t)
+      , { was_set_here = (was_set_here |> normalize_fname : Source_code_position.t) }]
 ;;
 
 let arg here =

@@ -43,7 +43,8 @@ let%expect_test "verify" =
     { guess with
       by_cue = Nonempty_list.cons (Nonempty_list.hd guess.by_cue) guess.by_cue
     };
-  [%expect {|
+  [%expect
+    {|
     Unexpected by_cue length:
     -1,1 +1,1
     -|20

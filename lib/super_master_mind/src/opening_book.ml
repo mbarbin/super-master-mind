@@ -3,13 +3,13 @@ type t = Guess.t [@@deriving sexp]
 let root t ~color_permutation = Guess.map_color t ~color_permutation
 
 let rec compute_internal
-  (t : t)
-  ~display
-  ~task_pool
-  ~possible_solutions
-  ~current_depth
-  ~depth
-  ~k
+          (t : t)
+          ~display
+          ~task_pool
+          ~possible_solutions
+          ~current_depth
+          ~depth
+          ~k
   =
   let number_of_cue = Nonempty_list.length t.by_cue in
   let bar =

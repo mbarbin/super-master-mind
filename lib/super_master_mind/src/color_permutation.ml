@@ -87,11 +87,11 @@ let of_index_exn index =
       raise_s
         [%sexp
           "Unexpected decomposition"
-          , { index : int
-            ; factorial_decomposition : int array
-            ; available_colors : bool array
-            ; t : Color.t array
-            }] [@coverage off]
+        , { index : int
+          ; factorial_decomposition : int array
+          ; available_colors : bool array
+          ; t : Color.t array
+          }] [@coverage off]
   done;
   t
 ;;

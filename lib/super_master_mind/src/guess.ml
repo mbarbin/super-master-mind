@@ -201,11 +201,11 @@ module Verify_error = struct
 end
 
 let unexpected
-  (type a)
-  ~unexpected_field
-  ~(expected : a)
-  ~(computed : a)
-  (sexp_of_a : a -> Sexp.t)
+      (type a)
+      ~unexpected_field
+      ~(expected : a)
+      ~(computed : a)
+      (sexp_of_a : a -> Sexp.t)
   =
   Error
     { Verify_error.unexpected_field
@@ -255,14 +255,14 @@ let rec verify (t : t) ~possible_solutions =
 
 let map_color t ~color_permutation =
   let rec aux_t
-    { candidate : Code.t
-    ; expected_bits_gained : float
-    ; expected_bits_remaining : float
-    ; min_bits_gained : float
-    ; max_bits_gained : float
-    ; max_bits_remaining : float
-    ; by_cue : By_cue.t Nonempty_list.t
-    }
+            { candidate : Code.t
+            ; expected_bits_gained : float
+            ; expected_bits_remaining : float
+            ; min_bits_gained : float
+            ; max_bits_gained : float
+            ; max_bits_remaining : float
+            ; by_cue : By_cue.t Nonempty_list.t
+            }
     =
     { candidate = Code.map_color candidate ~color_permutation
     ; expected_bits_gained : float
@@ -273,13 +273,13 @@ let map_color t ~color_permutation =
     ; by_cue = Nonempty_list.map by_cue ~f:aux_by_cue
     }
   and aux_by_cue
-    { By_cue.cue : Cue.t
-    ; size_remaining : int
-    ; bits_remaining : float
-    ; bits_gained : float
-    ; probability : float
-    ; next_best_guesses : Next_best_guesses.t
-    }
+        { By_cue.cue : Cue.t
+        ; size_remaining : int
+        ; bits_remaining : float
+        ; bits_gained : float
+        ; probability : float
+        ; next_best_guesses : Next_best_guesses.t
+        }
     =
     { By_cue.cue : Cue.t
     ; size_remaining : int

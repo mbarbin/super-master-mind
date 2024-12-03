@@ -69,7 +69,8 @@ let%expect_test "hum" =
     assert (Cue.equal cue cue'));
   [%expect {||}];
   require_does_raise [%here] (fun () : Cue.t -> Cue.create_exn { white = 3; black = 3 });
-  [%expect {|
+  [%expect
+    {|
     ("Invalid cue" (
       (white 3)
       (black 3))) |}];

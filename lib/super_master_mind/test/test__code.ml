@@ -18,91 +18,113 @@ let%expect_test "analyze" =
   in
   let solution : Color.Hum.t array = [| Black; Blue; Brown; Green; Orange |] in
   test ~solution ~candidate:[| Red; White; Yellow; Red; Red |];
-  [%expect {|
+  [%expect
+    {|
     ((white 0)
      (black 0)) |}];
   test ~solution ~candidate:[| Black; White; Yellow; Red; Red |];
-  [%expect {|
+  [%expect
+    {|
     ((white 0)
      (black 1)) |}];
   test ~solution ~candidate:[| Black; Black; Yellow; Red; Red |];
-  [%expect {|
+  [%expect
+    {|
     ((white 0)
      (black 1)) |}];
   test ~solution ~candidate:[| Black; Black; Yellow; Orange; Orange |];
-  [%expect {|
+  [%expect
+    {|
     ((white 0)
      (black 2)) |}];
   test ~solution ~candidate:[| Black; Brown; Brown; Orange; Orange |];
-  [%expect {|
+  [%expect
+    {|
     ((white 0)
      (black 3)) |}];
   test ~solution ~candidate:[| Black; Brown; Brown; Green; Orange |];
-  [%expect {|
+  [%expect
+    {|
     ((white 0)
      (black 4)) |}];
   test ~solution ~candidate:[| Black; Blue; Brown; Green; Orange |];
-  [%expect {|
+  [%expect
+    {|
     ((white 0)
      (black 5)) |}];
   test ~solution ~candidate:[| Red; White; Yellow; Red; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 1)
      (black 0)) |}];
   test ~solution ~candidate:[| Red; White; Yellow; Black; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 1)
      (black 0)) |}];
   test ~solution ~candidate:[| Black; Black; Blue; Yellow; White |];
-  [%expect {|
+  [%expect
+    {|
     ((white 1)
      (black 1)) |}];
   test ~solution ~candidate:[| Black; Black; Blue; Green; White |];
-  [%expect {|
+  [%expect
+    {|
     ((white 1)
      (black 2)) |}];
   test ~solution ~candidate:[| Black; Black; Blue; Green; Orange |];
-  [%expect {|
+  [%expect
+    {|
     ((white 1)
      (black 3)) |}];
   test ~solution ~candidate:[| Red; White; Yellow; Blue; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 2)
      (black 0)) |}];
   test ~solution ~candidate:[| Red; White; Brown; Blue; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 2)
      (black 1)) |}];
   test ~solution ~candidate:[| Red; Blue; Brown; Orange; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 2)
      (black 2)) |}];
   test ~solution ~candidate:[| Green; Blue; Brown; Black; Orange |];
-  [%expect {|
+  [%expect
+    {|
     ((white 2)
      (black 3)) |}];
   test ~solution ~candidate:[| Green; White; Yellow; Blue; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 3)
      (black 0)) |}];
   test ~solution ~candidate:[| Green; White; Brown; Blue; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 3)
      (black 1)) |}];
   test ~solution ~candidate:[| Green; Blue; Brown; Orange; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 3)
      (black 2)) |}];
   test ~solution ~candidate:[| Green; Orange; Yellow; Blue; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 4)
      (black 0)) |}];
   test ~solution ~candidate:[| Green; Orange; Brown; Blue; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 4)
      (black 1)) |}];
   test ~solution ~candidate:[| Green; Brown; Orange; Blue; Black |];
-  [%expect {|
+  [%expect
+    {|
     ((white 5)
      (black 0)) |}];
   let not_tested =
@@ -124,19 +146,23 @@ let%expect_test "repetition of colors in the solution" =
   in
   let solution : Color.Hum.t array = [| Black; Green; Brown; Green; Brown |] in
   test ~solution ~candidate:[| Red; White; Yellow; Red; Red |];
-  [%expect {|
+  [%expect
+    {|
     ((white 0)
      (black 0)) |}];
   test ~solution ~candidate:[| Green; White; Green; Red; Red |];
-  [%expect {|
+  [%expect
+    {|
     ((white 2)
      (black 0)) |}];
   test ~solution ~candidate:[| Green; Green; Green; Red; Red |];
-  [%expect {|
+  [%expect
+    {|
     ((white 1)
      (black 1)) |}];
   test ~solution ~candidate:[| Green; Green; Green; Brown; Red |];
-  [%expect {|
+  [%expect
+    {|
     ((white 2)
      (black 1)) |}]
 ;;

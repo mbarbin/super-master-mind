@@ -18,7 +18,7 @@ module Computing = struct
       raise_s
         [%sexp
           "Invalid code size"
-          , { code = (hum : Hum.t); code_size : int; expected_size : int }]
+        , { code = (hum : Hum.t); code_size : int; expected_size : int }]
   ;;
 
   let create_exn hum =

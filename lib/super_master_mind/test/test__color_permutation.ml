@@ -17,7 +17,7 @@ let%expect_test "bounds" =
       raise_s
         [%sexp
           "Unexpected value"
-          , { i : int; expected : Color_permutation.t; got = (t : Color_permutation.t) }]
+        , { i : int; expected : Color_permutation.t; got = (t : Color_permutation.t) }]
       [@coverage off]
   in
   test 0 zero;
@@ -113,8 +113,8 @@ let%expect_test "to_hum | create_exn" =
       raise_s
         [%sexp
           "Color_permutation does not round-trip"
-          , [%here]
-          , { t : Color_permutation.t; hum : Color.Hum.t array; t' : Color_permutation.t }]
+        , [%here]
+        , { t : Color_permutation.t; hum : Color.Hum.t array; t' : Color_permutation.t }]
       [@coverage off]
   done;
   [%expect {||}]

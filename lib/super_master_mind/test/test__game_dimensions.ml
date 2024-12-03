@@ -27,7 +27,8 @@ let%expect_test "defaults" =
       { code_size = (Game_dimensions.code_size [%here] : int)
       ; num_colors = (Game_dimensions.num_colors [%here] : int)
       }];
-  [%expect {|
+  [%expect
+    {|
     ((code_size  3)
      (num_colors 4)) |}]
 ;;
