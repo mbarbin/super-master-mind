@@ -9,12 +9,14 @@ end
 let code_size = lazy (Game_dimensions.code_size [%here])
 
 (* The sum of [white] and [black] cannot exceed the code size. This means that
-   given a correct value for [white], [black] has to verify : [0 <= black <=
-   code_size - white].
+   given a correct value for [white], [black] has to verify:
+   [0 <= black <= code_size - white].
 
-   0 white: code_size + 1 choices for black 1 white: code_size - 1 choices for
-   black 2 white: code_size - 1 choices for black ... ps white: 1 choice for
-   black (0). *)
+   - white=0: code_size + 1 choices for black
+   - white=1: code_size     choices for black
+   - white=2: code_size - 1 choices for black
+   - ...
+   - white=cs: 1 choice for black (=> black=0). *)
 
 let cardinality =
   lazy
