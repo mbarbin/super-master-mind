@@ -2,7 +2,7 @@
 
   $ super-master-mind opening-book verify --color-permutation 137
 
-  $ super-master-mind opening-book dump | wc -l
+  $ super-master-mind opening-book dump | wc -l | awk '{print $1}'
   14535
 
   $ super-master-mind opening-book compute --use-small-game-dimensions --output-file test-opening-book.sexp
