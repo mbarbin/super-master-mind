@@ -24,67 +24,42 @@
   (ocaml
    (>= 5.2))
   (base
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (cmdlang
    (>= 0.0.9))
   (domainslib
    (>= 0.5))
   (nonempty-list
    (and
-    (>= v0.17)
-    (< v0.18)))
+    (>= v0.17)))
   (ocaml-embed-file
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (parsexp
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (patdiff
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (pplumbing
    (>= 0.0.12))
   (ppx_compare
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_enumerate
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_hash
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_here
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_let
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_sexp_conv
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_sexp_value
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppxlib
    (>= 0.33))
   (progress
    (>= 0.3.0))
   (stdio
-   (and
-    (>= v0.17)
-    (< v0.18)))))
+   (>= v0.17))))
 
 (package
  (name super-master-mind-tests)
@@ -97,9 +72,7 @@
     :with-dev-setup
     (= 0.27.0)))
   (base
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (bisect_ppx
    (and
     :with-dev-setup
@@ -109,72 +82,44 @@
   (domainslib
    (>= 0.5))
   (expect_test_helpers_core
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (nonempty-list
    (and
-    (>= v0.17)
-    (< v0.18)))
+    (>= v0.17)))
   (ocaml-embed-file
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (parsexp
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (patdiff
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (pplumbing
    (>= 0.0.12))
   (ppx_compare
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_enumerate
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_expect
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_hash
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_here
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_js_style
    (and
     :with-dev-setup
-    (>= v0.17)
-    (< v0.18)))
+    (>= v0.17)))
   (ppx_let
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_sexp_conv
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppx_sexp_value
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (ppxlib
    (>= 0.33))
   (progress
    (>= 0.3.0))
   (stdio
-   (and
-    (>= v0.17)
-    (< v0.18)))
+   (>= v0.17))
   (sherlodoc
    (and
     :with-doc
