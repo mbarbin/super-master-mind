@@ -20,7 +20,7 @@ depends: [
   "ocaml-embed-file" {>= "v0.17"}
   "parsexp" {>= "v0.17"}
   "patdiff" {>= "v0.17"}
-  "pplumbing" {>= "0.0.12"}
+  "pplumbing" {>= "0.0.14"}
   "ppx_compare" {>= "v0.17"}
   "ppx_enumerate" {>= "v0.17"}
   "ppx_expect" {>= "v0.17"}
