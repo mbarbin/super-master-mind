@@ -30,8 +30,7 @@
   (domainslib
    (>= 0.5))
   (nonempty-list
-   (and
-    (>= v0.17)))
+   (>= v0.17))
   (ocaml-embed-file
    (>= v0.17))
   (parsexp
@@ -84,8 +83,7 @@
   (expect_test_helpers_core
    (>= v0.17))
   (nonempty-list
-   (and
-    (>= v0.17)))
+   (>= v0.17))
   (ocaml-embed-file
    (>= v0.17))
   (parsexp
