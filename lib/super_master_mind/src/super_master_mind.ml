@@ -12,7 +12,7 @@ module Task_pool = Task_pool
 
 let main =
   Command.group
-    ~summary:"super-master-mind solver"
+    ~summary:"A solver for the super-master-mind game."
     [ "example", Example.cmd
     ; "maker", Maker.cmd
     ; "opening-book", Opening_book.cmd

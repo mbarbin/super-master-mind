@@ -71,12 +71,13 @@ let solve ~color_permutation ~task_pool =
 
 let cmd =
   Command.make
-    ~summary:"solve interactively"
+    ~summary:"Solve interactively."
     (let%map_open.Command color_permutation =
        Arg.named_opt
          [ "color-permutation" ]
          Param.int
-         ~doc:(Printf.sprintf "N force use of permutation (random by default)")
+         ~docv:"N"
+         ~doc:"Force use of permutation (random by default)."
      and task_pool_config = Task_pool.Config.arg in
      let color_permutation =
        let index =

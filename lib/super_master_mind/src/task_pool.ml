@@ -9,7 +9,7 @@ module Config = struct
         [ "num-domains" ]
         Param.int
         ~default:default.num_domains
-        ~doc:"num of domains for parallel computing"
+        ~doc:"Num of domains for parallel computing."
     in
     { num_domains }
   ;;

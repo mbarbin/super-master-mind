@@ -39,7 +39,7 @@ let arg here =
   if%map_open.Command
     Arg.flag
       [ "use-small-game-dimensions" ]
-      ~doc:"replace normal dimensions by smaller ones for quick tests"
+      ~doc:"Replace normal dimensions by smaller ones for quick tests."
   then use_small_game_dimensions_exn here
   else ()
 ;;

@@ -31,12 +31,13 @@ let run ~solution =
 
 let cmd =
   Command.make
-    ~summary:"run interactively"
+    ~summary:"Run interactively."
     (let%map_open.Command solution =
        Arg.named_opt
          [ "solution" ]
          Code.param
-         ~doc:"CODE chosen solution (default is random)"
+         ~docv:"CODE"
+         ~doc:"Specify a chosen solution (default is random)."
      in
      let solution =
        match solution with

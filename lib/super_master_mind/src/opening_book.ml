@@ -104,7 +104,7 @@ let opening_book =
 
 let dump_cmd =
   Command.make
-    ~summary:"dump embedded opening-book"
+    ~summary:"Dump the embedded opening-book."
     (let%map_open.Command () = Arg.return () in
      let t = Lazy.force opening_book in
      print_s [%sexp (t : t)])
@@ -112,21 +112,21 @@ let dump_cmd =
 
 let compute_cmd =
   Command.make
-    ~summary:"compute and save opening book"
+    ~summary:"Compute and save the opening-book."
     (let%map_open.Command () = Game_dimensions.arg [%here]
      and depth =
        Arg.named_with_default
          [ "--depth" ]
          Param.int
          ~default:2
-         ~doc:"depth of book (default 2)"
+         ~doc:"Specify the depth of the opening-book."
      and task_pool_config = Task_pool.Config.arg
      and path =
        Arg.named
          [ "output-file"; "o" ]
          Param.string
          ~docv:"FILE"
-         ~doc:"save output to file"
+         ~doc:"Save output to file."
      in
      Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
        let t = compute ~task_pool ~depth in
@@ -137,13 +137,13 @@ let compute_cmd =
 
 let verify_cmd =
   Command.make
-    ~summary:"verify properties of embedded opening book"
+    ~summary:"Verify properties of the embedded opening-book."
     (let%map_open.Command color_permutation =
        match%map.Command
          Arg.named_opt
            [ "color-permutation" ]
            Color_permutation.param
-           ~doc:"color permutation in [0; 40319] (default Identity)"
+           ~doc:"Color permutation in [0; 40319] (default Identity)."
        with
        | Some color_permutation -> color_permutation
        | None -> force Color_permutation.identity
@@ -159,6 +159,6 @@ let verify_cmd =
 
 let cmd =
   Command.group
-    ~summary:"opening pre computation"
+    ~summary:"Opening pre computation (aka the 'opening-book')."
     [ "dump", dump_cmd; "compute", compute_cmd; "verify", verify_cmd ]
 ;;
