@@ -118,7 +118,7 @@ let compute_cmd =
      let+ () = Game_dimensions.arg [%here]
      and+ depth =
        Arg.named_with_default
-         [ "--depth" ]
+         [ "depth" ]
          Param.int
          ~default:2
          ~doc:"Specify the depth of the opening-book."
