@@ -105,7 +105,8 @@ let opening_book =
 let dump_cmd =
   Command.make
     ~summary:"Dump the embedded opening-book."
-    (let%map_open.Command () = Arg.return () in
+    (let open Command.Std in
+     let+ () = Arg.return () in
      let t = Lazy.force opening_book in
      print_s [%sexp (t : t)])
 ;;
@@ -113,15 +114,16 @@ let dump_cmd =
 let compute_cmd =
   Command.make
     ~summary:"Compute and save the opening-book."
-    (let%map_open.Command () = Game_dimensions.arg [%here]
-     and depth =
+    (let open Command.Std in
+     let+ () = Game_dimensions.arg [%here]
+     and+ depth =
        Arg.named_with_default
          [ "--depth" ]
          Param.int
          ~default:2
          ~doc:"Specify the depth of the opening-book."
-     and task_pool_config = Task_pool.Config.arg
-     and path =
+     and+ task_pool_config = Task_pool.Config.arg
+     and+ path =
        Arg.named
          [ "output-file"; "o" ]
          Param.string
@@ -138,7 +140,8 @@ let compute_cmd =
 let verify_cmd =
   Command.make
     ~summary:"Verify properties of the embedded opening-book."
-    (let%map_open.Command color_permutation =
+    (let open Command.Std in
+     let+ color_permutation =
        match%map.Command
          Arg.named_opt
            [ "color-permutation" ]

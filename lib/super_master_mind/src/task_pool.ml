@@ -4,7 +4,8 @@ module Config = struct
   let default = { num_domains = 4 }
 
   let arg =
-    let%map_open.Command num_domains =
+    let open Command.Std in
+    let+ num_domains =
       Arg.named_with_default
         [ "num-domains" ]
         Param.int

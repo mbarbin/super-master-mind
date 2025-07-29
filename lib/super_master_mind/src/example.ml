@@ -46,13 +46,14 @@ let solve ~task_pool ~color_permutation ~solution =
 let cmd =
   Command.make
     ~summary:"Run through an example."
-    (let%map_open.Command solution =
+    (let open Command.Std in
+     let+ solution =
        Arg.named_opt
          [ "solution" ]
          Code.param
          ~docv:"CODE"
          ~doc:"Specify a chosen solution (default is arbitrary)."
-     and task_pool_config = Task_pool.Config.arg in
+     and+ task_pool_config = Task_pool.Config.arg in
      Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
        let solution =
          match solution with

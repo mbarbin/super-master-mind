@@ -32,7 +32,8 @@ let run ~solution =
 let cmd =
   Command.make
     ~summary:"Run interactively."
-    (let%map_open.Command solution =
+    (let open Command.Std in
+     let+ solution =
        Arg.named_opt
          [ "solution" ]
          Code.param
