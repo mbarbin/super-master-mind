@@ -15,9 +15,9 @@
   Cmdlang)
  (libraries
   base
+  cmdlang
   domainslib
   nonempty-list
-  cmdlang
   parsexp
   patdiff
   patdiff.expect_test_patdiff
