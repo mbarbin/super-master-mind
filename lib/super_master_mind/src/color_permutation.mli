@@ -1,3 +1,9 @@
+(*_********************************************************************************)
+(*_  super-master-mind: A solver for the super master mind game                   *)
+(*_  SPDX-FileCopyrightText: 2021-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
+(*_  SPDX-License-Identifier: MIT                                                 *)
+(*_********************************************************************************)
+
 (** In order for the program to vary its opening guesses, we can choose to map
     the opening book through a color permutation, that is a bijection from the
     set of colors onto itself. *)

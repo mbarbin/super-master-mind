@@ -1,3 +1,9 @@
+(*********************************************************************************)
+(*  super-master-mind: A solver for the super master mind game                   *)
+(*  SPDX-FileCopyrightText: 2021-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
+(*  SPDX-License-Identifier: MIT                                                 *)
+(*********************************************************************************)
+
 let%expect_test "depth" =
   let opening_book = Lazy.force Opening_book.opening_book in
   let depth = Opening_book.depth opening_book in

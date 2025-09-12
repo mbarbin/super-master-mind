@@ -1,3 +1,9 @@
+(*_********************************************************************************)
+(*_  super-master-mind: A solver for the super master mind game                   *)
+(*_  SPDX-FileCopyrightText: 2021-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
+(*_  SPDX-License-Identifier: MIT                                                 *)
+(*_********************************************************************************)
+
 (** To perform computation in parallel, we use [Domainslib]. This module is a
     thin wrapper on top of [Domainslib.Task], which allows to make it easier
     to use it correctly, and allows for changing parameters from the command

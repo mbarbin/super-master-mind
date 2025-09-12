@@ -1,3 +1,9 @@
+(*********************************************************************************)
+(*  super-master-mind: A solver for the super master mind game                   *)
+(*  SPDX-FileCopyrightText: 2021-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
+(*  SPDX-License-Identifier: MIT                                                 *)
+(*********************************************************************************)
+
 let verify_steps (ts : Guess.t list) = ignore (ts : Guess.t list)
 let with_task_pool ~f = Task_pool.with_t Task_pool.Config.default ~f
 

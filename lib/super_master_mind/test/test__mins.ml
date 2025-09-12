@@ -1,3 +1,9 @@
+(*********************************************************************************)
+(*  super-master-mind: A solver for the super master mind game                   *)
+(*  SPDX-FileCopyrightText: 2021-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
+(*  SPDX-License-Identifier: MIT                                                 *)
+(*********************************************************************************)
+
 (* This test shows the sequence of what would happen, assuming that each time we
    make a guess, we get back the cue that is the most likely - that is the one
    that gives back the least amount of information. *)

@@ -1,3 +1,9 @@
+(*********************************************************************************)
+(*  super-master-mind: A solver for the super master mind game                   *)
+(*  SPDX-FileCopyrightText: 2021-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
+(*  SPDX-License-Identifier: MIT                                                 *)
+(*********************************************************************************)
+
 let input_line () = In_channel.(input_line_exn stdin)
 
 let rec input_code () =
