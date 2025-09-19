@@ -27,6 +27,8 @@
    (>= v0.17))
   (cmdlang
    (>= 0.0.10))
+  (cmdlang-cmdliner-err-runner
+   (>= 0.0.15))
   (domainslib
    (>= 0.5))
   (nonempty-list
@@ -37,8 +39,6 @@
    (>= v0.17))
   (patdiff
    (>= v0.17))
-  (pplumbing
-   (>= 0.0.14))
   (ppx_compare
    (>= v0.17))
   (ppx_enumerate
@@ -78,6 +78,8 @@
     (>= 2.8.3)))
   (cmdlang
    (>= 0.0.10))
+  (cmdlang-cmdliner-err-runner
+   (>= 0.0.15))
   (domainslib
    (>= 0.5))
   (expect_test_helpers_core
@@ -90,8 +92,6 @@
    (>= v0.17))
   (patdiff
    (>= v0.17))
-  (pplumbing
-   (>= 0.0.14))
   (ppx_compare
    (>= v0.17))
   (ppx_enumerate
