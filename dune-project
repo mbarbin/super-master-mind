@@ -26,7 +26,7 @@
   (base
    (>= v0.17))
   (cmdlang
-   (>= 0.0.9))
+   (>= 0.0.10))
   (domainslib
    (>= 0.5))
   (nonempty-list
@@ -77,7 +77,7 @@
     :with-dev-setup
     (>= 2.8.3)))
   (cmdlang
-   (>= 0.0.9))
+   (>= 0.0.10))
   (domainslib
    (>= 0.5))
   (expect_test_helpers_core

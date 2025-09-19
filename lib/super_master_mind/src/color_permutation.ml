@@ -121,16 +121,17 @@ let to_index t =
 ;;
 
 let param =
-  Command.Param.create
+  Command.Param.create'
     ~docv:"COLOR_PERMUTATION"
-    ~parse:(fun i ->
+    ~of_string:(fun i ->
       match Int.of_string i with
       | exception _ -> Error (`Msg "Invalid color permutation")
       | index ->
         if is_valid_index ~index
         then Ok (of_index_exn index)
         else Error (`Msg "Invalid color permutation"))
-    ~print:(fun fmt t -> Stdlib.Format.fprintf fmt "%d" (to_index t))
+    ~to_string:(fun t -> Int.to_string (to_index t))
+    ()
 ;;
 
 module Private = struct

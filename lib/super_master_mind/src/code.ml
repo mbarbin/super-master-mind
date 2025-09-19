@@ -95,14 +95,14 @@ let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
 let to_index t = t
 
 let param =
-  Command.Param.create
+  Command.Param.create'
     ~docv:"CODE"
-    ~parse:(fun s ->
+    ~of_string:(fun s ->
       match Parsexp.Single.parse_string_exn s |> [%of_sexp: t] with
       | e -> Ok e
       | exception e -> Error (`Msg (Exn.to_string e)))
-    ~print:(fun fmt t ->
-      Stdlib.Format.fprintf fmt "%s" (Sexp.to_string ([%sexp_of: t] t)))
+    ~to_string:(fun t -> Sexp.to_string ([%sexp_of: t] t))
+    ()
 ;;
 
 let check_index_exn index =

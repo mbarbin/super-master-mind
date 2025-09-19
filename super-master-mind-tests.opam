@@ -13,7 +13,7 @@ depends: [
   "ocamlformat" {with-dev-setup & = "0.27.0"}
   "base" {>= "v0.17"}
   "bisect_ppx" {with-dev-setup & >= "2.8.3"}
-  "cmdlang" {>= "0.0.9"}
+  "cmdlang" {>= "0.0.10"}
   "domainslib" {>= "0.5"}
   "expect_test_helpers_core" {>= "v0.17"}
   "nonempty-list" {>= "v0.17"}
