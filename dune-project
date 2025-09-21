@@ -28,7 +28,7 @@
   (cmdlang
    (>= 0.0.10))
   (cmdlang-cmdliner-err-runner
-   (>= 0.0.15))
+   (>= 0.0.16))
   (domainslib
    (>= 0.5))
   (nonempty-list
@@ -79,7 +79,7 @@
   (cmdlang
    (>= 0.0.10))
   (cmdlang-cmdliner-err-runner
-   (>= 0.0.15))
+   (>= 0.0.16))
   (domainslib
    (>= 0.5))
   (expect_test_helpers_core
