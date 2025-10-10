@@ -66,16 +66,66 @@
  (depends
   (ocaml
    (>= 5.2))
-  (ocamlformat
+  (base
+   (>= v0.17))
+  (cmdlang
+   (>= 0.0.10))
+  (cmdlang-cmdliner-err-runner
+   (>= 0.0.16))
+  (domainslib
+   (>= 0.5))
+  (expect_test_helpers_core
+   (>= v0.17))
+  (nonempty-list
+   (>= v0.17))
+  (ocaml-embed-file
+   (>= v0.17))
+  (parsexp
+   (>= v0.17))
+  (patdiff
+   (>= v0.17))
+  (ppx_compare
+   (>= v0.17))
+  (ppx_enumerate
+   (>= v0.17))
+  (ppx_expect
+   (>= v0.17))
+  (ppx_hash
+   (>= v0.17))
+  (ppx_here
+   (>= v0.17))
+  (ppx_let
+   (>= v0.17))
+  (ppx_sexp_conv
+   (>= v0.17))
+  (ppx_sexp_value
+   (>= v0.17))
+  (ppxlib
+   (>= 0.33))
+  (progress
+   (>= 0.3.0))
+  (stdio
+   (>= v0.17))
+  (super-master-mind
+   (= :version))
+  (sherlodoc
    (and
-    :with-dev-setup
-    (= 0.27.0)))
+    :with-doc
+    (>= 0.2)))))
+
+(package
+ (name super-master-mind-dev)
+ (synopsis "Package to regroup dev targets, documentation, and more")
+ (allow_empty)
+ (depends
+  (ocaml
+   (>= 5.2))
+  (ocamlformat
+   (= 0.27.0))
   (base
    (>= v0.17))
   (bisect_ppx
-   (and
-    :with-dev-setup
-    (>= 2.8.3)))
+   (>= 2.8.3))
   (cmdlang
    (>= 0.0.10))
   (cmdlang-cmdliner-err-runner
@@ -103,9 +153,7 @@
   (ppx_here
    (>= v0.17))
   (ppx_js_style
-   (and
-    :with-dev-setup
-    (>= v0.17)))
+   (>= v0.17))
   (ppx_let
    (>= v0.17))
   (ppx_sexp_conv
@@ -118,7 +166,9 @@
    (>= 0.3.0))
   (stdio
    (>= v0.17))
+  (super-master-mind
+   (= :version))
+  (super-master-mind-tests
+   (= :version))
   (sherlodoc
-   (and
-    :with-doc
-    (>= 0.2)))))
+   (>= 0.2))))
