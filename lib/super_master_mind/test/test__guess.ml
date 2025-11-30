@@ -23,26 +23,27 @@ let%expect_test "verify" =
   [%expect
     {|
     Unexpected values:
-    -1,5 +1,5
-      ((candidate (Green Blue Orange White Red))
-    -| (expected_bits_gained    3.2315534058614328)
-    +| (expected_bits_gained    3.14)
+    -1,5 +1,4
+    -|((candidate (Green Blue Orange White Red))
+    -| (expected_bits_gained 3.2315534058614328)
+    +|((candidate (Green Blue Orange White Red)) (expected_bits_gained 3.14)
        (expected_bits_remaining 11.768446594138567)
-       (min_bits_gained         2.212505500303239)
-       (max_bits_gained         15) |}];
+       (min_bits_gained 2.212505500303239) (max_bits_gained 15)
+       (max_bits_remaining 12.787494499696761)
+    |}];
   (* Testing the mapping of Verify_error to [Error.t]. *)
   test ~hum:false { guess with expected_bits_gained = 3.14 };
   [%expect
     {|
     ((unexpected_field values)
      (diff (
-       "-1,5 +1,5"
-       "  ((candidate (Green Blue Orange White Red))"
-       "-| (expected_bits_gained    3.2315534058614328)"
-       "+| (expected_bits_gained    3.14)"
+       "-1,5 +1,4"
+       "-|((candidate (Green Blue Orange White Red))"
+       "-| (expected_bits_gained 3.2315534058614328)"
+       "+|((candidate (Green Blue Orange White Red)) (expected_bits_gained 3.14)"
        "   (expected_bits_remaining 11.768446594138567)"
-       "   (min_bits_gained         2.212505500303239)"
-       "   (max_bits_gained         15)")))
+       "   (min_bits_gained 2.212505500303239) (max_bits_gained 15)"
+       "   (max_bits_remaining 12.787494499696761)")))
     |}];
   (* Mismatch in the length of by_cues cases. *)
   test
@@ -65,15 +66,12 @@ let%expect_test "verify" =
   [%expect
     {|
     Unexpected by_cue:
-    -1,7 +1,7
-      ((cue (
-         (white 2)
-         (black 0)))
-    -| (size_remaining    7070)
-    +| (size_remaining    7071)
-       (bits_remaining    12.787494499696761)
-       (bits_gained       2.212505500303239)
-       (probability       0.21575927734375) |}];
+    -1,3 +1,3
+    -|((cue ((white 2) (black 0))) (size_remaining 7070)
+    +|((cue ((white 2) (black 0))) (size_remaining 7071)
+       (bits_remaining 12.787494499696761) (bits_gained 2.212505500303239)
+       (probability 0.21575927734375) (next_best_guesses Not_computed))
+    |}];
   ()
 ;;
 

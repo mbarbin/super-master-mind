@@ -186,7 +186,10 @@ module Verify_error = struct
     }
 
   let diff ~expected ~computed =
-    Expect_test_patdiff.patdiff_s expected computed ~context:3
+    Expect_test_patdiff.patdiff
+      (Sexp.to_string_hum expected)
+      (Sexp.to_string_hum computed)
+      ~context:3
   ;;
 
   let to_error { unexpected_field; expected; computed } =
