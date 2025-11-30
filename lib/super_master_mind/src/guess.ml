@@ -185,16 +185,19 @@ module Verify_error = struct
     ; computed : Sexp.t
     }
 
+  let diff ~expected ~computed =
+    Expect_test_patdiff.patdiff_s expected computed ~context:3
+  ;;
+
   let to_error { unexpected_field; expected; computed } =
-    let diff =
-      Expect_test_patdiff.patdiff_s expected computed ~context:3 |> String.split_lines
-    in
+    let diff = diff ~expected ~computed |> String.split_lines in
     Error.create_s [%sexp { unexpected_field : string; diff : string list }]
   ;;
 
   let print_hum { unexpected_field; expected; computed } oc =
-    let diff = Expect_test_patdiff.patdiff_s expected computed ~context:3 in
-    Out_channel.output_lines oc [ Printf.sprintf "Unexpected %s:" unexpected_field; diff ]
+    Out_channel.output_lines
+      oc
+      [ Printf.sprintf "Unexpected %s:" unexpected_field; diff ~expected ~computed ]
   ;;
 end
 
