@@ -1,3 +1,10 @@
+## 0.0.11 (unreleased)
+
+### Changed
+
+- Remove color output from guess verifier.
+- Minor refactoring in `kheap`.
+
 ## 0.0.10 (2024-09-29)
 
 ### Changed
