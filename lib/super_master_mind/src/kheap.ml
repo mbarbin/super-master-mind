@@ -9,6 +9,14 @@ module Node = struct
     { value : 'a
     ; mutable tail : 'a t option
     }
+
+  let[@tail_mod_cons] rec to_list = function
+    | None -> []
+    | Some (t : _ t) ->
+      (* We disable coverage in the second part of the expression because the
+         instrumentation breaks [@tail_mod_cons], triggering [warning 71]. *)
+      t.value :: (to_list t.tail [@coverage off])
+  ;;
 end
 
 type 'a t =
@@ -22,18 +30,7 @@ let create ~k ~compare =
   { k; compare; head = None }
 ;;
 
-let to_list t =
-  let q = Queue.create () in
-  let rec aux = function
-    | None -> ()
-    | Some (t : _ Node.t) ->
-      Queue.enqueue q t.value;
-      aux t.tail
-  in
-  aux t.head;
-  Queue.to_list q
-;;
-
+let to_list t = Node.to_list t.head
 let sexp_of_t sexp_of_a t = [%sexp (to_list t : a list)]
 
 let rec cut node ~k =
