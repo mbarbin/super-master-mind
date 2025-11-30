@@ -19,7 +19,6 @@
   domainslib
   nonempty-list
   parsexp
-  patdiff
   patdiff.expect_test_patdiff
   progress
   stdio)

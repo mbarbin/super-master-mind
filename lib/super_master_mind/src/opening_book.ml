@@ -162,7 +162,7 @@ let verify_cmd =
      | Ok () -> ()
      | Error error ->
        prerr_endline "Embedded opening-book does not verify expected properties.";
-       Guess.Verify_error.print_hum ~color:true error Out_channel.stderr;
+       Guess.Verify_error.print_hum error Out_channel.stderr;
        Stdlib.exit 1)
 ;;
 

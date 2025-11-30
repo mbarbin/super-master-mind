@@ -82,7 +82,7 @@ val compute_k_best
 module Verify_error : sig
   type t
 
-  val print_hum : ?color:bool -> t -> Out_channel.t -> unit
+  val print_hum : t -> Out_channel.t -> unit
   val to_error : t -> Error.t
 end
 
