@@ -14,8 +14,8 @@ depends: [
   "cmdlang" {>= "0.0.10"}
   "cmdlang-cmdliner-err-runner" {>= "0.0.16"}
   "domainslib" {>= "0.5"}
+  "dune-site" {>= "3.20"}
   "nonempty-list" {>= "v0.17"}
-  "ocaml-embed-file" {>= "v0.17"}
   "parsexp" {>= "v0.17"}
   "patdiff" {>= "v0.17"}
   "ppx_compare" {>= "v0.17"}
@@ -39,10 +39,12 @@ build: [
     name
     "-j"
     jobs
+    "--promote-install-files=false"
     "@install"
     "@runtest" {with-test}
     "@doc" {with-doc}
   ]
+  ["dune" "install" "-p" name "--create-install-files" name]
 ]
 dev-repo: "git+https://github.com/mbarbin/super-master-mind.git"
 x-maintenance-intent: ["(latest)"]

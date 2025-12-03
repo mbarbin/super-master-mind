@@ -4,3 +4,4 @@ _coverage
 *.install
 _bisect_ppx_data
 target
+coverage.sh

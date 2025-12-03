@@ -16,7 +16,6 @@ depends: [
   "domainslib" {>= "0.5"}
   "expect_test_helpers_core" {>= "v0.17"}
   "nonempty-list" {>= "v0.17"}
-  "ocaml-embed-file" {>= "v0.17"}
   "parsexp" {>= "v0.17"}
   "patdiff" {>= "v0.17"}
   "ppx_compare" {>= "v0.17"}
@@ -43,10 +42,12 @@ build: [
     name
     "-j"
     jobs
+    "--promote-install-files=false"
     "@install"
     "@runtest" {with-test}
     "@doc" {with-doc}
   ]
+  ["dune" "install" "-p" name "--create-install-files" name]
 ]
 dev-repo: "git+https://github.com/mbarbin/super-master-mind.git"
 x-maintenance-intent: ["(latest)"]

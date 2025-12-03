@@ -102,10 +102,20 @@ let depth =
   aux
 ;;
 
+let opening_book_via_site () =
+  List.find_map Sites.Sites.opening_book ~f:(fun dir ->
+    let file = Stdlib.Filename.concat dir "opening-book.sexp" in
+    Option.some_if (Stdlib.Sys.file_exists file) file)
+  |> Option.value_exn ~here:[%here]
+  |> In_channel.read_all
+;;
+
 let opening_book =
   lazy
-    (Parsexp.Single.parse_string_exn Embedded_files.opening_book_dot_expected
-     |> [%of_sexp: t])
+    (let book1 = Embedded_files.opening_book_dot_expected in
+     let book2 = opening_book_via_site () in
+     let contents = if not (String.equal book1 book2) then assert false else book2 in
+     Parsexp.Single.parse_string_exn contents |> [%of_sexp: t])
 ;;
 
 let dump_cmd =
