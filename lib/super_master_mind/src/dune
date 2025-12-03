@@ -17,6 +17,7 @@
   base
   cmdlang
   domainslib
+  dune-site
   nonempty-list
   parsexp
   patdiff.expect_test_patdiff
@@ -37,8 +38,6 @@
    ppx_sexp_conv
    ppx_sexp_value)))
 
-(rule
- (targets embedded_files.ml embedded_files.mli)
- (deps ../../../opening-book/opening-book.expected)
- (action
-  (run %{bin:ocaml-embed-file} %{deps} -output embedded_files)))
+(generate_sites_module
+ (module sites)
+ (sites super-master-mind))

@@ -15,11 +15,14 @@
 
 (documentation "https://mbarbin.github.io/super-master-mind/odoc/")
 
+(using dune_site 0.1)
+
 (implicit_transitive_deps false)
 
 (package
  (name super-master-mind)
  (synopsis "A solver for the super master mind game")
+ (sites (share opening_book))
  (depends
   (ocaml
    (>= 5.2))
@@ -31,9 +34,8 @@
    (>= 0.0.16))
   (domainslib
    (>= 0.5))
+  (dune-site (>= 3.20))
   (nonempty-list
-   (>= v0.17))
-  (ocaml-embed-file
    (>= v0.17))
   (parsexp
    (>= v0.17))
@@ -77,8 +79,6 @@
   (expect_test_helpers_core
    (>= v0.17))
   (nonempty-list
-   (>= v0.17))
-  (ocaml-embed-file
    (>= v0.17))
   (parsexp
    (>= v0.17))
@@ -135,8 +135,6 @@
   (expect_test_helpers_core
    (>= v0.17))
   (nonempty-list
-   (>= v0.17))
-  (ocaml-embed-file
    (>= v0.17))
   (parsexp
    (>= v0.17))

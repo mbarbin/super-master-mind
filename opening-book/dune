@@ -2,6 +2,14 @@
  (name default)
  (deps))
 
+(install
+ (package super-master-mind)
+ (section
+  (site
+   (super-master-mind opening_book)))
+ (files
+  (opening-book.expected as opening-book.sexp)))
+
 ;; Currently I cannot figure out how to disable the following target
 ;; from cmd [dune build] when run in the top level directory. Replaced
 ;; by a Makefile for now.

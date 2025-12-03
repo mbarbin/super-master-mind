@@ -10,7 +10,9 @@
 type t [@@deriving sexp_of]
 
 (** This is the main opening book used by the application. It is computed via
-    [compute] and embedded as an s-expression. *)
+    [compute] during development and installed with the package with [dune-site].
+
+    Forcing this lazy causes the file to be loaded and parsed at runtime. *)
 val opening_book : t Lazy.t
 
 (** Function used to recompute the opening book. *)
