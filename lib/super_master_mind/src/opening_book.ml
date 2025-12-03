@@ -102,25 +102,25 @@ let depth =
   aux
 ;;
 
-let opening_book_via_site () =
+let find_opening_book_via_site () =
   List.find_map Sites.Sites.opening_book ~f:(fun dir ->
     let file = Stdlib.Filename.concat dir "opening-book.sexp" in
     Option.some_if (Stdlib.Sys.file_exists file) file)
-  |> Option.value_exn ~here:[%here]
-  |> In_channel.read_all
 ;;
 
 let opening_book =
   lazy
-    (let book1 = Embedded_files.opening_book_dot_expected in
-     let book2 = opening_book_via_site () in
-     let contents = if not (String.equal book1 book2) then assert false else book2 in
+    (let contents =
+       find_opening_book_via_site ()
+       |> Option.value_exn ~here:[%here]
+       |> In_channel.read_all
+     in
      Parsexp.Single.parse_string_exn contents |> [%of_sexp: t])
 ;;
 
 let dump_cmd =
   Command.make
-    ~summary:"Dump the embedded opening-book."
+    ~summary:"Dump the installed opening-book."
     (let open Command.Std in
      let+ () = Arg.return () in
      let t = Lazy.force opening_book in
@@ -155,7 +155,7 @@ let compute_cmd =
 
 let verify_cmd =
   Command.make
-    ~summary:"Verify properties of the embedded opening-book."
+    ~summary:"Verify properties of the installed opening-book."
     (let open Command.Std in
      let+ color_permutation =
        match%map.Command
@@ -171,7 +171,7 @@ let verify_cmd =
      match Guess.verify t ~possible_solutions:Codes.all with
      | Ok () -> ()
      | Error error ->
-       prerr_endline "Embedded opening-book does not verify expected properties.";
+       prerr_endline "Installed opening-book does not verify expected properties.";
        Guess.Verify_error.print_hum error Out_channel.stderr;
        Stdlib.exit 1)
 ;;
