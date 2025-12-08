@@ -22,7 +22,8 @@
 (package
  (name super-master-mind)
  (synopsis "A solver for the super master mind game")
- (sites (share opening_book))
+ (sites
+  (share opening_book))
  (depends
   (ocaml
    (>= 5.2))
@@ -34,7 +35,8 @@
    (>= 0.0.16))
   (domainslib
    (>= 0.5))
-  (dune-site (>= 3.20))
+  (dune-site
+   (>= 3.20))
   (nonempty-list
    (>= v0.17))
   (parsexp
