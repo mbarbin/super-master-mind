@@ -1,5 +1,5 @@
 # List of directories for headache.sh
 # Add new directories below. Lines starting with '#' are ignored.
-bin
-lib/super_master_mind/src
-lib/super_master_mind/test
+src
+src/bin
+test/expect
