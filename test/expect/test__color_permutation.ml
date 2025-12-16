@@ -36,26 +36,32 @@ let%expect_test "bounds" =
 
 let%expect_test "sexp_of" =
   let print i =
-    print_s [%sexp (i : int), (Color_permutation.of_index_exn i : Color_permutation.t)]
+    print_dyn
+      (Dyn.Tuple
+         [ Dyn.int i; Color_permutation.to_dyn (Color_permutation.of_index_exn i) ])
   in
   print 0;
-  [%expect {| (0 (Black Blue Brown Green Orange Red White Yellow)) |}];
+  [%expect {| (0, [| Black;  Blue;  Brown;  Green;  Orange;  Red;  White;  Yellow |]) |}];
   print 1;
-  [%expect {| (1 (Black Blue Brown Green Orange Red Yellow White)) |}];
+  [%expect {| (1, [| Black;  Blue;  Brown;  Green;  Orange;  Red;  Yellow;  White |]) |}];
   print 2;
-  [%expect {| (2 (Black Blue Brown Green Orange White Red Yellow)) |}];
+  [%expect {| (2, [| Black;  Blue;  Brown;  Green;  Orange;  White;  Red;  Yellow |]) |}];
   print 3;
-  [%expect {| (3 (Black Blue Brown Green Orange White Yellow Red)) |}];
+  [%expect {| (3, [| Black;  Blue;  Brown;  Green;  Orange;  White;  Yellow;  Red |]) |}];
   print 4;
-  [%expect {| (4 (Black Blue Brown Green Orange Yellow Red White)) |}];
+  [%expect {| (4, [| Black;  Blue;  Brown;  Green;  Orange;  Yellow;  Red;  White |]) |}];
   print 40319;
-  [%expect {| (40319 (Yellow White Red Orange Green Brown Blue Black)) |}];
+  [%expect
+    {| (40319, [| Yellow;  White;  Red;  Orange;  Green;  Brown;  Blue;  Black |]) |}];
   print 40318;
-  [%expect {| (40318 (Yellow White Red Orange Green Brown Black Blue)) |}];
+  [%expect
+    {| (40318, [| Yellow;  White;  Red;  Orange;  Green;  Brown;  Black;  Blue |]) |}];
   print 40317;
-  [%expect {| (40317 (Yellow White Red Orange Green Blue Brown Black)) |}];
+  [%expect
+    {| (40317, [| Yellow;  White;  Red;  Orange;  Green;  Blue;  Brown;  Black |]) |}];
   print 40316;
-  [%expect {| (40316 (Yellow White Red Orange Green Blue Black Brown)) |}];
+  [%expect
+    {| (40316, [| Yellow;  White;  Red;  Orange;  Green;  Blue;  Black;  Brown |]) |}];
   ()
 ;;
 
@@ -105,7 +111,7 @@ let%expect_test "inverse" =
     let t'' = Color_permutation.inverse t' in
     assert (Color_permutation.equal t t'')
   done;
-  print_s [%sexp (!count : int)];
+  print_dyn (Dyn.int !count);
   [%expect {| 764 |}]
 ;;
 
@@ -129,21 +135,21 @@ let%expect_test "to_hum | create_exn" =
 let%expect_test "find_nth" =
   let test a n f =
     let result = Color_permutation.Private.find_nth a ~n ~f in
-    print_s [%sexp (result : int option)]
+    print_dyn (Dyn.option Dyn.int result)
   in
   test [||] 0 (fun _ -> (assert false [@coverage off]));
-  [%expect {| () |}];
+  [%expect {| None |}];
   test [||] 1 (fun _ -> (assert false [@coverage off]));
-  [%expect {| () |}];
+  [%expect {| None |}];
   test [| true |] 0 Fn.id;
-  [%expect {| (0) |}];
+  [%expect {| Some 0 |}];
   test [| true |] 1 Fn.id;
-  [%expect {| () |}];
+  [%expect {| None |}];
   test [| false; true |] 0 Fn.id;
-  [%expect {| (1) |}];
+  [%expect {| Some 1 |}];
   test [| false; true; false; true; false; true |] 1 Fn.id;
-  [%expect {| (3) |}];
+  [%expect {| Some 3 |}];
   test [| false; true; false; true; false; true |] 2 Fn.id;
-  [%expect {| (5) |}];
+  [%expect {| Some 5 |}];
   ()
 ;;
