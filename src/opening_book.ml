@@ -4,7 +4,11 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-type t = Guess.t [@@deriving sexp]
+type t = Guess.t
+
+let to_json = Guess.to_json
+let of_json = Guess.of_json
+let sexp_of_t t = Guess.sexp_of_t t
 
 let root t ~color_permutation = Guess.map_color t ~color_permutation
 
@@ -104,14 +108,14 @@ let depth =
 
 let find_opening_book_via_site () =
   List.find_map Sites.Sites.opening_book ~f:(fun dir ->
-    let file = Stdlib.Filename.concat dir "opening-book.sexp" in
+    let file = Stdlib.Filename.concat dir "opening-book.json" in
     Option.some_if (Stdlib.Sys.file_exists file) file)
 ;;
 
 let opening_book =
   lazy
-    (let contents = find_opening_book_via_site () |> Option.get |> In_channel.read_all in
-     Parsexp.Single.parse_string_exn contents |> [%of_sexp: t])
+    (let file = find_opening_book_via_site () |> Option.get in
+     Json.load ~file |> of_json)
 ;;
 
 let dump_cmd =
@@ -120,7 +124,7 @@ let dump_cmd =
     (let open Command.Std in
      let+ () = Arg.return () in
      let t = Lazy.force opening_book in
-     Stdlib.print_endline (t |> sexp_of_t |> Sexp.to_string_hum))
+     Stdlib.print_endline (t |> to_json |> Json.to_string))
 ;;
 
 let compute_cmd =
@@ -144,9 +148,7 @@ let compute_cmd =
      in
      Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
        let t = compute ~task_pool ~depth in
-       Out_channel.with_open_text path ~f:(fun oc ->
-         Out_channel.output_string oc (Sexp.to_string_hum (t |> sexp_of_t));
-         Out_channel.output_char oc '\n')))
+       Json.save (to_json t) ~file:path))
 ;;
 
 let verify_cmd =
@@ -173,8 +175,28 @@ let verify_cmd =
        Stdlib.exit 1)
 ;;
 
+let sexp_to_json_cmd =
+  Command.make
+    ~summary:"Convert a sexp opening-book file to JSON (stdout)."
+    (let open Command.Std in
+     let+ path =
+       Arg.pos
+         ~pos:0
+         Param.string
+         ~docv:"FILE"
+         ~doc:"Input sexp file."
+     in
+     let contents = In_channel.read_all path in
+     let t = Parsexp.Single.parse_string_exn contents |> Guess.t_of_sexp in
+     Stdlib.print_endline (t |> to_json |> Json.to_string))
+;;
+
 let cmd =
   Command.group
     ~summary:"Opening pre computation (aka the 'opening-book')."
-    [ "dump", dump_cmd; "compute", compute_cmd; "verify", verify_cmd ]
+    [ "dump", dump_cmd
+    ; "compute", compute_cmd
+    ; "verify", verify_cmd
+    ; "sexp-to-json", sexp_to_json_cmd
+    ]
 ;;

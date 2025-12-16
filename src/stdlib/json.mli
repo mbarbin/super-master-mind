@@ -7,3 +7,7 @@
 type t = Yojson.Basic.t
 
 exception Invalid_json of string * t
+
+val load : file:string -> t
+val save : t -> file:string -> unit
+val to_string : t -> string

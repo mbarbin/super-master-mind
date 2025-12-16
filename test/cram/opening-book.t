@@ -5,9 +5,9 @@
   $ super-master-mind opening-book dump | wc -l | awk '{print $1}'
   14535
 
-  $ super-master-mind opening-book compute --use-small-game-dimensions --output-file test-opening-book.sexp
+  $ super-master-mind opening-book compute --use-small-game-dimensions --output-file test-opening-book.json
 
-  $ cat test-opening-book.sexp
+  $ cat test-opening-book.json
   ((candidate (Black Blue Brown)) (expected_bits_gained 2.7428750550068659)
    (expected_bits_remaining 3.2571249449931341)
    (min_bits_gained 2.0931094043914813) (max_bits_gained 6)

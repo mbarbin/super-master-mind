@@ -7,3 +7,13 @@
 type t = Yojson.Basic.t
 
 exception Invalid_json of string * t
+
+let load ~file = Yojson.Basic.from_file file
+
+let save t ~file =
+  Stdlib.Out_channel.with_open_text file (fun oc ->
+    Yojson.Basic.pretty_to_channel ~std:true oc t;
+    Stdlib.Out_channel.output_char oc '\n')
+;;
+
+let to_string t = Yojson.Basic.pretty_to_string ~std:true t
