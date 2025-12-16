@@ -19,8 +19,10 @@ while IFS= read -r dir; do
     headache -c .headache.config -h COPYING.HEADER "${dir}"/*.ml
 
     # Check if .mli files exist in the directory, if so apply headache
-    if ls "${dir}"/*.mli 1> /dev/null 2>&1; then
-        headache -c .headache.config -h COPYING.HEADER "${dir}"/*.mli
+    # Exclude Sites.mli (generated file)
+    mli_files=$(find "${dir}" -maxdepth 1 -name '*.mli' ! -regex '.*/Sites\.mli' 2>/dev/null)
+    if [ -n "$mli_files" ]; then
+        headache -c .headache.config -h COPYING.HEADER $mli_files
     fi
 done < "$DIRS_FILE"
 
