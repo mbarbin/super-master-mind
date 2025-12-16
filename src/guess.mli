@@ -19,8 +19,8 @@ module rec Next_best_guesses : sig
   type t =
     | Not_computed
     | Computed of T.t list
-  [@@deriving equal]
 
+  val equal : t -> t -> bool
   val to_dyn : t -> Dyn.t
 end
 
@@ -33,8 +33,8 @@ and By_cue : sig
     ; probability : float
     ; next_best_guesses : Next_best_guesses.t
     }
-  [@@deriving equal]
 
+  val equal : t -> t -> bool
   val to_dyn : t -> Dyn.t
 end
 
@@ -49,8 +49,8 @@ and T : sig
     ; by_cue : By_cue.t Nonempty_list.t
       (** Sorted by decreasing number of remaining sizes *)
     }
-  [@@deriving equal]
 
+  val equal : t -> t -> bool
   val to_dyn : t -> Dyn.t
 end
 

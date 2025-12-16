@@ -12,6 +12,7 @@ module Source_code_position = Source_code_position
 
 let print pp = Format.printf "%a@." Pp.to_fmt pp
 let print_dyn dyn = print (Dyn.pp dyn)
+let phys_equal (type a) (x : a) (y : a) = x == y
 
 let require cond =
   if not cond then Code_error.raise "Required condition does not hold." []
@@ -25,6 +26,10 @@ let require_does_raise f =
 
 module Array = struct
   include Stdlib.ArrayLabels
+
+  let equal eq t1 t2 =
+    phys_equal t1 t2 || (Array.length t1 = Array.length t2 && Array.for_all2 eq t1 t2)
+  ;;
 
   let is_empty t = Array.length t = 0
   let create ~len a = Array.make len a
@@ -54,6 +59,13 @@ module In_channel = struct
   let read_all file = with_open_bin file input_all
 end
 
+module Int = struct
+  include Stdlib.Int
+
+  let incr = incr
+  let of_string = int_of_string_opt
+end
+
 module List = struct
   include Stdlib.ListLabels
 
@@ -61,6 +73,13 @@ module List = struct
     match li with
     | x :: l when f x -> drop_while l ~f
     | rest -> rest
+  ;;
+
+  let equal eq t1 t2 = equal ~eq t1 t2
+
+  let is_empty = function
+    | [] -> true
+    | _ :: _ -> false
   ;;
 
   let iter t ~f = iter ~f t
@@ -92,4 +111,11 @@ module Result = struct
 
   let bind x ~f = bind x f
   let map_error t ~f = map_error f t
+end
+
+module String = struct
+  include Stdlib.StringLabels
+
+  let concat ts ~sep = concat ~sep ts
+  let split t ~on = split_on_char ~sep:on t
 end
