@@ -72,33 +72,21 @@
  (depends
   (ocaml
    (>= 5.2))
-  (base
-   (>= v0.17))
   (cmdlang
    (>= 0.0.10))
   (cmdlang-cmdliner-err-runner
    (>= 0.0.16))
   (domainslib
    (>= 0.5))
-  (expect_test_helpers_core
-   (>= v0.17))
   (nonempty-list
    (>= v0.17))
   (parsexp
    (>= v0.17))
   (patdiff
    (>= v0.17))
-  (ppx_compare
-   (>= v0.17))
-  (ppx_enumerate
-   (>= v0.17))
   (ppx_expect
    (>= v0.17))
-  (ppx_hash
-   (>= v0.17))
   (ppx_here
-   (>= v0.17))
-  (ppx_sexp_conv
    (>= v0.17))
   (ppxlib
    (>= 0.33))
@@ -107,11 +95,7 @@
   (stdio
    (>= v0.17))
   (super-master-mind
-   (= :version))
-  (sherlodoc
-   (and
-    :with-doc
-    (>= 0.2)))))
+   (= :version))))
 
 (package
  (name super-master-mind-dev)
@@ -122,8 +106,6 @@
    (>= 5.2))
   (ocamlformat
    (= 0.28.1))
-  (base
-   (>= v0.17))
   (bisect_ppx
    (>= 2.8.3))
   (cmdlang
@@ -132,34 +114,20 @@
    (>= 0.0.16))
   (domainslib
    (>= 0.5))
-  (expect_test_helpers_core
-   (>= v0.17))
   (nonempty-list
    (>= v0.17))
   (parsexp
    (>= v0.17))
-  (patdiff
-   (>= v0.17))
-  (ppx_compare
-   (>= v0.17))
-  (ppx_enumerate
-   (>= v0.17))
   (ppx_expect
-   (>= v0.17))
-  (ppx_hash
    (>= v0.17))
   (ppx_here
    (>= v0.17))
   (ppx_js_style
    (>= v0.17))
-  (ppx_sexp_conv
-   (>= v0.17))
   (ppxlib
    (>= 0.33))
   (progress
    (>= 0.3.0))
-  (stdio
-   (>= v0.17))
   (super-master-mind
    (= :version))
   (super-master-mind-tests

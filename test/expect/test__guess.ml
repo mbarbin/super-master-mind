@@ -8,13 +8,10 @@ let%expect_test "verify" =
   let candidate = Code.create_exn [| Green; Blue; Orange; White; Red |] in
   let possible_solutions = Codes.all in
   let guess = Guess.compute ~possible_solutions ~candidate in
-  let test ?(hum = true) guess =
+  let test guess =
     match Guess.verify guess ~possible_solutions with
     | Ok () -> print_dyn (Dyn.variant "Ok" [ Dyn.unit () ])
-    | Error error ->
-      if hum
-      then Guess.Verify_error.print_hum error Out_channel.stdout
-      else print_endline (Error.to_string_hum (Guess.Verify_error.to_error error))
+    | Error error -> Guess.Verify_error.print_hum error Out_channel.stdout
   in
   test guess;
   [%expect {| Ok () |}];
@@ -30,18 +27,6 @@ let%expect_test "verify" =
       ; expected_bits_remaining = 11.7684465941
       ; min_bits_gained = 2.2125055003
       ; max_bits_gained = 15.
-    |}];
-  (* Testing the mapping of Verify_error to [Error.t]. *)
-  test ~hum:false { guess with expected_bits_gained = 3.14 };
-  [%expect
-    {|
-    ((unexpected_field values)
-     (diff
-      ("-1,5 +1,5" "  { candidate = [| Green;  Blue;  Orange;  White;  Red |]"
-       "-|; expected_bits_gained = 3.23155340586"
-       "+|; expected_bits_gained = 3.14"
-       "  ; expected_bits_remaining = 11.7684465941"
-       "  ; min_bits_gained = 2.2125055003" "  ; max_bits_gained = 15.")))
     |}];
   (* Mismatch in the length of by_cues cases. *)
   test

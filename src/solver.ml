@@ -48,14 +48,14 @@ let solve ~color_permutation ~task_pool =
     let cue = input_cue () in
     let by_cue =
       Nonempty_list.find t.by_cue ~f:(fun by_cue -> Cue.equal cue by_cue.cue)
-      |> Option.value_exn ~here:[%here]
+      |> Option.get
     in
     let possible_solutions =
       Codes.filter possible_solutions ~candidate:t.candidate ~cue
     in
     if Codes.size possible_solutions = 1
     then (
-      let solution = List.hd_exn (Codes.to_list possible_solutions) in
+      let solution = List.hd (Codes.to_list possible_solutions) in
       let guess = Guess.compute ~possible_solutions ~candidate:solution in
       print guess)
     else (
@@ -90,7 +90,7 @@ let cmd =
        let index =
          match color_permutation with
          | Some index -> index
-         | None -> Random.int (force Color_permutation.cardinality) [@coverage off]
+         | None -> Random.int (Lazy.force Color_permutation.cardinality) [@coverage off]
        in
        Color_permutation.of_index_exn index
      in

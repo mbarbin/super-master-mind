@@ -11,7 +11,7 @@ let%expect_test "to_dyn" =
 ;;
 
 let%expect_test "analyze" =
-  let tested = Array.create ~len:(force Cue.cardinality) false in
+  let tested = Array.create ~len:(Lazy.force Cue.cardinality) false in
   let test ~solution ~candidate =
     let solution = Code.create_exn solution
     and candidate = Code.create_exn candidate in
@@ -96,7 +96,7 @@ let%expect_test "repetition of colors in the solution" =
 ;;
 
 let%expect_test "create_exn" =
-  let size = force Code.size in
+  let size = Lazy.force Code.size in
   print_dyn (Dyn.record [ "size", Dyn.int size ]);
   [%expect {| { size = 5 } |}];
   require_does_raise (fun () : Code.t -> Code.create_exn [||]);
@@ -119,7 +119,7 @@ let%expect_test "create_exn" =
 ;;
 
 let%expect_test "indices" =
-  for i = 0 to force Code.cardinality - 1 do
+  for i = 0 to Lazy.force Code.cardinality - 1 do
     let code = Code.of_index_exn i in
     let index = Code.to_index code in
     let hum = Code.to_hum code in
@@ -128,7 +128,7 @@ let%expect_test "indices" =
     assert (Code.equal code code')
   done;
   [%expect {||}];
-  require_does_raise (fun () : Code.t -> Code.of_index_exn (force Code.cardinality));
+  require_does_raise (fun () : Code.t -> Code.of_index_exn (Lazy.force Code.cardinality));
   [%expect {| ("Index out of bounds.", { index = 32768; cardinality = 32768 }) |}];
   ()
 ;;

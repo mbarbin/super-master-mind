@@ -21,3 +21,50 @@ let require_does_raise f =
   | _ -> Code_error.raise "Did not raise." []
   | exception e -> print_endline (Printexc.to_string e)
 ;;
+
+module Array = struct
+  include Stdlib.ArrayLabels
+
+  let is_empty t = Array.length t = 0
+  let create ~len a = Array.make len a
+
+  let filter_mapi t ~f =
+    t |> Array.to_seqi |> Seq.filter_map (fun (i, x) -> f i x) |> Array.of_seq
+  ;;
+
+  let fold t ~init ~f = fold_left t ~init ~f
+
+  let foldi t ~init ~f =
+    t |> Array.to_seqi |> Seq.fold_left (fun acc (i, e) -> f i acc e) init
+  ;;
+
+  let sort t ~compare = sort t ~cmp:compare
+end
+
+module Hashtbl = struct
+  include MoreLabels.Hashtbl
+
+  let set t ~key ~data = replace t ~key ~data
+end
+
+module List = struct
+  include Stdlib.ListLabels
+
+  let iter t ~f = iter ~f t
+  let fold t ~init ~f = fold_left t ~init ~f
+end
+
+module Option = struct
+  include Stdlib.Option
+
+  let bind x ~f = bind x f
+  let iter t ~f = iter f t
+  let some_if cond a = if cond then Some a else None
+end
+
+module Result = struct
+  include Stdlib.Result
+
+  let bind x ~f = bind x f
+  let map_error t ~f = map_error f t
+end

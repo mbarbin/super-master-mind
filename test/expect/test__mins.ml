@@ -9,13 +9,13 @@
    that gives back the least amount of information. *)
 
 let%expect_test "min sequence" =
-  let steps = Queue.create () in
+  let steps = ref [] in
   let add (t : Guess.t) =
     let by_cue =
       Nonempty_list.singleton
         { (Nonempty_list.hd t.by_cue) with next_best_guesses = Not_computed }
     in
-    Queue.enqueue steps { t with by_cue }
+    steps := { t with by_cue } :: !steps
   in
   let rec aux (t : Guess.t) ~task_pool ~possible_solutions =
     (* At each step, we choose to act as if we were in the case leading to the
@@ -27,7 +27,7 @@ let%expect_test "min sequence" =
     in
     if Codes.size possible_solutions = 1
     then (
-      let solution = List.hd_exn (Codes.to_list possible_solutions) in
+      let solution = List.hd (Codes.to_list possible_solutions) in
       add (Guess.compute ~possible_solutions ~candidate:solution))
     else (
       let guess =
@@ -43,11 +43,13 @@ let%expect_test "min sequence" =
   in
   let opening_book = Lazy.force Opening_book.opening_book in
   let root =
-    Opening_book.root opening_book ~color_permutation:(force Color_permutation.identity)
+    Opening_book.root
+      opening_book
+      ~color_permutation:(Lazy.force Color_permutation.identity)
   in
   Task_pool.with_t Task_pool.Config.default ~f:(fun ~task_pool ->
     aux root ~task_pool ~possible_solutions:Codes.all);
-  let steps = Queue.to_list steps |> List.mapi ~f:(fun i e -> Int.succ i, e) in
+  let steps = List.rev !steps |> List.mapi ~f:(fun i e -> Int.succ i, e) in
   print_dyn (Dyn.record [ "number_of_steps", Dyn.int (List.length steps) ]);
   print_dyn (Dyn.list (fun (i, g) -> Dyn.Tuple [ Dyn.int i; Guess.to_dyn g ]) steps);
   [%expect

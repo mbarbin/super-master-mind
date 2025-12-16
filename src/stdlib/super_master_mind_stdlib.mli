@@ -14,3 +14,52 @@ module Source_code_position = Source_code_position
 val print_dyn : Dyn.t -> unit
 val require : bool -> unit
 val require_does_raise : (unit -> 'a) -> unit
+
+module Array : sig
+  include module type of struct
+    include Stdlib.ArrayLabels
+  end
+
+  val is_empty : _ t -> bool
+  val create : len:int -> 'a -> 'a t
+  val filter_mapi : 'a t -> f:(int -> 'a -> 'b option) -> 'b t
+  val fold : 'a t -> init:'acc -> f:('acc -> 'a -> 'acc) -> 'acc
+  val foldi : 'a t -> init:'acc -> f:(int -> 'acc -> 'a -> 'acc) -> 'acc
+  val sort : 'a t -> compare:('a -> 'a -> int) -> unit
+end
+
+module Hashtbl : sig
+  include module type of struct
+    include MoreLabels.Hashtbl
+  end
+
+  val set : ('key, 'data) t -> key:'key -> data:'data -> unit
+end
+
+module List : sig
+  include module type of struct
+    include Stdlib.ListLabels
+  end
+
+  val iter : 'a t -> f:('a -> unit) -> unit
+  val fold : 'a t -> init:'acc -> f:('acc -> 'a -> 'acc) -> 'acc
+end
+
+module Option : sig
+  include module type of struct
+    include Stdlib.Option
+  end
+
+  val bind : 'a t -> f:('a -> 'b option) -> 'b t
+  val iter : 'a t -> f:('a -> unit) -> unit
+  val some_if : bool -> 'a -> 'a t
+end
+
+module Result : sig
+  include module type of struct
+    include Stdlib.Result
+  end
+
+  val bind : ('a, 'err) t -> f:('a -> ('b, 'err) t) -> ('b, 'err) t
+  val map_error : ('a, 'err) t -> f:('err -> 'b) -> ('a, 'b) t
+end

@@ -127,7 +127,7 @@ let compute ~possible_solutions ~candidate : t =
   let original_size = Float.of_int (Codes.size possible_solutions) in
   let original_bits = Float.log2 original_size in
   let by_cue =
-    let by_cue = Array.init (force Cue.cardinality) ~f:(fun _ -> Queue.create ()) in
+    let by_cue = Array.init (Lazy.force Cue.cardinality) ~f:(fun _ -> Queue.create ()) in
     Codes.iter possible_solutions ~f:(fun solution ->
       let cue = Code.analyze ~solution ~candidate in
       Queue.enqueue by_cue.(Cue.to_index cue) solution);
@@ -147,7 +147,10 @@ let compute ~possible_solutions ~candidate : t =
             })
         else None)
     in
-    Array.sort by_cue ~compare:(fun t1 t2 ->
+    (* At the moment the sorting is under specified when the sizes are the same,
+       which causes issues when comparing Base and Stdlib. Fixing this is left
+       as future work. *)
+    Base.Array.sort by_cue ~compare:(fun t1 t2 ->
       Int.compare t2.size_remaining t1.size_remaining);
     Nonempty_list.of_list_exn (Array.to_list by_cue)
   in
@@ -212,7 +215,7 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
     Domainslib.Task.parallel_for
       pool
       ~start:0
-      ~finish:(force Code.cardinality - 1)
+      ~finish:(Lazy.force Code.cardinality - 1)
       ~body:(fun candidate ->
         let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
         if Float.( > ) t.expected_bits_gained 0.
@@ -225,7 +228,14 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
   Kheap.to_list ts
 ;;
 
-let iter_result list ~f = List.fold_result list ~init:() ~f:(fun () a -> f a)
+let rec iter_result list ~f =
+  match list with
+  | [] -> Ok ()
+  | hd :: tl ->
+    (match f hd with
+     | Ok () -> iter_result tl ~f
+     | Error _ as err -> err)
+;;
 
 module Verify_error = struct
   type t =

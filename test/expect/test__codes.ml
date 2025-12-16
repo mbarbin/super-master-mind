@@ -48,7 +48,7 @@ let%expect_test "to_list" =
 ;;
 
 let%expect_test "filter" =
-  List.iter (force Cue.all) ~f:(fun cue ->
+  List.iter (Lazy.force Cue.all) ~f:(fun cue ->
     let t =
       Codes.filter
         Codes.all

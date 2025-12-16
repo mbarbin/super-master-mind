@@ -52,7 +52,7 @@ module Computing = struct
   ;;
 
   let to_code (t : t) : int =
-    let color_cardinality = force Color.cardinality in
+    let color_cardinality = Lazy.force Color.cardinality in
     Array.fold_right t ~init:0 ~f:(fun color acc ->
       (acc * color_cardinality) + Color.to_index color)
   ;;

@@ -110,11 +110,7 @@ let find_opening_book_via_site () =
 
 let opening_book =
   lazy
-    (let contents =
-       find_opening_book_via_site ()
-       |> Option.value_exn ~here:[%here]
-       |> In_channel.read_all
-     in
+    (let contents = find_opening_book_via_site () |> Option.get |> In_channel.read_all in
      Parsexp.Single.parse_string_exn contents |> [%of_sexp: t])
 ;;
 
