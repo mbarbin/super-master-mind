@@ -96,6 +96,17 @@ let string_in_ocaml_syntax str =
                 @ [ escape_protect_first_space last ^ "\"" ]))))
 ;;
 
+(* Float-to-string conversion that preserves round-trip accuracy.
+   Algorithm from sexplib0 (https://github.com/janestreet/sexplib0):
+   - %.17G is guaranteed to round-trip
+   - %.15G avoids ugly trailing digits (e.g. "3.1400000000000001") for floats
+     converted from decimals with <= 15 significant digits
+   - Try %.15G first; if it doesn't round-trip, use %.17G *)
+let float_to_string x =
+  let s = Printf.sprintf "%.15G" x in
+  if float_of_string s = x then s else Printf.sprintf "%.17G" x
+;;
+
 let pp_sequence start stop x ~f =
   let open Pp.O in
   match x with
@@ -124,7 +135,7 @@ let rec pp ?(in_arg = false) =
   | String s -> string_in_ocaml_syntax s
   | Bytes b -> string_in_ocaml_syntax (Bytes.to_string b)
   | Char c -> Pp.char c
-  | Float f -> Pp.verbatim (string_of_float f)
+  | Float f -> Pp.verbatim (float_to_string f)
   | Option None -> pp ~in_arg (Variant ("None", []))
   | Option (Some x) -> pp ~in_arg (Variant ("Some", [ x ]))
   | List xs -> pp_sequence "[" "]" xs ~f:pp
