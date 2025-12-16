@@ -47,8 +47,6 @@
    (>= v0.17))
   (pp
    (>= 2.0.0))
-  (ppx_compare
-   (>= v0.17))
   (ppxlib
    (>= 0.33))
   (progress

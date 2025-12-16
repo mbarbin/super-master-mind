@@ -12,6 +12,7 @@ module Json = Json
 module Ordering = Ordering
 module Source_code_position = Source_code_position
 
+val phys_equal : 'a -> 'a -> bool
 val print_dyn : Dyn.t -> unit
 val require : bool -> unit
 val require_does_raise : (unit -> 'a) -> unit
@@ -52,6 +53,7 @@ module List : sig
   end
 
   val drop_while : 'a t -> f:('a -> bool) -> 'a t
+  val equal : ('a -> 'a -> bool) -> 'a t -> 'a t -> bool
   val iter : 'a t -> f:('a -> unit) -> unit
   val fold : 'a t -> init:'acc -> f:('acc -> 'a -> 'acc) -> 'acc
 end

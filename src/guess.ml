@@ -8,8 +8,8 @@ module rec Next_best_guesses : sig
   type t =
     | Not_computed
     | Computed of T.t list
-  [@@deriving equal]
 
+  val equal : t -> t -> bool
   val is_computed : t -> bool
   val to_dyn : t -> Dyn.t
   val to_json_opt : t -> Json.t option
@@ -18,7 +18,17 @@ end = struct
   type t =
     | Not_computed
     | Computed of T.t list
-  [@@deriving equal]
+
+  let equal t = function
+    | Not_computed ->
+      (match t with
+       | Not_computed -> true
+       | Computed _ -> false)
+    | Computed list ->
+      (match t with
+       | Not_computed -> false
+       | Computed list' -> List.equal T.equal list list')
+  ;;
 
   let is_computed = function
     | Computed _ -> true
@@ -54,8 +64,8 @@ and By_cue : sig
     ; probability : float
     ; next_best_guesses : Next_best_guesses.t
     }
-  [@@deriving equal]
 
+  val equal : t -> t -> bool
   val to_dyn : t -> Dyn.t
   val to_json : t -> Json.t
   val of_json : Json.t -> t
@@ -68,7 +78,25 @@ end = struct
     ; probability : float
     ; next_best_guesses : Next_best_guesses.t
     }
-  [@@deriving equal]
+
+  let equal
+        t
+        ({ cue
+         ; size_remaining
+         ; bits_remaining
+         ; bits_gained
+         ; probability
+         ; next_best_guesses
+         } as t2)
+    =
+    phys_equal t t2
+    || (Cue.equal t.cue cue
+        && Int.equal t.size_remaining size_remaining
+        && Float.equal t.bits_remaining bits_remaining
+        && Float.equal t.bits_gained bits_gained
+        && Float.equal t.probability probability
+        && Next_best_guesses.equal t.next_best_guesses next_best_guesses)
+  ;;
 
   let to_dyn
         { cue
@@ -190,8 +218,8 @@ and T : sig
     ; by_cue :
         By_cue.t Nonempty_list.t (* Sorted by decreasing number of remaining sizes *)
     }
-  [@@deriving equal]
 
+  val equal : t -> t -> bool
   val to_dyn : t -> Dyn.t
   val to_json : t -> Json.t
   val of_json : Json.t -> t
@@ -205,7 +233,27 @@ end = struct
     ; max_bits_remaining : float
     ; by_cue : By_cue.t Nonempty_list.t
     }
-  [@@deriving equal]
+
+  let equal
+        t
+        ({ candidate
+         ; expected_bits_gained
+         ; expected_bits_remaining
+         ; min_bits_gained
+         ; max_bits_gained
+         ; max_bits_remaining
+         ; by_cue
+         } as t2)
+    =
+    phys_equal t t2
+    || (Code.equal t.candidate candidate
+        && Float.equal t.expected_bits_gained expected_bits_gained
+        && Float.equal t.expected_bits_remaining expected_bits_remaining
+        && Float.equal t.min_bits_gained min_bits_gained
+        && Float.equal t.max_bits_gained max_bits_gained
+        && Float.equal t.max_bits_remaining max_bits_remaining
+        && Nonempty_list.equal By_cue.equal t.by_cue by_cue)
+  ;;
 
   let to_dyn
         { candidate
