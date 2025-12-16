@@ -230,14 +230,14 @@ let iter_result list ~f = List.fold_result list ~init:() ~f:(fun () a -> f a)
 module Verify_error = struct
   type t =
     { unexpected_field : string
-    ; expected : Sexp.t
-    ; computed : Sexp.t
+    ; expected : Dyn.t
+    ; computed : Dyn.t
     }
 
   let diff ~expected ~computed =
     Expect_test_patdiff.patdiff
-      (Sexp.to_string_hum expected)
-      (Sexp.to_string_hum computed)
+      (Dyn.to_string expected)
+      (Dyn.to_string computed)
       ~context:3
   ;;
 
@@ -262,12 +262,12 @@ let unexpected
       ~unexpected_field
       ~(expected : a)
       ~(computed : a)
-      (sexp_of_a : a -> Sexp.t)
+      (to_dyn_a : a -> Dyn.t)
   =
   Error
     { Verify_error.unexpected_field
-    ; expected = expected |> sexp_of_a
-    ; computed = computed |> sexp_of_a
+    ; expected = expected |> to_dyn_a
+    ; computed = computed |> to_dyn_a
     }
 ;;
 
@@ -280,13 +280,13 @@ let rec verify (t : t) ~possible_solutions =
       ~unexpected_field:"by_cue length"
       ~expected:(Nonempty_list.length t'.by_cue)
       ~computed:(Nonempty_list.length t.by_cue)
-      [%sexp_of: int]
+      Dyn.int
   | Ok by_cues ->
     let* () =
       let t = { t with by_cue = t'.by_cue } in
       if equal t t'
       then Ok ()
-      else unexpected ~unexpected_field:"values" ~expected:t' ~computed:t [%sexp_of: t]
+      else unexpected ~unexpected_field:"values" ~expected:t' ~computed:t to_dyn
     in
     iter_result (Nonempty_list.to_list by_cues) ~f:(fun (by_cue, by_cue') ->
       assert (not (Next_best_guesses.is_computed by_cue'.next_best_guesses));
@@ -299,7 +299,7 @@ let rec verify (t : t) ~possible_solutions =
             ~unexpected_field:"by_cue"
             ~expected:by_cue'
             ~computed:by_cue
-            [%sexp_of: By_cue.t]
+            By_cue.to_dyn
       in
       match by_cue.next_best_guesses with
       | Not_computed -> Ok ()
