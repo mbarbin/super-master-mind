@@ -1,6 +1,6 @@
 (library
  (name super_master_mind_test)
- (public_name super-master-mind-tests.super_master_mind_test)
+ (package super-master-mind-tests)
  (flags
   :standard
   -w
