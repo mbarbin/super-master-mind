@@ -10,8 +10,6 @@
   -open
   Base
   -open
-  Stdio
-  -open
   Cmdlang
   -open
   Super_master_mind_stdlib)
@@ -24,19 +22,13 @@
   parsexp
   patdiff.expect_test_patdiff
   progress
-  stdio
   super_master_mind_stdlib)
  (instrumentation
   (backend bisect_ppx))
  (lint
   (pps ppx_js_style -allow-let-operators -check-doc-comments))
  (preprocess
-  (pps
-   -unused-code-warnings=force
-   ppx_compare
-   ppx_enumerate
-   ppx_here
-   ppx_sexp_conv)))
+  (pps -unused-code-warnings=force ppx_compare ppx_here ppx_sexp_conv)))
 
 (generate_sites_module
  (module sites)

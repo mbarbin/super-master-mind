@@ -120,7 +120,7 @@ let dump_cmd =
     (let open Command.Std in
      let+ () = Arg.return () in
      let t = Lazy.force opening_book in
-     print_s (t |> sexp_of_t))
+     Stdlib.print_endline (t |> sexp_of_t |> Sexp.to_string_hum))
 ;;
 
 let compute_cmd =
@@ -144,7 +144,7 @@ let compute_cmd =
      in
      Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
        let t = compute ~task_pool ~depth in
-       Out_channel.with_file path ~f:(fun oc ->
+       Out_channel.with_open_text path ~f:(fun oc ->
          Out_channel.output_string oc (Sexp.to_string_hum (t |> sexp_of_t));
          Out_channel.output_char oc '\n')))
 ;;
@@ -168,7 +168,7 @@ let verify_cmd =
      match Guess.verify t ~possible_solutions:Codes.all with
      | Ok () -> ()
      | Error error ->
-       prerr_endline "Installed opening-book does not verify expected properties.";
+       Stdlib.prerr_endline "Installed opening-book does not verify expected properties.";
        Guess.Verify_error.print_hum error Out_channel.stderr;
        Stdlib.exit 1)
 ;;

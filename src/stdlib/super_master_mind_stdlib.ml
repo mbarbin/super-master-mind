@@ -47,6 +47,12 @@ module Hashtbl = struct
   let set t ~key ~data = replace t ~key ~data
 end
 
+module In_channel = struct
+  include Stdlib.In_channel
+
+  let read_all file = with_open_bin file input_all
+end
+
 module List = struct
   include Stdlib.ListLabels
 
@@ -60,6 +66,18 @@ module Option = struct
   let bind x ~f = bind x f
   let iter t ~f = iter f t
   let some_if cond a = if cond then Some a else None
+end
+
+module Out_channel = struct
+  include Stdlib.Out_channel
+
+  let output_lines t lines =
+    List.iter lines ~f:(fun line ->
+      output_string t line;
+      output_char t '\n')
+  ;;
+
+  let with_open_text t ~f = with_open_text t f
 end
 
 module Result = struct

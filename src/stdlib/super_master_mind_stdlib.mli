@@ -36,6 +36,14 @@ module Hashtbl : sig
   val set : ('key, 'data) t -> key:'key -> data:'data -> unit
 end
 
+module In_channel : sig
+  include module type of struct
+    include Stdlib.In_channel
+  end
+
+  val read_all : string -> string
+end
+
 module List : sig
   include module type of struct
     include Stdlib.ListLabels
@@ -53,6 +61,15 @@ module Option : sig
   val bind : 'a t -> f:('a -> 'b option) -> 'b t
   val iter : 'a t -> f:('a -> unit) -> unit
   val some_if : bool -> 'a -> 'a t
+end
+
+module Out_channel : sig
+  include module type of struct
+    include Stdlib.Out_channel
+  end
+
+  val output_lines : t -> string list -> unit
+  val with_open_text : string -> f:(t -> 'a) -> 'a
 end
 
 module Result : sig

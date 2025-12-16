@@ -4,16 +4,20 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-let input_line () = In_channel.(input_line_exn stdin)
+let input_line () =
+  match Stdlib.In_channel.input_line In_channel.stdin with
+  | Some line -> line
+  | None -> raise End_of_file
+;;
 
 let rec input_cue () =
   let rec input_int ~prompt =
-    print_string prompt;
+    Stdlib.print_string prompt;
     Out_channel.(flush stdout);
     let int = input_line () in
     match Int.of_string int with
     | exception e ->
-      print_endline (Stdlib.Printexc.to_string e);
+      Stdlib.print_endline (Stdlib.Printexc.to_string e);
       input_int ~prompt
     | i -> i
   in
@@ -22,19 +26,19 @@ let rec input_cue () =
     let prompt = "#white (incorrectly placed): " in
     if black >= 4
     then (
-      print_endline (prompt ^ "0");
+      Stdlib.print_endline (prompt ^ "0");
       0)
     else input_int ~prompt
   in
   match Cue.create_exn { white; black } with
   | exception e ->
-    print_endline (Stdlib.Printexc.to_string e);
+    Stdlib.print_endline (Stdlib.Printexc.to_string e);
     input_cue ()
   | cue -> cue
 ;;
 
 let solve ~color_permutation ~task_pool =
-  print_string "Press enter when done choosing a solution: ";
+  Stdlib.print_string "Press enter when done choosing a solution: ";
   Out_channel.(flush stdout);
   let (_ : string) = input_line () in
   let step_index = ref 0 in

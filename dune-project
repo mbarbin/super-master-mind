@@ -58,9 +58,7 @@
   (ppxlib
    (>= 0.33))
   (progress
-   (>= 0.3.0))
-  (stdio
-   (>= v0.17))))
+   (>= 0.3.0))))
 
 (package
  (name super-master-mind-tests)
@@ -88,8 +86,6 @@
    (>= 0.33))
   (progress
    (>= 0.3.0))
-  (stdio
-   (>= v0.17))
   (super-master-mind
    (= :version))))
 

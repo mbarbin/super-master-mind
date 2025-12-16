@@ -20,7 +20,6 @@ depends: [
   "ppx_here" {>= "v0.17"}
   "ppxlib" {>= "0.33"}
   "progress" {>= "0.3.0"}
-  "stdio" {>= "v0.17"}
   "super-master-mind" {= version}
   "odoc" {with-doc}
 ]
