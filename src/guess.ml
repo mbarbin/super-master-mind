@@ -8,7 +8,7 @@ module rec Next_best_guesses : sig
   type t =
     | Not_computed
     | Computed of T.t list
-  [@@deriving equal, sexp]
+  [@@deriving equal]
 
   val is_computed : t -> bool
   val to_dyn : t -> Dyn.t
@@ -18,7 +18,7 @@ end = struct
   type t =
     | Not_computed
     | Computed of T.t list
-  [@@deriving equal, sexp]
+  [@@deriving equal]
 
   let is_computed = function
     | Computed _ -> true
@@ -54,7 +54,7 @@ and By_cue : sig
     ; probability : float
     ; next_best_guesses : Next_best_guesses.t
     }
-  [@@deriving equal, sexp]
+  [@@deriving equal]
 
   val to_dyn : t -> Dyn.t
   val to_json : t -> Json.t
@@ -68,7 +68,7 @@ end = struct
     ; probability : float
     ; next_best_guesses : Next_best_guesses.t
     }
-  [@@deriving equal, sexp]
+  [@@deriving equal]
 
   let to_dyn
         { cue
@@ -190,7 +190,7 @@ and T : sig
     ; by_cue :
         By_cue.t Nonempty_list.t (* Sorted by decreasing number of remaining sizes *)
     }
-  [@@deriving equal, sexp]
+  [@@deriving equal]
 
   val to_dyn : t -> Dyn.t
   val to_json : t -> Json.t
@@ -205,7 +205,7 @@ end = struct
     ; max_bits_remaining : float
     ; by_cue : By_cue.t Nonempty_list.t
     }
-  [@@deriving equal, sexp]
+  [@@deriving equal]
 
   let to_dyn
         { candidate

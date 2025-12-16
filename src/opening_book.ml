@@ -8,7 +8,6 @@ type t = Guess.t
 
 let to_json = Guess.to_json
 let of_json = Guess.of_json
-let sexp_of_t t = Guess.sexp_of_t t
 let root t ~color_permutation = Guess.map_color t ~color_permutation
 
 let rec compute_internal
@@ -174,22 +173,8 @@ let verify_cmd =
        Stdlib.exit 1)
 ;;
 
-let sexp_to_json_cmd =
-  Command.make
-    ~summary:"Convert a sexp opening-book file to JSON (stdout)."
-    (let open Command.Std in
-     let+ path = Arg.pos ~pos:0 Param.string ~docv:"FILE" ~doc:"Input sexp file." in
-     let contents = In_channel.read_all path in
-     let t = Parsexp.Single.parse_string_exn contents |> Guess.t_of_sexp in
-     Stdlib.print_endline (t |> to_json |> Json.to_string))
-;;
-
 let cmd =
   Command.group
     ~summary:"Opening pre computation (aka the 'opening-book')."
-    [ "dump", dump_cmd
-    ; "compute", compute_cmd
-    ; "verify", verify_cmd
-    ; "sexp-to-json", sexp_to_json_cmd
-    ]
+    [ "dump", dump_cmd; "compute", compute_cmd; "verify", verify_cmd ]
 ;;
