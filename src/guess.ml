@@ -4,6 +4,13 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
+let dyn_float x =
+  let y = string_of_float x in
+  if Float.equal (float_of_string y) x
+  then Dyn.float x
+  else Dyn.string (Printf.sprintf "%.17g" x)
+;;
+
 module rec Next_best_guesses : sig
   type t =
     | Not_computed
@@ -110,9 +117,9 @@ end = struct
     Dyn.record
       [ "cue", Cue.to_dyn cue
       ; "size_remaining", Dyn.int size_remaining
-      ; "bits_remaining", Dyn.float bits_remaining
-      ; "bits_gained", Dyn.float bits_gained
-      ; "probability", Dyn.float probability
+      ; "bits_remaining", dyn_float bits_remaining
+      ; "bits_gained", dyn_float bits_gained
+      ; "probability", dyn_float probability
       ; "next_best_guesses", Next_best_guesses.to_dyn next_best_guesses
       ]
   ;;
@@ -267,11 +274,11 @@ end = struct
     =
     Dyn.record
       [ "candidate", Code.to_dyn candidate
-      ; "expected_bits_gained", Dyn.float expected_bits_gained
-      ; "expected_bits_remaining", Dyn.float expected_bits_remaining
-      ; "min_bits_gained", Dyn.float min_bits_gained
-      ; "max_bits_gained", Dyn.float max_bits_gained
-      ; "max_bits_remaining", Dyn.float max_bits_remaining
+      ; "expected_bits_gained", dyn_float expected_bits_gained
+      ; "expected_bits_remaining", dyn_float expected_bits_remaining
+      ; "min_bits_gained", dyn_float min_bits_gained
+      ; "max_bits_gained", dyn_float max_bits_gained
+      ; "max_bits_remaining", dyn_float max_bits_remaining
       ; "by_cue", Dyn.list By_cue.to_dyn (Nonempty_list.to_list by_cue)
       ]
   ;;
