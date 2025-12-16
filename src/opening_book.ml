@@ -158,12 +158,13 @@ let verify_cmd =
     ~summary:"Verify properties of the installed opening-book."
     (let open Command.Std in
      let+ color_permutation =
-       match%map.Command
+       let+ v =
          Arg.named_opt
            [ "color-permutation" ]
            Color_permutation.param
            ~doc:"Color permutation in [0; 40319] (default Identity)."
-       with
+       in
+       match v with
        | Some color_permutation -> color_permutation
        | None -> force Color_permutation.identity
      in

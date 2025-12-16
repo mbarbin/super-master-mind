@@ -42,12 +42,13 @@ let use_small_game_dimensions_exn here =
 ;;
 
 let arg here =
-  if%map_open.Command
+  let open Command.Std in
+  let+ flag =
     Arg.flag
       [ "use-small-game-dimensions" ]
       ~doc:"Replace normal dimensions by smaller ones for quick tests."
-  then use_small_game_dimensions_exn here
-  else ()
+  in
+  if flag then use_small_game_dimensions_exn here else ()
 ;;
 
 let code_size here =

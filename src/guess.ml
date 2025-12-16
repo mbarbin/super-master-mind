@@ -272,7 +272,7 @@ let unexpected
 ;;
 
 let rec verify (t : t) ~possible_solutions =
-  let open Result.Let_syntax in
+  let ( let* ) x f = Result.bind x ~f in
   let t' = compute ~possible_solutions ~candidate:t.candidate in
   match Nonempty_list.zip t.by_cue t'.by_cue with
   | Unequal_lengths ->
@@ -282,18 +282,18 @@ let rec verify (t : t) ~possible_solutions =
       ~computed:(Nonempty_list.length t.by_cue)
       [%sexp_of: int]
   | Ok by_cues ->
-    let%bind () =
+    let* () =
       let t = { t with by_cue = t'.by_cue } in
       if equal t t'
-      then return ()
+      then Ok ()
       else unexpected ~unexpected_field:"values" ~expected:t' ~computed:t [%sexp_of: t]
     in
     iter_result (Nonempty_list.to_list by_cues) ~f:(fun (by_cue, by_cue') ->
       assert (not (Next_best_guesses.is_computed by_cue'.next_best_guesses));
-      let%bind () =
+      let* () =
         let by_cue = { by_cue with next_best_guesses = Not_computed } in
         if By_cue.equal by_cue' by_cue
-        then return ()
+        then Ok ()
         else
           unexpected
             ~unexpected_field:"by_cue"
@@ -302,7 +302,7 @@ let rec verify (t : t) ~possible_solutions =
             [%sexp_of: By_cue.t]
       in
       match by_cue.next_best_guesses with
-      | Not_computed -> return ()
+      | Not_computed -> Ok ()
       | Computed ts ->
         let possible_solutions =
           Codes.filter possible_solutions ~candidate:t.candidate ~cue:by_cue.cue
