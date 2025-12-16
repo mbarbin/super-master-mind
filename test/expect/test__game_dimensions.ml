@@ -6,19 +6,17 @@
 
 let%expect_test "set twice" =
   Game_dimensions.use_small_game_dimensions_exn [%here];
-  require_does_raise ~hide_positions:true [%here] (fun () ->
-    Game_dimensions.use_small_game_dimensions_exn [%here]);
-  [%expect {| ("Game_dimensions is already set" :10:50 ((was_set_here :8:48))) |}]
+  require_does_raise (fun () -> Game_dimensions.use_small_game_dimensions_exn [%here]);
+  [%expect {| ("Game_dimensions is already set" :9:78 ((was_set_here :8:48))) |}]
 ;;
 
 let%expect_test "set after use" =
   print_s [%sexp { code_size = (Game_dimensions.code_size [%here] : int) }];
-  require_does_raise ~hide_positions:true [%here] (fun () ->
-    Game_dimensions.use_small_game_dimensions_exn [%here]);
+  require_does_raise (fun () -> Game_dimensions.use_small_game_dimensions_exn [%here]);
   [%expect
     {|
     ((code_size 3))
-    ("Game_dimensions is already set" :17:50 ((was_set_here :8:48)))
+    ("Game_dimensions is already set" :15:78 ((was_set_here :8:48)))
     |}]
 ;;
 

@@ -177,30 +177,16 @@ let%expect_test "create_exn" =
   let size = force Code.size in
   print_s [%sexp { size : int }];
   [%expect {| ((size 5)) |}];
-  require_does_raise [%here] (fun () : Code.t -> Code.create_exn [||]);
-  [%expect
-    {|
-    ("Invalid code size" (
-      (code ())
-      (code_size     0)
-      (expected_size 5)))
-    |}];
-  require_does_raise [%here] (fun () : Code.t -> Code.create_exn [| Red |]);
-  [%expect
-    {|
-    ("Invalid code size" (
-      (code (Red))
-      (code_size     1)
-      (expected_size 5)))
-    |}];
-  require_does_raise [%here] (fun () : Code.t ->
+  require_does_raise (fun () : Code.t -> Code.create_exn [||]);
+  [%expect {| ("Invalid code size" ((code ()) (code_size 0) (expected_size 5))) |}];
+  require_does_raise (fun () : Code.t -> Code.create_exn [| Red |]);
+  [%expect {| ("Invalid code size" ((code (Red)) (code_size 1) (expected_size 5))) |}];
+  require_does_raise (fun () : Code.t ->
     Code.create_exn (Array.create ~len:(size + 1) Color.Hum.Red));
   [%expect
     {|
-    ("Invalid code size" (
-      (code (Red Red Red Red Red Red))
-      (code_size     6)
-      (expected_size 5)))
+    ("Invalid code size"
+      ((code (Red Red Red Red Red Red)) (code_size 6) (expected_size 5)))
     |}];
   ()
 ;;
@@ -215,12 +201,7 @@ let%expect_test "indices" =
     assert (Code.equal code code')
   done;
   [%expect {||}];
-  require_does_raise [%here] (fun () : Code.t ->
-    Code.of_index_exn (force Code.cardinality));
-  [%expect
-    {|
-    ("Index out of bounds" (
-      (index       32768)
-      (cardinality 32768))) |}];
+  require_does_raise (fun () : Code.t -> Code.of_index_exn (force Code.cardinality));
+  [%expect {| ("Index out of bounds" ((index 32768) (cardinality 32768))) |}];
   ()
 ;;

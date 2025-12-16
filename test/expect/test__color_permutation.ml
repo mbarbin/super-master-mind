@@ -77,21 +77,15 @@ let%expect_test "indices" =
   let length = Hashtbl.length all in
   assert (length = force Color_permutation.cardinality);
   [%expect {||}];
-  require_does_raise [%here] (fun () : Color_permutation.t ->
+  require_does_raise (fun () : Color_permutation.t ->
     Color_permutation.of_index_exn (force Color_permutation.cardinality));
-  [%expect
-    {|
-    ("Index out of bounds" (
-      (index       40320)
-      (cardinality 40320))) |}];
+  [%expect {| ("Index out of bounds" ((index 40320) (cardinality 40320))) |}];
   (* Testing the [add] function itself. *)
-  require_does_raise [%here] (fun () : Color_permutation.t -> add 0);
+  require_does_raise (fun () : Color_permutation.t -> add 0);
   [%expect
     {|
-    ("Duplicated permutation" (
-      (i 0)
-      (j 0)
-      (e (Black Blue Brown Green Orange Red White Yellow))))
+    ("Duplicated permutation"
+      ((i 0) (j 0) (e (Black Blue Brown Green Orange Red White Yellow))))
     |}];
   ()
 ;;

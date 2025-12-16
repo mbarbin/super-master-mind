@@ -27,13 +27,8 @@ let%expect_test "indices" =
     let color' = Color.of_index_exn index in
     assert (Color.equal color color'));
   [%expect {||}];
-  require_does_raise [%here] (fun () : Color.t ->
-    Color.of_index_exn (force Color.cardinality));
-  [%expect
-    {|
-    ("Index out of bounds" (
-      (index       8)
-      (cardinality 8))) |}];
+  require_does_raise (fun () : Color.t -> Color.of_index_exn (force Color.cardinality));
+  [%expect {| ("Index out of bounds" ((index 8) (cardinality 8))) |}];
   ()
 ;;
 

@@ -49,11 +49,11 @@ let add t a =
     | None -> if k >= 1 then Some { Node.value = a; tail = None } else None
     | Some (node : _ Node.t) as head ->
       (match Ordering.of_int (t.compare node.value a) with
-       | Greater ->
+       | Gt ->
          (* Insert [a] before [node.value]. *)
          let tail = cut head ~k:(Int.pred k) in
          Some { Node.value = a; tail }
-       | Equal | Less ->
+       | Eq | Lt ->
          (* Insert [a] after [node.value]. *)
          node.tail <- aux (Int.pred k) node.tail;
          head)
