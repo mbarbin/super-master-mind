@@ -108,16 +108,16 @@ let%expect_test "min sequence" =
        })
     ; (4,
        { candidate = [| White;  Green;  Black;  White;  Red |]
-       ; expected_bits_gained = 3.7846616827968043
-       ; expected_bits_remaining = 3.8373901366595722
-       ; min_bits_gained = 2.8671643172929082
-       ; max_bits_gained = 7.6220518194563764
-       ; max_bits_remaining = 4.7548875021634682
+       ; expected_bits_gained = 3.7846616828253823
+       ; expected_bits_remaining = 3.8373901366746179
+       ; min_bits_gained = 2.8671643173000003
+       ; max_bits_gained = 7.6220518195
+       ; max_bits_remaining = 4.7548875022
        ; by_cue =
            [ { cue = { white = 1; black = 1 }
              ; size_remaining = 27
-             ; bits_remaining = 4.7548875021634682
-             ; bits_gained = 2.8671643172929082
+             ; bits_remaining = 4.7548875022
+             ; bits_gained = 2.8671643173000003
              ; probability = 0.13705583756345177
              ; next_best_guesses = Not_computed
              }
@@ -125,16 +125,16 @@ let%expect_test "min sequence" =
        })
     ; (5,
        { candidate = [| Brown;  Red;  Yellow;  Orange;  Red |]
-       ; expected_bits_gained = 3.6619328723735829
-       ; expected_bits_remaining = 1.0929546297898853
-       ; min_bits_gained = 2.7548875021634682
-       ; max_bits_gained = 4.7548875021634682
+       ; expected_bits_gained = 3.661932872414813
+       ; expected_bits_remaining = 1.0929546297851869
+       ; min_bits_gained = 2.7548875022
+       ; max_bits_gained = 4.7548875022
        ; max_bits_remaining = 2
        ; by_cue =
            [ { cue = { white = 1; black = 0 }
              ; size_remaining = 4
              ; bits_remaining = 2
-             ; bits_gained = 2.7548875021634682
+             ; bits_gained = 2.7548875022
              ; probability = 0.14814814814814814
              ; next_best_guesses = Not_computed
              }

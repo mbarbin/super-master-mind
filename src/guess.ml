@@ -390,10 +390,16 @@ include T
 let to_json = T.to_json
 let of_json = T.of_json
 
+(* Truncate log2 results to 10 decimal places for cross-platform determinism.
+   Different libm implementations (glibc vs Apple's) can produce results differing
+   at the 15th-16th significant digit. 10 decimal places provides far more precision
+   than needed for entropy calculations while ensuring reproducible results. *)
+let log2_truncated x = Float.round (Float.log2 x *. 1e10) /. 1e10
+
 let compute ~possible_solutions ~candidate : t =
   if Codes.is_empty possible_solutions then Code_error.raise "No possible solutions." [];
   let original_size = Float.of_int (Codes.size possible_solutions) in
-  let original_bits = Float.log2 original_size in
+  let original_bits = log2_truncated original_size in
   let by_cue =
     let by_cue = Array.init (Lazy.force Cue.cardinality) ~f:(fun _ -> []) in
     Codes.iter possible_solutions ~f:(fun solution ->
@@ -405,7 +411,7 @@ let compute ~possible_solutions ~candidate : t =
         let size_remaining = List.length remains in
         if size_remaining > 0
         then (
-          let bits_remaining = Float.log2 (Float.of_int size_remaining) in
+          let bits_remaining = log2_truncated (Float.of_int size_remaining) in
           Some
             { By_cue.cue = Cue.of_index_exn i
             ; size_remaining
