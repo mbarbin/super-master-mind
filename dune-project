@@ -51,8 +51,6 @@
    (>= 2.0.0))
   (ppx_compare
    (>= v0.17))
-  (ppx_here
-   (>= v0.17))
   (ppx_sexp_conv
    (>= v0.17))
   (ppxlib
@@ -79,8 +77,6 @@
   (patdiff
    (>= v0.17))
   (ppx_expect
-   (>= v0.17))
-  (ppx_here
    (>= v0.17))
   (ppxlib
    (>= 0.33))
@@ -111,8 +107,6 @@
   (parsexp
    (>= v0.17))
   (ppx_expect
-   (>= v0.17))
-  (ppx_here
    (>= v0.17))
   (ppx_js_style
    (>= v0.17))

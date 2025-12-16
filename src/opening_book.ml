@@ -127,7 +127,7 @@ let compute_cmd =
   Command.make
     ~summary:"Compute and save the opening-book."
     (let open Command.Std in
-     let+ () = Game_dimensions.arg [%here]
+     let+ () = Game_dimensions.arg (Source_code_position.of_pos Stdlib.__POS__)
      and+ depth =
        Arg.named_with_default
          [ "depth" ]

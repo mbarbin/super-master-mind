@@ -19,3 +19,7 @@ let to_dyn { pos_fname; pos_lnum; pos_bol; pos_cnum } =
     ; "pos_cnum", Dyn.int pos_cnum
     ]
 ;;
+
+let of_pos (file, lnum, cnum, _enum) =
+  { pos_fname = file; pos_lnum = lnum; pos_bol = 0; pos_cnum = cnum }
+;;
