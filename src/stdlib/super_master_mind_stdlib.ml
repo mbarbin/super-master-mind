@@ -5,7 +5,7 @@
 (*********************************************************************************)
 
 module Code_error = Code_error
-module Dyn = Dyn
+module Dyn = Dyn0
 module Json = Json
 module Ordering = Ordering
 module Source_code_position = Source_code_position

@@ -4,6 +4,8 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
+module Dyn = Dyn0
+
 type t = Lexing.position =
   { pos_fname : string
   ; pos_lnum : int

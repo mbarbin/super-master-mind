@@ -37,8 +37,6 @@
    (>= 0.5))
   (dune-site
    (>= 3.20))
-  (dyn
-   (>= 3.20))
   (nonempty-list
    (>= v0.17))
   (ordering

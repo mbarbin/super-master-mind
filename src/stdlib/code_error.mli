@@ -6,6 +6,8 @@
 
 (*_ Inspired by a similar module in stdune. *)
 
+module Dyn = Dyn0
+
 (** A programming error that should be reported upstream *)
 
 type t =
