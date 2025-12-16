@@ -5,7 +5,7 @@
 (*********************************************************************************)
 
 let solve ~task_pool ~color_permutation ~solution =
-  let steps = Queue.create () in
+  let steps = ref [] in
   let step_index = ref 0 in
   let add (t : Guess.t) ~by_cue =
     let by_cue =
@@ -13,7 +13,7 @@ let solve ~task_pool ~color_permutation ~solution =
         { by_cue with Guess.By_cue.next_best_guesses = Not_computed }
     in
     let t = { t with by_cue } in
-    Queue.enqueue steps t;
+    steps := t :: !steps;
     Int.incr step_index;
     print_dyn (Dyn.Tuple [ !step_index |> Dyn.int; t |> Guess.to_dyn ])
   in
@@ -46,7 +46,7 @@ let solve ~task_pool ~color_permutation ~solution =
     Opening_book.root opening_book ~color_permutation:(Lazy.force color_permutation)
   in
   aux root ~possible_solutions:Codes.all;
-  Queue.to_list steps
+  List.rev !steps
 ;;
 
 let cmd =

@@ -27,8 +27,6 @@
  (depends
   (ocaml
    (>= 5.2))
-  (base
-   (>= v0.17))
   (cmdlang
    (>= 0.0.10))
   (cmdlang-cmdliner-err-runner
@@ -45,8 +43,6 @@
    (>= v0.17))
   (pp
    (>= 2.0.0))
-  (ppx_compare
-   (>= v0.17))
   (ppxlib
    (>= 0.33))
   (progress

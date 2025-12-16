@@ -19,7 +19,7 @@ let%expect_test "opening-book validity" =
     | Ok () -> ()
     | Error err ->
       (Guess.Verify_error.print_hum err Out_channel.stdout;
-       assert false)
+       print_endline "Opening book check failed.")
       [@coverage off]
   in
   test ~color_permutation:(Lazy.force Color_permutation.identity);

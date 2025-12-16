@@ -4,9 +4,7 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-let cardinality =
-  lazy (Game_dimensions.num_colors (Source_code_position.of_pos Stdlib.__POS__))
-;;
+let cardinality = lazy (Game_dimensions.num_colors (Source_code_position.of_pos __POS__))
 
 module Hum = struct
   type t =
@@ -18,8 +16,8 @@ module Hum = struct
     | Red
     | White
     | Yellow
-  [@@deriving compare, equal]
 
+  let equal : t -> t -> bool = Stdlib.( = )
   let all = [ Black; Blue; Brown; Green; Orange; Red; White; Yellow ]
 
   let to_dyn = function
@@ -97,15 +95,17 @@ module Hum = struct
   ;;
 end
 
-type t = int [@@deriving compare, equal]
+type t = int
 
+let equal = Int.equal
+let compare = Int.compare
 let to_hum = Hum.of_index_exn
 let of_hum = Hum.to_index
 let to_index t = t
 let to_dyn t = t |> to_hum |> Hum.to_dyn
 
 let of_index_exn index =
-  let cardinality = force cardinality in
+  let cardinality = Lazy.force cardinality in
   if not (0 <= index && index < cardinality)
   then
     Code_error.raise
@@ -114,6 +114,6 @@ let of_index_exn index =
   index
 ;;
 
-let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fn.id)
+let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fun.id)
 let to_json t : Json.t = to_hum t |> Hum.to_json
 let of_json (json : Json.t) : t = json |> Hum.of_json |> of_hum

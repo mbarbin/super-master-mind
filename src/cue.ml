@@ -15,9 +15,7 @@ module Hum = struct
   ;;
 end
 
-let code_size =
-  lazy (Game_dimensions.code_size (Source_code_position.of_pos Stdlib.__POS__))
-;;
+let code_size = lazy (Game_dimensions.code_size (Source_code_position.of_pos __POS__))
 
 (* The sum of [white] and [black] cannot exceed the code size. This means that
    given a correct value for [white], [black] has to verify:
@@ -82,8 +80,10 @@ module Cache = struct
 end
 
 (* [t] represents the index of the cue. *)
-type t = int [@@deriving compare, equal]
+type t = int
 
+let equal = Int.equal
+let compare = Int.compare
 let to_index t = t
 
 let to_hum t =
@@ -111,7 +111,7 @@ let create_exn hum =
   | None -> Code_error.raise "Invalid cue." [ "hum", Hum.to_dyn hum ]
 ;;
 
-let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fn.id)
+let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fun.id)
 let to_json t : Json.t = `Int (to_index t)
 
 let of_json (json : Json.t) : t =

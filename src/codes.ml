@@ -6,58 +6,57 @@
 
 type t =
   | All
-  | Only of { queue : Code.t Queue.t }
+  | Only of { codes : Code.t list }
 
 let to_dyn = function
   | All -> Dyn.variant "All" []
-  | Only { queue } -> Dyn.variant "Only" [ Dyn.list Code.to_dyn (Queue.to_list queue) ]
+  | Only { codes } -> Dyn.variant "Only" [ Dyn.list Code.to_dyn codes ]
 ;;
 
 let all = All
 
 let size = function
-  | All -> force Code.cardinality
-  | Only { queue } -> Queue.length queue
+  | All -> Lazy.force Code.cardinality
+  | Only { codes } -> List.length codes
 ;;
 
 let bits t = Float.log2 (Float.of_int (size t))
 
 let is_empty = function
   | All -> false
-  | Only { queue } -> Queue.is_empty queue
+  | Only { codes } -> List.is_empty codes
 ;;
 
-let all_as_queue =
+let all_as_list =
   lazy
-    (let code_cardinality = force Code.cardinality in
-     let t = Queue.create () in
-     let rec aux i =
+    (let code_cardinality = Lazy.force Code.cardinality in
+     let rec aux acc i =
        if i < code_cardinality
        then (
-         Queue.enqueue t (Code.of_index_exn i);
-         aux (Int.succ i))
+         let acc = Code.of_index_exn i :: acc in
+         aux acc (Int.succ i))
+       else acc
      in
-     aux 0;
-     t)
+     List.rev (aux [] 0))
 ;;
 
 let to_list = function
-  | All -> Queue.to_list (Lazy.force all_as_queue)
-  | Only { queue } -> Queue.to_list queue
+  | All -> Lazy.force all_as_list
+  | Only { codes } -> codes
 ;;
 
 let iter t ~f =
   match t with
   | All ->
-    for i = 0 to force Code.cardinality - 1 do
+    for i = 0 to Lazy.force Code.cardinality - 1 do
       f (Code.of_index_exn i)
     done
-  | Only { queue } -> Queue.iter queue ~f
+  | Only { codes } -> List.iter codes ~f
 ;;
 
 let filter t ~candidate ~cue =
-  let queue = Queue.create () in
+  let keep = ref [] in
   iter t ~f:(fun solution ->
-    if Cue.equal cue (Code.analyze ~solution ~candidate) then Queue.enqueue queue solution);
-  Only { queue }
+    if Cue.equal cue (Code.analyze ~solution ~candidate) then keep := solution :: !keep);
+  Only { codes = List.rev !keep }
 ;;

@@ -21,7 +21,7 @@ end
 
 type 'a t =
   { k : int
-  ; compare : 'a -> 'a -> int
+  ; compare : 'a -> 'a -> Ordering.t
   ; mutable head : 'a Node.t option
   }
 
@@ -48,7 +48,7 @@ let add t a =
   let rec aux k = function
     | None -> if k >= 1 then Some { Node.value = a; tail = None } else None
     | Some (node : _ Node.t) as head ->
-      (match Ordering.of_int (t.compare node.value a) with
+      (match t.compare node.value a with
        | Gt ->
          (* Insert [a] before [node.value]. *)
          let tail = cut head ~k:(Int.pred k) in
