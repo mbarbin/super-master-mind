@@ -25,11 +25,9 @@ module Hum : sig
     | White
     | Yellow
 
-  val compare : t -> t -> Ordering.t
   val equal : t -> t -> bool
   val all : t list
   val to_dyn : t -> Dyn.t
-  val to_string : t -> string
   val of_string_opt : string -> t option
   val of_string_exn : string -> t
   val to_json : t -> Json.t
