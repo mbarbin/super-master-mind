@@ -469,13 +469,12 @@ module Verify_error = struct
       ~context:3
   ;;
 
-  let to_error { unexpected_field; expected; computed } =
+  let to_dyn { unexpected_field; expected; computed } =
     let diff = diff ~expected ~computed |> String.split_lines in
-    Error.create_s
-      (Sexp.List
-         [ List [ Atom "unexpected_field"; Atom unexpected_field ]
-         ; List [ Atom "diff"; List (List.map diff ~f:(fun diff -> Sexp.Atom diff)) ]
-         ])
+    Dyn.record
+      [ "unexpected_field", Dyn.string unexpected_field
+      ; "diff", Dyn.list Dyn.string diff
+      ]
   ;;
 
   let print_hum { unexpected_field; expected; computed } oc =

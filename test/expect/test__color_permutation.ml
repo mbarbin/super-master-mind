@@ -34,7 +34,7 @@ let%expect_test "bounds" =
     {| (40319, [| Yellow;  White;  Red;  Orange;  Green;  Brown;  Blue;  Black |]) |}]
 ;;
 
-let%expect_test "sexp_of" =
+let%expect_test "to_dyn" =
   let print i =
     print_dyn
       (Dyn.Tuple

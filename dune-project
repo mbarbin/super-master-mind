@@ -43,15 +43,11 @@
    (>= v0.17))
   (ordering
    (>= 3.20))
-  (parsexp
-   (>= v0.17))
   (patdiff
    (>= v0.17))
   (pp
    (>= 2.0.0))
   (ppx_compare
-   (>= v0.17))
-  (ppx_sexp_conv
    (>= v0.17))
   (ppxlib
    (>= 0.33))
@@ -73,8 +69,6 @@
   (domainslib
    (>= 0.5))
   (nonempty-list
-   (>= v0.17))
-  (parsexp
    (>= v0.17))
   (patdiff
    (>= v0.17))
@@ -105,8 +99,6 @@
   (domainslib
    (>= 0.5))
   (nonempty-list
-   (>= v0.17))
-  (parsexp
    (>= v0.17))
   (ppx_expect
    (>= v0.17))

@@ -19,7 +19,6 @@
   domainslib
   dune-site
   nonempty-list
-  parsexp
   patdiff.expect_test_patdiff
   progress
   super_master_mind_stdlib)
@@ -28,7 +27,7 @@
  (lint
   (pps ppx_js_style -allow-let-operators -check-doc-comments))
  (preprocess
-  (pps -unused-code-warnings=force ppx_compare ppx_here ppx_sexp_conv)))
+  (pps -unused-code-warnings=force ppx_compare ppx_here)))
 
 (generate_sites_module
  (module sites)

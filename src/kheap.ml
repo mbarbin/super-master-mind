@@ -32,7 +32,6 @@ let create ~k ~compare =
 
 let to_list t = Node.to_list t.head
 let to_dyn to_dyn_a t = Dyn.list to_dyn_a (to_list t)
-let sexp_of_t sexp_of_a t = Sexp.List (List.map (to_list t) ~f:sexp_of_a)
 
 let rec cut node ~k =
   match node with
