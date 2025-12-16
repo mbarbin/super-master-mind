@@ -147,11 +147,9 @@ let compute ~possible_solutions ~candidate : t =
             })
         else None)
     in
-    (* At the moment the sorting is under specified when the sizes are the same,
-       which causes issues when comparing Base and Stdlib. Fixing this is left
-       as future work. *)
-    Base.Array.sort by_cue ~compare:(fun t1 t2 ->
-      Int.compare t2.size_remaining t1.size_remaining);
+    Array.sort by_cue ~compare:(fun t1 t2 ->
+      let res = Int.compare t2.size_remaining t1.size_remaining in
+      if res <> 0 then res else Cue.compare t1.cue t2.cue);
     Nonempty_list.of_list_exn (Array.to_list by_cue)
   in
   let min_bits_gained =
