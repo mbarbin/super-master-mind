@@ -12,4 +12,5 @@ module Ordering = Ordering
 module Source_code_position = Source_code_position
 
 val print_dyn : Dyn.t -> unit
+val require : bool -> unit
 val require_does_raise : (unit -> 'a) -> unit

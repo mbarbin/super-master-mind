@@ -12,6 +12,10 @@ module Source_code_position = Source_code_position
 let print pp = Format.printf "%a@." Pp.to_fmt pp
 let print_dyn dyn = print (Dyn.pp dyn)
 
+let require cond =
+  if not cond then Code_error.raise "Required condition does not hold." []
+;;
+
 let require_does_raise f =
   match f () with
   | _ -> Code_error.raise "Did not raise." []

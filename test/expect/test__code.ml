@@ -73,7 +73,7 @@ let%expect_test "analyze" =
     |> Array.map ~f:Cue.of_index_exn
   in
   print_dyn (Dyn.array Cue.to_dyn not_tested);
-  require [%here] (Array.is_empty not_tested);
+  require (Array.is_empty not_tested);
   [%expect {| [||] |}]
 ;;
 
