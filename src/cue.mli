@@ -15,7 +15,7 @@
 (** [t] is an efficient representation for a cue. *)
 type t
 
-val compare : t -> t -> int
+val compare : t -> t -> Ordering.t
 val equal : t -> t -> bool
 val all : t list Lazy.t
 

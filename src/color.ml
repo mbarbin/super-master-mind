@@ -18,7 +18,11 @@ module Hum = struct
     | Yellow
 
   let equal : t -> t -> bool = Stdlib.( = )
-  let compare : t -> t -> int = Stdlib.compare
+
+  let compare : t -> t -> Ordering.t =
+    fun t1 t2 -> Stdlib.compare t1 t2 |> Ordering.of_int
+  ;;
+
   let all = [ Black; Blue; Brown; Green; Orange; Red; White; Yellow ]
 
   let to_dyn = function

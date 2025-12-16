@@ -11,18 +11,18 @@ let equal t1 t2 = Array.equal Color.equal t1 t2
 let compare t1 t2 =
   let s1 = Array.length t1
   and s2 = Array.length t2 in
-  let res = Int.compare s1 s2 in
-  if res <> 0
-  then res
-  else
-    let exception Stop of int in
-    try
-      Array.iter2 t1 t2 ~f:(fun x y ->
-        let res = Color.compare x y in
-        if res <> 0 then raise_notrace (Stop res));
-      0
-    with
-    | Stop res -> res
+  match Int.compare s1 s2 with
+  | (Lt | Gt) as res -> res
+  | Eq ->
+    let exception Stop of Ordering.t in
+    (try
+       Array.iter2 t1 t2 ~f:(fun x y ->
+         match Color.compare x y with
+         | Eq -> ()
+         | (Lt | Gt) as res -> raise_notrace (Stop res));
+       Ordering.Eq
+     with
+     | Stop res -> res)
 ;;
 
 let to_dyn t = Dyn.array Color.to_dyn t

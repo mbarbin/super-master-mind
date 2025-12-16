@@ -28,7 +28,15 @@ module Array : sig
   val filter_mapi : 'a t -> f:(int -> 'a -> 'b option) -> 'b t
   val fold : 'a t -> init:'acc -> f:('acc -> 'a -> 'acc) -> 'acc
   val foldi : 'a t -> init:'acc -> f:(int -> 'acc -> 'a -> 'acc) -> 'acc
-  val sort : 'a t -> compare:('a -> 'a -> int) -> unit
+  val sort : 'a t -> compare:('a -> 'a -> Ordering.t) -> unit
+end
+
+module Float : sig
+  include module type of struct
+    include Stdlib.Float
+  end
+
+  val compare : t -> t -> Ordering.t
 end
 
 module Hashtbl : sig
@@ -52,6 +60,7 @@ module Int : sig
     include Stdlib.Int
   end
 
+  val compare : t -> t -> Ordering.t
   val incr : int ref -> unit
   val of_string : string -> int option
 end

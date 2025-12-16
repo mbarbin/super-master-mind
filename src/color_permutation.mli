@@ -10,7 +10,7 @@
 
 type t
 
-val compare : t -> t -> int
+val compare : t -> t -> Ordering.t
 val equal : t -> t -> bool
 val to_dyn : t -> Dyn.t
 
