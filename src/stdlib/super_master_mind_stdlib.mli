@@ -21,6 +21,7 @@ module Array : sig
     include Stdlib.ArrayLabels
   end
 
+  val equal : ('a -> 'a -> bool) -> 'a t -> 'a t -> bool
   val is_empty : _ t -> bool
   val create : len:int -> 'a -> 'a t
   val filter_mapi : 'a t -> f:(int -> 'a -> 'b option) -> 'b t

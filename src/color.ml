@@ -18,8 +18,9 @@ module Hum = struct
     | Red
     | White
     | Yellow
-  [@@deriving compare, equal]
 
+  let equal : t -> t -> bool = Stdlib.( = )
+  let compare : t -> t -> int = Stdlib.compare
   let all = [ Black; Blue; Brown; Green; Orange; Red; White; Yellow ]
 
   let to_dyn = function
@@ -97,8 +98,10 @@ module Hum = struct
   ;;
 end
 
-type t = int [@@deriving compare, equal]
+type t = int
 
+let equal = Int.equal
+let compare = Int.compare
 let to_hum = Hum.of_index_exn
 let of_hum = Hum.to_index
 let to_index t = t

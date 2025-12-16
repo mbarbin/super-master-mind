@@ -4,7 +4,26 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-type t = Color.t array [@@deriving compare, equal]
+type t = Color.t array
+
+let equal t1 t2 = Array.equal Color.equal t1 t2
+
+let compare t1 t2 =
+  let s1 = Array.length t1
+  and s2 = Array.length t2 in
+  let res = Int.compare s1 s2 in
+  if res <> 0
+  then res
+  else
+    let exception Stop of int in
+    try
+      Array.iter2 t1 t2 ~f:(fun x y ->
+        let res = Color.compare x y in
+        if res <> 0 then Stdlib.raise_notrace (Stop res));
+      0
+    with
+    | Stop res -> res
+;;
 
 let to_dyn t = Dyn.array Color.to_dyn t
 let identity = lazy (Array.init (force Color.cardinality) ~f:Color.of_index_exn)

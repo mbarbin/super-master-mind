@@ -4,8 +4,10 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-type t = int [@@deriving compare, equal]
+type t = int
 
+let equal = Int.equal
+let compare = Int.compare
 let size = Cue.code_size
 let cardinality = lazy (Int.pow (force Color.cardinality) (force size))
 

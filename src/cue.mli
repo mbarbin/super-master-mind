@@ -13,8 +13,10 @@
     gets a black pin. *)
 
 (** [t] is an efficient representation for a cue. *)
-type t [@@deriving compare, equal]
+type t
 
+val compare : t -> t -> int
+val equal : t -> t -> bool
 val all : t list Lazy.t
 
 module Hum : sig

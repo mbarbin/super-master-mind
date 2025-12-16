@@ -12,6 +12,7 @@ module Source_code_position = Source_code_position
 
 let print pp = Format.printf "%a@." Pp.to_fmt pp
 let print_dyn dyn = print (Dyn.pp dyn)
+let phys_equal (type a) (x : a) (y : a) = x == y
 
 let require cond =
   if not cond then Code_error.raise "Required condition does not hold." []
@@ -25,6 +26,10 @@ let require_does_raise f =
 
 module Array = struct
   include Stdlib.ArrayLabels
+
+  let equal eq t1 t2 =
+    phys_equal t1 t2 || (Array.length t1 = Array.length t2 && Array.for_all2 eq t1 t2)
+  ;;
 
   let is_empty t = Array.length t = 0
   let create ~len a = Array.make len a
