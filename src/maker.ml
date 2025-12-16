@@ -23,7 +23,7 @@ let rec input_code () =
 ;;
 
 let run ~solution =
-  let code_size = force Cue.code_size in
+  let code_size = Lazy.force Cue.code_size in
   let rec aux i =
     let candidate = input_code () in
     let cue = Code.analyze ~solution ~candidate in
@@ -51,7 +51,8 @@ let cmd =
      let solution =
        match solution with
        | Some solution -> solution
-       | None -> Code.of_index_exn (Random.int (force Code.cardinality)) [@coverage off]
+       | None ->
+         Code.of_index_exn (Random.int (Lazy.force Code.cardinality)) [@coverage off]
      in
      run ~solution)
 ;;

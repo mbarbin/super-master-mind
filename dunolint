@@ -34,3 +34,11 @@
        (name -check-doc-comments)
        (param none)
        (applies_to (pp ppx_js_style)))))))))
+
+;; No preprocessing
+(rule
+ (cond
+  ((path (glob src/**))
+   (enforce
+    (dune
+     (preprocess no_preprocessing))))))

@@ -16,10 +16,10 @@ let rec input_cue () =
     Out_channel.(flush stdout);
     let int = input_line () in
     match Int.of_string int with
-    | exception e ->
-      Stdlib.print_endline (Stdlib.Printexc.to_string e);
+    | Some i -> i
+    | None ->
+      Stdlib.Printf.printf "%S: Not a int.\n%!" int;
       input_int ~prompt
-    | i -> i
   in
   let black = input_int ~prompt:"#black (correctly placed)  : " in
   let white =
