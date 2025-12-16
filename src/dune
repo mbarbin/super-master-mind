@@ -12,7 +12,9 @@
   -open
   Stdio
   -open
-  Cmdlang)
+  Cmdlang
+  -open
+  Super_master_mind_stdlib)
  (libraries
   base
   cmdlang
@@ -22,7 +24,8 @@
   parsexp
   patdiff.expect_test_patdiff
   progress
-  stdio)
+  stdio
+  super_master_mind_stdlib)
  (instrumentation
   (backend bisect_ppx))
  (lint
