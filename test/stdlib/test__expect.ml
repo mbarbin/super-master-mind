@@ -1,6 +1,6 @@
 (*********************************************************************************)
-(*  catch-the-bunny: Resolving a small logic puzzle to catch a bunny             *)
-(*  SPDX-FileCopyrightText: 2022-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
+(*  super-master-mind: A solver for the super master mind game                   *)
+(*  SPDX-FileCopyrightText: 2021-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 

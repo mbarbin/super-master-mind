@@ -54,3 +54,6 @@ val map_color : t -> color_permutation:Color_permutation.t -> t
 
 (** Parse a code from the command line. *)
 val param : t Command.Param.t
+
+val to_json : t -> Json.t
+val of_json : Json.t -> t

@@ -54,3 +54,6 @@ val to_dyn : t -> Dyn.t
 (** That is the number of slots in the solution, as well as all candidates
     submitted as guesses. In this version of the game, this is [5]. *)
 val code_size : int Lazy.t
+
+val to_json : t -> Json.t
+val of_json : Json.t -> t

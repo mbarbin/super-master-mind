@@ -115,3 +115,10 @@ let create_exn hum =
 
 let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
 let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fn.id)
+let to_json t : Json.t = `Int (to_index t)
+
+let of_json (json : Json.t) : t =
+  match json with
+  | `Int i -> of_index_exn i
+  | _ -> raise (Json.Invalid_json ("Expected int for [Cue.t].", json))
+;;

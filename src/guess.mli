@@ -98,3 +98,6 @@ val verify : t -> possible_solutions:Codes.t -> (unit, Verify_error.t) Result.t
 (** Map the color of all codes contained by [t] according to a given color
     permutation. *)
 val map_color : t -> color_permutation:Color_permutation.t -> t
+
+val to_json : t -> Json.t
+val of_json : Json.t -> t

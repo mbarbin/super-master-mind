@@ -3,3 +3,7 @@
 (*_  SPDX-FileCopyrightText: 2021-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
+
+type t = Yojson.Basic.t
+
+exception Invalid_json of string * t

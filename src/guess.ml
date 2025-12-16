@@ -12,6 +12,8 @@ module rec Next_best_guesses : sig
 
   val is_computed : t -> bool
   val to_dyn : t -> Dyn.t
+  val to_json_opt : t -> Json.t option
+  val of_json_opt : Json.t option -> t
 end = struct
   type t =
     | Not_computed
@@ -27,6 +29,20 @@ end = struct
     | Not_computed -> Dyn.variant "Not_computed" []
     | Computed ts -> Dyn.variant "Computed" [ Dyn.list T.to_dyn ts ]
   ;;
+
+  let to_json_opt (t : t) : Json.t option =
+    match t with
+    | Not_computed -> None
+    | Computed ts -> Some (`List (List.map ts ~f:T.to_json))
+  ;;
+
+  let of_json_opt (json : Json.t option) : t =
+    match json with
+    | None -> Not_computed
+    | Some (`List items) -> Computed (List.map items ~f:T.of_json)
+    | Some json ->
+      raise (Json.Invalid_json ("Expected list for [Next_best_guesses.t].", json))
+  ;;
 end
 
 and By_cue : sig
@@ -41,6 +57,8 @@ and By_cue : sig
   [@@deriving equal, sexp]
 
   val to_dyn : t -> Dyn.t
+  val to_json : t -> Json.t
+  val of_json : Json.t -> t
 end = struct
   type t =
     { cue : Cue.t
@@ -70,6 +88,95 @@ end = struct
       ; "next_best_guesses", Next_best_guesses.to_dyn next_best_guesses
       ]
   ;;
+
+  let to_json
+        { cue
+        ; size_remaining
+        ; bits_remaining
+        ; bits_gained
+        ; probability
+        ; next_best_guesses
+        }
+    : Json.t
+    =
+    let base =
+      [ "cue", Cue.to_json cue
+      ; "size_remaining", `Int size_remaining
+      ; "bits_remaining", `Float bits_remaining
+      ; "bits_gained", `Float bits_gained
+      ; "probability", `Float probability
+      ]
+    in
+    let fields =
+      match Next_best_guesses.to_json_opt next_best_guesses with
+      | None -> base
+      | Some json -> base @ [ "next_best_guesses", json ]
+    in
+    `Assoc fields
+  ;;
+
+  let of_json (json : Json.t) : t =
+    match json with
+    | `Assoc fields ->
+      let cue_ref = ref None in
+      let size_remaining_ref = ref None in
+      let bits_remaining_ref = ref None in
+      let bits_gained_ref = ref None in
+      let probability_ref = ref None in
+      let next_best_guesses_ref = ref None in
+      List.iter fields ~f:(fun (name, value) ->
+        match name with
+        | "cue" -> cue_ref := Some (Cue.of_json value)
+        | "size_remaining" ->
+          size_remaining_ref
+          := Some
+               (match value with
+                | `Int i -> i
+                | _ ->
+                  raise (Json.Invalid_json ("Expected int for [size_remaining].", value)))
+        | "bits_remaining" ->
+          bits_remaining_ref
+          := Some
+               (match value with
+                | `Float f -> f
+                | `Int i -> Float.of_int i
+                | _ ->
+                  raise
+                    (Json.Invalid_json ("Expected float for [bits_remaining].", value)))
+        | "bits_gained" ->
+          bits_gained_ref
+          := Some
+               (match value with
+                | `Float f -> f
+                | `Int i -> Float.of_int i
+                | _ ->
+                  raise (Json.Invalid_json ("Expected float for [bits_gained].", value)))
+        | "probability" ->
+          probability_ref
+          := Some
+               (match value with
+                | `Float f -> f
+                | `Int i -> Float.of_int i
+                | _ ->
+                  raise (Json.Invalid_json ("Expected float for [probability].", value)))
+        | "next_best_guesses" -> next_best_guesses_ref := Some value
+        | _ -> ());
+      let require ref_val field_name =
+        match !ref_val with
+        | Some v -> v
+        | None ->
+          raise
+            (Json.Invalid_json (Printf.sprintf "Missing field [%s]." field_name, json))
+      in
+      { cue = require cue_ref "cue"
+      ; size_remaining = require size_remaining_ref "size_remaining"
+      ; bits_remaining = require bits_remaining_ref "bits_remaining"
+      ; bits_gained = require bits_gained_ref "bits_gained"
+      ; probability = require probability_ref "probability"
+      ; next_best_guesses = Next_best_guesses.of_json_opt !next_best_guesses_ref
+      }
+    | _ -> raise (Json.Invalid_json ("Expected JSON object for [By_cue.t].", json))
+  ;;
 end
 
 and T : sig
@@ -86,6 +193,8 @@ and T : sig
   [@@deriving equal, sexp]
 
   val to_dyn : t -> Dyn.t
+  val to_json : t -> Json.t
+  val of_json : Json.t -> t
 end = struct
   type t =
     { candidate : Code.t
@@ -118,9 +227,120 @@ end = struct
       ; "by_cue", Dyn.list By_cue.to_dyn (Nonempty_list.to_list by_cue)
       ]
   ;;
+
+  let to_json
+        { candidate
+        ; expected_bits_gained
+        ; expected_bits_remaining
+        ; min_bits_gained
+        ; max_bits_gained
+        ; max_bits_remaining
+        ; by_cue
+        }
+    : Json.t
+    =
+    `Assoc
+      [ "candidate", Code.to_json candidate
+      ; "expected_bits_gained", `Float expected_bits_gained
+      ; "expected_bits_remaining", `Float expected_bits_remaining
+      ; "min_bits_gained", `Float min_bits_gained
+      ; "max_bits_gained", `Float max_bits_gained
+      ; "max_bits_remaining", `Float max_bits_remaining
+      ; "by_cue", `List (List.map (Nonempty_list.to_list by_cue) ~f:By_cue.to_json)
+      ]
+  ;;
+
+  let of_json (json : Json.t) : t =
+    match json with
+    | `Assoc fields ->
+      let candidate_ref = ref None in
+      let expected_bits_gained_ref = ref None in
+      let expected_bits_remaining_ref = ref None in
+      let min_bits_gained_ref = ref None in
+      let max_bits_gained_ref = ref None in
+      let max_bits_remaining_ref = ref None in
+      let by_cue_ref = ref None in
+      List.iter fields ~f:(fun (name, value) ->
+        match name with
+        | "candidate" -> candidate_ref := Some (Code.of_json value)
+        | "expected_bits_gained" ->
+          expected_bits_gained_ref
+          := Some
+               (match value with
+                | `Float f -> f
+                | `Int i -> Float.of_int i
+                | _ ->
+                  raise
+                    (Json.Invalid_json
+                       ("Expected float for [expected_bits_gained].", value)))
+        | "expected_bits_remaining" ->
+          expected_bits_remaining_ref
+          := Some
+               (match value with
+                | `Float f -> f
+                | `Int i -> Float.of_int i
+                | _ ->
+                  raise
+                    (Json.Invalid_json
+                       ("Expected float for [expected_bits_remaining].", value)))
+        | "min_bits_gained" ->
+          min_bits_gained_ref
+          := Some
+               (match value with
+                | `Float f -> f
+                | `Int i -> Float.of_int i
+                | _ ->
+                  raise
+                    (Json.Invalid_json ("Expected float for [min_bits_gained].", value)))
+        | "max_bits_gained" ->
+          max_bits_gained_ref
+          := Some
+               (match value with
+                | `Float f -> f
+                | `Int i -> Float.of_int i
+                | _ ->
+                  raise
+                    (Json.Invalid_json ("Expected float for [max_bits_gained].", value)))
+        | "max_bits_remaining" ->
+          max_bits_remaining_ref
+          := Some
+               (match value with
+                | `Float f -> f
+                | `Int i -> Float.of_int i
+                | _ ->
+                  raise
+                    (Json.Invalid_json ("Expected float for [max_bits_remaining].", value)))
+        | "by_cue" ->
+          by_cue_ref
+          := Some
+               (match value with
+                | `List items -> List.map items ~f:By_cue.of_json
+                | _ -> raise (Json.Invalid_json ("Expected list for [by_cue].", value)))
+        | _ -> ());
+      let require ref_val field_name =
+        match !ref_val with
+        | Some v -> v
+        | None ->
+          raise
+            (Json.Invalid_json (Printf.sprintf "Missing field [%s]." field_name, json))
+      in
+      { candidate = require candidate_ref "candidate"
+      ; expected_bits_gained = require expected_bits_gained_ref "expected_bits_gained"
+      ; expected_bits_remaining =
+          require expected_bits_remaining_ref "expected_bits_remaining"
+      ; min_bits_gained = require min_bits_gained_ref "min_bits_gained"
+      ; max_bits_gained = require max_bits_gained_ref "max_bits_gained"
+      ; max_bits_remaining = require max_bits_remaining_ref "max_bits_remaining"
+      ; by_cue = Nonempty_list.of_list_exn (require by_cue_ref "by_cue")
+      }
+    | _ -> raise (Json.Invalid_json ("Expected JSON object for [Guess.t].", json))
+  ;;
 end
 
 include T
+
+let to_json = T.to_json
+let of_json = T.of_json
 
 let compute ~possible_solutions ~candidate : t =
   if Codes.is_empty possible_solutions then Code_error.raise "No possible solutions." [];

@@ -56,7 +56,9 @@
   (ppxlib
    (>= 0.33))
   (progress
-   (>= 0.3.0))))
+   (>= 0.3.0))
+  (yojson
+   (>= 2.2))))
 
 (package
  (name super-master-mind-tests)

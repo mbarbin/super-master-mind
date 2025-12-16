@@ -133,3 +133,11 @@ let analyze ~solution ~candidate =
 let map_color t ~color_permutation =
   t |> Computing.of_code |> Computing.map_color ~color_permutation |> Computing.to_code
 ;;
+
+let to_json t : Json.t = `Int (to_index t)
+
+let of_json (json : Json.t) : t =
+  match json with
+  | `Int i -> of_index_exn i
+  | _ -> raise (Json.Invalid_json ("Expected int for [Code.t].", json))
+;;
