@@ -4,8 +4,10 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-type t = Guess.t [@@deriving sexp]
+type t = Guess.t
 
+let to_json = Guess.to_json
+let of_json = Guess.of_json
 let root t ~color_permutation = Guess.map_color t ~color_permutation
 
 let rec compute_internal
@@ -67,7 +69,7 @@ let canonical_first_candidate =
 ;;
 
 let compute ~task_pool ~depth =
-  if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
+  if depth < 1 then Code_error.raise "depth >= 1 expected." [ "depth", Dyn.int depth ];
   let display =
     Progress.Display.start
       ~config:(Progress.Config.v ~persistent:false ())
@@ -104,18 +106,14 @@ let depth =
 
 let find_opening_book_via_site () =
   List.find_map Sites.Sites.opening_book ~f:(fun dir ->
-    let file = Stdlib.Filename.concat dir "opening-book.sexp" in
+    let file = Stdlib.Filename.concat dir "opening-book.json" in
     Option.some_if (Stdlib.Sys.file_exists file) file)
 ;;
 
 let opening_book =
   lazy
-    (let contents =
-       find_opening_book_via_site ()
-       |> Option.value_exn ~here:[%here]
-       |> In_channel.read_all
-     in
-     Parsexp.Single.parse_string_exn contents |> [%of_sexp: t])
+    (let file = find_opening_book_via_site () |> Option.get in
+     Json.load ~file |> of_json)
 ;;
 
 let dump_cmd =
@@ -124,14 +122,14 @@ let dump_cmd =
     (let open Command.Std in
      let+ () = Arg.return () in
      let t = Lazy.force opening_book in
-     print_s [%sexp (t : t)])
+     Stdlib.print_endline (t |> to_json |> Json.to_string))
 ;;
 
 let compute_cmd =
   Command.make
     ~summary:"Compute and save the opening-book."
     (let open Command.Std in
-     let+ () = Game_dimensions.arg [%here]
+     let+ () = Game_dimensions.arg (Source_code_position.of_pos Stdlib.__POS__)
      and+ depth =
        Arg.named_with_default
          [ "depth" ]
@@ -148,9 +146,7 @@ let compute_cmd =
      in
      Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
        let t = compute ~task_pool ~depth in
-       Out_channel.with_file path ~f:(fun oc ->
-         Out_channel.output_string oc (Sexp.to_string_hum [%sexp (t : t)]);
-         Out_channel.output_char oc '\n')))
+       Json.save (to_json t) ~file:path))
 ;;
 
 let verify_cmd =
@@ -158,12 +154,13 @@ let verify_cmd =
     ~summary:"Verify properties of the installed opening-book."
     (let open Command.Std in
      let+ color_permutation =
-       match%map.Command
+       let+ v =
          Arg.named_opt
            [ "color-permutation" ]
            Color_permutation.param
            ~doc:"Color permutation in [0; 40319] (default Identity)."
-       with
+       in
+       match v with
        | Some color_permutation -> color_permutation
        | None -> force Color_permutation.identity
      in
@@ -171,7 +168,7 @@ let verify_cmd =
      match Guess.verify t ~possible_solutions:Codes.all with
      | Ok () -> ()
      | Error error ->
-       prerr_endline "Installed opening-book does not verify expected properties.";
+       Stdlib.prerr_endline "Installed opening-book does not verify expected properties.";
        Guess.Verify_error.print_hum error Out_channel.stderr;
        Stdlib.exit 1)
 ;;

@@ -13,7 +13,7 @@
     gets a black pin. *)
 
 (** [t] is an efficient representation for a cue. *)
-type t [@@deriving compare, equal, hash, sexp]
+type t [@@deriving compare, equal]
 
 val all : t list Lazy.t
 
@@ -23,7 +23,8 @@ module Hum : sig
     { white : int
     ; black : int
     }
-  [@@deriving sexp]
+
+  val to_dyn : t -> Dyn.t
 end
 
 (** The number of different cues that are encountered in the game. *)
@@ -47,6 +48,11 @@ val create_exn : Hum.t -> t
 (** Returns the human readable representation of the cue. *)
 val to_hum : t -> Hum.t
 
+val to_dyn : t -> Dyn.t
+
 (** That is the number of slots in the solution, as well as all candidates
     submitted as guesses. In this version of the game, this is [5]. *)
 val code_size : int Lazy.t
+
+val to_json : t -> Json.t
+val of_json : Json.t -> t

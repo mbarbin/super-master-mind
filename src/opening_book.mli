@@ -7,7 +7,7 @@
 (** The role of this module is to use some pre-computation for the beginning of
     the game in order for it to be fast. *)
 
-type t [@@deriving sexp_of]
+type t
 
 (** This is the main opening book used by the application. It is computed via
     [compute] during development and installed with the package with [dune-site].

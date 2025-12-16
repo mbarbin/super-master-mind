@@ -4,13 +4,24 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-type t = int [@@deriving compare, equal, hash]
+type t = int [@@deriving compare, equal]
 
 let size = Cue.code_size
 let cardinality = lazy (Int.pow (force Color.cardinality) (force size))
 
 module Hum = struct
-  type t = Color.Hum.t array [@@deriving sexp]
+  type t = Color.Hum.t array
+
+  let to_dyn t = Dyn.array Color.Hum.to_dyn t
+  let to_json t : Json.t = `List (Array.to_list t |> List.map ~f:Color.Hum.to_json)
+
+  let of_json (json : Json.t) : t =
+    match json with
+    | `List l -> Array.of_list l |> Array.map ~f:Color.Hum.of_json
+    | _ -> raise (Json.Invalid_json ("Expected list for [Code.Hum.t].", json))
+  ;;
+
+  let to_string t = to_json t |> Json.to_string
 end
 
 module Computing = struct
@@ -21,10 +32,12 @@ module Computing = struct
     let code_size = Array.length hum in
     if code_size <> expected_size
     then
-      raise_s
-        [%sexp
-          "Invalid code size"
-        , { code = (hum : Hum.t); code_size : int; expected_size : int }]
+      Code_error.raise
+        "Invalid code size."
+        [ "code", Hum.to_dyn hum
+        ; "code_size", Dyn.int code_size
+        ; "expected_size", Dyn.int expected_size
+        ]
   ;;
 
   let create_exn hum =
@@ -48,7 +61,7 @@ module Computing = struct
   ;;
 
   let to_code (t : t) : int =
-    let color_cardinality = force Color.cardinality in
+    let color_cardinality = Lazy.force Color.cardinality in
     Array.fold_right t ~init:0 ~f:(fun color acc ->
       (acc * color_cardinality) + Color.to_index color)
   ;;
@@ -90,25 +103,28 @@ end
 
 let create_exn hum = hum |> Computing.create_exn |> Computing.to_code
 let to_hum t = t |> Computing.of_code |> Computing.to_hum
-let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
-let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
+let to_dyn t = t |> to_hum |> Hum.to_dyn
 let to_index t = t
+let of_json_hum json = Hum.of_json json |> create_exn
 
 let param =
   Command.Param.create'
     ~docv:"CODE"
     ~of_string:(fun s ->
-      match Parsexp.Single.parse_string_exn s |> [%of_sexp: t] with
+      match Json.of_string s |> of_json_hum with
       | e -> Ok e
       | exception e -> Error (`Msg (Exn.to_string e)))
-    ~to_string:(fun t -> Sexp.to_string ([%sexp_of: t] t))
+    ~to_string:(fun t -> Hum.to_string (to_hum t))
     ()
 ;;
 
 let check_index_exn index =
   let cardinality = force cardinality in
   if not (0 <= index && index < cardinality)
-  then raise_s [%sexp "Index out of bounds", { index : int; cardinality : int }]
+  then
+    Code_error.raise
+      "Index out of bounds."
+      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ]
 ;;
 
 let of_index_exn index =
@@ -124,4 +140,12 @@ let analyze ~solution ~candidate =
 
 let map_color t ~color_permutation =
   t |> Computing.of_code |> Computing.map_color ~color_permutation |> Computing.to_code
+;;
+
+let to_json t : Json.t = `Int (to_index t)
+
+let of_json (json : Json.t) : t =
+  match json with
+  | `Int i -> of_index_exn i
+  | _ -> raise (Json.Invalid_json ("Expected int for [Code.t].", json))
 ;;

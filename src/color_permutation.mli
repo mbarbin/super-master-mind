@@ -8,7 +8,9 @@
     the opening book through a color permutation, that is a bijection from the
     set of colors onto itself. *)
 
-type t [@@deriving compare, equal, hash, sexp]
+type t [@@deriving compare, equal]
+
+val to_dyn : t -> Dyn.t
 
 (** The permutation that maps each color to itself. *)
 val identity : t Lazy.t

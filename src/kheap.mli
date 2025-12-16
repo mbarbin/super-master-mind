@@ -7,7 +7,7 @@
 (** A [Kheap.t] is a mutable containers that retains the [k] smallest elements
     added to it overtime (and discard the others). *)
 
-type 'a t [@@deriving sexp_of]
+type 'a t
 
 (** [create ~k ~compare] creates a new kheap of size [k], which will use the
     provided comparison function to identify the smallest elements. Once
@@ -23,3 +23,5 @@ val add : 'a t -> 'a -> unit
 
 (** Returns the elements of [t] ordered increasingly. *)
 val to_list : 'a t -> 'a list
+
+val to_dyn : ('a -> Dyn.t) -> 'a t -> Dyn.t

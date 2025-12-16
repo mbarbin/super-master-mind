@@ -4,11 +4,10 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-type t = Color.t array [@@deriving compare, equal, sexp]
+type t = Color.t array [@@deriving compare, equal]
 
+let to_dyn t = Dyn.array Color.to_dyn t
 let identity = lazy (Array.init (force Color.cardinality) ~f:Color.of_index_exn)
-let hash t = Array.fold t ~init:1023 ~f:(fun acc i -> Hashtbl.hash (acc, Color.hash i))
-let hash_fold_t state t = Array.fold t ~init:state ~f:Color.hash_fold_t
 let map_color t color = t.(Color.to_index color)
 
 let inverse t =
@@ -33,7 +32,10 @@ let create_exn hums =
       visited.(index) <- true;
       Int.incr count));
   if Array.length colors <> color_cardinality || !count <> color_cardinality
-  then raise_s [%sexp "Invalid color permutation", (hums : Color.Hum.t array)];
+  then
+    Code_error.raise
+      "Invalid color permutation."
+      [ "hums", Dyn.array Color.Hum.to_dyn hums ];
   colors
 ;;
 
@@ -70,7 +72,10 @@ let of_index_exn index =
   let cardinality = force cardinality in
   let factorial = force factorial in
   if not (is_valid_index ~index)
-  then raise_s [%sexp "Index out of bounds", { index : int; cardinality : int }];
+  then
+    Code_error.raise
+      "Index out of bounds."
+      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ];
   let factorial_decomposition = Array.create ~len:color_cardinality 0 in
   let remainder = ref index in
   for i = color_cardinality - 1 downto 1 do
@@ -90,14 +95,13 @@ let of_index_exn index =
       available_colors.(j) <- false;
       t.(i) <- Color.of_index_exn j
     | None ->
-      raise_s
-        [%sexp
-          "Unexpected decomposition"
-        , { index : int
-          ; factorial_decomposition : int array
-          ; available_colors : bool array
-          ; t : Color.t array
-          }] [@coverage off]
+      Code_error.raise
+        "Unexpected decomposition."
+        [ "index", Dyn.int index
+        ; "factorial_decomposition", Dyn.array Dyn.int factorial_decomposition
+        ; "available_colors", Dyn.array Dyn.bool available_colors
+        ; "t", to_dyn t
+        ] [@coverage off]
   done;
   t
 ;;

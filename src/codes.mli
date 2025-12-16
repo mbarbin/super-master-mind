@@ -9,7 +9,9 @@
     original value (all possible combinations) down to the final guessed
     solution. *)
 
-type t [@@deriving sexp_of]
+type t
+
+val to_dyn : t -> Dyn.t
 
 (** A [t] representing the set of all possible codes. Its size is equal to ~32K
     elements. *)

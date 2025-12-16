@@ -4,11 +4,11 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-let%expect_test "sexp_of_t" =
-  print_s [%sexp (force Color.cardinality : int)];
+let%expect_test "to_dyn" =
+  print_dyn (Dyn.int (Lazy.force Color.cardinality));
   [%expect {| 8 |}];
-  assert (force Color.cardinality = List.length (force Color.all));
-  List.iter (force Color.all) ~f:(fun t -> print_s [%sexp (t : Color.t)]);
+  assert (Lazy.force Color.cardinality = List.length (Lazy.force Color.all));
+  List.iter (Lazy.force Color.all) ~f:(fun t -> print_dyn (Color.to_dyn t));
   [%expect
     {|
     Black
@@ -22,18 +22,14 @@ let%expect_test "sexp_of_t" =
 ;;
 
 let%expect_test "indices" =
-  List.iter (force Color.all) ~f:(fun color ->
+  List.iter (Lazy.force Color.all) ~f:(fun color ->
     let index = Color.to_index color in
     let color' = Color.of_index_exn index in
     assert (Color.equal color color'));
   [%expect {||}];
-  require_does_raise [%here] (fun () : Color.t ->
-    Color.of_index_exn (force Color.cardinality));
-  [%expect
-    {|
-    ("Index out of bounds" (
-      (index       8)
-      (cardinality 8))) |}];
+  require_does_raise (fun () : Color.t ->
+    Color.of_index_exn (Lazy.force Color.cardinality));
+  [%expect {| ("Index out of bounds.", { index = 8; cardinality = 8 }) |}];
   ()
 ;;
 

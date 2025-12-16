@@ -15,13 +15,13 @@ let solve ~task_pool ~color_permutation ~solution =
     let t = { t with by_cue } in
     Queue.enqueue steps t;
     Int.incr step_index;
-    print_s [%sexp (!step_index : int), (t : Guess.t)]
+    print_dyn (Dyn.Tuple [ !step_index |> Dyn.int; t |> Guess.to_dyn ])
   in
   let rec aux (t : Guess.t) ~possible_solutions =
     let cue = Code.analyze ~solution ~candidate:t.candidate in
     let by_cue =
       Nonempty_list.find t.by_cue ~f:(fun by_cue -> Cue.equal cue by_cue.cue)
-      |> Option.value_exn ~here:[%here]
+      |> Option.get
     in
     add t ~by_cue;
     let possible_solutions =
@@ -29,7 +29,7 @@ let solve ~task_pool ~color_permutation ~solution =
     in
     if Codes.size possible_solutions = 1
     then (
-      let solution = List.hd_exn (Codes.to_list possible_solutions) in
+      let solution = List.hd (Codes.to_list possible_solutions) in
       let guess = Guess.compute ~possible_solutions ~candidate:solution in
       add guess ~by_cue:(Nonempty_list.hd guess.by_cue))
     else (
@@ -43,7 +43,7 @@ let solve ~task_pool ~color_permutation ~solution =
   in
   let opening_book = Lazy.force Opening_book.opening_book in
   let root =
-    Opening_book.root opening_book ~color_permutation:(force color_permutation)
+    Opening_book.root opening_book ~color_permutation:(Lazy.force color_permutation)
   in
   aux root ~possible_solutions:Codes.all;
   Queue.to_list steps

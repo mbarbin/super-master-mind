@@ -9,11 +9,16 @@
     well. *)
 
 (** [t] is a memory efficient representation for a code. *)
-type t [@@deriving compare, equal, hash, sexp]
+type t [@@deriving compare, equal]
 
 module Hum : sig
   (** Human readable representation for a code. *)
-  type t = Color.Hum.t array [@@deriving sexp]
+  type t = Color.Hum.t array
+
+  val to_dyn : t -> Dyn.t
+  val to_json : t -> Json.t
+  val of_json : Json.t -> t
+  val to_string : t -> string
 end
 
 (** Returns the efficient encoding of a given code. Raises if the size of the
@@ -22,6 +27,8 @@ val create_exn : Hum.t -> t
 
 (** Returns the human readable representation of the code. *)
 val to_hum : t -> Hum.t
+
+val to_dyn : t -> Dyn.t
 
 (** The number of slots in the code. In this version of the game, this is [5]. *)
 val size : int Lazy.t
@@ -50,3 +57,6 @@ val map_color : t -> color_permutation:Color_permutation.t -> t
 
 (** Parse a code from the command line. *)
 val param : t Command.Param.t
+
+val to_json : t -> Json.t
+val of_json : Json.t -> t

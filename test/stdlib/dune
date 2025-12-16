@@ -1,5 +1,5 @@
 (library
- (name super_master_mind_test)
+ (name super_master_mind_stdlib_test)
  (package super-master-mind-tests)
  (flags
   :standard
@@ -8,10 +8,8 @@
   -warn-error
   +a
   -open
-  Super_master_mind_stdlib
-  -open
-  Super_master_mind)
- (libraries nonempty-list super_master_mind super_master_mind_stdlib)
+  Super_master_mind_stdlib)
+ (libraries super_master_mind_stdlib)
  (inline_tests)
  (instrumentation
   (backend bisect_ppx))

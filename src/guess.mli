@@ -19,7 +19,9 @@ module rec Next_best_guesses : sig
   type t =
     | Not_computed
     | Computed of T.t list
-  [@@deriving equal, sexp]
+  [@@deriving equal]
+
+  val to_dyn : t -> Dyn.t
 end
 
 and By_cue : sig
@@ -31,7 +33,9 @@ and By_cue : sig
     ; probability : float
     ; next_best_guesses : Next_best_guesses.t
     }
-  [@@deriving equal, sexp]
+  [@@deriving equal]
+
+  val to_dyn : t -> Dyn.t
 end
 
 and T : sig
@@ -45,7 +49,9 @@ and T : sig
     ; by_cue : By_cue.t Nonempty_list.t
       (** Sorted by decreasing number of remaining sizes *)
     }
-  [@@deriving equal, sexp]
+  [@@deriving equal]
+
+  val to_dyn : t -> Dyn.t
 end
 
 include module type of struct
@@ -83,7 +89,7 @@ module Verify_error : sig
   type t
 
   val print_hum : t -> Out_channel.t -> unit
-  val to_error : t -> Error.t
+  val to_dyn : t -> Dyn.t
 end
 
 (** Check the accuracy of all computed numbers contained in [t]. *)
@@ -92,3 +98,6 @@ val verify : t -> possible_solutions:Codes.t -> (unit, Verify_error.t) Result.t
 (** Map the color of all codes contained by [t] according to a given color
     permutation. *)
 val map_color : t -> color_permutation:Color_permutation.t -> t
+
+val to_json : t -> Json.t
+val of_json : Json.t -> t
