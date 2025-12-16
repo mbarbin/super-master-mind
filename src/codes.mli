@@ -9,7 +9,7 @@
     original value (all possible combinations) down to the final guessed
     solution. *)
 
-type t [@@deriving sexp_of]
+type t
 
 val to_dyn : t -> Dyn.t
 

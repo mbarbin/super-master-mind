@@ -9,7 +9,6 @@ module Hum = struct
     { white : int
     ; black : int
     }
-  [@@deriving sexp]
 
   let to_dyn { white; black } =
     Dyn.record [ "white", Dyn.int white; "black", Dyn.int black ]
@@ -92,7 +91,6 @@ let to_hum t =
   cache.index_to_hum.(t)
 ;;
 
-let sexp_of_t t = to_hum t |> Hum.sexp_of_t
 let to_dyn t = t |> to_hum |> Hum.to_dyn
 
 let of_index_exn index =
@@ -113,7 +111,6 @@ let create_exn hum =
   | None -> Code_error.raise "Invalid cue." [ "hum", Hum.to_dyn hum ]
 ;;
 
-let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
 let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fn.id)
 let to_json t : Json.t = `Int (to_index t)
 

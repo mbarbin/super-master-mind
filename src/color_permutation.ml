@@ -4,7 +4,7 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-type t = Color.t array [@@deriving compare, equal, sexp]
+type t = Color.t array [@@deriving compare, equal]
 
 let to_dyn t = Dyn.array Color.to_dyn t
 let identity = lazy (Array.init (force Color.cardinality) ~f:Color.of_index_exn)

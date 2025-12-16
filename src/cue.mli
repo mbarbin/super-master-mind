@@ -13,7 +13,7 @@
     gets a black pin. *)
 
 (** [t] is an efficient representation for a cue. *)
-type t [@@deriving compare, equal, sexp]
+type t [@@deriving compare, equal]
 
 val all : t list Lazy.t
 
@@ -23,7 +23,6 @@ module Hum : sig
     { white : int
     ; black : int
     }
-  [@@deriving sexp]
 
   val to_dyn : t -> Dyn.t
 end

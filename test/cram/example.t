@@ -1,4 +1,4 @@
-  $ super-master-mind example --num-domains 4 --solution '(Green Blue Orange White Red)'
+  $ super-master-mind example --num-domains 4 --solution '["Green","Blue","Orange","White","Red"]'
   (1,
    { candidate = [| Black;  Blue;  Brown;  Green;  Orange |]
    ; expected_bits_gained = 3.23155340586

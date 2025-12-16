@@ -18,7 +18,7 @@ module Hum = struct
     | Red
     | White
     | Yellow
-  [@@deriving compare, equal, sexp]
+  [@@deriving compare, equal]
 
   let all = [ Black; Blue; Brown; Green; Orange; Red; White; Yellow ]
 
@@ -33,11 +33,44 @@ module Hum = struct
     | Yellow -> Dyn.variant "Yellow" []
   ;;
 
-  let t_of_sexp sexp =
-    match t_of_sexp sexp with
-    | t -> t
-    | exception _ ->
-      Code_error.raise "Invalid color." [ "sexp", Dyn.string (Sexp.to_string sexp) ]
+  let to_string = function
+    | Black -> "Black"
+    | Blue -> "Blue"
+    | Brown -> "Brown"
+    | Green -> "Green"
+    | Orange -> "Orange"
+    | Red -> "Red"
+    | White -> "White"
+    | Yellow -> "Yellow"
+  ;;
+
+  let of_string_opt = function
+    | "Black" -> Some Black
+    | "Blue" -> Some Blue
+    | "Brown" -> Some Brown
+    | "Green" -> Some Green
+    | "Orange" -> Some Orange
+    | "Red" -> Some Red
+    | "White" -> Some White
+    | "Yellow" -> Some Yellow
+    | _ -> None
+  ;;
+
+  let of_string_exn s =
+    match of_string_opt s with
+    | Some t -> t
+    | None -> Code_error.raise "Invalid color." [ "color", Dyn.string s ]
+  ;;
+
+  let to_json t : Json.t = `String (to_string t)
+
+  let of_json (json : Json.t) : t =
+    match json with
+    | `String s ->
+      (match of_string_opt s with
+       | Some t -> t
+       | None -> raise (Json.Invalid_json ("Invalid color for [Color.Hum.t].", json)))
+    | _ -> raise (Json.Invalid_json ("Expected string for [Color.Hum.t].", json))
   ;;
 
   let to_index = function
@@ -82,11 +115,5 @@ let of_index_exn index =
 ;;
 
 let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fn.id)
-let sexp_of_t t = to_hum t |> Hum.sexp_of_t
-
-let t_of_sexp sexp =
-  match sexp |> [%of_sexp: Hum.t] with
-  | hum -> hum |> of_hum
-  | exception _ ->
-    Code_error.raise "Invalid color." [ "sexp", Dyn.string (Sexp.to_string sexp) ]
-;;
+let to_json t : Json.t = to_hum t |> Hum.to_json
+let of_json (json : Json.t) : t = json |> Hum.of_json |> of_hum

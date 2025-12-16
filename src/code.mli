@@ -9,13 +9,16 @@
     well. *)
 
 (** [t] is a memory efficient representation for a code. *)
-type t [@@deriving compare, equal, sexp]
+type t [@@deriving compare, equal]
 
 module Hum : sig
   (** Human readable representation for a code. *)
-  type t = Color.Hum.t array [@@deriving sexp]
+  type t = Color.Hum.t array
 
   val to_dyn : t -> Dyn.t
+  val to_json : t -> Json.t
+  val of_json : Json.t -> t
+  val to_string : t -> string
 end
 
 (** Returns the efficient encoding of a given code. Raises if the size of the

@@ -1,16 +1,14 @@
-  $ dune exec super-master-mind -- maker --solution '(Green Blue Orange White Red)' <<EOF
-  > invalid sexp
-  > (Black Invalid_color Black Black Black)
-  > (Black Black Black Black Black Black Black Black Black Black Black)
-  > (Black Blue Brown Green Orange)
-  > (Black Blue Orange Orange Yellow)
-  > (Black Green Orange Red White)
-  > (Black Black Red Orange Green)
-  > (Green Blue Orange White Red)
-  Please enter your guess: (parse_error.ml.Parse_error
-    ((position ((line 1) (col 8) (offset 8)))
-      (message "s-expression followed by data")))
-  Please enter your guess: ("Invalid color.", { sexp = "Invalid_color" })
+  $ dune exec super-master-mind -- maker --solution '["Green","Blue","Orange","White","Red"]' <<EOF
+  > invalid json
+  > ["Black","Invalid_color","Black","Black","Black"]
+  > ["Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black"]
+  > ["Black","Blue","Brown","Green","Orange"]
+  > ["Black","Blue","Orange","Orange","Yellow"]
+  > ["Black","Green","Orange","Red","White"]
+  > ["Black","Black","Red","Orange","Green"]
+  > ["Green","Blue","Orange","White","Red"]
+  Please enter your guess: Json.Parse_error("Line 1, bytes 0-12:\nInvalid token 'invalid json'")
+  Please enter your guess: Json.Invalid_json("Invalid color for [Color.Hum.t].", "Invalid_color")
   Please enter your guess: ("Invalid code size.",
    { code =
        [| Black

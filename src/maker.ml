@@ -15,9 +15,7 @@ let rec input_code () =
   Stdlib.print_string prompt;
   Out_channel.(flush stdout);
   let line = input_line () in
-  match
-    line |> Parsexp.Single.parse_string_exn |> [%of_sexp: Code.Hum.t] |> Code.create_exn
-  with
+  match line |> Json.of_string |> Code.Hum.of_json |> Code.create_exn with
   | exception e ->
     Stdlib.print_endline (Stdlib.Printexc.to_string e);
     input_code ()

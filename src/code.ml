@@ -10,9 +10,18 @@ let size = Cue.code_size
 let cardinality = lazy (Int.pow (force Color.cardinality) (force size))
 
 module Hum = struct
-  type t = Color.Hum.t array [@@deriving sexp]
+  type t = Color.Hum.t array
 
   let to_dyn t = Dyn.array Color.Hum.to_dyn t
+  let to_json t : Json.t = `List (Array.to_list t |> List.map ~f:Color.Hum.to_json)
+
+  let of_json (json : Json.t) : t =
+    match json with
+    | `List l -> Array.of_list l |> Array.map ~f:Color.Hum.of_json
+    | _ -> raise (Json.Invalid_json ("Expected list for [Code.Hum.t].", json))
+  ;;
+
+  let to_string t = to_json t |> Json.to_string
 end
 
 module Computing = struct
@@ -95,18 +104,17 @@ end
 let create_exn hum = hum |> Computing.create_exn |> Computing.to_code
 let to_hum t = t |> Computing.of_code |> Computing.to_hum
 let to_dyn t = t |> to_hum |> Hum.to_dyn
-let sexp_of_t t = to_hum t |> Hum.sexp_of_t
-let t_of_sexp sexp = sexp |> Hum.t_of_sexp |> create_exn
 let to_index t = t
+let of_json_hum json = Hum.of_json json |> create_exn
 
 let param =
   Command.Param.create'
     ~docv:"CODE"
     ~of_string:(fun s ->
-      match Parsexp.Single.parse_string_exn s |> [%of_sexp: t] with
+      match Json.of_string s |> of_json_hum with
       | e -> Ok e
       | exception e -> Error (`Msg (Exn.to_string e)))
-    ~to_string:(fun t -> Sexp.to_string ([%sexp_of: t] t))
+    ~to_string:(fun t -> Hum.to_string (to_hum t))
     ()
 ;;
 
