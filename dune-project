@@ -51,8 +51,6 @@
    (>= 2.0.0))
   (ppx_compare
    (>= v0.17))
-  (ppx_enumerate
-   (>= v0.17))
   (ppx_here
    (>= v0.17))
   (ppx_sexp_conv

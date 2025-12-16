@@ -22,8 +22,9 @@ module Hum : sig
     | Red
     | White
     | Yellow
-  [@@deriving compare, equal, enumerate, sexp]
+  [@@deriving compare, equal, sexp]
 
+  val all : t list
   val to_dyn : t -> Dyn.t
 end
 

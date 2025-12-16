@@ -16,7 +16,9 @@ module Hum = struct
     | Red
     | White
     | Yellow
-  [@@deriving compare, equal, enumerate, sexp]
+  [@@deriving compare, equal, sexp]
+
+  let all = [ Black; Blue; Brown; Green; Orange; Red; White; Yellow ]
 
   let to_dyn = function
     | Black -> Dyn.variant "Black" []
