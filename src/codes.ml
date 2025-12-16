@@ -9,6 +9,11 @@ type t =
   | Only of { queue : Code.t Queue.t }
 [@@deriving sexp_of]
 
+let to_dyn = function
+  | All -> Dyn.variant "All" []
+  | Only { queue } -> Dyn.variant "Only" [ Dyn.list Code.to_dyn (Queue.to_list queue) ]
+;;
+
 let all = All
 
 let size = function

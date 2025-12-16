@@ -23,3 +23,5 @@ val add : 'a t -> 'a -> unit
 
 (** Returns the elements of [t] ordered increasingly. *)
 val to_list : 'a t -> 'a list
+
+val to_dyn : ('a -> Dyn.t) -> 'a t -> Dyn.t

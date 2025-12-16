@@ -10,10 +10,24 @@
   Please enter your guess: (parse_error.ml.Parse_error
    ((position ((line 1) (col 8) (offset 8)))
     (message "s-expression followed by data")))
-  Please enter your guess: ("Invalid color" Invalid_color)
-  Please enter your guess: ("Invalid code size"
-   ((code (Black Black Black Black Black Black Black Black Black Black Black))
-    (code_size 11) (expected_size 5)))
+  Please enter your guess: ("(\"Invalid color.\", { sexp = \"Invalid_color\" })")
+  Please enter your guess: ( "(\"Invalid code size.\",\
+   \n { code =\
+   \n     [| Black\
+   \n     ;  Black\
+   \n     ;  Black\
+   \n     ;  Black\
+   \n     ;  Black\
+   \n     ;  Black\
+   \n     ;  Black\
+   \n     ;  Black\
+   \n     ;  Black\
+   \n     ;  Black\
+   \n     ;  Black\
+   \n     |]\
+   \n ; code_size = 11\
+   \n ; expected_size = 5\
+   \n })")
   Please enter your guess: (1 (Black Blue Brown Green Orange))
   #black (correctly placed)  : 1
   #white (incorrectly placed): 2

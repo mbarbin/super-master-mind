@@ -18,18 +18,20 @@ let%expect_test "bounds" =
   let test i expected =
     let t = Color_permutation.of_index_exn i in
     if Color_permutation.equal t expected
-    then print_s [%sexp (i : int), (t : Color_permutation.t)]
+    then print_dyn (Dyn.Tuple [ Dyn.int i; Color_permutation.to_dyn t ])
     else
-      raise_s
-        [%sexp
-          "Unexpected value"
-        , { i : int; expected : Color_permutation.t; got = (t : Color_permutation.t) }]
-      [@coverage off]
+      Code_error.raise
+        "Unexpected value."
+        [ "i", Dyn.int i
+        ; "expected", Color_permutation.to_dyn expected
+        ; "got", Color_permutation.to_dyn t
+        ] [@coverage off]
   in
   test 0 zero;
-  [%expect {| (0 (Black Blue Brown Green Orange Red White Yellow)) |}];
+  [%expect {| (0, [| Black;  Blue;  Brown;  Green;  Orange;  Red;  White;  Yellow |]) |}];
   test (force Color_permutation.cardinality - 1) max;
-  [%expect {| (40319 (Yellow White Red Orange Green Brown Blue Black)) |}]
+  [%expect
+    {| (40319, [| Yellow;  White;  Red;  Orange;  Green;  Brown;  Blue;  Black |]) |}]
 ;;
 
 let%expect_test "sexp_of" =
@@ -66,8 +68,9 @@ let%expect_test "indices" =
       Hashtbl.set all ~key:e ~data:i;
       e
     | Some j ->
-      raise_s
-        [%sexp "Duplicated permutation", { i : int; j : int; e : Color_permutation.t }]
+      Code_error.raise
+        "Duplicated permutation."
+        [ "i", Dyn.int i; "j", Dyn.int j; "e", Color_permutation.to_dyn e ]
   in
   for i = 0 to force Color_permutation.cardinality - 1 do
     let color_permutation = add i in
@@ -79,13 +82,16 @@ let%expect_test "indices" =
   [%expect {||}];
   require_does_raise (fun () : Color_permutation.t ->
     Color_permutation.of_index_exn (force Color_permutation.cardinality));
-  [%expect {| ("Index out of bounds" ((index 40320) (cardinality 40320))) |}];
+  [%expect {| ("Index out of bounds.", { index = 40320; cardinality = 40320 }) |}];
   (* Testing the [add] function itself. *)
   require_does_raise (fun () : Color_permutation.t -> add 0);
   [%expect
     {|
-    ("Duplicated permutation"
-      ((i 0) (j 0) (e (Black Blue Brown Green Orange Red White Yellow))))
+    ("Duplicated permutation.",
+     { i = 0
+     ; j = 0
+     ; e = [| Black;  Blue;  Brown;  Green;  Orange;  Red;  White;  Yellow |]
+     })
     |}];
   ()
 ;;
@@ -110,12 +116,12 @@ let%expect_test "to_hum | create_exn" =
     let t' = Color_permutation.create_exn hum in
     if not (Color_permutation.equal t t')
     then
-      raise_s
-        [%sexp
-          "Color_permutation does not round-trip"
-        , [%here]
-        , { t : Color_permutation.t; hum : Color.Hum.t array; t' : Color_permutation.t }]
-      [@coverage off]
+      Code_error.raise
+        "Color_permutation does not round-trip."
+        [ "t", Color_permutation.to_dyn t
+        ; "hum", Dyn.array Color.Hum.to_dyn hum
+        ; "t'", Color_permutation.to_dyn t'
+        ] [@coverage off]
   done;
   [%expect {||}]
 ;;

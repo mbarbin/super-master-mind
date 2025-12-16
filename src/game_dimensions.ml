@@ -34,11 +34,11 @@ let use_small_game_dimensions_exn here =
   match !cell with
   | None -> cell := Some (here, small_for_tests)
   | Some (was_set_here, _) ->
-    raise_s
-      [%sexp
-        "Game_dimensions is already set"
-      , (normalize_fname here : Source_code_position.t)
-      , { was_set_here = (was_set_here |> normalize_fname : Source_code_position.t) }]
+    Code_error.raise
+      "Game_dimensions is already set."
+      [ "here", normalize_fname here |> Source_code_position.to_dyn
+      ; "was_set_here", was_set_here |> normalize_fname |> Source_code_position.to_dyn
+      ]
 ;;
 
 let arg here =

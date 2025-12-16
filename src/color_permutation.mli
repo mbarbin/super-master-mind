@@ -10,6 +10,8 @@
 
 type t [@@deriving compare, equal, hash, sexp]
 
+val to_dyn : t -> Dyn.t
+
 (** The permutation that maps each color to itself. *)
 val identity : t Lazy.t
 

@@ -10,6 +10,10 @@ module Hum = struct
     ; black : int
     }
   [@@deriving sexp]
+
+  let to_dyn { white; black } =
+    Dyn.record [ "white", Dyn.int white; "black", Dyn.int black ]
+  ;;
 end
 
 let code_size = lazy (Game_dimensions.code_size [%here])
@@ -70,7 +74,7 @@ module Cache = struct
          Array.mapi index_to_hum ~f:(fun i value ->
            match value with
            | Some value -> value
-           | None -> raise_s [%sexp "Missing index", [%here], (i : int)])
+           | None -> Code_error.raise "Missing index." [ "i", Dyn.int i ])
        in
        { raw_code_to_index; index_to_hum })
   ;;
@@ -87,11 +91,15 @@ let to_hum t =
 ;;
 
 let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
+let to_dyn t = t |> to_hum |> Hum.to_dyn
 
 let of_index_exn index =
   let cardinality = force cardinality in
   if not (0 <= index && index < cardinality)
-  then raise_s [%sexp "Index out of bounds", { index : int; cardinality : int }];
+  then
+    Code_error.raise
+      "Index out of bounds."
+      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ];
   index
 ;;
 
@@ -100,7 +108,7 @@ let create_exn hum =
   let cache = force Cache.value in
   match cache.raw_code_to_index.(raw_code) with
   | Some index -> index
-  | None -> raise_s [%sexp "Invalid cue", (hum : Hum.t)]
+  | None -> Code_error.raise "Invalid cue." [ "hum", Hum.to_dyn hum ]
 ;;
 
 let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn

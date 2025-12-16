@@ -7,6 +7,7 @@
 module Code_error = Code_error
 module Dyn = Dyn
 module Ordering = Ordering
+module Source_code_position = Source_code_position
 
 let print pp = Format.printf "%a@." Pp.to_fmt pp
 let print_dyn dyn = print (Dyn.pp dyn)

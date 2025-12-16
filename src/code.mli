@@ -14,6 +14,8 @@ type t [@@deriving compare, equal, hash, sexp]
 module Hum : sig
   (** Human readable representation for a code. *)
   type t = Color.Hum.t array [@@deriving sexp]
+
+  val to_dyn : t -> Dyn.t
 end
 
 (** Returns the efficient encoding of a given code. Raises if the size of the
@@ -22,6 +24,8 @@ val create_exn : Hum.t -> t
 
 (** Returns the human readable representation of the code. *)
 val to_hum : t -> Hum.t
+
+val to_dyn : t -> Dyn.t
 
 (** The number of slots in the code. In this version of the game, this is [5]. *)
 val size : int Lazy.t

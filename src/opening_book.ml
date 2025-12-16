@@ -67,7 +67,7 @@ let canonical_first_candidate =
 ;;
 
 let compute ~task_pool ~depth =
-  if depth < 1 then raise_s [%sexp "depth >= 1 expected", [%here], { depth : int }];
+  if depth < 1 then Code_error.raise "depth >= 1 expected." [ "depth", Dyn.int depth ];
   let display =
     Progress.Display.start
       ~config:(Progress.Config.v ~persistent:false ())

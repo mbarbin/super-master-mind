@@ -11,6 +11,7 @@ module rec Next_best_guesses : sig
   [@@deriving equal, sexp]
 
   val is_computed : t -> bool
+  val to_dyn : t -> Dyn.t
 end = struct
   type t =
     | Not_computed
@@ -20,6 +21,11 @@ end = struct
   let is_computed = function
     | Computed _ -> true
     | Not_computed -> false
+  ;;
+
+  let to_dyn = function
+    | Not_computed -> Dyn.variant "Not_computed" []
+    | Computed ts -> Dyn.variant "Computed" [ Dyn.list T.to_dyn ts ]
   ;;
 end
 
@@ -33,6 +39,8 @@ and By_cue : sig
     ; next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp]
+
+  val to_dyn : t -> Dyn.t
 end = struct
   type t =
     { cue : Cue.t
@@ -43,6 +51,25 @@ end = struct
     ; next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp]
+
+  let to_dyn
+        { cue
+        ; size_remaining
+        ; bits_remaining
+        ; bits_gained
+        ; probability
+        ; next_best_guesses
+        }
+    =
+    Dyn.record
+      [ "cue", Cue.to_dyn cue
+      ; "size_remaining", Dyn.int size_remaining
+      ; "bits_remaining", Dyn.float bits_remaining
+      ; "bits_gained", Dyn.float bits_gained
+      ; "probability", Dyn.float probability
+      ; "next_best_guesses", Next_best_guesses.to_dyn next_best_guesses
+      ]
+  ;;
 end
 
 and T : sig
@@ -57,6 +84,8 @@ and T : sig
         By_cue.t Nonempty_list.t (* Sorted by decreasing number of remaining sizes *)
     }
   [@@deriving equal, sexp]
+
+  val to_dyn : t -> Dyn.t
 end = struct
   type t =
     { candidate : Code.t
@@ -68,13 +97,33 @@ end = struct
     ; by_cue : By_cue.t Nonempty_list.t
     }
   [@@deriving equal, sexp]
+
+  let to_dyn
+        { candidate
+        ; expected_bits_gained
+        ; expected_bits_remaining
+        ; min_bits_gained
+        ; max_bits_gained
+        ; max_bits_remaining
+        ; by_cue
+        }
+    =
+    Dyn.record
+      [ "candidate", Code.to_dyn candidate
+      ; "expected_bits_gained", Dyn.float expected_bits_gained
+      ; "expected_bits_remaining", Dyn.float expected_bits_remaining
+      ; "min_bits_gained", Dyn.float min_bits_gained
+      ; "max_bits_gained", Dyn.float max_bits_gained
+      ; "max_bits_remaining", Dyn.float max_bits_remaining
+      ; "by_cue", Dyn.list By_cue.to_dyn (Nonempty_list.to_list by_cue)
+      ]
+  ;;
 end
 
 include T
 
 let compute ~possible_solutions ~candidate : t =
-  if Codes.is_empty possible_solutions
-  then raise_s [%sexp "No possible solutions", [%here]];
+  if Codes.is_empty possible_solutions then Code_error.raise "No possible solutions." [];
   let original_size = Float.of_int (Codes.size possible_solutions) in
   let original_bits = Float.log2 original_size in
   let by_cue =
@@ -125,7 +174,7 @@ let compute ~possible_solutions ~candidate : t =
 ;;
 
 let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
-  if k < 1 then raise_s [%sexp "k >= 1 value expected", [%here], { k : int }];
+  if k < 1 then Code_error.raise "k >= 1 value expected." [ "k", Dyn.int k ];
   let ts =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
       let r = Float.compare t2.expected_bits_gained t1.expected_bits_gained in

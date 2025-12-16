@@ -24,6 +24,8 @@ module Hum : sig
     ; black : int
     }
   [@@deriving sexp]
+
+  val to_dyn : t -> Dyn.t
 end
 
 (** The number of different cues that are encountered in the game. *)
@@ -46,6 +48,8 @@ val create_exn : Hum.t -> t
 
 (** Returns the human readable representation of the cue. *)
 val to_hum : t -> Hum.t
+
+val to_dyn : t -> Dyn.t
 
 (** That is the number of slots in the solution, as well as all candidates
     submitted as guesses. In this version of the game, this is [5]. *)

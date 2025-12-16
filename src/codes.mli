@@ -11,6 +11,8 @@
 
 type t [@@deriving sexp_of]
 
+val to_dyn : t -> Dyn.t
+
 (** A [t] representing the set of all possible codes. Its size is equal to ~32K
     elements. *)
 val all : t

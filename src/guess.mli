@@ -20,6 +20,8 @@ module rec Next_best_guesses : sig
     | Not_computed
     | Computed of T.t list
   [@@deriving equal, sexp]
+
+  val to_dyn : t -> Dyn.t
 end
 
 and By_cue : sig
@@ -32,6 +34,8 @@ and By_cue : sig
     ; next_best_guesses : Next_best_guesses.t
     }
   [@@deriving equal, sexp]
+
+  val to_dyn : t -> Dyn.t
 end
 
 and T : sig
@@ -46,6 +50,8 @@ and T : sig
       (** Sorted by decreasing number of remaining sizes *)
     }
   [@@deriving equal, sexp]
+
+  val to_dyn : t -> Dyn.t
 end
 
 include module type of struct

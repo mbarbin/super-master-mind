@@ -11,6 +11,8 @@ let cardinality = lazy (Int.pow (force Color.cardinality) (force size))
 
 module Hum = struct
   type t = Color.Hum.t array [@@deriving sexp]
+
+  let to_dyn t = Dyn.array Color.Hum.to_dyn t
 end
 
 module Computing = struct
@@ -21,10 +23,12 @@ module Computing = struct
     let code_size = Array.length hum in
     if code_size <> expected_size
     then
-      raise_s
-        [%sexp
-          "Invalid code size"
-        , { code = (hum : Hum.t); code_size : int; expected_size : int }]
+      Code_error.raise
+        "Invalid code size."
+        [ "code", Hum.to_dyn hum
+        ; "code_size", Dyn.int code_size
+        ; "expected_size", Dyn.int expected_size
+        ]
   ;;
 
   let create_exn hum =
@@ -90,6 +94,7 @@ end
 
 let create_exn hum = hum |> Computing.create_exn |> Computing.to_code
 let to_hum t = t |> Computing.of_code |> Computing.to_hum
+let to_dyn t = t |> to_hum |> Hum.to_dyn
 let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
 let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
 let to_index t = t
@@ -108,7 +113,10 @@ let param =
 let check_index_exn index =
   let cardinality = force cardinality in
   if not (0 <= index && index < cardinality)
-  then raise_s [%sexp "Index out of bounds", { index : int; cardinality : int }]
+  then
+    Code_error.raise
+      "Index out of bounds."
+      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ]
 ;;
 
 let of_index_exn index =
