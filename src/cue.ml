@@ -90,7 +90,7 @@ let to_hum t =
   cache.index_to_hum.(t)
 ;;
 
-let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
+let sexp_of_t t = to_hum t |> Hum.sexp_of_t
 let to_dyn t = t |> to_hum |> Hum.to_dyn
 
 let of_index_exn index =

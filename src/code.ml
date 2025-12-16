@@ -95,8 +95,8 @@ end
 let create_exn hum = hum |> Computing.create_exn |> Computing.to_code
 let to_hum t = t |> Computing.of_code |> Computing.to_hum
 let to_dyn t = t |> to_hum |> Hum.to_dyn
-let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
-let t_of_sexp sexp = sexp |> [%of_sexp: Hum.t] |> create_exn
+let sexp_of_t t = to_hum t |> Hum.sexp_of_t
+let t_of_sexp sexp = sexp |> Hum.t_of_sexp |> create_exn
 let to_index t = t
 
 let param =

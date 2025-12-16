@@ -15,7 +15,7 @@ let solve ~task_pool ~color_permutation ~solution =
     let t = { t with by_cue } in
     Queue.enqueue steps t;
     Int.incr step_index;
-    print_s [%sexp (!step_index : int), (t : Guess.t)]
+    print_dyn (Dyn.Tuple [ !step_index |> Dyn.int; t |> Guess.to_dyn ])
   in
   let rec aux (t : Guess.t) ~possible_solutions =
     let cue = Code.analyze ~solution ~candidate:t.candidate in

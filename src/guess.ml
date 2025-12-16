@@ -243,7 +243,11 @@ module Verify_error = struct
 
   let to_error { unexpected_field; expected; computed } =
     let diff = diff ~expected ~computed |> String.split_lines in
-    Error.create_s [%sexp { unexpected_field : string; diff : string list }]
+    Error.create_s
+      (Sexp.List
+         [ List [ Atom "unexpected_field"; Atom unexpected_field ]
+         ; List [ Atom "diff"; List (List.map diff ~f:(fun diff -> Sexp.Atom diff)) ]
+         ])
   ;;
 
   let print_hum { unexpected_field; expected; computed } oc =
@@ -262,8 +266,8 @@ let unexpected
   =
   Error
     { Verify_error.unexpected_field
-    ; expected = [%sexp (expected : a)]
-    ; computed = [%sexp (computed : a)]
+    ; expected = expected |> sexp_of_a
+    ; computed = computed |> sexp_of_a
     }
 ;;
 

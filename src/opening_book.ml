@@ -124,7 +124,7 @@ let dump_cmd =
     (let open Command.Std in
      let+ () = Arg.return () in
      let t = Lazy.force opening_book in
-     print_s [%sexp (t : t)])
+     print_s (t |> sexp_of_t))
 ;;
 
 let compute_cmd =
@@ -149,7 +149,7 @@ let compute_cmd =
      Task_pool.with_t task_pool_config ~f:(fun ~task_pool ->
        let t = compute ~task_pool ~depth in
        Out_channel.with_file path ~f:(fun oc ->
-         Out_channel.output_string oc (Sexp.to_string_hum [%sexp (t : t)]);
+         Out_channel.output_string oc (Sexp.to_string_hum (t |> sexp_of_t));
          Out_channel.output_char oc '\n')))
 ;;
 

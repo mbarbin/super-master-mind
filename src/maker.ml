@@ -15,7 +15,7 @@ let rec input_code () =
     line |> Parsexp.Single.parse_string_exn |> [%of_sexp: Code.Hum.t] |> Code.create_exn
   with
   | exception e ->
-    print_s [%sexp (e : Exn.t)];
+    print_endline (Stdlib.Printexc.to_string e);
     input_code ()
   | code -> code
 ;;
@@ -26,7 +26,7 @@ let run ~solution =
     let candidate = input_code () in
     let cue = Code.analyze ~solution ~candidate in
     let { Cue.Hum.white; black } = Cue.to_hum cue in
-    print_s [%sexp (i : int), (candidate : Code.t)];
+    print_dyn (Dyn.Tuple [ i |> Dyn.int; candidate |> Code.to_dyn ]);
     print_endline (Printf.sprintf "#black (correctly placed)  : %d" black);
     print_endline (Printf.sprintf "#white (incorrectly placed): %d" white);
     Out_channel.(flush stdout);

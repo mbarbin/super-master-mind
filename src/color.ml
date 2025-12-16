@@ -78,7 +78,7 @@ let of_index_exn index =
 ;;
 
 let all = lazy (List.init (force cardinality) ~f:Fn.id)
-let sexp_of_t t = [%sexp (to_hum t : Hum.t)]
+let sexp_of_t t = to_hum t |> Hum.sexp_of_t
 
 let t_of_sexp sexp =
   match sexp |> [%of_sexp: Hum.t] with

@@ -13,7 +13,7 @@ let rec input_cue () =
     let int = input_line () in
     match Int.of_string int with
     | exception e ->
-      print_s [%sexp (e : Exn.t)];
+      print_endline (Stdlib.Printexc.to_string e);
       input_int ~prompt
     | i -> i
   in
@@ -28,7 +28,7 @@ let rec input_cue () =
   in
   match Cue.create_exn { white; black } with
   | exception e ->
-    print_s [%sexp (e : Exn.t)];
+    print_endline (Stdlib.Printexc.to_string e);
     input_cue ()
   | cue -> cue
 ;;
@@ -40,7 +40,7 @@ let solve ~color_permutation ~task_pool =
   let step_index = ref 0 in
   let print (t : Guess.t) =
     Int.incr step_index;
-    print_s [%sexp (!step_index : int), (t.candidate : Code.t)];
+    print_dyn (Dyn.Tuple [ !step_index |> Dyn.int; t.candidate |> Code.to_dyn ]);
     Out_channel.(flush stdout)
   in
   let rec aux (t : Guess.t) ~possible_solutions =

@@ -38,8 +38,7 @@
    ppx_hash
    ppx_here
    ppx_let
-   ppx_sexp_conv
-   ppx_sexp_value)))
+   ppx_sexp_conv)))
 
 (generate_sites_module
  (module sites)
