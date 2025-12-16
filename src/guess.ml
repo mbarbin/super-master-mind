@@ -27,7 +27,7 @@ end = struct
     | Computed list ->
       (match t with
        | Not_computed -> false
-       | Computed list' -> List.equal T.equal list list')
+       | Computed list' -> List.equal T.equal list' list)
   ;;
 
   let is_computed = function
