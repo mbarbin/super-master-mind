@@ -37,12 +37,18 @@
    (>= 0.5))
   (dune-site
    (>= 3.20))
+  (dyn
+   (>= 3.20))
   (nonempty-list
    (>= v0.17))
+  (ordering
+   (>= 3.20))
   (parsexp
    (>= v0.17))
   (patdiff
    (>= v0.17))
+  (pp
+   (>= 2.0.0))
   (ppx_compare
    (>= v0.17))
   (ppx_enumerate
