@@ -9,7 +9,17 @@ type t = int
 let equal = Int.equal
 let compare = Int.compare
 let size = Cue.code_size
-let cardinality = lazy (Int.pow (force Color.cardinality) (force size))
+
+let cardinality =
+  lazy
+    (let cardinality = Lazy.force Color.cardinality in
+     let size = Lazy.force size in
+     let res = ref cardinality in
+     for _ = 2 to size do
+       res := !res * cardinality
+     done;
+     !res)
+;;
 
 module Hum = struct
   type t = Color.Hum.t array
@@ -30,7 +40,7 @@ module Computing = struct
   type t = Color.t array
 
   let check_size_exn hum =
-    let expected_size = force size in
+    let expected_size = Lazy.force size in
     let code_size = Array.length hum in
     if code_size <> expected_size
     then
@@ -50,12 +60,12 @@ module Computing = struct
   let to_hum t = t |> Array.map ~f:Color.to_hum
 
   let of_code (i : int) : t =
-    let size = force size in
-    let color_cardinality = force Color.cardinality in
+    let size = Lazy.force size in
+    let color_cardinality = Lazy.force Color.cardinality in
     let colors = Array.create ~len:size (Color.of_index_exn 0) in
     let remainder = ref i in
     for i = 0 to size - 1 do
-      let rem = !remainder % color_cardinality in
+      let rem = !remainder mod color_cardinality in
       remainder := !remainder / color_cardinality;
       colors.(i) <- Color.of_index_exn rem
     done;
@@ -115,13 +125,13 @@ let param =
     ~of_string:(fun s ->
       match Json.of_string s |> of_json_hum with
       | e -> Ok e
-      | exception e -> Error (`Msg (Exn.to_string e)))
+      | exception e -> Error (`Msg (Printexc.to_string e)))
     ~to_string:(fun t -> Hum.to_string (to_hum t))
     ()
 ;;
 
 let check_index_exn index =
-  let cardinality = force cardinality in
+  let cardinality = Lazy.force cardinality in
   if not (0 <= index && index < cardinality)
   then
     Code_error.raise

@@ -395,13 +395,14 @@ let compute ~possible_solutions ~candidate : t =
   let original_size = Float.of_int (Codes.size possible_solutions) in
   let original_bits = Float.log2 original_size in
   let by_cue =
-    let by_cue = Array.init (Lazy.force Cue.cardinality) ~f:(fun _ -> Queue.create ()) in
+    let by_cue = Array.init (Lazy.force Cue.cardinality) ~f:(fun _ -> []) in
     Codes.iter possible_solutions ~f:(fun solution ->
       let cue = Code.analyze ~solution ~candidate in
-      Queue.enqueue by_cue.(Cue.to_index cue) solution);
+      let index = Cue.to_index cue in
+      by_cue.(index) <- solution :: by_cue.(index));
     let by_cue =
       Array.filter_mapi by_cue ~f:(fun i remains ->
-        let size_remaining = Queue.length remains in
+        let size_remaining = List.length remains in
         if size_remaining > 0
         then (
           let bits_remaining = Float.log2 (Float.of_int size_remaining) in
@@ -451,7 +452,7 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
   in
   let chan = Domainslib.Chan.make_unbounded () in
   let bar =
-    let total = force Code.cardinality in
+    let total = Lazy.force Code.cardinality in
     let open Progress.Line in
     list [ bar total; count_to total; parens (const "eta: " ++ eta total) ]
   in
@@ -473,7 +474,7 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       | `Finished -> finished := true
       | `Computed (t : t) ->
         Progress.Reporter.report reporter 1;
-        if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
+        if Float.compare t.expected_bits_gained 0. > 0 then Kheap.add ts t
     done
   in
   Task_pool.run task_pool ~f:(fun ~pool ->
@@ -484,7 +485,7 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       ~finish:(Lazy.force Code.cardinality - 1)
       ~body:(fun candidate ->
         let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
-        if Float.( > ) t.expected_bits_gained 0.
+        if Float.compare t.expected_bits_gained 0. > 0
         then Domainslib.Chan.send chan (`Computed t));
     Domainslib.Chan.send chan `Finished;
     Domainslib.Task.await pool reduced);
@@ -518,11 +519,9 @@ module Verify_error = struct
   ;;
 
   let to_dyn { unexpected_field; expected; computed } =
-    let diff = diff ~expected ~computed |> String.split_lines in
+    let diff = diff ~expected ~computed in
     Dyn.record
-      [ "unexpected_field", Dyn.string unexpected_field
-      ; "diff", Dyn.list Dyn.string diff
-      ]
+      [ "unexpected_field", Dyn.string unexpected_field; "diff", Dyn.string diff ]
   ;;
 
   let print_hum { unexpected_field; expected; computed } oc =

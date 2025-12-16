@@ -62,7 +62,7 @@ let rec compute_internal
 
 let canonical_first_candidate =
   lazy
-    (Array.init (force Code.size) ~f:Fn.id
+    (Array.init (Lazy.force Code.size) ~f:Fun.id
      |> Array.map ~f:Color.of_index_exn
      |> Array.map ~f:Color.to_hum
      |> Code.create_exn)
@@ -77,7 +77,7 @@ let compute ~task_pool ~depth =
   in
   let possible_solutions = Codes.all in
   let t =
-    Guess.compute ~possible_solutions ~candidate:(force canonical_first_candidate)
+    Guess.compute ~possible_solutions ~candidate:(Lazy.force canonical_first_candidate)
   in
   let t =
     compute_internal
@@ -106,8 +106,8 @@ let depth =
 
 let find_opening_book_via_site () =
   List.find_map Sites.Sites.opening_book ~f:(fun dir ->
-    let file = Stdlib.Filename.concat dir "opening-book.json" in
-    Option.some_if (Stdlib.Sys.file_exists file) file)
+    let file = Filename.concat dir "opening-book.json" in
+    Option.some_if (Sys.file_exists file) file)
 ;;
 
 let opening_book =
@@ -122,14 +122,14 @@ let dump_cmd =
     (let open Command.Std in
      let+ () = Arg.return () in
      let t = Lazy.force opening_book in
-     Stdlib.print_endline (t |> to_json |> Json.to_string))
+     print_endline (t |> to_json |> Json.to_string))
 ;;
 
 let compute_cmd =
   Command.make
     ~summary:"Compute and save the opening-book."
     (let open Command.Std in
-     let+ () = Game_dimensions.arg (Source_code_position.of_pos Stdlib.__POS__)
+     let+ () = Game_dimensions.arg (Source_code_position.of_pos __POS__)
      and+ depth =
        Arg.named_with_default
          [ "depth" ]
@@ -162,15 +162,15 @@ let verify_cmd =
        in
        match v with
        | Some color_permutation -> color_permutation
-       | None -> force Color_permutation.identity
+       | None -> Lazy.force Color_permutation.identity
      in
      let t = root (Lazy.force opening_book) ~color_permutation in
      match Guess.verify t ~possible_solutions:Codes.all with
      | Ok () -> ()
      | Error error ->
-       Stdlib.prerr_endline "Installed opening-book does not verify expected properties.";
+       prerr_endline "Installed opening-book does not verify expected properties.";
        Guess.Verify_error.print_hum error Out_channel.stderr;
-       Stdlib.exit 1)
+       exit 1)
 ;;
 
 let cmd =

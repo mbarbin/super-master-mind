@@ -47,6 +47,15 @@ module In_channel : sig
   val read_all : string -> string
 end
 
+module Int : sig
+  include module type of struct
+    include Stdlib.Int
+  end
+
+  val incr : int ref -> unit
+  val of_string : string -> int option
+end
+
 module List : sig
   include module type of struct
     include Stdlib.ListLabels
@@ -54,6 +63,7 @@ module List : sig
 
   val drop_while : 'a t -> f:('a -> bool) -> 'a t
   val equal : ('a -> 'a -> bool) -> 'a t -> 'a t -> bool
+  val is_empty : _ t -> bool
   val iter : 'a t -> f:('a -> unit) -> unit
   val fold : 'a t -> init:'acc -> f:('acc -> 'a -> 'acc) -> 'acc
 end
@@ -84,4 +94,13 @@ module Result : sig
 
   val bind : ('a, 'err) t -> f:('a -> ('b, 'err) t) -> ('b, 'err) t
   val map_error : ('a, 'err) t -> f:('err -> 'b) -> ('a, 'b) t
+end
+
+module String : sig
+  include module type of struct
+    include Stdlib.StringLabels
+  end
+
+  val concat : string list -> sep:string -> string
+  val split : string -> on:char -> string list
 end

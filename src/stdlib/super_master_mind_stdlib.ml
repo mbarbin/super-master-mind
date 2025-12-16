@@ -59,6 +59,13 @@ module In_channel = struct
   let read_all file = with_open_bin file input_all
 end
 
+module Int = struct
+  include Stdlib.Int
+
+  let incr = incr
+  let of_string = int_of_string_opt
+end
+
 module List = struct
   include Stdlib.ListLabels
 
@@ -69,6 +76,12 @@ module List = struct
   ;;
 
   let equal eq t1 t2 = equal ~eq t1 t2
+
+  let is_empty = function
+    | [] -> true
+    | _ :: _ -> false
+  ;;
+
   let iter t ~f = iter ~f t
   let fold t ~init ~f = fold_left t ~init ~f
 end
@@ -98,4 +111,11 @@ module Result = struct
 
   let bind x ~f = bind x f
   let map_error t ~f = map_error f t
+end
+
+module String = struct
+  include Stdlib.StringLabels
+
+  let concat ts ~sep = concat ~sep ts
+  let split t ~on = split_on_char ~sep:on t
 end
