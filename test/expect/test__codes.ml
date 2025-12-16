@@ -8,7 +8,7 @@ let%expect_test "all" =
   print_dyn (Dyn.int (Codes.size Codes.all));
   [%expect {| 32768 |}];
   print_dyn (Dyn.float (Codes.bits Codes.all));
-  [%expect {| 15. |}];
+  [%expect {| 15 |}];
   print_dyn (Dyn.record [ "is_empty", Dyn.bool (Codes.is_empty Codes.all) ]);
   [%expect {| { is_empty = false } |}]
 ;;
