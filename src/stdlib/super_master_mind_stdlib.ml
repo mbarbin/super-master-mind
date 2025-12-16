@@ -57,6 +57,12 @@ end
 module List = struct
   include Stdlib.ListLabels
 
+  let rec drop_while li ~f =
+    match li with
+    | x :: l when f x -> drop_while l ~f
+    | rest -> rest
+  ;;
+
   let iter t ~f = iter ~f t
   let fold t ~init ~f = fold_left t ~init ~f
 end

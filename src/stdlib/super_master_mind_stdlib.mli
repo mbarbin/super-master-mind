@@ -50,6 +50,7 @@ module List : sig
     include Stdlib.ListLabels
   end
 
+  val drop_while : 'a t -> f:('a -> bool) -> 'a t
   val iter : 'a t -> f:('a -> unit) -> unit
   val fold : 'a t -> init:'acc -> f:('acc -> 'a -> 'acc) -> 'acc
 end
