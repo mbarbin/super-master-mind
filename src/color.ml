@@ -16,7 +16,7 @@ module Hum = struct
     | Red
     | White
     | Yellow
-  [@@deriving compare, equal, enumerate, hash, sexp]
+  [@@deriving compare, equal, enumerate, sexp]
 
   let to_dyn = function
     | Black -> Dyn.variant "Black" []
@@ -60,7 +60,7 @@ module Hum = struct
   ;;
 end
 
-type t = int [@@deriving compare, equal, hash]
+type t = int [@@deriving compare, equal]
 
 let to_hum = Hum.of_index_exn
 let of_hum = Hum.to_index

@@ -81,7 +81,7 @@ module Cache = struct
 end
 
 (* [t] represents the index of the cue. *)
-type t = int [@@deriving compare, equal, hash]
+type t = int [@@deriving compare, equal]
 
 let to_index t = t
 

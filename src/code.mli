@@ -9,7 +9,7 @@
     well. *)
 
 (** [t] is a memory efficient representation for a code. *)
-type t [@@deriving compare, equal, hash, sexp]
+type t [@@deriving compare, equal, sexp]
 
 module Hum : sig
   (** Human readable representation for a code. *)

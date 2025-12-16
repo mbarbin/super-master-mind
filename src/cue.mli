@@ -13,7 +13,7 @@
     gets a black pin. *)
 
 (** [t] is an efficient representation for a cue. *)
-type t [@@deriving compare, equal, hash, sexp]
+type t [@@deriving compare, equal, sexp]
 
 val all : t list Lazy.t
 
