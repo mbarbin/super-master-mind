@@ -62,7 +62,7 @@ let rec compute_internal
 
 let canonical_first_candidate =
   lazy
-    (Array.init (Lazy.force Code.size) ~f:Fn.id
+    (Array.init (Lazy.force Code.size) ~f:Fun.id
      |> Array.map ~f:Color.of_index_exn
      |> Array.map ~f:Color.to_hum
      |> Code.create_exn)

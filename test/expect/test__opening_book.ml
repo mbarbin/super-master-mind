@@ -23,12 +23,12 @@ let%expect_test "opening-book validity" =
       [@coverage off]
   in
   test ~color_permutation:(Lazy.force Color_permutation.identity);
-  [%expect {| |}];
+  [%expect {||}];
   test ~color_permutation:(Color_permutation.of_index_exn 100);
-  [%expect {| |}];
+  [%expect {||}];
   test ~color_permutation:(Color_permutation.of_index_exn 1_000);
-  [%expect {| |}];
+  [%expect {||}];
   test ~color_permutation:(Color_permutation.of_index_exn 40_000);
-  [%expect {| |}];
+  [%expect {||}];
   ()
 ;;

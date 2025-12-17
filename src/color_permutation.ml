@@ -99,7 +99,7 @@ let of_index_exn index =
   let remainder = ref index in
   for i = color_cardinality - 1 downto 1 do
     factorial_decomposition.(i) <- !remainder / factorial.(i);
-    remainder := !remainder % factorial.(i)
+    remainder := !remainder mod factorial.(i)
   done;
   let available_colors = Array.create ~len:color_cardinality true in
   let t = Array.create ~len:color_cardinality (Color.of_index_exn 0) in
@@ -108,7 +108,7 @@ let of_index_exn index =
       find_nth
         available_colors
         ~n:factorial_decomposition.(color_cardinality - 1 - i)
-        ~f:Fn.id
+        ~f:Fun.id
     with
     | Some j ->
       available_colors.(j) <- false;

@@ -113,7 +113,7 @@ let create_exn hum =
   | None -> Code_error.raise "Invalid cue." [ "hum", Hum.to_dyn hum ]
 ;;
 
-let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fn.id)
+let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fun.id)
 let to_json t : Json.t = `Int (to_index t)
 
 let of_json (json : Json.t) : t =
