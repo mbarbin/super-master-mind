@@ -116,6 +116,6 @@ let of_index_exn index =
   index
 ;;
 
-let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fn.id)
+let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fun.id)
 let to_json t : Json.t = to_hum t |> Hum.to_json
 let of_json (json : Json.t) : t = json |> Hum.of_json |> of_hum

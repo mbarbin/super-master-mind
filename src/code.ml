@@ -65,7 +65,7 @@ module Computing = struct
     let colors = Array.create ~len:size (Color.of_index_exn 0) in
     let remainder = ref i in
     for i = 0 to size - 1 do
-      let rem = !remainder % color_cardinality in
+      let rem = !remainder mod color_cardinality in
       remainder := !remainder / color_cardinality;
       colors.(i) <- Color.of_index_exn rem
     done;
@@ -125,7 +125,7 @@ let param =
     ~of_string:(fun s ->
       match Json.of_string s |> of_json_hum with
       | e -> Ok e
-      | exception e -> Error (`Msg (Exn.to_string e)))
+      | exception e -> Error (`Msg (Printexc.to_string e)))
     ~to_string:(fun t -> Hum.to_string (to_hum t))
     ()
 ;;
