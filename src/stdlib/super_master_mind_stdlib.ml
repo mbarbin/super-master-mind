@@ -44,7 +44,13 @@ module Array = struct
     t |> Array.to_seqi |> Seq.fold_left (fun acc (i, e) -> f i acc e) init
   ;;
 
-  let sort t ~compare = sort t ~cmp:compare
+  let sort t ~compare = sort t ~cmp:(fun a b -> compare a b |> Ordering.to_int)
+end
+
+module Float = struct
+  include Stdlib.Float
+
+  let compare a b = compare a b |> Ordering.of_int
 end
 
 module Hashtbl = struct
@@ -62,6 +68,7 @@ end
 module Int = struct
   include Stdlib.Int
 
+  let compare a b = compare a b |> Ordering.of_int
   let incr = incr
   let of_string = int_of_string_opt
 end

@@ -20,7 +20,6 @@ module Hum = struct
     | Yellow
 
   let equal : t -> t -> bool = Stdlib.( = )
-  let compare : t -> t -> int = Stdlib.compare
   let all = [ Black; Blue; Brown; Green; Orange; Red; White; Yellow ]
 
   let to_dyn = function

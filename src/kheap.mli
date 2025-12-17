@@ -13,7 +13,7 @@ type 'a t
     provided comparison function to identify the smallest elements. Once
     created, the size of the heap (k) and the comparison function (compare) may
     not be changed. *)
-val create : k:int -> compare:('a -> 'a -> int) -> 'a t
+val create : k:int -> compare:('a -> 'a -> Ordering.t) -> 'a t
 
 (** [add t a] will take a slot in [t] if [a] is smallest that the values already
     present in the kheap. If the resulting number of elements exceeds [k], the

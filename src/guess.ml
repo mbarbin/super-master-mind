@@ -417,8 +417,9 @@ let compute ~possible_solutions ~candidate : t =
         else None)
     in
     Array.sort by_cue ~compare:(fun t1 t2 ->
-      let res = Int.compare t2.size_remaining t1.size_remaining in
-      if res <> 0 then res else Cue.compare t1.cue t2.cue);
+      match Int.compare t2.size_remaining t1.size_remaining with
+      | (Lt | Gt) as res -> res
+      | Eq -> Cue.compare t1.cue t2.cue);
     Nonempty_list.of_list_exn (Array.to_list by_cue)
   in
   let min_bits_gained =
@@ -447,8 +448,9 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
   if k < 1 then Code_error.raise "k >= 1 value expected." [ "k", Dyn.int k ];
   let ts =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
-      let r = Float.compare t2.expected_bits_gained t1.expected_bits_gained in
-      if r <> 0 then r else Code.compare t2.candidate t1.candidate)
+      match Float.compare t2.expected_bits_gained t1.expected_bits_gained with
+      | (Lt | Gt) as res -> res
+      | Eq -> Code.compare t2.candidate t1.candidate)
   in
   let chan = Domainslib.Chan.make_unbounded () in
   let bar =
@@ -474,7 +476,9 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       | `Finished -> finished := true
       | `Computed (t : t) ->
         Progress.Reporter.report reporter 1;
-        if Float.compare t.expected_bits_gained 0. > 0 then Kheap.add ts t
+        (match Float.compare t.expected_bits_gained 0. with
+         | Lt | Eq -> ()
+         | Gt -> Kheap.add ts t)
     done
   in
   Task_pool.run task_pool ~f:(fun ~pool ->
@@ -485,8 +489,9 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       ~finish:(Lazy.force Code.cardinality - 1)
       ~body:(fun candidate ->
         let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
-        if Float.compare t.expected_bits_gained 0. > 0
-        then Domainslib.Chan.send chan (`Computed t));
+        match Float.compare t.expected_bits_gained 0. with
+        | Lt | Eq -> ()
+        | Gt -> Domainslib.Chan.send chan (`Computed t));
     Domainslib.Chan.send chan `Finished;
     Domainslib.Task.await pool reduced);
   Progress.Reporter.finalise reporter;
