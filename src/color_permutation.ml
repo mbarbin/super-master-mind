@@ -4,15 +4,34 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-type t = Color.t array [@@deriving compare, equal]
+type t = Color.t array
+
+let equal t1 t2 = Array.equal Color.equal t1 t2
+
+let compare t1 t2 =
+  let s1 = Array.length t1
+  and s2 = Array.length t2 in
+  let res = Int.compare s1 s2 in
+  if res <> 0
+  then res
+  else
+    let exception Stop of int in
+    try
+      Array.iter2 t1 t2 ~f:(fun x y ->
+        let res = Color.compare x y in
+        if res <> 0 then Stdlib.raise_notrace (Stop res));
+      0
+    with
+    | Stop res -> res
+;;
 
 let to_dyn t = Dyn.array Color.to_dyn t
-let identity = lazy (Array.init (force Color.cardinality) ~f:Color.of_index_exn)
+let identity = lazy (Array.init (Lazy.force Color.cardinality) ~f:Color.of_index_exn)
 let map_color t color = t.(Color.to_index color)
 
 let inverse t =
-  let t' = Array.create ~len:(force Color.cardinality) (Color.of_index_exn 0) in
-  for i = 0 to force Color.cardinality - 1 do
+  let t' = Array.create ~len:(Lazy.force Color.cardinality) (Color.of_index_exn 0) in
+  for i = 0 to Lazy.force Color.cardinality - 1 do
     t'.(Color.to_index t.(i)) <- Color.of_index_exn i
   done;
   t'
@@ -22,7 +41,7 @@ let to_hum t = Array.map t ~f:Color.to_hum
 
 let create_exn hums =
   let colors = Array.map hums ~f:Color.of_hum in
-  let color_cardinality = force Color.cardinality in
+  let color_cardinality = Lazy.force Color.cardinality in
   let visited = Array.create ~len:color_cardinality false in
   let count = ref 0 in
   Array.iter colors ~f:(fun color ->
@@ -41,7 +60,7 @@ let create_exn hums =
 
 let factorial =
   lazy
-    (let color_cardinality = force Color.cardinality in
+    (let color_cardinality = Lazy.force Color.cardinality in
      let results = Array.create ~len:(color_cardinality + 1) 1 in
      for i = 2 to color_cardinality do
        results.(i) <- i * results.(Int.pred i)
@@ -49,7 +68,7 @@ let factorial =
      results)
 ;;
 
-let cardinality = lazy (force factorial).(force Color.cardinality)
+let cardinality = lazy (Lazy.force factorial).(Lazy.force Color.cardinality)
 
 let find_nth array ~n ~f =
   let rec aux k i =
@@ -63,14 +82,14 @@ let find_nth array ~n ~f =
 ;;
 
 let is_valid_index ~index =
-  let cardinality = force cardinality in
+  let cardinality = Lazy.force cardinality in
   0 <= index && index < cardinality
 ;;
 
 let of_index_exn index =
-  let color_cardinality = force Color.cardinality in
-  let cardinality = force cardinality in
-  let factorial = force factorial in
+  let color_cardinality = Lazy.force Color.cardinality in
+  let cardinality = Lazy.force cardinality in
+  let factorial = Lazy.force factorial in
   if not (is_valid_index ~index)
   then
     Code_error.raise
@@ -107,8 +126,8 @@ let of_index_exn index =
 ;;
 
 let to_index t =
-  let color_cardinality = force Color.cardinality in
-  let factorial = force factorial in
+  let color_cardinality = Lazy.force Color.cardinality in
+  let factorial = Lazy.force factorial in
   let available_colors = Array.create ~len:color_cardinality true in
   let factorial_decomposition = Array.create ~len:color_cardinality 0 in
   for i = 0 to color_cardinality - 1 do
@@ -129,8 +148,8 @@ let param =
     ~docv:"COLOR_PERMUTATION"
     ~of_string:(fun i ->
       match Int.of_string i with
-      | exception _ -> Error (`Msg "Invalid color permutation")
-      | index ->
+      | None -> Error (`Msg "Invalid color permutation")
+      | Some index ->
         if is_valid_index ~index
         then Ok (of_index_exn index)
         else Error (`Msg "Invalid color permutation"))

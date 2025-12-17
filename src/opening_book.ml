@@ -62,7 +62,7 @@ let rec compute_internal
 
 let canonical_first_candidate =
   lazy
-    (Array.init (force Code.size) ~f:Fn.id
+    (Array.init (Lazy.force Code.size) ~f:Fn.id
      |> Array.map ~f:Color.of_index_exn
      |> Array.map ~f:Color.to_hum
      |> Code.create_exn)
@@ -77,7 +77,7 @@ let compute ~task_pool ~depth =
   in
   let possible_solutions = Codes.all in
   let t =
-    Guess.compute ~possible_solutions ~candidate:(force canonical_first_candidate)
+    Guess.compute ~possible_solutions ~candidate:(Lazy.force canonical_first_candidate)
   in
   let t =
     compute_internal
@@ -162,7 +162,7 @@ let verify_cmd =
        in
        match v with
        | Some color_permutation -> color_permutation
-       | None -> force Color_permutation.identity
+       | None -> Lazy.force Color_permutation.identity
      in
      let t = root (Lazy.force opening_book) ~color_permutation in
      match Guess.verify t ~possible_solutions:Codes.all with

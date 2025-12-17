@@ -9,7 +9,10 @@
     well. *)
 
 (** [t] is a memory efficient representation for a code. *)
-type t [@@deriving compare, equal]
+type t
+
+val compare : t -> t -> int
+val equal : t -> t -> bool
 
 module Hum : sig
   (** Human readable representation for a code. *)

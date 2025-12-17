@@ -8,8 +8,8 @@ module rec Next_best_guesses : sig
   type t =
     | Not_computed
     | Computed of T.t list
-  [@@deriving equal]
 
+  val equal : t -> t -> bool
   val is_computed : t -> bool
   val to_dyn : t -> Dyn.t
   val to_json_opt : t -> Json.t option
@@ -18,7 +18,17 @@ end = struct
   type t =
     | Not_computed
     | Computed of T.t list
-  [@@deriving equal]
+
+  let equal t1 = function
+    | Not_computed ->
+      (match t1 with
+       | Not_computed -> true
+       | Computed _ -> false)
+    | Computed list2 ->
+      (match t1 with
+       | Not_computed -> false
+       | Computed list1 -> List.equal T.equal list1 list2)
+  ;;
 
   let is_computed = function
     | Computed _ -> true
@@ -54,8 +64,8 @@ and By_cue : sig
     ; probability : float
     ; next_best_guesses : Next_best_guesses.t
     }
-  [@@deriving equal]
 
+  val equal : t -> t -> bool
   val to_dyn : t -> Dyn.t
   val to_json : t -> Json.t
   val of_json : Json.t -> t
@@ -68,7 +78,25 @@ end = struct
     ; probability : float
     ; next_best_guesses : Next_best_guesses.t
     }
-  [@@deriving equal]
+
+  let equal
+        t
+        ({ cue
+         ; size_remaining
+         ; bits_remaining
+         ; bits_gained
+         ; probability
+         ; next_best_guesses
+         } as t2)
+    =
+    phys_equal t t2
+    || (Cue.equal t.cue cue
+        && Int.equal t.size_remaining size_remaining
+        && Float.equal t.bits_remaining bits_remaining
+        && Float.equal t.bits_gained bits_gained
+        && Float.equal t.probability probability
+        && Next_best_guesses.equal t.next_best_guesses next_best_guesses)
+  ;;
 
   let to_dyn
         { cue
@@ -190,8 +218,8 @@ and T : sig
     ; by_cue :
         By_cue.t Nonempty_list.t (* Sorted by decreasing number of remaining sizes *)
     }
-  [@@deriving equal]
 
+  val equal : t -> t -> bool
   val to_dyn : t -> Dyn.t
   val to_json : t -> Json.t
   val of_json : Json.t -> t
@@ -205,7 +233,27 @@ end = struct
     ; max_bits_remaining : float
     ; by_cue : By_cue.t Nonempty_list.t
     }
-  [@@deriving equal]
+
+  let equal
+        t
+        ({ candidate
+         ; expected_bits_gained
+         ; expected_bits_remaining
+         ; min_bits_gained
+         ; max_bits_gained
+         ; max_bits_remaining
+         ; by_cue
+         } as t2)
+    =
+    phys_equal t t2
+    || (Code.equal t.candidate candidate
+        && Float.equal t.expected_bits_gained expected_bits_gained
+        && Float.equal t.expected_bits_remaining expected_bits_remaining
+        && Float.equal t.min_bits_gained min_bits_gained
+        && Float.equal t.max_bits_gained max_bits_gained
+        && Float.equal t.max_bits_remaining max_bits_remaining
+        && Nonempty_list.equal By_cue.equal t.by_cue by_cue)
+  ;;
 
   let to_dyn
         { candidate
@@ -347,13 +395,14 @@ let compute ~possible_solutions ~candidate : t =
   let original_size = Float.of_int (Codes.size possible_solutions) in
   let original_bits = Float.log2 original_size in
   let by_cue =
-    let by_cue = Array.init (Lazy.force Cue.cardinality) ~f:(fun _ -> Queue.create ()) in
+    let by_cue = Array.init (Lazy.force Cue.cardinality) ~f:(fun _ -> []) in
     Codes.iter possible_solutions ~f:(fun solution ->
       let cue = Code.analyze ~solution ~candidate in
-      Queue.enqueue by_cue.(Cue.to_index cue) solution);
+      let index = Cue.to_index cue in
+      by_cue.(index) <- solution :: by_cue.(index));
     let by_cue =
       Array.filter_mapi by_cue ~f:(fun i remains ->
-        let size_remaining = Queue.length remains in
+        let size_remaining = List.length remains in
         if size_remaining > 0
         then (
           let bits_remaining = Float.log2 (Float.of_int size_remaining) in
@@ -403,7 +452,7 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
   in
   let chan = Domainslib.Chan.make_unbounded () in
   let bar =
-    let total = force Code.cardinality in
+    let total = Lazy.force Code.cardinality in
     let open Progress.Line in
     list [ bar total; count_to total; parens (const "eta: " ++ eta total) ]
   in
@@ -425,7 +474,7 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       | `Finished -> finished := true
       | `Computed (t : t) ->
         Progress.Reporter.report reporter 1;
-        if Float.( > ) t.expected_bits_gained 0. then Kheap.add ts t
+        if Float.compare t.expected_bits_gained 0. > 0 then Kheap.add ts t
     done
   in
   Task_pool.run task_pool ~f:(fun ~pool ->
@@ -436,7 +485,7 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       ~finish:(Lazy.force Code.cardinality - 1)
       ~body:(fun candidate ->
         let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
-        if Float.( > ) t.expected_bits_gained 0.
+        if Float.compare t.expected_bits_gained 0. > 0
         then Domainslib.Chan.send chan (`Computed t));
     Domainslib.Chan.send chan `Finished;
     Domainslib.Task.await pool reduced);
@@ -470,11 +519,9 @@ module Verify_error = struct
   ;;
 
   let to_dyn { unexpected_field; expected; computed } =
-    let diff = diff ~expected ~computed |> String.split_lines in
+    let diff = diff ~expected ~computed in
     Dyn.record
-      [ "unexpected_field", Dyn.string unexpected_field
-      ; "diff", Dyn.list Dyn.string diff
-      ]
+      [ "unexpected_field", Dyn.string unexpected_field; "diff", Dyn.string diff ]
   ;;
 
   let print_hum { unexpected_field; expected; computed } oc =

@@ -8,8 +8,10 @@
     the opening book through a color permutation, that is a bijection from the
     set of colors onto itself. *)
 
-type t [@@deriving compare, equal]
+type t
 
+val compare : t -> t -> int
+val equal : t -> t -> bool
 val to_dyn : t -> Dyn.t
 
 (** The permutation that maps each color to itself. *)

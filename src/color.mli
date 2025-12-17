@@ -7,8 +7,10 @@
 (** In the game, pins may be of 8 different colors. Colors may be encoded to
     allow for a more efficient representation. *)
 
-type t [@@deriving compare, equal]
+type t
 
+val compare : t -> t -> int
+val equal : t -> t -> bool
 val all : t list Lazy.t
 
 module Hum : sig
@@ -22,8 +24,9 @@ module Hum : sig
     | Red
     | White
     | Yellow
-  [@@deriving compare, equal]
 
+  val compare : t -> t -> int
+  val equal : t -> t -> bool
   val all : t list
   val to_dyn : t -> Dyn.t
   val to_string : t -> string
