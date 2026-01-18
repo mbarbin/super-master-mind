@@ -12,7 +12,6 @@
   -open
   Super_master_mind_stdlib)
  (libraries
-  base
   cmdlang
   domainslib
   dune-site
