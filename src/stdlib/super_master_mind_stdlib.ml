@@ -127,6 +127,13 @@ module String = struct
   let split t ~on = split_on_char ~sep:on t
 end
 
+let ( +. ) = Stdlib.( +. )
+let ( -. ) = Stdlib.( -. )
+let ( *. ) = Stdlib.( *. )
+let ( /. ) = Stdlib.( /. )
+
+(* Transition helpers to be removed eventually. *)
+
 let ( mod ) = Stdlib.( mod )
 
 module Printexc = Stdlib.Printexc

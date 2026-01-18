@@ -114,6 +114,18 @@ module String : sig
   val split : string -> on:char -> string list
 end
 
+(** {1 Floating operations}
+
+    The presence of these aliases has an impact on the precision of operations
+    on macos-latest. Pragmatically we've observed that not having them creates
+    small computational divergences in our tests between macos and ubuntu
+    runners in the CI. *)
+
+val ( +. ) : float -> float -> float
+val ( -. ) : float -> float -> float
+val ( *. ) : float -> float -> float
+val ( /. ) : float -> float -> float
+
 (** {1 Transition helpers}
 
     This part of the api is meant to help support changes while we are
