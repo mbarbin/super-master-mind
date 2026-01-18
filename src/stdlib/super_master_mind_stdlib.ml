@@ -53,6 +53,12 @@ module Float = struct
   let compare a b = compare a b |> Ordering.of_int
 end
 
+module Fun = struct
+  include Stdlib.Fun
+
+  let protect ~f ~finally = protect ~finally f
+end
+
 module Hashtbl = struct
   include MoreLabels.Hashtbl
 
@@ -131,15 +137,3 @@ let ( +. ) = Stdlib.( +. )
 let ( -. ) = Stdlib.( -. )
 let ( *. ) = Stdlib.( *. )
 let ( /. ) = Stdlib.( /. )
-
-(* Transition helpers to be removed eventually. *)
-
-let ( mod ) = Stdlib.( mod )
-
-module Printexc = Stdlib.Printexc
-
-module Fun = struct
-  include Stdlib.Fun
-
-  let protect ~f ~finally = protect ~finally f
-end
