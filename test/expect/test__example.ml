@@ -5,7 +5,7 @@
 (*********************************************************************************)
 
 let verify_steps (ts : Guess.t list) = ignore (ts : Guess.t list)
-let with_task_pool ~f = Task_pool.with_t Task_pool.Config.default ~f
+let with_task_pool ~f = Task_pool.with_t (Task_pool.Config.default ()) ~f
 
 let%expect_test "1" =
   verify_steps

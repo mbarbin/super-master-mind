@@ -5,27 +5,34 @@
 (*********************************************************************************)
 
 module Config = struct
-  type t = { num_domains : int }
+  type t = { num_workers : int }
 
-  let default = { num_domains = 4 }
+  let default () = { num_workers = Domain.recommended_domain_count () - 1 }
 
   let arg =
     let open Command.Std in
     let+ num_domains =
-      Arg.named_with_default
+      Arg.named_opt
         [ "num-domains" ]
         Param.int
-        ~default:default.num_domains
-        ~doc:"Num of domains for parallel computing."
+        ~doc:
+          "Total number of cores to use for parallel computing, including the main \
+           domain. By default, use all available cores."
     in
-    { num_domains }
+    let default = lazy (default ()) in
+    let num_workers =
+      match num_domains with
+      | Some n -> n - 1
+      | None -> (Lazy.force default).num_workers
+    in
+    { num_workers }
   ;;
 end
 
 type t = { pool : Domainslib.Task.pool }
 
-let with_t { Config.num_domains } ~f =
-  let pool = Domainslib.Task.setup_pool ~num_domains () in
+let with_t { Config.num_workers } ~f =
+  let pool = Domainslib.Task.setup_pool ~num_domains:num_workers () in
   let (t : t) = { pool } in
   Exn.protect
     ~f:(fun () -> f ~task_pool:t)

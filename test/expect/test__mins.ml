@@ -47,7 +47,7 @@ let%expect_test "min sequence" =
       opening_book
       ~color_permutation:(Lazy.force Color_permutation.identity)
   in
-  Task_pool.with_t Task_pool.Config.default ~f:(fun ~task_pool ->
+  Task_pool.with_t (Task_pool.Config.default ()) ~f:(fun ~task_pool ->
     aux root ~task_pool ~possible_solutions:Codes.all);
   let steps = List.rev !steps |> List.mapi ~f:(fun i e -> Int.succ i, e) in
   print_dyn (Dyn.record [ "number_of_steps", Dyn.int (List.length steps) ]);
