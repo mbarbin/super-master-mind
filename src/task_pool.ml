@@ -7,7 +7,11 @@
 module Config = struct
   type t = { num_workers : int }
 
-  let default () = { num_workers = Domain.recommended_domain_count () - 1 }
+  module Default = struct
+    let num_workers () = Domain.recommended_domain_count () - 1
+  end
+
+  let default () = { num_workers = Default.num_workers () }
 
   let arg =
     let open Command.Std in
@@ -19,11 +23,10 @@ module Config = struct
           "Total number of cores to use for parallel computing, including the main \
            domain. By default, use all available cores."
     in
-    let default = lazy (default ()) in
     let num_workers =
       match num_domains with
       | Some n -> n - 1
-      | None -> (Lazy.force default).num_workers
+      | None -> Default.num_workers ()
     in
     { num_workers }
   ;;
