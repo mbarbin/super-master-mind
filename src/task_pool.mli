@@ -12,12 +12,31 @@
 type t
 
 module Config : sig
+  (** Internally, [Config.t] holds the number of {e worker} domains to spawn,
+      not including the main domain. Since the main domain also participates in
+      the work when calling {!run}, the total parallelism is [num_workers + 1].
+
+      There are two ways to obtain a [Config.t]:
+
+      - {!default}: Returns a config with [Domain.recommended_domain_count () - 1]
+        workers, resulting in total parallelism equal to the recommended count.
+
+      - {!arg}: Users specify the {e total} number of cores they want to use
+        (e.g., [--num-domains 8]), and the adjustment is applied internally. *)
   type t
 
-  val default : t
+  (** By default, use all available cores on the machine. The number of workers
+      is [Domain.recommended_domain_count () - 1] because the main domain also
+      participates in the work. See [Domain.recommended_domain_count] for more
+      details. *)
+  val default : unit -> t
 
   (** Commands that desire to expose task pool parameters to the user can use
-      [arg]. Otherwise see [default]. *)
+      [arg]. Otherwise see [default].
+
+      Note: The CLI flag [--num-domains] expects the {e total} number of cores
+      to use, including the main domain. The adjustment of [-1] is applied
+      internally. *)
   val arg : t Command.Arg.t
 end
 
