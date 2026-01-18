@@ -4,6 +4,7 @@
     "cSpell.words": [
         "Barbin",
         "cmdlang",
+        "cmdliner",
         "conv",
         "domainslib",
         "dunolint",
@@ -17,10 +18,15 @@
         "Kheap",
         "mapi",
         "Mathieu",
+        "mbarbin",
+        "ocamlformat",
+        "opam",
         "parens",
         "patdiff",
+        "ppxlib",
         "Printexc",
         "seqi",
+        "sherlodoc",
         "stdlib",
         "Wordle",
         "yojson"
