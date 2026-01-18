@@ -34,7 +34,7 @@ type t = { pool : Domainslib.Task.pool }
 let with_t { Config.num_workers } ~f =
   let pool = Domainslib.Task.setup_pool ~num_domains:num_workers () in
   let (t : t) = { pool } in
-  Exn.protect
+  Fun.protect
     ~f:(fun () -> f ~task_pool:t)
     ~finally:(fun () -> Domainslib.Task.teardown_pool pool)
 ;;

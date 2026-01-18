@@ -126,3 +126,13 @@ module String = struct
   let concat ts ~sep = concat ~sep ts
   let split t ~on = split_on_char ~sep:on t
 end
+
+let ( mod ) = Stdlib.( mod )
+
+module Printexc = Stdlib.Printexc
+
+module Fun = struct
+  include Stdlib.Fun
+
+  let protect ~f ~finally = protect ~finally f
+end

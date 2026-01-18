@@ -113,3 +113,24 @@ module String : sig
   val concat : string list -> sep:string -> string
   val split : string -> on:char -> string list
 end
+
+(** {1 Transition helpers}
+
+    This part of the api is meant to help support changes while we are
+    transitioning from base to stdlib. *)
+
+val ( mod ) : int -> int -> int
+
+module Printexc : sig
+  include module type of struct
+    include Printexc
+  end
+end
+
+module Fun : sig
+  include module type of struct
+    include Fun
+  end
+
+  val protect : f:(unit -> 'a) -> finally:(unit -> unit) -> 'a
+end

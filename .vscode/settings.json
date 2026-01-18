@@ -1,12 +1,28 @@
 {
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
     "cSpell.words": [
+        "Barbin",
+        "cmdlang",
         "conv",
+        "domainslib",
+        "dunolint",
+        "endline",
         "finalise",
+        "foldi",
+        "hashtbl",
         "Invicta",
         "isatty",
         "janestreet",
         "Kheap",
+        "mapi",
+        "Mathieu",
         "parens",
-        "Wordle"
+        "patdiff",
+        "Printexc",
+        "seqi",
+        "stdlib",
+        "Wordle",
+        "yojson"
     ]
 }
