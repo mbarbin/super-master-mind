@@ -392,6 +392,9 @@ let of_json = T.of_json
 
 let compute ~possible_solutions ~candidate : t =
   let module Float = Base.Float in
+  let ( +. ) = Base.( +. ) in
+  let ( *. ) = Base.( *. ) in
+  let ( /. ) = Base.( /. ) in
   if Codes.is_empty possible_solutions then Code_error.raise "No possible solutions." [];
   let original_size = Float.of_int (Codes.size possible_solutions) in
   let original_bits = Float.log2 original_size in
