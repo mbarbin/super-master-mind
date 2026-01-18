@@ -39,6 +39,14 @@ module Float : sig
   val compare : t -> t -> Ordering.t
 end
 
+module Fun : sig
+  include module type of struct
+    include Fun
+  end
+
+  val protect : f:(unit -> 'a) -> finally:(unit -> unit) -> 'a
+end
+
 module Hashtbl : sig
   include module type of struct
     include MoreLabels.Hashtbl
@@ -114,23 +122,14 @@ module String : sig
   val split : string -> on:char -> string list
 end
 
-(** {1 Transition helpers}
+(** {1 Floating operations}
 
-    This part of the api is meant to help support changes while we are
-    transitioning from base to stdlib. *)
+    The presence of these aliases has an impact on the precision of operations
+    on macos-latest. Pragmatically we've observed that not having them creates
+    small computational divergences in our tests between macos and ubuntu
+    runners in the CI. *)
 
-val ( mod ) : int -> int -> int
-
-module Printexc : sig
-  include module type of struct
-    include Printexc
-  end
-end
-
-module Fun : sig
-  include module type of struct
-    include Fun
-  end
-
-  val protect : f:(unit -> 'a) -> finally:(unit -> unit) -> 'a
-end
+val ( +. ) : float -> float -> float
+val ( -. ) : float -> float -> float
+val ( *. ) : float -> float -> float
+val ( /. ) : float -> float -> float
