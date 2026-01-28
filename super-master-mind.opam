@@ -20,7 +20,7 @@ depends: [
   "pp" {>= "2.0.0"}
   "ppxlib" {>= "0.33"}
   "progress" {>= "0.3.0"}
-  "yojson" {>= "2.2"}
+  "yojson" {>= "2.2.2"}
   "odoc" {with-doc}
 ]
 build: [
