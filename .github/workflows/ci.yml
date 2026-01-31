@@ -43,13 +43,11 @@ jobs:
           cache-prefix: "main-ci-${{ matrix.ocaml-version }}"
           steps: install-dune enable-pkg lazy-update-depexts install-gpatch install-depexts
 
-      - name: Build
-        run: dune build @all
-
-      - name: Run tests
+      - name: Build and Run tests
         run: |
+          rm -rf _build/default/
           mkdir $BISECT_DIR
-          dune build @runtest --force --instrument-with bisect_ppx
+          dune build @all @runtest --instrument-with bisect_ppx
         env:
           BISECT_DIR: ${{ runner.temp }}/_bisect_ppx_data
           BISECT_FILE: ${{ runner.temp }}/_bisect_ppx_data/data
