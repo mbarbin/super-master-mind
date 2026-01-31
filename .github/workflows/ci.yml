@@ -49,7 +49,7 @@ jobs:
       - name: Run tests
         run: |
           mkdir $BISECT_DIR
-          dune build @runtest --instrument-with bisect_ppx
+          dune build @runtest --force --instrument-with bisect_ppx
         env:
           BISECT_DIR: ${{ runner.temp }}/_bisect_ppx_data
           BISECT_FILE: ${{ runner.temp }}/_bisect_ppx_data/data
