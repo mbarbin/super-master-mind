@@ -106,8 +106,8 @@ let depth =
 
 let find_opening_book_via_site () =
   List.find_map Sites.Sites.opening_book ~f:(fun dir ->
-    let file = Stdlib.Filename.concat dir "opening-book.json" in
-    Option.some_if (Stdlib.Sys.file_exists file) file)
+    let file = Filename.concat dir "opening-book.json" in
+    Option.some_if (Sys.file_exists file) file)
 ;;
 
 let opening_book =
@@ -122,14 +122,14 @@ let dump_cmd =
     (let open Command.Std in
      let+ () = Arg.return () in
      let t = Lazy.force opening_book in
-     Stdlib.print_endline (t |> to_json |> Json.to_string))
+     print_endline (t |> to_json |> Json.to_string))
 ;;
 
 let compute_cmd =
   Command.make
     ~summary:"Compute and save the opening-book."
     (let open Command.Std in
-     let+ () = Game_dimensions.arg (Source_code_position.of_pos Stdlib.__POS__)
+     let+ () = Game_dimensions.arg (Source_code_position.of_pos __POS__)
      and+ depth =
        Arg.named_with_default
          [ "depth" ]
@@ -168,9 +168,9 @@ let verify_cmd =
      match Guess.verify t ~possible_solutions:Codes.all with
      | Ok () -> ()
      | Error error ->
-       Stdlib.prerr_endline "Installed opening-book does not verify expected properties.";
+       prerr_endline "Installed opening-book does not verify expected properties.";
        Guess.Verify_error.print_hum error Out_channel.stderr;
-       Stdlib.exit 1)
+       exit 1)
 ;;
 
 let cmd =

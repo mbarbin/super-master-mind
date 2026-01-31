@@ -15,9 +15,7 @@ module Hum = struct
   ;;
 end
 
-let code_size =
-  lazy (Game_dimensions.code_size (Source_code_position.of_pos Stdlib.__POS__))
-;;
+let code_size = lazy (Game_dimensions.code_size (Source_code_position.of_pos __POS__))
 
 (* The sum of [white] and [black] cannot exceed the code size. This means that
    given a correct value for [white], [black] has to verify:

@@ -4,9 +4,7 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-let cardinality =
-  lazy (Game_dimensions.num_colors (Source_code_position.of_pos Stdlib.__POS__))
-;;
+let cardinality = lazy (Game_dimensions.num_colors (Source_code_position.of_pos __POS__))
 
 module Hum = struct
   type t =

@@ -5,20 +5,20 @@
 (*********************************************************************************)
 
 let input_line () =
-  match Stdlib.In_channel.input_line In_channel.stdin with
+  match In_channel.input_line In_channel.stdin with
   | Some line -> line
   | None -> raise End_of_file
 ;;
 
 let rec input_cue () =
   let rec input_int ~prompt =
-    Stdlib.print_string prompt;
+    print_string prompt;
     Out_channel.(flush stdout);
     let int = input_line () in
     match Int.of_string int with
     | Some i -> i
     | None ->
-      Stdlib.Printf.printf "%S: Not a int.\n%!" int;
+      Printf.printf "%S: Not a int.\n%!" int;
       input_int ~prompt
   in
   let black = input_int ~prompt:"#black (correctly placed)  : " in
@@ -26,19 +26,19 @@ let rec input_cue () =
     let prompt = "#white (incorrectly placed): " in
     if black >= 4
     then (
-      Stdlib.print_endline (prompt ^ "0");
+      print_endline (prompt ^ "0");
       0)
     else input_int ~prompt
   in
   match Cue.create_exn { white; black } with
   | exception e ->
-    Stdlib.print_endline (Stdlib.Printexc.to_string e);
+    print_endline (Printexc.to_string e);
     input_cue ()
   | cue -> cue
 ;;
 
 let solve ~color_permutation ~task_pool =
-  Stdlib.print_string "Press enter when done choosing a solution: ";
+  print_string "Press enter when done choosing a solution: ";
   Out_channel.(flush stdout);
   let (_ : string) = input_line () in
   let step_index = ref 0 in
