@@ -19,7 +19,7 @@ let compare t1 t2 =
        Array.iter2 t1 t2 ~f:(fun x y ->
          match Color.compare x y with
          | Eq -> ()
-         | (Lt | Gt) as res -> Stdlib.raise_notrace (Stop res));
+         | (Lt | Gt) as res -> raise_notrace (Stop res));
        Ordering.Eq
      with
      | Stop res -> res)
