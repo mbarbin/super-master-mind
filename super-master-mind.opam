@@ -43,5 +43,4 @@ dev-repo: "git+https://github.com/mbarbin/super-master-mind.git"
 x-maintenance-intent: ["(latest)"]
 pin-depends: [
   [ "windtrap.dev" "git+https://github.com/invariant-hq/windtrap.git#2ebae50a59a070031371a1b6f64d0f35f9a2625e" ]
-  [ "ppx_windtrap.dev" "git+https://github.com/invariant-hq/windtrap.git#2ebae50a59a070031371a1b6f64d0f35f9a2625e" ]
 ]
