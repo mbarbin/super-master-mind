@@ -14,7 +14,7 @@ depends: [
   "cmdlang-cmdliner-err-runner" {>= "0.0.16"}
   "domainslib" {>= "0.5"}
   "nonempty-list" {>= "v0.17"}
-  "ppx_expect" {>= "v0.17"}
+  "ppx_windtrap"
   "ppxlib" {>= "0.33"}
   "progress" {>= "0.3.0"}
   "super-master-mind" {= version}

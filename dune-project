@@ -23,7 +23,9 @@
  (url
   "git+https://github.com/invariant-hq/windtrap.git#2ebae50a59a070031371a1b6f64d0f35f9a2625e")
  (package
-  (name windtrap)))
+  (name windtrap))
+ (package
+  (name ppx_windtrap)))
 
 (package
  (name super-master-mind)
@@ -69,8 +71,7 @@
    (>= 0.5))
   (nonempty-list
    (>= v0.17))
-  (ppx_expect
-   (>= v0.17))
+  ppx_windtrap
   (ppxlib
    (>= 0.33))
   (progress
@@ -98,8 +99,7 @@
    (>= 0.5))
   (nonempty-list
    (>= v0.17))
-  (ppx_expect
-   (>= v0.17))
+  ppx_windtrap
   (ppx_js_style
    (>= v0.17))
   (ppxlib

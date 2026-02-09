@@ -16,4 +16,4 @@
  (lint
   (pps ppx_js_style -allow-let-operators -check-doc-comments))
  (preprocess
-  (pps ppx_expect)))
+  (pps ppx_windtrap)))

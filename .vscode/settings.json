@@ -42,6 +42,7 @@
         "sprintf",
         "stdlib",
         "succ",
+        "windtrap",
         "Wordle",
         "yojson"
     ]
