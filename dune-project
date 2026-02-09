@@ -21,7 +21,7 @@
 
 (pin
  (url
-  "git+https://github.com/invariant-hq/windtrap.git#5634458c8c9bfcdef10e9210e88dfbb59331651c")
+  "git+https://github.com/invariant-hq/windtrap.git#2ebae50a59a070031371a1b6f64d0f35f9a2625e")
  (package
   (name windtrap)))
 
@@ -45,8 +45,6 @@
    (>= v0.17))
   (ordering
    (>= 3.20))
-  (patdiff
-   (>= v0.17))
   (pp
    (>= 2.0.0))
   (ppxlib
@@ -54,7 +52,8 @@
   (progress
    (>= 0.3.0))
   (yojson
-   (>= 2.2.2))))
+   (>= 2.2.2))
+  windtrap))
 
 (package
  (name super-master-mind-tests)
