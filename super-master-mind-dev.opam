@@ -23,6 +23,7 @@ depends: [
   "super-master-mind" {= version}
   "super-master-mind-tests" {= version}
   "sherlodoc" {>= "0.2"}
+  "windtrap"
   "odoc" {with-doc}
 ]
 build: [

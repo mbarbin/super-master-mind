@@ -517,10 +517,7 @@ module Verify_error = struct
     }
 
   let diff ~expected ~computed =
-    Expect_test_patdiff.patdiff
-      (Dyn.to_string expected)
-      (Dyn.to_string computed)
-      ~context:3
+    Myers.diff (Dyn.to_string expected) (Dyn.to_string computed) ~context:3
   ;;
 
   let to_dyn { unexpected_field; expected; computed } =
