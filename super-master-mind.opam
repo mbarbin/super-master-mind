@@ -16,11 +16,11 @@ depends: [
   "dune-site" {>= "3.20"}
   "nonempty-list" {>= "v0.17"}
   "ordering" {>= "3.20"}
-  "patdiff" {>= "v0.17"}
   "pp" {>= "2.0.0"}
   "ppxlib" {>= "0.33"}
   "progress" {>= "0.3.0"}
   "yojson" {>= "2.2.2"}
+  "windtrap"
   "odoc" {with-doc}
 ]
 build: [
