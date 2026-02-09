@@ -19,6 +19,14 @@
 
 (implicit_transitive_deps false)
 
+(pin
+ (url
+  "git+https://github.com/invariant-hq/windtrap.git#2ebae50a59a070031371a1b6f64d0f35f9a2625e")
+ (package
+  (name windtrap))
+ (package
+  (name ppx_windtrap)))
+
 (package
  (name super-master-mind)
  (synopsis "A solver for the super master mind game")
@@ -39,8 +47,6 @@
    (>= v0.17))
   (ordering
    (>= 3.20))
-  (patdiff
-   (>= v0.17))
   (pp
    (>= 2.0.0))
   (ppxlib
@@ -48,7 +54,8 @@
   (progress
    (>= 0.3.0))
   (yojson
-   (>= 2.2.2))))
+   (>= 2.2.2))
+  windtrap))
 
 (package
  (name super-master-mind-tests)
@@ -64,16 +71,14 @@
    (>= 0.5))
   (nonempty-list
    (>= v0.17))
-  (patdiff
-   (>= v0.17))
-  (ppx_expect
-   (>= v0.17))
+  ppx_windtrap
   (ppxlib
    (>= 0.33))
   (progress
    (>= 0.3.0))
   (super-master-mind
-   (= :version))))
+   (= :version))
+  windtrap))
 
 (package
  (name super-master-mind-dev)
@@ -94,8 +99,7 @@
    (>= 0.5))
   (nonempty-list
    (>= v0.17))
-  (ppx_expect
-   (>= v0.17))
+  ppx_windtrap
   (ppx_js_style
    (>= v0.17))
   (ppxlib
@@ -107,4 +111,5 @@
   (super-master-mind-tests
    (= :version))
   (sherlodoc
-   (>= 0.2))))
+   (>= 0.2))
+  windtrap))
