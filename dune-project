@@ -39,14 +39,14 @@
    (>= v0.17))
   (ordering
    (>= 3.20))
-  (patdiff
-   (>= v0.17))
   (pp
    (>= 2.0.0))
   (ppxlib
    (>= 0.33))
   (progress
    (>= 0.3.0))
+  (windtrap
+   (>= 0.1.0))
   (yojson
    (>= 2.2.2))))
 
@@ -63,8 +63,6 @@
   (domainslib
    (>= 0.5))
   (nonempty-list
-   (>= v0.17))
-  (patdiff
    (>= v0.17))
   (ppx_expect
    (>= v0.17))

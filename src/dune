@@ -16,7 +16,7 @@
   domainslib
   dune-site
   nonempty-list
-  patdiff.expect_test_patdiff
+  windtrap.myers
   progress
   super_master_mind_stdlib)
  (instrumentation
