@@ -4,4 +4,6 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-include Stdlib0
+include MoreLabels.Hashtbl
+
+let set t ~key ~data = replace t ~key ~data

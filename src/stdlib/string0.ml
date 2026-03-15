@@ -4,4 +4,7 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-include Stdlib0
+include Stdlib.StringLabels
+
+let concat ts ~sep = concat ~sep ts
+let split t ~on = split_on_char ~sep:on t

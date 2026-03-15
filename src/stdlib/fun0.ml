@@ -4,4 +4,6 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-include Stdlib0
+include Stdlib.Fun
+
+let protect ~f ~finally = protect ~finally f

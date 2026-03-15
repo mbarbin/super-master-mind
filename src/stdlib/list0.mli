@@ -4,8 +4,12 @@
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
 
-(** Extending [Stdlib] for use in the project. *)
-
 include module type of struct
-  include Stdlib0
+  include Stdlib.ListLabels
 end
+
+val drop_while : 'a t -> f:('a -> bool) -> 'a t
+val equal : ('a -> 'a -> bool) -> 'a t -> 'a t -> bool
+val is_empty : _ t -> bool
+val iter : 'a t -> f:('a -> unit) -> unit
+val fold : 'a t -> init:'acc -> f:('acc -> 'a -> 'acc) -> 'acc

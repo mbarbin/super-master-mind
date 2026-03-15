@@ -4,8 +4,9 @@
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
 
-(** Extending [Stdlib] for use in the project. *)
-
 include module type of struct
-  include Stdlib0
+  include Stdlib.Out_channel
 end
+
+val output_lines : t -> string list -> unit
+val with_open_text : string -> f:(t -> 'a) -> 'a

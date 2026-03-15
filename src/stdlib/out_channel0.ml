@@ -4,4 +4,12 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-include Stdlib0
+include Stdlib.Out_channel
+
+let output_lines t lines =
+  Stdlib.ListLabels.iter lines ~f:(fun line ->
+    output_string t line;
+    output_char t '\n')
+;;
+
+let with_open_text t ~f = with_open_text t f

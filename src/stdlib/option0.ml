@@ -4,4 +4,8 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-include Stdlib0
+include Stdlib.Option
+
+let bind x ~f = bind x f
+let iter t ~f = iter f t
+let some_if cond a = if cond then Some a else None

@@ -4,8 +4,10 @@
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
 
-(** Extending [Stdlib] for use in the project. *)
-
 include module type of struct
-  include Stdlib0
+  include Stdlib.Int
 end
+
+val compare : t -> t -> Ordering.t
+val incr : int ref -> unit
+val of_string : string -> int option
