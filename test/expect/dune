@@ -11,7 +11,7 @@
   Super_master_mind_stdlib
   -open
   Super_master_mind)
- (libraries nonempty-list super_master_mind super_master_mind_stdlib)
+ (libraries super_master_mind super_master_mind_stdlib)
  (inline_tests)
  (instrumentation
   (backend bisect_ppx))

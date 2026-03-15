@@ -35,8 +35,6 @@
    (>= 0.5))
   (dune-site
    (>= 3.20))
-  (nonempty-list
-   (>= v0.17))
   (ordering
    (>= 3.20))
   (patdiff
@@ -62,8 +60,6 @@
    (>= 0.0.16))
   (domainslib
    (>= 0.5))
-  (nonempty-list
-   (>= v0.17))
   (patdiff
    (>= v0.17))
   (ppx_expect
@@ -92,8 +88,6 @@
    (>= 0.0.16))
   (domainslib
    (>= 0.5))
-  (nonempty-list
-   (>= v0.17))
   (ppx_expect
    (>= v0.17))
   (ppx_js_style

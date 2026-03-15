@@ -4,4 +4,8 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-include Stdlib0
+include Stdlib.Int
+
+let compare a b = compare a b |> Ordering.of_int
+let incr = incr
+let of_string = int_of_string_opt

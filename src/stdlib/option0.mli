@@ -4,8 +4,10 @@
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
 
-(** Extending [Stdlib] for use in the project. *)
-
 include module type of struct
-  include Stdlib0
+  include Stdlib.Option
 end
+
+val bind : 'a t -> f:('a -> 'b option) -> 'b t
+val iter : 'a t -> f:('a -> unit) -> unit
+val some_if : bool -> 'a -> 'a t

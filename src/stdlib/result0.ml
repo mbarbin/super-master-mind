@@ -4,4 +4,7 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-include Stdlib0
+include Stdlib.Result
+
+let bind x ~f = bind x f
+let map_error t ~f = map_error f t

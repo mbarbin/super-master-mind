@@ -4,8 +4,8 @@
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
 
-(** Extending [Stdlib] for use in the project. *)
-
 include module type of struct
-  include Stdlib0
+  include Fun
 end
+
+val protect : f:(unit -> 'a) -> finally:(unit -> unit) -> 'a

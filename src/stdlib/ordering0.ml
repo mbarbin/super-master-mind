@@ -4,4 +4,10 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-include Stdlib0
+include Ordering
+
+let to_dyn = function
+  | Lt -> Dyn0.variant "Lt" []
+  | Eq -> Dyn0.variant "Eq" []
+  | Gt -> Dyn0.variant "Gt" []
+;;

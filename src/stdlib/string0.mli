@@ -4,8 +4,9 @@
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
 
-(** Extending [Stdlib] for use in the project. *)
-
 include module type of struct
-  include Stdlib0
+  include Stdlib.StringLabels
 end
+
+val concat : string list -> sep:string -> string
+val split : string -> on:char -> string list

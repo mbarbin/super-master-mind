@@ -4,8 +4,9 @@
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
 
-(** Extending [Stdlib] for use in the project. *)
-
 include module type of struct
-  include Stdlib0
+  include Stdlib.Result
 end
+
+val bind : ('a, 'err) t -> f:('a -> ('b, 'err) t) -> ('b, 'err) t
+val map_error : ('a, 'err) t -> f:('err -> 'b) -> ('a, 'b) t

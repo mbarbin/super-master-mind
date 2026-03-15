@@ -4,4 +4,6 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-include Stdlib0
+include Stdlib.Float
+
+let compare a b = compare a b |> Ordering.of_int
