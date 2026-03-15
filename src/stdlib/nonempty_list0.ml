@@ -8,7 +8,7 @@
    module. In patterns, the compiler resolves [(::)] based on the expected
    type. In expressions, we use [List.cons] when building regular lists. *)
 
-module List = Stdlib.ListLabels
+module List = List0
 
 type 'a t = ( :: ) of 'a * 'a list
 
@@ -47,7 +47,7 @@ let mapi t ~f =
 ;;
 
 let iter t ~f = List.iter (to_list t) ~f
-let fold (hd :: tl) ~init ~f = List.fold_left tl ~init:(f init hd) ~f
+let fold (hd :: tl) ~init ~f = List.fold tl ~init:(f init hd) ~f
 let find (hd :: tl) ~f = if f hd then Some hd else List.find_opt tl ~f
 let filter t ~f = List.filter (to_list t) ~f
 let filter_map t ~f = List.filter_map (to_list t) ~f
@@ -59,7 +59,7 @@ let concat_map t ~f =
 ;;
 
 let max_elt (hd :: tl) ~compare =
-  List.fold_left tl ~init:hd ~f:(fun acc x ->
+  List.fold tl ~init:hd ~f:(fun acc x ->
     match compare x acc with
     | Ordering.Gt -> x
     | Lt | Eq -> acc)
@@ -85,7 +85,7 @@ let compare compare_a (hd1 :: tl1) (hd2 :: tl2) =
 ;;
 
 let equal equal_a (hd1 :: tl1) (hd2 :: tl2) =
-  equal_a hd1 hd2 && List.equal ~eq:equal_a tl1 tl2
+  equal_a hd1 hd2 && List.equal equal_a tl1 tl2
 ;;
 
 module Or_unequal_lengths = struct

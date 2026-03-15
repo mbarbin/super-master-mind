@@ -4,10 +4,11 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
+module List = List0
 include Stdlib.Out_channel
 
 let output_lines t lines =
-  Stdlib.ListLabels.iter lines ~f:(fun line ->
+  List.iter lines ~f:(fun line ->
     output_string t line;
     output_char t '\n')
 ;;
