@@ -15,7 +15,6 @@ depends: [
   "domainslib" {>= "0.5"}
   "dune-site" {>= "3.20"}
   "ordering" {>= "3.20"}
-  "patdiff" {>= "v0.17"}
   "pp" {>= "2.0.0"}
   "progress" {>= "0.3.0"}
   "yojson" {>= "2.2.2"}

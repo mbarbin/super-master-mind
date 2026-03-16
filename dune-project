@@ -37,8 +37,6 @@
    (>= 3.20))
   (ordering
    (>= 3.20))
-  (patdiff
-   (>= v0.17))
   (pp
    (>= 2.0.0))
   (progress

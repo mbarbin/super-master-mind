@@ -8,16 +8,8 @@
   -warn-error
   +a
   -open
-  Cmdlang
-  -open
   Super_master_mind_stdlib)
- (libraries
-  cmdlang
-  domainslib
-  dune-site
-  patdiff.expect_test_patdiff
-  progress
-  super_master_mind_stdlib)
+ (libraries domainslib dune-site progress super_master_mind_stdlib)
  (instrumentation
   (backend bisect_ppx))
  (lint
