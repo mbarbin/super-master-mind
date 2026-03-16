@@ -67,7 +67,9 @@
   (progress
    (>= 0.3.0))
   (super-master-mind
-   (= :version))))
+   (= :version))
+  (windtrap
+   (>= 0.1.0))))
 
 (package
  (name super-master-mind-dev)

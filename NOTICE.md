@@ -25,3 +25,7 @@ The files we imported are in `src/stdlib/dyn0.ml{,i}`. We've added a notice in t
 ### A note about Nonempty_list
 
 `Nonempty_list0` is a reimplementation inspired by Jane Street's [nonempty-list](https://github.com/janestreet/nonempty_list) (released under `MIT`). Some definitions such as `Summable` and `Or_unequal_lengths` are verbatim from [Base](https://github.com/janestreet/base).
+
+### A note about Windtrap.Myers
+
+`Myers` is vendored from the [windtrap](https://github.com/invariant-hq/windtrap) test framework by Thibaut Mattio (released under `ISC`) plus minor modifications to the rendering of diffs.

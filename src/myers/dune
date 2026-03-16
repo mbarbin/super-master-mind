@@ -1,0 +1,8 @@
+(library
+ (name super_master_mind_myers)
+ (package super-master-mind)
+ (instrumentation
+  (backend bisect_ppx))
+ (lint
+  (pps ppx_js_style -allow-let-operators -check-doc-comments))
+ (preprocess no_preprocessing))
