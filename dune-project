@@ -67,7 +67,9 @@
   (super-master-mind
    (= :version))
   (windtrap
-   (>= 0.1.0))))
+   (and
+    :with-test
+    (>= 0.1.0)))))
 
 (package
  (name super-master-mind-dev)
