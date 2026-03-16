@@ -236,18 +236,19 @@ let hunks_of_lines ~context expected actual =
   List.rev !hunks_rev
 ;;
 
-let diff
-      ?(context = 3)
-      ?(expected_label = "expected")
-      ?(actual_label = "actual")
-      expected
-      actual
-  =
+let diff ?(context = 3) ?expected_label ?actual_label expected actual =
   let a = lines_of_string expected in
   let b = lines_of_string actual in
   let hunks = hunks_of_lines ~context a b in
   let buf = Buffer.create 2048 in
-  Buffer.add_string buf (Printf.sprintf "--- %s\n+++ %s\n" expected_label actual_label);
+  if Option.is_some expected_label || Option.is_some actual_label
+  then
+    Buffer.add_string
+      buf
+      (Printf.sprintf
+         "--- %s\n+++ %s\n"
+         (Option.value expected_label ~default:"expected")
+         (Option.value actual_label ~default:"actual"));
   (* Reorder lines in each change group so deletions appear before insertions. *)
   let output_line (p, line) =
     let sep =

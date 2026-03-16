@@ -20,8 +20,6 @@ let%expect_test "verify" =
   [%expect
     {|
     Unexpected values:
-    --- expected
-    +++ actual
     @@ -1,5 +1,5 @@
       { candidate = [| Green;  Blue;  Orange;  White;  Red |]
     -|; expected_bits_gained = 3.2315534058614328
@@ -38,8 +36,6 @@ let%expect_test "verify" =
   [%expect
     {|
     Unexpected by_cue length:
-    --- expected
-    +++ actual
     @@ -1,1 +1,1 @@
     -|20
     +|21
@@ -54,8 +50,6 @@ let%expect_test "verify" =
   [%expect
     {|
     Unexpected by_cue:
-    --- expected
-    +++ actual
     @@ -1,5 +1,5 @@
       { cue = { white = 2; black = 0 }
     -|; size_remaining = 7070
