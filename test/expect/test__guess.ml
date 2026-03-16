@@ -24,8 +24,8 @@ let%expect_test "verify" =
     +++ actual
     @@ -1,5 +1,5 @@
       { candidate = [| Green;  Blue;  Orange;  White;  Red |]
-    - ; expected_bits_gained = 3.2315534058614328
-    + ; expected_bits_gained = 3.14
+    -|; expected_bits_gained = 3.2315534058614328
+    +|; expected_bits_gained = 3.14
       ; expected_bits_remaining = 11.768446594138567
       ; min_bits_gained = 2.212505500303239
       ; max_bits_gained = 15.
@@ -41,8 +41,8 @@ let%expect_test "verify" =
     --- expected
     +++ actual
     @@ -1,1 +1,1 @@
-    - 20
-    + 21
+    -|20
+    +|21
     |}];
   (* Mismatch in one of the by_cues. *)
   test
@@ -58,8 +58,8 @@ let%expect_test "verify" =
     +++ actual
     @@ -1,5 +1,5 @@
       { cue = { white = 2; black = 0 }
-    - ; size_remaining = 7070
-    + ; size_remaining = 7071
+    -|; size_remaining = 7070
+    +|; size_remaining = 7071
       ; bits_remaining = 12.787494499696761
       ; bits_gained = 2.212505500303239
       ; probability = 0.21575927734375

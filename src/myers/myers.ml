@@ -3,6 +3,15 @@
 (*  SPDX-License-Identifier: ISC                                          *)
 (**************************************************************************)
 
+(* Notice: This file was vendored from windtrap.myers as documented in
+   [vendor.json] and the project's root [NOTICE.md].
+
+   List of changes:
+
+   - Applied local project ocamlformat.
+   - Small changes to the diff rendering.
+*)
+
 module type Equal = sig
   type t
 
@@ -240,7 +249,14 @@ let diff
   let buf = Buffer.create 2048 in
   Buffer.add_string buf (Printf.sprintf "--- %s\n+++ %s\n" expected_label actual_label);
   (* Reorder lines in each change group so deletions appear before insertions. *)
-  let output_line (p, line) = Buffer.add_string buf (Printf.sprintf "%c %s\n" p line) in
+  let output_line (p, line) =
+    let sep =
+      match p with
+      | '+' | '-' -> "|"
+      | _ -> " "
+    in
+    Buffer.add_string buf (Printf.sprintf "%c%s%s\n" p sep line)
+  in
   let flush_changes dels adds =
     List.iter output_line (List.rev dels);
     List.iter output_line (List.rev adds)

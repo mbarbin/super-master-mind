@@ -67,7 +67,7 @@ let diff_tests =
         let actual = Myers.diff "a\nb\n" "a\nc\n" in
         equal
           Testable.string
-          "--- expected\n+++ actual\n@@ -1,2 +1,2 @@\n  a\n- b\n+ c\n"
+          "--- expected\n+++ actual\n@@ -1,2 +1,2 @@\n  a\n-|b\n+|c\n"
           actual)
     ; test "supports custom labels" (fun () ->
         let actual =
