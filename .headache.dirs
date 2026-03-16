@@ -2,6 +2,8 @@
 # Add new directories below. Lines starting with '#' are ignored.
 src
 src/bin
+src/myers
 src/stdlib
 test/expect
+test/myers
 test/stdlib

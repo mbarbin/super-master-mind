@@ -6,6 +6,7 @@
 
 module Array = Array0
 module Code_error = Code_error
+module Command = Command0
 module Dyn = Dyn0
 module Float = Float0
 module Fun = Fun0
@@ -14,6 +15,7 @@ module In_channel = In_channel0
 module Int = Int0
 module Json = Json
 module List = List0
+module Myers = Myers0
 module Nonempty_list = Nonempty_list0
 module Option = Option0
 module Ordering = Ordering0

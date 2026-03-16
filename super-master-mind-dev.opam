@@ -12,13 +12,8 @@ depends: [
   "ocaml" {>= "5.2"}
   "ocamlformat" {= "0.28.1"}
   "bisect_ppx" {>= "2.8.3"}
-  "cmdlang" {>= "0.0.10"}
-  "cmdlang-cmdliner-err-runner" {>= "0.0.16"}
-  "domainslib" {>= "0.5"}
-  "ppx_expect" {>= "v0.17"}
   "ppx_js_style" {>= "v0.17"}
   "ppxlib" {>= "0.33"}
-  "progress" {>= "0.3.0"}
   "super-master-mind" {= version}
   "super-master-mind-tests" {= version}
   "sherlodoc" {>= "0.2"}

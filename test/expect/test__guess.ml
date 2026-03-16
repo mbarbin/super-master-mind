@@ -20,7 +20,7 @@ let%expect_test "verify" =
   [%expect
     {|
     Unexpected values:
-    -1,5 +1,5
+    @@ -1,5 +1,5 @@
       { candidate = [| Green;  Blue;  Orange;  White;  Red |]
     -|; expected_bits_gained = 3.2315534058614328
     +|; expected_bits_gained = 3.14
@@ -36,9 +36,10 @@ let%expect_test "verify" =
   [%expect
     {|
     Unexpected by_cue length:
-    -1,1 +1,1
+    @@ -1,1 +1,1 @@
     -|20
-    +|21 |}];
+    +|21
+    |}];
   (* Mismatch in one of the by_cues. *)
   test
     { guess with
@@ -49,7 +50,7 @@ let%expect_test "verify" =
   [%expect
     {|
     Unexpected by_cue:
-    -1,5 +1,5
+    @@ -1,5 +1,5 @@
       { cue = { white = 2; black = 0 }
     -|; size_remaining = 7070
     +|; size_remaining = 7071

@@ -37,12 +37,8 @@
    (>= 3.20))
   (ordering
    (>= 3.20))
-  (patdiff
-   (>= v0.17))
   (pp
    (>= 2.0.0))
-  (ppxlib
-   (>= 0.33))
   (progress
    (>= 0.3.0))
   (yojson
@@ -69,7 +65,11 @@
   (progress
    (>= 0.3.0))
   (super-master-mind
-   (= :version))))
+   (= :version))
+  (windtrap
+   (and
+    :with-test
+    (>= 0.1.0)))))
 
 (package
  (name super-master-mind-dev)
@@ -82,20 +82,10 @@
    (= 0.28.1))
   (bisect_ppx
    (>= 2.8.3))
-  (cmdlang
-   (>= 0.0.10))
-  (cmdlang-cmdliner-err-runner
-   (>= 0.0.16))
-  (domainslib
-   (>= 0.5))
-  (ppx_expect
-   (>= v0.17))
   (ppx_js_style
    (>= v0.17))
   (ppxlib
    (>= 0.33))
-  (progress
-   (>= 0.3.0))
   (super-master-mind
    (= :version))
   (super-master-mind-tests
