@@ -1,5 +1,6 @@
 (test
  (name test_myers)
+ (package super-master-mind-tests)
  (modules test_myers)
  (flags -open Super_master_mind_myers)
  (libraries super_master_mind_myers windtrap))
