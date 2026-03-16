@@ -32,7 +32,6 @@
         "odoc",
         "opam",
         "parens",
-        "patdiff",
         "ppxlib",
         "prerr",
         "Printexc",
@@ -42,6 +41,7 @@
         "sprintf",
         "stdlib",
         "succ",
+        "windtrap",
         "Wordle",
         "yojson"
     ]

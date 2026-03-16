@@ -56,8 +56,6 @@
    (>= 0.0.16))
   (domainslib
    (>= 0.5))
-  (patdiff
-   (>= v0.17))
   (ppx_expect
    (>= v0.17))
   (ppxlib
