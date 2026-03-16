@@ -17,6 +17,7 @@ module In_channel = In_channel0
 module Int = Int0
 module Json = Json
 module List = List0
+module Myers = Myers0
 module Nonempty_list = Nonempty_list0
 module Option = Option0
 module Ordering = Ordering0
