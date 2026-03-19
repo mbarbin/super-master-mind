@@ -20,7 +20,7 @@ val to_dyn : t -> Dyn.t
 (** To be used with the [__POS__] special construct. For example:
 
     {[
-      of_pos __POS__
+    of_pos __POS__
     ]}
 
     As a limitation, [pos_bol] is set to zero by this constructor. *)
