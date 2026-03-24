@@ -3,7 +3,7 @@
  (public_name super-master-mind)
  (package super-master-mind)
  (flags :standard -w +a-4-40-41-42-44-45-48-66 -warn-error +a)
- (libraries cmdlang-cmdliner-err-runner super-master-mind)
+ (libraries cmdlang-cmdliner-err-runner dune-build-info super-master-mind)
  (instrumentation
   (backend bisect_ppx))
  (lint

@@ -33,6 +33,8 @@
    (>= 0.0.16))
   (domainslib
    (>= 0.5))
+  (dune-build-info
+   (>= 3.20))
   (dune-site
    (>= 3.20))
   (ordering

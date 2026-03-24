@@ -13,6 +13,7 @@ depends: [
   "cmdlang" {>= "0.0.10"}
   "cmdlang-cmdliner-err-runner" {>= "0.0.16"}
   "domainslib" {>= "0.5"}
+  "dune-build-info" {>= "3.20"}
   "dune-site" {>= "3.20"}
   "ordering" {>= "3.20"}
   "pp" {>= "2.0.0"}
