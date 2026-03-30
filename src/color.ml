@@ -17,7 +17,7 @@ module Hum = struct
     | White
     | Yellow
 
-  let equal : t -> t -> bool = Stdlib.( = )
+  let equal : t -> t -> bool = Poly.equal
   let all = [ Black; Blue; Brown; Green; Orange; Red; White; Yellow ]
 
   let to_dyn = function
