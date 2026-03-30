@@ -27,7 +27,7 @@ let solve ~task_pool ~color_permutation ~solution =
     let possible_solutions =
       Codes.filter possible_solutions ~candidate:t.candidate ~cue
     in
-    if Codes.size possible_solutions = 1
+    if Int.equal (Codes.size possible_solutions) 1
     then (
       let solution = List.hd (Codes.to_list possible_solutions) in
       let guess = Guess.compute ~possible_solutions ~candidate:solution in

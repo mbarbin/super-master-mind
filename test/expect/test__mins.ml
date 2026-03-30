@@ -25,7 +25,7 @@ let%expect_test "min sequence" =
     let possible_solutions =
       Codes.filter possible_solutions ~candidate:t.candidate ~cue:by_cue.cue
     in
-    if Codes.size possible_solutions = 1
+    if Int.equal (Codes.size possible_solutions) 1
     then (
       let solution = List.hd (Codes.to_list possible_solutions) in
       add (Guess.compute ~possible_solutions ~candidate:solution))

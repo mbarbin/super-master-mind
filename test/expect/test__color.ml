@@ -7,7 +7,7 @@
 let%expect_test "to_dyn" =
   print_dyn (Dyn.int (Lazy.force Color.cardinality));
   [%expect {| 8 |}];
-  assert (Lazy.force Color.cardinality = List.length (Lazy.force Color.all));
+  assert (Int.equal (Lazy.force Color.cardinality) (List.length (Lazy.force Color.all)));
   List.iter (Lazy.force Color.all) ~f:(fun t -> print_dyn (Color.to_dyn t));
   [%expect
     {|

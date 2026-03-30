@@ -37,7 +37,7 @@ let rec cut node ~k =
   match node with
   | None -> None
   | Some ({ Node.value = _; tail } as t) ->
-    if k = 0
+    if Int.equal k 0
     then None
     else (
       t.tail <- cut tail ~k:(Int.pred k);
