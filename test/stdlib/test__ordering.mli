@@ -3,9 +3,3 @@
 (*_  SPDX-FileCopyrightText: 2021-2025 Mathieu Barbin <mathieu.barbin@gmail.com>  *)
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
-
-include module type of struct
-  include Stdlib.Out_channel
-end
-
-val output_lines : t -> string list -> unit

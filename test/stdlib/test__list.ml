@@ -4,11 +4,9 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-module List = List0
-include Stdlib.Out_channel
-
-let output_lines t lines =
-  List.iter lines ~f:(fun line ->
-    output_string t line;
-    output_char t '\n')
+let%expect_test "is_empty" =
+  require (List.is_empty []);
+  require (not (List.is_empty [ 1 ]));
+  [%expect {| |}];
+  ()
 ;;

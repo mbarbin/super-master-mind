@@ -4,8 +4,4 @@
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
 
-include module type of struct
-  include Stdlib.Out_channel
-end
-
-val output_lines : t -> string list -> unit
+val equal : 'a -> 'a -> bool

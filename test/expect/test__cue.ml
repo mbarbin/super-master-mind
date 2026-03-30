@@ -7,7 +7,7 @@
 let%expect_test "to_dyn" =
   print_dyn (Dyn.int (Lazy.force Cue.cardinality));
   [%expect {| 20 |}];
-  assert (Lazy.force Cue.cardinality = List.length (Lazy.force Cue.all));
+  assert (Int.equal (Lazy.force Cue.cardinality) (List.length (Lazy.force Cue.all)));
   List.iter (Lazy.force Cue.all) ~f:(fun t -> print_dyn (Cue.to_dyn t));
   [%expect
     {|

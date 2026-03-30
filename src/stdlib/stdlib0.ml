@@ -20,6 +20,7 @@ module Nonempty_list = Nonempty_list0
 module Option = Option0
 module Ordering = Ordering0
 module Out_channel = Out_channel0
+module Poly = Poly0
 module Result = Result0
 module Source_code_position = Source_code_position
 module String = String0
@@ -42,3 +43,6 @@ let ( +. ) = Stdlib.( +. )
 let ( -. ) = Stdlib.( -. )
 let ( *. ) = Stdlib.( *. )
 let ( /. ) = Stdlib.( /. )
+let compare = `Use_Poly_instead
+let equal = `Use_Poly_instead
+let ( = ) = `Use_Poly_instead

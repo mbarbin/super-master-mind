@@ -81,10 +81,10 @@ let%expect_test "indices" =
   for i = 0 to Lazy.force Color_permutation.cardinality - 1 do
     let color_permutation = add i in
     let i' = Color_permutation.to_index color_permutation in
-    assert (i = i')
+    assert (Int.equal i i')
   done;
   let length = Hashtbl.length all in
-  assert (length = Lazy.force Color_permutation.cardinality);
+  assert (Int.equal length (Lazy.force Color_permutation.cardinality));
   [%expect {||}];
   require_does_raise (fun () : Color_permutation.t ->
     Color_permutation.of_index_exn (Lazy.force Color_permutation.cardinality));

@@ -17,7 +17,7 @@ module Hum = struct
     | White
     | Yellow
 
-  let equal : t -> t -> bool = Stdlib.( = )
+  let equal : t -> t -> bool = Poly.equal
   let all = [ Black; Blue; Brown; Green; Orange; Red; White; Yellow ]
 
   let to_dyn = function
@@ -110,10 +110,8 @@ let of_index_exn index =
   then
     Code_error.raise
       "Index out of bounds."
-      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ];
+      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ] [@coverage off];
   index
 ;;
 
 let all = lazy (List.init ~len:(Lazy.force cardinality) ~f:Fun.id)
-let to_json t : Json.t = to_hum t |> Hum.to_json
-let of_json (json : Json.t) : t = json |> Hum.of_json |> of_hum

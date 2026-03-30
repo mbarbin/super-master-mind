@@ -27,7 +27,7 @@ let to_array t = Stdlib.Array.of_list (to_list t)
 let length ((_ : _) :: tl) = 1 + List.length tl
 
 let init n ~f =
-  if n <= 0 then invalid_arg "Nonempty_list.init";
+  if n <= 0 then invalid_arg "Nonempty_list.init" [@coverage off];
   match List.init ~len:n ~f with
   | [] -> assert false
   | x :: xs -> x :: xs
@@ -60,8 +60,8 @@ let concat_map t ~f =
 
 let max_elt (hd :: tl) ~compare =
   List.fold tl ~init:hd ~f:(fun acc x ->
-    match compare x acc with
-    | Ordering.Gt -> x
+    match (compare x acc : Ordering.t) with
+    | Gt -> x
     | Lt | Eq -> acc)
 ;;
 
@@ -77,11 +77,11 @@ let sum (type a) (module M : Summable with type t = a) t ~f =
 ;;
 
 let compare compare_a (hd1 :: tl1) (hd2 :: tl2) =
-  match compare_a hd1 hd2 with
-  | Ordering.Eq ->
+  match (compare_a hd1 hd2 : Ordering.t) with
+  | (Gt | Lt) as ord -> ord
+  | Eq ->
     List.compare tl1 tl2 ~cmp:(fun a b -> compare_a a b |> Ordering.to_int)
     |> Ordering.of_int
-  | ord -> ord
 ;;
 
 let equal equal_a (hd1 :: tl1) (hd2 :: tl2) =

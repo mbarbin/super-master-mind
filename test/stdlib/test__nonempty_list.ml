@@ -119,9 +119,9 @@ let%expect_test "fold" =
 
 let%expect_test "find" =
   let t = Nonempty_list.of_list_exn [ 1; 2; 3 ] in
-  print_dyn (Dyn.option Dyn.int (Nonempty_list.find t ~f:(fun x -> x = 2)));
+  print_dyn (Dyn.option Dyn.int (Nonempty_list.find t ~f:(fun x -> Int.equal x 2)));
   [%expect {| Some 2 |}];
-  print_dyn (Dyn.option Dyn.int (Nonempty_list.find t ~f:(fun x -> x = 5)));
+  print_dyn (Dyn.option Dyn.int (Nonempty_list.find t ~f:(fun x -> Int.equal x 5)));
   [%expect {| None |}];
   ()
 ;;
@@ -130,7 +130,7 @@ let%expect_test "filter" =
   let result =
     Nonempty_list.filter
       (Nonempty_list.of_list_exn [ 1; 2; 3; 4; 5 ])
-      ~f:(fun x -> x mod 2 = 0)
+      ~f:(fun x -> Int.equal (x mod 2) 0)
   in
   print_dyn (Dyn.list Dyn.int result);
   [%expect {| [ 2; 4 ] |}];
@@ -141,7 +141,7 @@ let%expect_test "filter_map" =
   let result =
     Nonempty_list.filter_map
       (Nonempty_list.of_list_exn [ 1; 2; 3; 4; 5 ])
-      ~f:(fun x -> if x mod 2 = 0 then Some (x * 10) else None)
+      ~f:(fun x -> if Int.equal (x mod 2) 0 then Some (x * 10) else None)
   in
   print_dyn (Dyn.list Dyn.int result);
   [%expect {| [ 20; 40 ] |}];
@@ -162,7 +162,7 @@ let%expect_test "concat_map" =
 let%expect_test "max_elt" =
   let result =
     Nonempty_list.max_elt
-      (Nonempty_list.of_list_exn [ 3; 1; 4; 1; 5 ])
+      (Nonempty_list.of_list_exn [ 3; 1; 4; 1; 5; 5 ])
       ~compare:Int.compare
   in
   print_dyn (Dyn.int result);
@@ -199,26 +199,33 @@ let%expect_test "compare" =
   let cmp a b = Nonempty_list.compare Int.compare a b in
   print_dyn (Ordering.to_dyn (cmp Nonempty_list.(1 :: [ 2 ]) Nonempty_list.(1 :: [ 2 ])));
   [%expect {| Eq |}];
+  print_dyn (Ordering.to_dyn (cmp Nonempty_list.(1 :: [ 2 ]) Nonempty_list.(2 :: [ 2 ])));
+  [%expect {| Lt |}];
+  print_dyn (Ordering.to_dyn (cmp Nonempty_list.(2 :: [ 2 ]) Nonempty_list.(1 :: [ 2 ])));
+  [%expect {| Gt |}];
   print_dyn (Ordering.to_dyn (cmp Nonempty_list.(1 :: [ 2 ]) Nonempty_list.(1 :: [ 3 ])));
   [%expect {| Lt |}];
+  print_dyn (Ordering.to_dyn (cmp Nonempty_list.(1 :: [ 3 ]) Nonempty_list.(1 :: [ 2 ])));
+  [%expect {| Gt |}];
   ()
 ;;
 
 let%expect_test "zip" =
+  let show_zip a b =
+    match Nonempty_list.zip a b with
+    | Ok zipped ->
+      print_dyn
+        (Dyn.list
+           (fun (x, y) -> Dyn.Tuple [ Dyn.int x; Dyn.int y ])
+           (Nonempty_list.to_list zipped))
+    | Unequal_lengths -> print_dyn (Dyn.string "unequal")
+  in
   let a = Nonempty_list.of_list_exn [ 1; 2; 3 ] in
   let b = Nonempty_list.of_list_exn [ 10; 20; 30 ] in
-  (match Nonempty_list.zip a b with
-   | Ok zipped ->
-     print_dyn
-       (Dyn.list
-          (fun (x, y) -> Dyn.Tuple [ Dyn.int x; Dyn.int y ])
-          (Nonempty_list.to_list zipped))
-   | Unequal_lengths -> print_dyn (Dyn.string "unequal"));
+  show_zip a b;
   [%expect {| [ (1, 10); (2, 20); (3, 30) ] |}];
   let c = Nonempty_list.of_list_exn [ 1; 2 ] in
-  (match Nonempty_list.zip c b with
-   | Ok _ -> print_dyn (Dyn.string "ok")
-   | Unequal_lengths -> print_dyn (Dyn.string "unequal"));
+  show_zip c b;
   [%expect {| "unequal" |}];
   ()
 ;;

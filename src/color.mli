@@ -38,8 +38,6 @@ end
 val of_hum : Hum.t -> t
 val to_hum : t -> Hum.t
 val to_dyn : t -> Dyn.t
-val to_json : t -> Json.t
-val of_json : Json.t -> t
 
 (** The number of different colors that are encountered in the game. In this
     version of the game, this is [8] (see Hum.t). *)

@@ -4,11 +4,12 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-module List = List0
-include Stdlib.Out_channel
-
-let output_lines t lines =
-  List.iter lines ~f:(fun line ->
-    output_string t line;
-    output_char t '\n')
+let%expect_test "to_dyn" =
+  print_dyn (Ordering.to_dyn Lt);
+  [%expect {| Lt |}];
+  print_dyn (Ordering.to_dyn Eq);
+  [%expect {| Eq |}];
+  print_dyn (Ordering.to_dyn Gt);
+  [%expect {| Gt |}];
+  ()
 ;;

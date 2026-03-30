@@ -22,6 +22,7 @@ module Nonempty_list = Nonempty_list0
 module Option = Option0
 module Ordering = Ordering0
 module Out_channel = Out_channel0
+module Poly = Poly0
 module Result = Result0
 module Source_code_position = Source_code_position
 module String = String0
@@ -42,3 +43,13 @@ val ( +. ) : float -> float -> float
 val ( -. ) : float -> float -> float
 val ( *. ) : float -> float -> float
 val ( /. ) : float -> float -> float
+
+val compare : [> `Use_Poly_instead ]
+[@@ocaml.deprecated
+  "[since 2026-03] Use [Poly.compare] or a type-specific compare instead"]
+
+val equal : [> `Use_Poly_instead ]
+[@@ocaml.deprecated "[since 2026-03] Use [Poly.equal] or a type-specific equal instead"]
+
+val ( = ) : [> `Use_Poly_instead ]
+[@@ocaml.deprecated "[since 2026-03] Use [Poly.equal] or a type-specific equal instead"]

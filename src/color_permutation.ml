@@ -54,7 +54,7 @@ let create_exn hums =
   then
     Code_error.raise
       "Invalid color permutation."
-      [ "hums", Dyn.array Color.Hum.to_dyn hums ];
+      [ "hums", Dyn.array Color.Hum.to_dyn hums ] [@coverage off];
   colors
 ;;
 
@@ -94,7 +94,7 @@ let of_index_exn index =
   then
     Code_error.raise
       "Index out of bounds."
-      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ];
+      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ] [@coverage off];
   let factorial_decomposition = Array.create ~len:color_cardinality 0 in
   let remainder = ref index in
   for i = color_cardinality - 1 downto 1 do

@@ -58,7 +58,9 @@ module Cache = struct
        let raw_code_to_index = Array.create ~len:(Lazy.force Raw_code.cardinality) None in
        let index_to_hum = Array.create ~len:(Lazy.force cardinality) None in
        for white = 0 to code_size do
-         for black = 0 to if white = 1 then code_size - 2 else code_size - white do
+         for
+           black = 0 to if Int.equal white 1 then code_size - 2 else code_size - white
+         do
            let hum = { Hum.white; black } in
            let raw_code = Raw_code.of_hum hum in
            let index =
@@ -99,7 +101,7 @@ let of_index_exn index =
   then
     Code_error.raise
       "Index out of bounds."
-      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ];
+      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ] [@coverage off];
   index
 ;;
 
