@@ -391,7 +391,8 @@ let to_json = T.to_json
 let of_json = T.of_json
 
 let compute ~possible_solutions ~candidate : t =
-  if Codes.is_empty possible_solutions then Code_error.raise "No possible solutions." [];
+  if Codes.is_empty possible_solutions
+  then Code_error.raise "No possible solutions." [] [@coverage off];
   let original_size = Float.of_int (Codes.size possible_solutions) in
   let original_bits = Float.log2 original_size in
   let by_cue =
@@ -445,7 +446,8 @@ let compute ~possible_solutions ~candidate : t =
 ;;
 
 let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
-  if k < 1 then Code_error.raise "k >= 1 value expected." [ "k", Dyn.int k ];
+  if k < 1
+  then Code_error.raise "k >= 1 value expected." [ "k", Dyn.int k ] [@coverage off];
   let ts =
     Kheap.create ~k ~compare:(fun (t1 : t) t2 ->
       match Float.compare t2.expected_bits_gained t1.expected_bits_gained with

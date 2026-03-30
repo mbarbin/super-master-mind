@@ -5,5 +5,3 @@
 (*********************************************************************************)
 
 include Stdlib.In_channel
-
-let read_all file = with_open_bin file input_all

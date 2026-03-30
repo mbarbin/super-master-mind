@@ -9,4 +9,3 @@ include module type of struct
 end
 
 val bind : ('a, 'err) t -> f:('a -> ('b, 'err) t) -> ('b, 'err) t
-val map_error : ('a, 'err) t -> f:('err -> 'b) -> ('a, 'b) t

@@ -7,5 +7,3 @@
 include module type of struct
   include Stdlib.In_channel
 end
-
-val read_all : string -> string

@@ -101,7 +101,7 @@ let of_index_exn index =
   then
     Code_error.raise
       "Index out of bounds."
-      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ];
+      [ "index", Dyn.int index; "cardinality", Dyn.int cardinality ] [@coverage off];
   index
 ;;
 

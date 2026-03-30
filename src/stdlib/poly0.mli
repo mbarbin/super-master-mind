@@ -4,6 +4,4 @@
 (*_  SPDX-License-Identifier: MIT                                                 *)
 (*_********************************************************************************)
 
-val compare : 'a -> 'a -> Ordering.t
 val equal : 'a -> 'a -> bool
-val hash : 'a -> int

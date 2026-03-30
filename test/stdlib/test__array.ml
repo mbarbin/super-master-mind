@@ -4,11 +4,16 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-module List = List0
-include Stdlib.Out_channel
+let%expect_test "fold" =
+  let sum = Array.fold [| 1; 2; 3 |] ~init:0 ~f:( + ) in
+  print_dyn (Dyn.int sum);
+  [%expect {| 6 |}];
+  ()
+;;
 
-let output_lines t lines =
-  List.iter lines ~f:(fun line ->
-    output_string t line;
-    output_char t '\n')
+let%expect_test "equal - physical equality" =
+  let a = [| 1; 2; 3 |] in
+  require (Array.equal Int.equal a a);
+  [%expect {| |}];
+  ()
 ;;

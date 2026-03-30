@@ -4,6 +4,4 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
-let compare a b = Stdlib.compare a b |> Ordering.of_int
 let equal = Stdlib.( = )
-let hash = Stdlib.Hashtbl.hash
