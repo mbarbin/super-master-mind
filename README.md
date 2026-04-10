@@ -9,7 +9,7 @@ This is a toy project implementing a solver for the super-master-mind game, writ
 
 This is the name of a particular variation of the famous master-mind game, which was commercialized by Invicta and popular in the 70th.
 
-![The board game](doc/board.png)
+![Rules variation 1](doc/variation-1.png)
 
 ## Rules of the game
 
@@ -20,9 +20,7 @@ The person playing as code-maker chooses 5 code pegs among 8 colors (allowing co
 
 In case of color repetition, duplicate colors only get white pegs if the color is also duplicated in the secret code.
 
-The pegs must be placed randomly and not indicate the actual position of the code pegs they are accounting. See for example:
-
-![Rules variation 1](doc/variation-1.png)
+The pegs must be placed randomly and not indicate the actual position of the code pegs they are accounting.
 
 This is the variation implemented by this repository.
 
