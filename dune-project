@@ -28,7 +28,7 @@
   (ocaml
    (>= 5.2))
   (cmdlang
-   (>= 0.0.10))
+   (>= 0.0.11))
   (cmdlang-cmdliner-err-runner
    (>= 0.0.16))
   (domainslib
@@ -53,7 +53,7 @@
   (ocaml
    (>= 5.2))
   (cmdlang
-   (>= 0.0.10))
+   (>= 0.0.11))
   (cmdlang-cmdliner-err-runner
    (>= 0.0.16))
   (domainslib

@@ -6,7 +6,7 @@
 
 (** A list that is statically guaranteed to be non-empty. *)
 
-type 'a t = ( :: ) of 'a * 'a list
+type 'a t = 'a Command0.Nonempty_list.t = ( :: ) of 'a * 'a list
 
 val singleton : 'a -> 'a t
 val hd : 'a t -> 'a
