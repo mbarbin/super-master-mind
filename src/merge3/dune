@@ -1,15 +1,7 @@
 (library
- (name super_master_mind_myers)
+ (name super_master_mind_merge3)
  (package super-master-mind)
- (libraries super_master_mind_merge3)
- (flags
-  :standard
-  -w
-  +a-4-40-41-42-44-45-48-66
-  -warn-error
-  +a
-  -open
-  Super_master_mind_merge3)
+ (flags :standard -w +a-4-40-41-42-44-45-48-66 -warn-error +a)
  (instrumentation
   (backend bisect_ppx))
  (lint
