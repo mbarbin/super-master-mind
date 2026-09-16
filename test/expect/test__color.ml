@@ -40,3 +40,24 @@ let%expect_test "hum" =
     require (Color.Hum.equal hum hum'));
   [%expect {||}]
 ;;
+
+let%expect_test "of_string_exn" =
+  List.iter Color.Hum.all ~f:(fun hum ->
+    let str = Color.Hum.to_string hum in
+    print_endline str;
+    require (Color.Hum.equal hum (Color.Hum.of_string_exn str)));
+  [%expect
+    {|
+    Black
+    Blue
+    Brown
+    Green
+    Orange
+    Red
+    White
+    Yellow
+    |}];
+  require_does_raise (fun () : Color.Hum.t -> Color.Hum.of_string_exn "Purple");
+  [%expect {| ("Invalid color.", { color = "Purple" }) |}];
+  ()
+;;

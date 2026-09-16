@@ -54,3 +54,13 @@ let%expect_test "hum" =
   [%expect {| ("Invalid cue.", { hum = { white = 3; black = 3 } }) |}];
   ()
 ;;
+
+let%expect_test "json" =
+  List.iter (Lazy.force Cue.all) ~f:(fun cue ->
+    let json = Cue.to_json cue in
+    require (Cue.equal cue (Cue.of_json json)));
+  [%expect {||}];
+  require_does_raise (fun () : Cue.t -> Cue.of_json (`String "0"));
+  [%expect {| Json.Invalid_json("Expected int for [Cue.t].", "0") |}];
+  ()
+;;

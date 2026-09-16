@@ -153,3 +153,17 @@ let%expect_test "find_nth" =
   [%expect {| Some 5 |}];
   ()
 ;;
+
+let%expect_test "create_exn" =
+  require_does_raise (fun () : Color_permutation.t -> Color_permutation.create_exn [||]);
+  [%expect {| ("Invalid color permutation.", { hums = [||] }) |}];
+  require_does_raise (fun () : Color_permutation.t ->
+    Color_permutation.create_exn
+      [| Black; Blue; Brown; Green; Orange; Red; White; Black |]);
+  [%expect
+    {|
+    ("Invalid color permutation.",
+     { hums = [| Black;  Blue;  Brown;  Green;  Orange;  Red;  White;  Black |] })
+    |}];
+  ()
+;;

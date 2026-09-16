@@ -132,3 +132,14 @@ let%expect_test "indices" =
   [%expect {| ("Index out of bounds.", { index = 32768; cardinality = 32768 }) |}];
   ()
 ;;
+
+let%expect_test "json" =
+  let t = Code.create_exn [| Green; Blue; Orange; White; Red |] in
+  let json = Code.to_json t in
+  print_endline (Json.to_string json);
+  [%expect {| 23819 |}];
+  require (Code.equal t (Code.of_json json));
+  require_does_raise (fun () : Code.t -> Code.of_json (`String "23819"));
+  [%expect {| Json.Invalid_json("Expected int for [Code.t].", "23819") |}];
+  ()
+;;
