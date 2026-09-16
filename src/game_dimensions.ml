@@ -48,7 +48,7 @@ let arg here =
       [ "use-small-game-dimensions" ]
       ~doc:"Replace normal dimensions by smaller ones for quick tests."
   in
-  if flag then use_small_game_dimensions_exn here else ()
+  if flag then use_small_game_dimensions_exn here
 ;;
 
 let code_size here =

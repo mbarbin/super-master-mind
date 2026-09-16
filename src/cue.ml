@@ -75,7 +75,10 @@ module Cache = struct
          Array.mapi index_to_hum ~f:(fun i value ->
            match value with
            | Some value -> value
-           | None -> Code_error.raise "Missing index." [ "i", Dyn.int i ])
+           (* The loops above fill every index in [0; cardinality), thus this
+              branch is unreachable. It is kept as a consistency check between
+              the closed form used by [cardinality] and the loops. *)
+           | None -> Code_error.raise "Missing index." [ "i", Dyn.int i ] [@coverage off])
        in
        { raw_code_to_index; index_to_hum })
   ;;

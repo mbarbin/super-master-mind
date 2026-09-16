@@ -34,11 +34,11 @@ let solve ~task_pool ~color_permutation ~solution =
       add guess ~by_cue:(Nonempty_list.hd guess.by_cue))
     else (
       match by_cue.next_best_guesses with
-      | Computed [] -> ()
+      | Computed [] -> assert false
       | Computed (guess :: _) -> aux guess ~possible_solutions
       | Not_computed ->
         (match Guess.compute_k_best ~task_pool ~possible_solutions ~k:1 () with
-         | [] -> ()
+         | [] -> assert false
          | guess :: _ -> aux guess ~possible_solutions))
   in
   let opening_book = Lazy.force Opening_book.opening_book in

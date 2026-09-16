@@ -478,9 +478,7 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       | `Finished -> finished := true
       | `Computed (t : t) ->
         Progress.Reporter.report reporter 1;
-        (match Float.compare t.expected_bits_gained 0. with
-         | Lt | Eq -> ()
-         | Gt -> Kheap.add ts t)
+        Kheap.add ts t
     done
   in
   Task_pool.run task_pool ~f:(fun ~pool ->
@@ -492,7 +490,9 @@ let compute_k_best ?display ~task_pool ~possible_solutions ~k () =
       ~body:(fun candidate ->
         let t = compute ~possible_solutions ~candidate:(Code.of_index_exn candidate) in
         match Float.compare t.expected_bits_gained 0. with
-        | Lt | Eq -> ()
+        (* [expected_bits_gained] is a sum of non negative terms. *)
+        | Lt -> assert false
+        | Eq -> ()
         | Gt -> Domainslib.Chan.send chan (`Computed t));
     Domainslib.Chan.send chan `Finished;
     Domainslib.Task.await pool reduced);

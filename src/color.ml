@@ -83,7 +83,9 @@ module Hum = struct
     | 5 -> Red
     | 6 -> White
     | 7 -> Yellow
-    | code -> Code_error.raise "Invalid code." [ "code", Dyn.int code ]
+    (* [t] values are only built by [of_index_exn] and [of_hum] below, which
+       both guarantee an index within bounds, thus this branch is unreachable. *)
+    | code -> Code_error.raise "Invalid code." [ "code", Dyn.int code ] [@coverage off]
   ;;
 end
 
