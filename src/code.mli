@@ -21,7 +21,14 @@ module Hum : sig
   val to_dyn : t -> Dyn.t
   val to_json : t -> Json.t
   val of_json : Json.t -> t
+
+  (** The comma separated list of the colors of the code, such as
+      ["Green,Blue,Orange,White,Red"]. *)
   val to_string : t -> string
+
+  (** Parses the representation produced by {!to_string}, returning the error
+      that the command line reports for an invalid one. *)
+  val of_string : string -> (t, [ `Msg of string ]) Result.t
 end
 
 (** Returns the efficient encoding of a given code. Raises if the size of the
@@ -31,10 +38,15 @@ val create_exn : Hum.t -> t
 (** Returns the human readable representation of the code. *)
 val to_hum : t -> Hum.t
 
-(** Returns the string representation of the code, that is the JSON encoding of
-    its human readable representation. This is the syntax expected by {!param}
-    on the command line. *)
+(** Returns the string representation of the code, that is the comma separated
+    list of its colors, such as ["Green,Blue,Orange,White,Red"]. This is the
+    syntax expected by {!param} on the command line. *)
 val to_string : t -> string
+
+(** Parses the representation produced by {!to_string}. This is the function
+    used to parse {!param} on the command line, and to read the guesses that
+    the [maker] command prompts for. *)
+val of_string : string -> (t, [ `Msg of string ]) Result.t
 
 val to_dyn : t -> Dyn.t
 

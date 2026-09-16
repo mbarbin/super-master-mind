@@ -33,28 +33,42 @@ module Hum = struct
     | _ -> raise (Json.Invalid_json ("Expected list for [Code.Hum.t].", json))
   ;;
 
-  let to_string t = to_json t |> Json.to_string
+  let to_string t =
+    Array.to_list t |> List.map ~f:Color.Hum.to_string |> String.concat ~sep:","
+  ;;
+
+  let of_string s =
+    String.split s ~on:','
+    |> List.map_result ~f:Color.Hum.of_string
+    |> Result.map ~f:Array.of_list
+  ;;
 end
 
 module Computing = struct
   type t = Color.t array
 
-  let check_size_exn hum =
+  let check_size hum =
     let expected_size = Lazy.force size in
     let code_size = Array.length hum in
-    if code_size <> expected_size
-    then
-      Code_error.raise
-        "Invalid code size."
-        [ "code", Hum.to_dyn hum
-        ; "code_size", Dyn.int code_size
-        ; "expected_size", Dyn.int expected_size
-        ]
+    if Int.equal code_size expected_size
+    then Ok ()
+    else
+      Error
+        (`Msg
+            (Printf.sprintf
+               "Invalid code size: expected %d colors, got %d."
+               expected_size
+               code_size))
+  ;;
+
+  let create hum =
+    Result.map (check_size hum) ~f:(fun () -> Array.map hum ~f:Color.of_hum)
   ;;
 
   let create_exn hum =
-    check_size_exn hum;
-    Array.map hum ~f:Color.of_hum
+    match create hum with
+    | Ok t -> t
+    | Error (`Msg msg) -> Code_error.raise msg [ "code", Hum.to_dyn hum ]
   ;;
 
   let to_hum t = t |> Array.map ~f:Color.to_hum
@@ -114,22 +128,13 @@ module Computing = struct
 end
 
 let create_exn hum = hum |> Computing.create_exn |> Computing.to_code
+let create hum = Result.map (Computing.create hum) ~f:Computing.to_code
 let to_hum t = t |> Computing.of_code |> Computing.to_hum
 let to_dyn t = t |> to_hum |> Hum.to_dyn
 let to_index t = t
-let of_json_hum json = Hum.of_json json |> create_exn
 let to_string t = t |> to_hum |> Hum.to_string
-
-let param =
-  Command.Param.create'
-    ~docv:"CODE"
-    ~of_string:(fun s ->
-      match Json.of_string s |> of_json_hum with
-      | e -> Ok e
-      | exception e -> Error (`Msg (Printexc.to_string e)))
-    ~to_string
-    ()
-;;
+let of_string s = Result.bind (Hum.of_string s) ~f:create
+let param = Command.Param.create' ~docv:"CODE" ~of_string ~to_string ()
 
 let check_index_exn index =
   let cardinality = Lazy.force cardinality in

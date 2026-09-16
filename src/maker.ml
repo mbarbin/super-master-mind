@@ -15,11 +15,11 @@ let rec input_code () =
   print_string prompt;
   Out_channel.(flush stdout);
   let line = input_line () in
-  match line |> Json.of_string |> Code.Hum.of_json |> Code.create_exn with
-  | exception e ->
-    print_endline (Printexc.to_string e);
+  match Code.of_string line with
+  | Ok code -> code
+  | Error (`Msg msg) ->
+    print_endline msg;
     input_code ()
-  | code -> code
 ;;
 
 let run ~solution =

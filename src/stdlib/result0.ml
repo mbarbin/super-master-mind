@@ -7,3 +7,4 @@
 include Stdlib.Result
 
 let bind x ~f = bind x f
+let map x ~f = map f x

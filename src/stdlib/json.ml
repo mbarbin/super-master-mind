@@ -22,11 +22,6 @@ let save t ~file =
 
 let to_string t = Yojson.Basic.pretty_to_string ~std:true t
 
-let of_string s =
-  try Yojson.Basic.from_string s with
-  | Yojson.Json_error msg -> raise (Parse_error msg)
-;;
-
 let () =
   Printexc.register_printer (function
     | Invalid_json (msg, json) ->

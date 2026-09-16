@@ -100,20 +100,15 @@ let%expect_test "create_exn" =
   print_dyn (Dyn.record [ "size", Dyn.int size ]);
   [%expect {| { size = 5 } |}];
   require_does_raise (fun () : Code.t -> Code.create_exn [||]);
-  [%expect
-    {| ("Invalid code size.", { code = [||]; code_size = 0; expected_size = 5 }) |}];
+  [%expect {| ("Invalid code size: expected 5 colors, got 0.", { code = [||] }) |}];
   require_does_raise (fun () : Code.t -> Code.create_exn [| Red |]);
-  [%expect
-    {| ("Invalid code size.", { code = [| Red |]; code_size = 1; expected_size = 5 }) |}];
+  [%expect {| ("Invalid code size: expected 5 colors, got 1.", { code = [| Red |] }) |}];
   require_does_raise (fun () : Code.t ->
     Code.create_exn (Array.create ~len:(size + 1) Color.Hum.Red));
   [%expect
     {|
-    ("Invalid code size.",
-     { code = [| Red;  Red;  Red;  Red;  Red;  Red |]
-     ; code_size = 6
-     ; expected_size = 5
-     })
+    ("Invalid code size: expected 5 colors, got 6.",
+     { code = [| Red;  Red;  Red;  Red;  Red;  Red |] })
     |}];
   ()
 ;;
@@ -148,8 +143,28 @@ let%expect_test "to_string" =
   let t = Code.create_exn [| Green; Blue; Orange; White; Red |] in
   let str = Code.to_string t in
   print_endline str;
-  [%expect {| [ "Green", "Blue", "Orange", "White", "Red" ] |}];
+  [%expect {| Green,Blue,Orange,White,Red |}];
   print_endline (Code.Hum.to_string (Code.to_hum t));
-  [%expect {| [ "Green", "Blue", "Orange", "White", "Red" ] |}];
+  [%expect {| Green,Blue,Orange,White,Red |}];
+  ()
+;;
+
+let%expect_test "of_string" =
+  let test str =
+    match Code.of_string str with
+    | Ok t -> print_dyn (Code.to_dyn t)
+    | Error (`Msg msg) -> print_endline msg
+  in
+  (* [to_string] is the syntax expected on the command line, thus it is
+     expected to round-trip through [of_string]. *)
+  let t = Code.create_exn [| Green; Blue; Orange; White; Red |] in
+  test (Code.to_string t);
+  [%expect {| [| Green;  Blue;  Orange;  White;  Red |] |}];
+  (* The error messages below are what the command line reports when the
+     parameter does not parse, and what [maker] prints when a guess does not. *)
+  test "Green,Purple,Orange";
+  [%expect {| Invalid color "Purple". |}];
+  test "Green,Blue";
+  [%expect {| Invalid code size: expected 5 colors, got 2. |}];
   ()
 ;;

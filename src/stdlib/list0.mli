@@ -12,4 +12,10 @@ val drop_while : 'a t -> f:('a -> bool) -> 'a t
 val equal : ('a -> 'a -> bool) -> 'a t -> 'a t -> bool
 val is_empty : _ t -> bool
 val iter : 'a t -> f:('a -> unit) -> unit
+
+(** Applies [f] to each element in order, and collects the results. Returns the
+    first error encountered, if any, in which case [f] is not applied to the
+    remaining elements. *)
+val map_result : 'a t -> f:('a -> ('b, 'err) result) -> ('b t, 'err) result
+
 val fold : 'a t -> init:'acc -> f:('acc -> 'a -> 'acc) -> 'acc

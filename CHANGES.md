@@ -6,6 +6,10 @@
 - `Super_master_mind_stdlib.Code_error` is `Pplumbing_err.Code_error` (@mbarbin).
 - Remove color output from guess verifier.
 - Minor refactoring in `kheap`.
+- Codes are now entered on the command line as a comma separated list of
+  colors, such as `Green,Blue,Orange,White,Red`, rather than as JSON. This
+  applies both to the `--solution` parameter and to the guesses prompted for by
+  the `maker` command (@mbarbin).
 
 ## 0.0.10 (2024-09-29)
 

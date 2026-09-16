@@ -46,10 +46,10 @@ module Hum = struct
     | _ -> None
   ;;
 
-  let of_string_exn s =
+  let of_string s =
     match of_string_opt s with
-    | Some t -> t
-    | None -> Code_error.raise "Invalid color." [ "color", Dyn.string s ]
+    | Some t -> Ok t
+    | None -> Error (`Msg (Printf.sprintf "Invalid color %S." s))
   ;;
 
   let to_json t : Json.t = `String (to_string t)

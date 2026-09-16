@@ -20,4 +20,16 @@ let is_empty = function
 ;;
 
 let iter t ~f = iter ~f t
+
+let map_result t ~f =
+  let rec aux acc = function
+    | [] -> Ok (rev acc)
+    | x :: xs ->
+      (match f x with
+       | Error _ as error -> error
+       | Ok y -> aux (y :: acc) xs)
+  in
+  aux [] t
+;;
+
 let fold t ~init ~f = fold_left t ~init ~f

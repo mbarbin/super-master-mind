@@ -30,7 +30,11 @@ module Hum : sig
   val to_dyn : t -> Dyn.t
   val to_string : t -> string
   val of_string_opt : string -> t option
-  val of_string_exn : string -> t
+
+  (** Same as {!of_string_opt}, but returns the error that the command line
+      reports for an unknown color. *)
+  val of_string : string -> (t, [ `Msg of string ]) Result.t
+
   val to_json : t -> Json.t
   val of_json : Json.t -> t
 end

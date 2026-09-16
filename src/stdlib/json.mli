@@ -12,4 +12,3 @@ exception Parse_error of string
 val load : file:string -> t
 val save : t -> file:string -> unit
 val to_string : t -> string
-val of_string : string -> t

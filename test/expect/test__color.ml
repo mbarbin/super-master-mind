@@ -41,11 +41,15 @@ let%expect_test "hum" =
   [%expect {||}]
 ;;
 
-let%expect_test "of_string_exn" =
-  List.iter Color.Hum.all ~f:(fun hum ->
-    let str = Color.Hum.to_string hum in
-    print_endline str;
-    require (Color.Hum.equal hum (Color.Hum.of_string_exn str)));
+let%expect_test "of_string" =
+  let test str =
+    match Color.Hum.of_string str with
+    | Ok t -> print_endline (Color.Hum.to_string t)
+    | Error (`Msg msg) -> print_endline msg
+  in
+  (* Each color is printed back unchanged below, which witnesses that
+     [to_string] round-trips through [of_string]. *)
+  List.iter Color.Hum.all ~f:(fun hum -> test (Color.Hum.to_string hum));
   [%expect
     {|
     Black
@@ -57,7 +61,7 @@ let%expect_test "of_string_exn" =
     White
     Yellow
     |}];
-  require_does_raise (fun () : Color.Hum.t -> Color.Hum.of_string_exn "Purple");
-  [%expect {| ("Invalid color.", { color = "Purple" }) |}];
+  test "Purple";
+  [%expect {| Invalid color "Purple". |}];
   ()
 ;;
