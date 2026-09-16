@@ -20,18 +20,7 @@ module Hum = struct
   let equal : t -> t -> bool = Poly.equal
   let all = [ Black; Blue; Brown; Green; Orange; Red; White; Yellow ]
 
-  let to_dyn = function
-    | Black -> Dyn.variant "Black" []
-    | Blue -> Dyn.variant "Blue" []
-    | Brown -> Dyn.variant "Brown" []
-    | Green -> Dyn.variant "Green" []
-    | Orange -> Dyn.variant "Orange" []
-    | Red -> Dyn.variant "Red" []
-    | White -> Dyn.variant "White" []
-    | Yellow -> Dyn.variant "Yellow" []
-  ;;
-
-  let to_string = function
+  let to_variant_constructor_name = function
     | Black -> "Black"
     | Blue -> "Blue"
     | Brown -> "Brown"
@@ -41,6 +30,9 @@ module Hum = struct
     | White -> "White"
     | Yellow -> "Yellow"
   ;;
+
+  let to_dyn t = Dyn.variant (to_variant_constructor_name t) []
+  let to_string = to_variant_constructor_name
 
   let of_string_opt = function
     | "Black" -> Some Black
