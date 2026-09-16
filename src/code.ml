@@ -118,6 +118,7 @@ let to_hum t = t |> Computing.of_code |> Computing.to_hum
 let to_dyn t = t |> to_hum |> Hum.to_dyn
 let to_index t = t
 let of_json_hum json = Hum.of_json json |> create_exn
+let to_string t = t |> to_hum |> Hum.to_string
 
 let param =
   Command.Param.create'
@@ -126,7 +127,7 @@ let param =
       match Json.of_string s |> of_json_hum with
       | e -> Ok e
       | exception e -> Error (`Msg (Printexc.to_string e)))
-    ~to_string:(fun t -> Hum.to_string (to_hum t))
+    ~to_string
     ()
 ;;
 

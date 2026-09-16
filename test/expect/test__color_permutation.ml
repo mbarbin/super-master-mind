@@ -167,3 +167,14 @@ let%expect_test "create_exn" =
     |}];
   ()
 ;;
+
+let%expect_test "to_string" =
+  let test i =
+    print_endline (Color_permutation.to_string (Color_permutation.of_index_exn i))
+  in
+  test 0;
+  [%expect {| 0 |}];
+  test 40319;
+  [%expect {| 40319 |}];
+  ()
+;;

@@ -31,6 +31,11 @@ val create_exn : Hum.t -> t
 (** Returns the human readable representation of the code. *)
 val to_hum : t -> Hum.t
 
+(** Returns the string representation of the code, that is the JSON encoding of
+    its human readable representation. This is the syntax expected by {!param}
+    on the command line. *)
+val to_string : t -> string
+
 val to_dyn : t -> Dyn.t
 
 (** The number of slots in the code. In this version of the game, this is [5]. *)

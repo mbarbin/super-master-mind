@@ -143,3 +143,13 @@ let%expect_test "json" =
   [%expect {| Json.Invalid_json("Expected int for [Code.t].", "23819") |}];
   ()
 ;;
+
+let%expect_test "to_string" =
+  let t = Code.create_exn [| Green; Blue; Orange; White; Red |] in
+  let str = Code.to_string t in
+  print_endline str;
+  [%expect {| [ "Green", "Blue", "Orange", "White", "Red" ] |}];
+  print_endline (Code.Hum.to_string (Code.to_hum t));
+  [%expect {| [ "Green", "Blue", "Orange", "White", "Red" ] |}];
+  ()
+;;

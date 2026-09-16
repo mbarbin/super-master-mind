@@ -125,6 +125,8 @@ let to_index t =
     acc + (d * factorial.(i)))
 ;;
 
+let to_string t = t |> to_index |> Int.to_string
+
 let param =
   Command.Param.create'
     ~docv:"COLOR_PERMUTATION"
@@ -135,7 +137,7 @@ let param =
         if is_valid_index ~index
         then Ok (of_index_exn index)
         else Error (`Msg "Invalid color permutation"))
-    ~to_string:(fun t -> Int.to_string (to_index t))
+    ~to_string
     ()
 ;;
 

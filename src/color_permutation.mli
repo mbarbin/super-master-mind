@@ -46,6 +46,10 @@ val to_index : t -> int
     cause the function to raise. *)
 val of_index_exn : int -> t
 
+(** Returns the string representation of the color permutation, that is its
+    index. This is the syntax expected by {!param} on the command line. *)
+val to_string : t -> string
+
 (** Parse a [t] in the command line. *)
 val param : t Command.Param.t
 
