@@ -745,3 +745,274 @@ let%expect_test "color present 5 times" =
   print_dyn (Dyn.bool (Guess.equal guess { guess2 with candidate = guess.candidate }));
   [%expect {| true |}]
 ;;
+
+(* A minimal well-formed guess, used below to exercise the json serialization,
+   including the error paths of the parser. *)
+let by_cue_fields : (string * Json.t) list =
+  [ "cue", `Int 0
+  ; "size_remaining", `Int 1
+  ; "bits_remaining", `Float 0.
+  ; "bits_gained", `Float 1.
+  ; "probability", `Float 1.
+  ]
+;;
+
+let guess_fields : (string * Json.t) list =
+  [ "candidate", `Int 0
+  ; "expected_bits_gained", `Float 1.
+  ; "expected_bits_remaining", `Float 0.
+  ; "min_bits_gained", `Float 1.
+  ; "max_bits_gained", `Float 1.
+  ; "max_bits_remaining", `Float 0.
+  ; "by_cue", `List [ `Assoc by_cue_fields ]
+  ]
+;;
+
+let of_json (json : Json.t) =
+  match Guess.of_json json with
+  | t -> print_dyn (Guess.to_dyn t)
+  | exception e -> print_endline (Printexc.to_string e)
+;;
+
+(* [replace fields ~name ~value] overrides a single field, [remove] drops it. *)
+let replace fields ~name ~(value : Json.t) : (string * Json.t) list =
+  List.map fields ~f:(fun (n, v) -> n, if String.equal n name then value else v)
+;;
+
+let remove fields ~name : (string * Json.t) list =
+  List.filter fields ~f:(fun (n, _) -> not (String.equal n name))
+;;
+
+let%expect_test "of_json" =
+  of_json (`Assoc guess_fields);
+  [%expect
+    {|
+    { candidate = [| Black;  Black;  Black;  Black;  Black |]
+    ; expected_bits_gained = 1.
+    ; expected_bits_remaining = 0.
+    ; min_bits_gained = 1.
+    ; max_bits_gained = 1.
+    ; max_bits_remaining = 0.
+    ; by_cue =
+        [ { cue = { white = 0; black = 0 }
+          ; size_remaining = 1
+          ; bits_remaining = 0.
+          ; bits_gained = 1.
+          ; probability = 1.
+          ; next_best_guesses = Not_computed
+          }
+        ]
+    }
+    |}];
+  (* Integers are accepted where floats are expected. *)
+  let int_fields fields =
+    List.map fields ~f:(fun (name, (value : Json.t)) ->
+      ( name
+      , match value with
+        | `Float f -> `Int (Int.of_float f)
+        | value -> value ))
+  in
+  of_json
+    (`Assoc
+        (int_fields guess_fields
+         |> replace ~name:"by_cue" ~value:(`List [ `Assoc (int_fields by_cue_fields) ])));
+  [%expect
+    {|
+    { candidate = [| Black;  Black;  Black;  Black;  Black |]
+    ; expected_bits_gained = 1.
+    ; expected_bits_remaining = 0.
+    ; min_bits_gained = 1.
+    ; max_bits_gained = 1.
+    ; max_bits_remaining = 0.
+    ; by_cue =
+        [ { cue = { white = 0; black = 0 }
+          ; size_remaining = 1
+          ; bits_remaining = 0.
+          ; bits_gained = 1.
+          ; probability = 1.
+          ; next_best_guesses = Not_computed
+          }
+        ]
+    }
+    |}];
+  (* Unknown fields are ignored. *)
+  of_json
+    (`Assoc
+        (guess_fields @ [ "unknown", `Null ]
+         |> replace
+              ~name:"by_cue"
+              ~value:(`List [ `Assoc (by_cue_fields @ [ "unknown", `Null ]) ])));
+  [%expect
+    {|
+    { candidate = [| Black;  Black;  Black;  Black;  Black |]
+    ; expected_bits_gained = 1.
+    ; expected_bits_remaining = 0.
+    ; min_bits_gained = 1.
+    ; max_bits_gained = 1.
+    ; max_bits_remaining = 0.
+    ; by_cue =
+        [ { cue = { white = 0; black = 0 }
+          ; size_remaining = 1
+          ; bits_remaining = 0.
+          ; bits_gained = 1.
+          ; probability = 1.
+          ; next_best_guesses = Not_computed
+          }
+        ]
+    }
+    |}];
+  ()
+;;
+
+let%expect_test "of_json errors" =
+  of_json (`Int 0);
+  [%expect {| Json.Invalid_json("Expected JSON object for [Guess.t].", 0) |}];
+  of_json (`Assoc (guess_fields |> replace ~name:"by_cue" ~value:(`Int 0)));
+  [%expect {| Json.Invalid_json("Expected list for [by_cue].", 0) |}];
+  of_json (`Assoc (guess_fields |> replace ~name:"by_cue" ~value:(`List [ `Int 0 ])));
+  [%expect {| Json.Invalid_json("Expected JSON object for [By_cue.t].", 0) |}];
+  List.iter
+    [ "expected_bits_gained"
+    ; "expected_bits_remaining"
+    ; "min_bits_gained"
+    ; "max_bits_gained"
+    ; "max_bits_remaining"
+    ]
+    ~f:(fun name ->
+      of_json (`Assoc (guess_fields |> replace ~name ~value:`Null));
+      of_json (`Assoc (guess_fields |> remove ~name)));
+  [%expect
+    {|
+    Json.Invalid_json("Expected float for [expected_bits_gained].", null)
+    Json.Invalid_json("Missing field [expected_bits_gained].", {"candidate":0,"expected_bits_remaining":0.0,"min_bits_gained":1.0,"max_bits_gained":1.0,"max_bits_remaining":0.0,"by_cue":[{"cue":0,"size_remaining":1,"bits_remaining":0.0,"bits_gained":1.0,"probability":1.0}]})
+    Json.Invalid_json("Expected float for [expected_bits_remaining].", null)
+    Json.Invalid_json("Missing field [expected_bits_remaining].", {"candidate":0,"expected_bits_gained":1.0,"min_bits_gained":1.0,"max_bits_gained":1.0,"max_bits_remaining":0.0,"by_cue":[{"cue":0,"size_remaining":1,"bits_remaining":0.0,"bits_gained":1.0,"probability":1.0}]})
+    Json.Invalid_json("Expected float for [min_bits_gained].", null)
+    Json.Invalid_json("Missing field [min_bits_gained].", {"candidate":0,"expected_bits_gained":1.0,"expected_bits_remaining":0.0,"max_bits_gained":1.0,"max_bits_remaining":0.0,"by_cue":[{"cue":0,"size_remaining":1,"bits_remaining":0.0,"bits_gained":1.0,"probability":1.0}]})
+    Json.Invalid_json("Expected float for [max_bits_gained].", null)
+    Json.Invalid_json("Missing field [max_bits_gained].", {"candidate":0,"expected_bits_gained":1.0,"expected_bits_remaining":0.0,"min_bits_gained":1.0,"max_bits_remaining":0.0,"by_cue":[{"cue":0,"size_remaining":1,"bits_remaining":0.0,"bits_gained":1.0,"probability":1.0}]})
+    Json.Invalid_json("Expected float for [max_bits_remaining].", null)
+    Json.Invalid_json("Missing field [max_bits_remaining].", {"candidate":0,"expected_bits_gained":1.0,"expected_bits_remaining":0.0,"min_bits_gained":1.0,"max_bits_gained":1.0,"by_cue":[{"cue":0,"size_remaining":1,"bits_remaining":0.0,"bits_gained":1.0,"probability":1.0}]})
+    |}];
+  let with_by_cue fields =
+    `Assoc (guess_fields |> replace ~name:"by_cue" ~value:(`List [ `Assoc fields ]))
+  in
+  List.iter
+    [ "size_remaining"; "bits_remaining"; "bits_gained"; "probability" ]
+    ~f:(fun name ->
+      of_json (with_by_cue (by_cue_fields |> replace ~name ~value:`Null));
+      of_json (with_by_cue (by_cue_fields |> remove ~name)));
+  [%expect
+    {|
+    Json.Invalid_json("Expected int for [size_remaining].", null)
+    Json.Invalid_json("Missing field [size_remaining].", {"cue":0,"bits_remaining":0.0,"bits_gained":1.0,"probability":1.0})
+    Json.Invalid_json("Expected float for [bits_remaining].", null)
+    Json.Invalid_json("Missing field [bits_remaining].", {"cue":0,"size_remaining":1,"bits_gained":1.0,"probability":1.0})
+    Json.Invalid_json("Expected float for [bits_gained].", null)
+    Json.Invalid_json("Missing field [bits_gained].", {"cue":0,"size_remaining":1,"bits_remaining":0.0,"probability":1.0})
+    Json.Invalid_json("Expected float for [probability].", null)
+    Json.Invalid_json("Missing field [probability].", {"cue":0,"size_remaining":1,"bits_remaining":0.0,"bits_gained":1.0})
+    |}];
+  of_json (with_by_cue (by_cue_fields @ [ "next_best_guesses", `Int 0 ]));
+  [%expect {| Json.Invalid_json("Expected list for [Next_best_guesses.t].", 0) |}];
+  ()
+;;
+
+let%expect_test "next_best_guesses" =
+  let guess = Guess.of_json (`Assoc guess_fields) in
+  let with_next_best_guesses (t : Guess.t) ~next_best_guesses : Guess.t =
+    { t with
+      by_cue = Nonempty_list.map t.by_cue ~f:(fun c -> { c with next_best_guesses })
+    }
+  in
+  let computed = with_next_best_guesses guess ~next_best_guesses:(Computed [ guess ]) in
+  print_dyn (Guess.to_dyn computed);
+  [%expect
+    {|
+    { candidate = [| Black;  Black;  Black;  Black;  Black |]
+    ; expected_bits_gained = 1.
+    ; expected_bits_remaining = 0.
+    ; min_bits_gained = 1.
+    ; max_bits_gained = 1.
+    ; max_bits_remaining = 0.
+    ; by_cue =
+        [ { cue = { white = 0; black = 0 }
+          ; size_remaining = 1
+          ; bits_remaining = 0.
+          ; bits_gained = 1.
+          ; probability = 1.
+          ; next_best_guesses =
+              Computed
+                [ { candidate = [| Black;  Black;  Black;  Black;  Black |]
+                  ; expected_bits_gained = 1.
+                  ; expected_bits_remaining = 0.
+                  ; min_bits_gained = 1.
+                  ; max_bits_gained = 1.
+                  ; max_bits_remaining = 0.
+                  ; by_cue =
+                      [ { cue = { white = 0; black = 0 }
+                        ; size_remaining = 1
+                        ; bits_remaining = 0.
+                        ; bits_gained = 1.
+                        ; probability = 1.
+                        ; next_best_guesses = Not_computed
+                        }
+                      ]
+                  }
+                ]
+          }
+        ]
+    }
+    |}];
+  print_endline (Json.to_string (Guess.to_json computed));
+  [%expect
+    {|
+    {
+      "candidate": 0,
+      "expected_bits_gained": 1.0,
+      "expected_bits_remaining": 0.0,
+      "min_bits_gained": 1.0,
+      "max_bits_gained": 1.0,
+      "max_bits_remaining": 0.0,
+      "by_cue": [
+        {
+          "cue": 0,
+          "size_remaining": 1,
+          "bits_remaining": 0.0,
+          "bits_gained": 1.0,
+          "probability": 1.0,
+          "next_best_guesses": [
+            {
+              "candidate": 0,
+              "expected_bits_gained": 1.0,
+              "expected_bits_remaining": 0.0,
+              "min_bits_gained": 1.0,
+              "max_bits_gained": 1.0,
+              "max_bits_remaining": 0.0,
+              "by_cue": [
+                {
+                  "cue": 0,
+                  "size_remaining": 1,
+                  "bits_remaining": 0.0,
+                  "bits_gained": 1.0,
+                  "probability": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+    |}];
+  let test t1 t2 = print_dyn (Dyn.bool (Guess.equal t1 t2)) in
+  (* [equal] is short-circuited on physically equal values. *)
+  test computed computed;
+  [%expect {| true |}];
+  test computed (Guess.of_json (Guess.to_json computed));
+  [%expect {| true |}];
+  test computed guess;
+  [%expect {| false |}];
+  test guess computed;
+  [%expect {| false |}];
+  ()
+;;
