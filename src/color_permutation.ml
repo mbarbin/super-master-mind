@@ -127,19 +127,23 @@ let to_index t =
 
 let to_string t = t |> to_index |> Int.to_string
 
-let param =
-  Command.Param.create'
-    ~docv:"COLOR_PERMUTATION"
-    ~of_string:(fun i ->
-      match Int.of_string i with
-      | None -> Error (`Msg "Invalid color permutation")
-      | Some index ->
-        if is_valid_index ~index
-        then Ok (of_index_exn index)
-        else Error (`Msg "Invalid color permutation"))
-    ~to_string
-    ()
+let of_string s =
+  match Int.of_string s with
+  | None ->
+    Error (`Msg (Printf.sprintf "Invalid color permutation %S: expected an integer." s))
+  | Some index ->
+    if is_valid_index ~index
+    then Ok (of_index_exn index)
+    else
+      Error
+        (`Msg
+            (Printf.sprintf
+               "Invalid color permutation %d: expected an index in [0; %d]."
+               index
+               (Lazy.force cardinality - 1)))
 ;;
+
+let param = Command.Param.create' ~docv:"COLOR_PERMUTATION" ~of_string ~to_string ()
 
 module Private = struct
   let find_nth = find_nth

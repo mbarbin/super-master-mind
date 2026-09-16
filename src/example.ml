@@ -64,7 +64,7 @@ let cmd =
        let solution =
          match solution with
          | Some solution -> solution
-         | None -> Code.create_exn [| Green; Blue; Orange; White; Red |]
+         | None -> Code.create_exn [| Green; Blue; Orange; White; Red |] [@coverage off]
        in
        ignore
          (solve ~task_pool ~color_permutation:Color_permutation.identity ~solution

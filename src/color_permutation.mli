@@ -50,6 +50,10 @@ val of_index_exn : int -> t
     index. This is the syntax expected by {!param} on the command line. *)
 val to_string : t -> string
 
+(** Parses the representation produced by {!to_string}, returning the error
+    that the command line reports for an invalid one. *)
+val of_string : string -> (t, [ `Msg of string ]) Result.t
+
 (** Parse a [t] in the command line. *)
 val param : t Command.Param.t
 

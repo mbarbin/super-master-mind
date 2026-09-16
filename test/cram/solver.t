@@ -21,3 +21,19 @@
   #black (correctly placed)  : #white (incorrectly placed): (4, [| Brown;  Yellow;  Orange;  Black;  Brown |])
   #black (correctly placed)  : #white (incorrectly placed): (5, [| White;  Yellow;  Yellow;  Yellow;  Yellow |])
   #black (correctly placed)  : #white (incorrectly placed): (6, [| Brown;  Yellow;  Orange;  White;  Black |])
+
+When the number of correctly placed pegs is 4 or more, the number of misplaced
+pegs is necessarily 0, and is thus not prompted for.
+
+  $ super-master-mind solver --color-permutation 0 <<EOF
+  > 
+  > 4
+  > 1
+  > 1
+  > 3
+  > 0
+  Press enter when done choosing a solution: (1, [| Black;  Blue;  Brown;  Green;  Orange |])
+  #black (correctly placed)  : #white (incorrectly placed): 0
+  (2, [| Black;  Brown;  Orange;  White;  Yellow |])
+  #black (correctly placed)  : #white (incorrectly placed): (3, [| Brown;  Green;  Brown;  Green;  Red |])
+  #black (correctly placed)  : #white (incorrectly placed): (4, [| Black;  Blue;  Brown;  Green;  Red |])

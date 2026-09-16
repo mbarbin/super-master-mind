@@ -928,3 +928,24 @@
       }
     ]
   }
+
+When the opening-book does not verify the expected properties, the command
+exits with a non zero code, after printing the offending values. We simulate
+this here with a tweaked opening-book, supplied via [--opening-book-file].
+
+  $ super-master-mind opening-book dump \
+  >   | sed '3s/.*/  "expected_bits_gained": 3.14,/' \
+  >   > tweaked-opening-book.json
+
+  $ super-master-mind opening-book verify --opening-book-file tweaked-opening-book.json
+  Opening-book "tweaked-opening-book.json" does not verify expected properties.
+  Unexpected values:
+  @@ -1,5 +1,5 @@
+    { candidate = [| Black;  Blue;  Brown;  Green;  Orange |]
+  -|; expected_bits_gained = 3.2315534058614328
+  +|; expected_bits_gained = 3.14
+    ; expected_bits_remaining = 11.768446594138567
+    ; min_bits_gained = 2.212505500303239
+    ; max_bits_gained = 15.
+  
+  [1]

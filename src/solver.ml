@@ -4,10 +4,12 @@
 (*  SPDX-License-Identifier: MIT                                                 *)
 (*********************************************************************************)
 
+(* Reaching the end of the input before the game is over is an error. The
+   tests supply complete games, thus they do not exercise this. *)
 let input_line () =
   match In_channel.input_line In_channel.stdin with
   | Some line -> line
-  | None -> raise End_of_file
+  | None -> raise End_of_file [@coverage off]
 ;;
 
 let rec input_cue () =

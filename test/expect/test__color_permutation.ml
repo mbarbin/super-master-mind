@@ -178,3 +178,25 @@ let%expect_test "to_string" =
   [%expect {| 40319 |}];
   ()
 ;;
+
+let%expect_test "of_string" =
+  let test str =
+    match Color_permutation.of_string str with
+    | Ok t -> print_endline (Color_permutation.to_string t)
+    | Error (`Msg msg) -> print_endline msg
+  in
+  (* [to_string] is expected to round-trip through [of_string]. *)
+  test "0";
+  [%expect {| 0 |}];
+  test "40319";
+  [%expect {| 40319 |}];
+  (* The messages below are what the command line reports when the parameter
+     does not parse. *)
+  test "not-an-int";
+  [%expect {| Invalid color permutation "not-an-int": expected an integer. |}];
+  test "-1";
+  [%expect {| Invalid color permutation -1: expected an index in [0; 40319]. |}];
+  test "40320";
+  [%expect {| Invalid color permutation 40320: expected an index in [0; 40319]. |}];
+  ()
+;;

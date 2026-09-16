@@ -164,12 +164,25 @@ let verify_cmd =
        match v with
        | Some color_permutation -> color_permutation
        | None -> Lazy.force Color_permutation.identity
+     and+ file =
+       Arg.named_opt
+         [ "opening-book-file" ]
+         Param.file
+         ~docv:"FILE"
+         ~doc:
+           "Verify the opening-book stored in FILE, rather than the one installed with \
+            the package."
      in
-     let t = root (Lazy.force opening_book) ~color_permutation in
+     let which, t =
+       match file with
+       | None -> "Installed opening-book", Lazy.force opening_book
+       | Some file -> Printf.sprintf "Opening-book %S" file, Json.load ~file |> of_json
+     in
+     let t = root t ~color_permutation in
      match Guess.verify t ~possible_solutions:Codes.all with
      | Ok () -> ()
      | Error error ->
-       prerr_endline "Installed opening-book does not verify expected properties.";
+       prerr_endline (which ^ " does not verify expected properties.");
        Guess.Verify_error.print_hum error Out_channel.stderr;
        exit 1)
 ;;
