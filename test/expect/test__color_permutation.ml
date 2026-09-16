@@ -81,10 +81,10 @@ let%expect_test "indices" =
   for i = 0 to Lazy.force Color_permutation.cardinality - 1 do
     let color_permutation = add i in
     let i' = Color_permutation.to_index color_permutation in
-    assert (Int.equal i i')
+    require (Int.equal i i')
   done;
   let length = Hashtbl.length all in
-  assert (Int.equal length (Lazy.force Color_permutation.cardinality));
+  require (Int.equal length (Lazy.force Color_permutation.cardinality));
   [%expect {||}];
   require_does_raise (fun () : Color_permutation.t ->
     Color_permutation.of_index_exn (Lazy.force Color_permutation.cardinality));
@@ -109,7 +109,7 @@ let%expect_test "inverse" =
     let t' = Color_permutation.inverse t in
     if Color_permutation.equal t t' then incr count;
     let t'' = Color_permutation.inverse t' in
-    assert (Color_permutation.equal t t'')
+    require (Color_permutation.equal t t'')
   done;
   print_dyn (Dyn.int !count);
   [%expect {| 764 |}]

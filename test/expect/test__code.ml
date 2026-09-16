@@ -20,7 +20,7 @@ let%expect_test "analyze" =
     print_dyn (Cue.to_dyn cue);
     (* Check that [Code.analyze] is commutative. *)
     let cue' = Code.analyze ~solution:candidate ~candidate:solution in
-    assert (Cue.equal cue cue')
+    require (Cue.equal cue cue')
   in
   let solution : Color.Hum.t array = [| Black; Blue; Brown; Green; Orange |] in
   test ~solution ~candidate:[| Red; White; Yellow; Red; Red |];
@@ -124,8 +124,8 @@ let%expect_test "indices" =
     let index = Code.to_index code in
     let hum = Code.to_hum code in
     let code' = Code.create_exn hum in
-    assert (Int.equal i index);
-    assert (Code.equal code code')
+    require (Int.equal i index);
+    require (Code.equal code code')
   done;
   [%expect {||}];
   require_does_raise (fun () : Code.t -> Code.of_index_exn (Lazy.force Code.cardinality));
