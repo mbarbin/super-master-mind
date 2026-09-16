@@ -2,6 +2,8 @@
 
 ### Changed
 
+- Upgrade to dune lang `3.22` and drop the vendored copy of `Dyn` (@mbarbin).
+- `Super_master_mind_stdlib.Code_error` is `Pplumbing_err.Code_error` (@mbarbin).
 - Remove color output from guess verifier.
 - Minor refactoring in `kheap`.
 

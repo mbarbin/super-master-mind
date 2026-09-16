@@ -5,7 +5,7 @@
 (*********************************************************************************)
 
 module Array = Array0
-module Code_error = Code_error
+module Code_error = Code_error0
 module Command = Command0
 module Dyn = Dyn0
 module Float = Float0

@@ -1,4 +1,4 @@
-(lang dune 3.20)
+(lang dune 3.22)
 
 (name super-master-mind)
 
@@ -34,13 +34,17 @@
   (domainslib
    (>= 0.5))
   (dune-build-info
-   (>= 3.20))
+   (>= 3.22))
   (dune-site
-   (>= 3.20))
+   (>= 3.22))
+  (dyn
+   (>= 3.22))
   (ordering
-   (>= 3.20))
+   (>= 3.22))
   (pp
    (>= 2.0.0))
+  (pplumbing-err
+   (>= 0.0.17))
   (progress
    (>= 0.3.0))
   (yojson

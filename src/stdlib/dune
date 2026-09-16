@@ -2,7 +2,14 @@
  (name super_master_mind_stdlib)
  (package super-master-mind)
  (flags :standard -w +a-4-40-41-42-44-45-48-66 -warn-error +a)
- (libraries cmdlang ordering pp super_master_mind_myers yojson)
+ (libraries
+  cmdlang
+  dyn
+  ordering
+  pp
+  pplumbing-err
+  super_master_mind_myers
+  yojson)
  (instrumentation
   (backend bisect_ppx))
  (lint
