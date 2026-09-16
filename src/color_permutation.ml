@@ -7,24 +7,6 @@
 type t = Color.t array
 
 let equal t1 t2 = Array.equal Color.equal t1 t2
-
-let compare t1 t2 =
-  let s1 = Array.length t1
-  and s2 = Array.length t2 in
-  match Int.compare s1 s2 with
-  | (Lt | Gt) as res -> res
-  | Eq ->
-    let exception Stop of Ordering.t in
-    (try
-       Array.iter2 t1 t2 ~f:(fun x y ->
-         match Color.compare x y with
-         | Eq -> ()
-         | (Lt | Gt) as res -> raise_notrace (Stop res));
-       Ordering.Eq
-     with
-     | Stop res -> res)
-;;
-
 let to_dyn t = Dyn.array Color.to_dyn t
 let identity = lazy (Array.init (Lazy.force Color.cardinality) ~f:Color.of_index_exn)
 let map_color t color = t.(Color.to_index color)

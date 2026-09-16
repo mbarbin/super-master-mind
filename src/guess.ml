@@ -10,7 +10,6 @@ module rec Next_best_guesses : sig
     | Computed of T.t list
 
   val equal : t -> t -> bool
-  val is_computed : t -> bool
   val to_dyn : t -> Dyn.t
   val to_json_opt : t -> Json.t option
   val of_json_opt : Json.t option -> t
@@ -28,11 +27,6 @@ end = struct
       (match t1 with
        | Not_computed -> false
        | Computed list1 -> List.equal T.equal list1 list2)
-  ;;
-
-  let is_computed = function
-    | Computed _ -> true
-    | Not_computed -> false
   ;;
 
   let to_dyn = function
@@ -522,12 +516,6 @@ module Verify_error = struct
     Myers.diff (Dyn.to_string expected) (Dyn.to_string computed) ~context:3
   ;;
 
-  let to_dyn { unexpected_field; expected; computed } =
-    let diff = diff ~expected ~computed in
-    Dyn.record
-      [ "unexpected_field", Dyn.string unexpected_field; "diff", Dyn.string diff ]
-  ;;
-
   let print_hum { unexpected_field; expected; computed } oc =
     Out_channel.output_lines
       oc
@@ -567,7 +555,7 @@ let rec verify (t : t) ~possible_solutions =
       else unexpected ~unexpected_field:"values" ~expected:t' ~computed:t to_dyn
     in
     iter_result (Nonempty_list.to_list by_cues) ~f:(fun (by_cue, by_cue') ->
-      assert (not (Next_best_guesses.is_computed by_cue'.next_best_guesses));
+      assert (Next_best_guesses.equal by_cue'.next_best_guesses Not_computed);
       let* () =
         let by_cue = { by_cue with next_best_guesses = Not_computed } in
         if By_cue.equal by_cue' by_cue
