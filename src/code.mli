@@ -19,8 +19,6 @@ module Hum : sig
   type t = Color.Hum.t array
 
   val to_dyn : t -> Dyn.t
-  val to_json : t -> Json.t
-  val of_json : Json.t -> t
 
   (** The comma separated list of the colors of the code, such as
       ["Green,Blue,Orange,White,Red"]. *)

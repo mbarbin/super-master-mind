@@ -25,13 +25,6 @@ module Hum = struct
   type t = Color.Hum.t array
 
   let to_dyn t = Dyn.array Color.Hum.to_dyn t
-  let to_json t : Json.t = `List (Array.to_list t |> List.map ~f:Color.Hum.to_json)
-
-  let of_json (json : Json.t) : t =
-    match json with
-    | `List l -> Array.of_list l |> Array.map ~f:Color.Hum.of_json
-    | _ -> raise (Json.Invalid_json ("Expected list for [Code.Hum.t].", json))
-  ;;
 
   let to_string t =
     Array.to_list t |> List.map ~f:Color.Hum.to_string |> String.concat ~sep:","

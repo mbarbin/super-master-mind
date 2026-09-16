@@ -34,9 +34,6 @@ module Hum : sig
   (** Same as {!of_string_opt}, but returns the error that the command line
       reports for an unknown color. *)
   val of_string : string -> (t, [ `Msg of string ]) Result.t
-
-  val to_json : t -> Json.t
-  val of_json : Json.t -> t
 end
 
 val of_hum : Hum.t -> t

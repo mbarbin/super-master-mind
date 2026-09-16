@@ -52,17 +52,6 @@ module Hum = struct
     | None -> Error (`Msg (Printf.sprintf "Invalid color %S." s))
   ;;
 
-  let to_json t : Json.t = `String (to_string t)
-
-  let of_json (json : Json.t) : t =
-    match json with
-    | `String s ->
-      (match of_string_opt s with
-       | Some t -> t
-       | None -> raise (Json.Invalid_json ("Invalid color for [Color.Hum.t].", json)))
-    | _ -> raise (Json.Invalid_json ("Expected string for [Color.Hum.t].", json))
-  ;;
-
   let to_index = function
     | Black -> 0
     | Blue -> 1
